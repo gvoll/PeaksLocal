@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const initialForm = {
   name: '',
@@ -32,14 +33,28 @@ export default function AuditForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log('Audit form submission:', form);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          business: form.business,
+          reply_to: form.email,
+          website: form.website,
+          challenge: form.challenge || 'Not provided',
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
       setSubmitted(true);
-    }, 900);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
