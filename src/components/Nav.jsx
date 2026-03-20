@@ -48,10 +48,10 @@ const styles = {
     fontWeight: 700,
     fontSize: '1.3rem',
     color: 'var(--white)',
-    textTransform: 'uppercase',
     letterSpacing: '0.06em',
-    fontVariant: 'small-caps',
     lineHeight: 1,
+    display: 'flex',
+    alignItems: 'baseline',
   },
   tagline: {
     fontFamily: "'DM Mono', monospace",
@@ -182,7 +182,9 @@ export default function Nav() {
           <a href="/" style={styles.brand}>
             <img src="/logopeaks.png" alt="PeaksLocal logo" style={styles.logoImg} />
             <div style={styles.brandText}>
-              <span style={styles.wordmark}>PeaksLocal</span>
+              <span style={styles.wordmark}>
+                <span style={{ fontSize: '1.6rem' }}>P</span>EAKS<span style={{ fontSize: '1.6rem' }}>L</span>OCAL
+              </span>
               <span style={styles.tagline}>Be Seen on Search, Maps + AI.</span>
             </div>
           </a>

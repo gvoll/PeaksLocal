@@ -10,7 +10,7 @@ const platformCards = [
     badgeType: 'core',
   },
   {
-    iconImg: 'https://1000logos.net/wp-content/uploads/2016/10/Apple-Logo.png',
+    iconImg: 'https://www.tailorbrands.com/wp-content/uploads/2021/01/apple_logo_1988.jpg',
     iconBg: '#fff',
     name: 'Apple Business Connect',
     sub: 'Apple Maps & Siri',
