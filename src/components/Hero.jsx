@@ -2,27 +2,24 @@ import React, { useEffect, useRef } from 'react';
 
 const platformCards = [
   {
-    icon: 'G',
-    iconBg: '#4285F4',
-    iconColor: '#fff',
+    iconImg: 'https://img.icons8.com/color/1200/my-bussiness.jpg',
+    iconBg: '#fff',
     name: 'Google Business',
     sub: 'Search, Maps & Gemini AI',
     badge: 'CORE',
     badgeType: 'core',
   },
   {
-    icon: '',
-    iconBg: '#000',
-    iconColor: '#fff',
+    iconImg: 'https://1000logos.net/wp-content/uploads/2016/10/Apple-Logo.png',
+    iconBg: '#fff',
     name: 'Apple Business Connect',
     sub: 'Apple Maps & Siri',
     badge: 'CORE',
     badgeType: 'core',
   },
   {
-    icon: 'B',
-    iconBg: '#0078D4',
-    iconColor: '#fff',
+    iconImg: 'https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/21937385/binglogo.jpg?quality=90&strip=all&crop=0,0,100,100',
+    iconBg: '#fff',
     name: 'Bing Places',
     sub: 'Bing Maps & ChatGPT',
     badge: 'CORE',
@@ -300,8 +297,11 @@ export default function Hero() {
                         fontSize: card.icon === 'BBB' ? '0.6rem' : '1rem',
                         flexShrink: 0,
                         letterSpacing: card.icon === 'BBB' ? '-0.02em' : 0,
+                        overflow: 'hidden',
                       }}>
-                        {card.icon}
+                        {card.iconImg ? (
+                          <img src={card.iconImg} alt={card.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        ) : card.icon}
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
