@@ -35,9 +35,10 @@ const styles = {
     flexShrink: 0,
   },
   logoImg: {
-    height: '36px',
+    height: '44px',
     width: 'auto',
     objectFit: 'contain',
+    borderRadius: '2px',
   },
   brandText: {
     display: 'flex',
@@ -185,13 +186,7 @@ export default function Nav() {
         <div style={styles.inner}>
           {/* Brand */}
           <a href="/" style={styles.brand}>
-            <img src="/logopeaks.png" alt="PeaksLocal logo" style={styles.logoImg} />
-            <div style={styles.brandText}>
-              <span style={styles.wordmark}>
-                <span style={{ fontSize: '1.6rem' }}>P</span>EAKS<span style={{ fontSize: '1.6rem' }}>L</span>OCAL
-              </span>
-              <span style={styles.tagline}>Be Seen on Search, Maps + AI.</span>
-            </div>
+            <img src="/peaks-local-without-tagline.png" alt="PeaksLocal logo" style={styles.logoImg} />
           </a>
 
           {/* Desktop Links */}

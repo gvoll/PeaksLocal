@@ -32,35 +32,12 @@ export default function Footer() {
 
             {/* Col 1 — Brand */}
             <div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px', marginBottom: '14px' }}>
+              <div style={{ marginBottom: '14px' }}>
                 <img
-                  src="/logopeaks.png"
+                  src="/peaks-local-without-tagline.png"
                   alt="PeaksLocal"
-                  style={{ height: '80px', width: 'auto', objectFit: 'contain' }}
+                  style={{ height: '110px', width: 'auto', objectFit: 'contain', display: 'block' }}
                 />
-                <div>
-                  <div style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 700,
-                    fontSize: '1.4rem',
-                    color: 'var(--white)',
-                    letterSpacing: '0.06em',
-                    lineHeight: 1,
-                    display: 'flex',
-                    alignItems: 'baseline',
-                  }}>
-                    <span style={{ fontSize: '1.7rem' }}>P</span>EAKS<span style={{ fontSize: '1.7rem' }}>L</span>OCAL
-                  </div>
-                  <div style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: '0.7rem',
-                    color: 'var(--green-hi)',
-                    letterSpacing: '0.1em',
-                    marginTop: '3px',
-                  }}>
-                    Be Seen on Search, Maps + AI.
-                  </div>
-                </div>
               </div>
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
