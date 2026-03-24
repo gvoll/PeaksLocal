@@ -102,7 +102,7 @@ export default function Hero() {
         }
         @media (max-width: 960px) {
           .hero-grid { flex-direction: column !important; }
-          .hero-right { display: none !important; }
+          .hero-right { width: 100% !important; }
         }
         @media (max-width: 600px) {
           .hero-h1 { font-size: 3.2rem !important; }
