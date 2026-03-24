@@ -187,13 +187,17 @@ export default function Nav() {
           {/* Brand */}
           <a href="/" style={styles.brand}>
             <img src="/peaks-local-without-tagline.png" alt="PeaksLocal logo" style={styles.logoImg} />
+            <div style={styles.brandText}>
+              <span style={styles.wordmark}>PeaksLocal</span>
+              <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>
+            </div>
           </a>
 
           {/* Desktop Links */}
           <div className="nav-links" style={styles.links}>
             {[
               { label: 'How It Works', id: 'pipeline' },
-              { label: 'Services', id: 'services' },
+              { label: 'Our System', id: 'system' },
               { label: 'About', id: 'about' },
             ].map((item) => (
               <button
@@ -232,7 +236,7 @@ export default function Nav() {
           <div style={styles.mobileMenu}>
             {[
               { label: 'How It Works', id: 'pipeline' },
-              { label: 'Services', id: 'services' },
+              { label: 'Our System', id: 'system' },
               { label: 'About', id: 'about' },
             ].map((item) => (
               <button

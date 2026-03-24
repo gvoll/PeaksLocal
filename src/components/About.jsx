@@ -5,26 +5,23 @@ const credentials = [
   'ScrumMaster',
   'CU Boulder',
   'MIS',
-  'Akamai',
-  'Valtech',
-  'Accenture',
   'Denver, CO',
 ];
 
 const callouts = [
   {
     title: 'Verified Agency Partner',
-    body: 'Active Google Agency ID. Apple partner registration in process. No password sharing — role-based access only.',
+    body: 'Established as a Google Agency Partner, with Apple partner registration underway. This ensures secure, role-based access to your accounts (No password sharing).',
     icon: '✓',
   },
   {
-    title: 'Program Management Background',
-    body: '20+ years delivering complex systems projects. Structured process, clear milestones, documented deliverables — every engagement.',
+    title: 'Program Management Approach',
+    body: 'Benefit from 20+ years of experience delivering complex systems projects. Expect a clear, structured process with documented deliverables and defined milestones.',
     icon: '⊙',
   },
   {
-    title: 'Denver-Based, Nationally Focused',
-    body: 'Local roots. Remote-capable delivery. PeaksLocal serves local businesses across the country with the same structured approach.',
+    title: 'Local Roots, National Reach',
+    body: 'While Denver-based, we are fully remote-capable. We serve businesses across the country, providing the same high-level, structured approach as we do to our local partners.',
     icon: '◎',
   },
 ];
@@ -75,7 +72,7 @@ export default function About() {
                 letterSpacing: '-0.01em',
               }}
             >
-              An Engineering Mindset. A Consulting Background.
+              An Engineering Mindset. A Consulting Background. A Local Focus.
             </h2>
 
             <p
@@ -88,7 +85,7 @@ export default function About() {
                 marginBottom: '20px',
               }}
             >
-              PeaksLocal was founded by <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Greg Voll</strong>, a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
+              PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
             </p>
 
             <p
@@ -98,27 +95,14 @@ export default function About() {
                 fontSize: '0.92rem',
                 color: 'var(--slate)',
                 lineHeight: 1.75,
-                marginBottom: '20px',
-              }}
-            >
-              Where most local marketing agencies focus on tactics, Greg brings a program manager's discipline to the problem: map the system, identify the gaps, build the infrastructure, and maintain it. The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
-            </p>
-
-            <p
-              className="reveal reveal-delay-4"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.92rem',
-                color: 'var(--slate)',
-                lineHeight: 1.75,
                 marginBottom: '28px',
               }}
             >
-              His background includes work at Akamai Technologies, Valtech (formerly Kin + Carta), and Accenture — building the operational processes and systems infrastructure that complex organizations rely on. That same rigor now applies to the platforms that determine whether local customers find you.
+              Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem: map the current system, identify the gaps, establish a plan, build the infrastructure, and maintain it. The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
             </p>
 
             {/* Credential tags */}
-            <div className="reveal reveal-delay-5" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div className="reveal reveal-delay-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               {credentials.map((tag) => (
                 <span
                   key={tag}

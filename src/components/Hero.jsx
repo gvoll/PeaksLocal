@@ -41,8 +41,8 @@ const platformCards = [
     iconColor: 'var(--slate)',
     name: 'Data Aggregators',
     sub: '300+ endpoints & GPS systems',
-    badge: 'TRUST',
-    badgeType: 'trust',
+    badge: 'REACH',
+    badgeType: 'reach',
   },
 ];
 

@@ -3,18 +3,18 @@ import React, { useEffect, useRef } from 'react';
 const problems = [
   {
     num: '01',
-    title: 'Invisible to AI Recommendations',
-    body: 'AI assistants answer questions like "best plumber near me" by pulling from verified business data. If your data isn\'t clean and consistent, AI systems skip you — silently, every time someone asks.',
+    title: 'Invisible to \'Near Me\' Searches',
+    body: 'When someone searches "best [service] near me" — on Google, through Siri, or by asking ChatGPT — the results come from verified business data. If your information is incomplete or inconsistent, AI systems skip you. Silently, every time.',
   },
   {
     num: '02',
     title: 'Conflicting Business Information',
-    body: 'Different phone numbers, outdated hours, or inconsistent addresses across directories confuse search engines. When platforms can\'t trust your data, they stop showing your business.',
+    body: 'Inconsistent names, addresses, or phone numbers across online directories can damage your trust rating with search engines. This confusion can cause your business to display incorrect information or not show up in search results at all.',
   },
   {
     num: '03',
-    title: 'Your Competitors Are Fixing This',
-    body: 'Businesses actively managing their digital identity appear more often in search, maps, and AI recommendations. The ones who don\'t are slowly disappearing — without even knowing it.',
+    title: 'Competitive Advantage',
+    body: 'If competitors proactively verify and manage their digital identity, they can surpass your visibility in search results, on maps, and within AI recommendations.',
   },
 ];
 
@@ -91,7 +91,7 @@ export default function Problem() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Search Has Changed.<br />Most Businesses Haven't.
+              Most Businesses Assume They Show Up. Many Don't.
             </h2>
             <p
               className="reveal reveal-delay-2"
@@ -102,7 +102,7 @@ export default function Problem() {
                 lineHeight: 1.75,
               }}
             >
-              Search isn't just Google anymore. Customers discover businesses through Google, Apple Maps, Bing, ChatGPT, Gemini, Siri, and Perplexity. These platforms don't just list results — they <em style={{ color: 'rgba(138,160,184,0.9)' }}>recommend</em> businesses. If yours isn't verified and consistent across all of them, you may not make the list at all.
+              Even the best businesses can be invisible to the customers actively searching for products or services — not because of their reputation, but because of gaps in their data layer that powers modern search.
             </p>
           </div>
 

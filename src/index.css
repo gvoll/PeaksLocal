@@ -245,6 +245,12 @@ input, textarea {
   border: 1px solid rgba(138, 160, 184, 0.3);
 }
 
+.badge-reach {
+  background: rgba(15, 36, 64, 0.12);
+  color: var(--navy-mid);
+  border: 1px solid rgba(15, 36, 64, 0.2);
+}
+
 .badge-navy {
   background: var(--navy);
   color: var(--white);

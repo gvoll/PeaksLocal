@@ -119,7 +119,7 @@ export default function AuditForm() {
                 justifyContent: 'center',
               }}
             >
-              FREE VISIBILITY AUDIT
+              FREE VISIBILITY AUDIT REQUEST
             </div>
             <h2
               className="reveal reveal-delay-1"
@@ -134,7 +134,7 @@ export default function AuditForm() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Find Out Where You're Invisible.
+              Check Your Current Status
             </h2>
             <p
               className="reveal reveal-delay-2"
@@ -147,7 +147,10 @@ export default function AuditForm() {
                 margin: '0 auto',
               }}
             >
-              We'll show you exactly where your business stands across Google, Maps, and AI platforms — and what it would take to improve. No obligation, no jargon.
+              See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
+            </p>
+            <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: 'var(--slate)', marginTop: '8px', textTransform: 'uppercase' }}>
+              No Obligation. No Sales Pressure.
             </p>
           </div>
 
@@ -214,14 +217,14 @@ export default function AuditForm() {
 
                 <div>
                   <label className="audit-label" htmlFor="challenge">
-                    Biggest challenge
+                    What's your biggest visibility challenge?
                     <span className="optional">(optional)</span>
                   </label>
                   <textarea
                     className="audit-input"
                     id="challenge"
                     name="challenge"
-                    placeholder="What's your biggest challenge with local visibility right now?"
+                    placeholder="What's your biggest visibility challenge? (optional — helps us tailor your audit)"
                     rows={4}
                     value={form.challenge}
                     onChange={handleChange}
@@ -251,7 +254,7 @@ export default function AuditForm() {
                   gap: '20px',
                   flexWrap: 'wrap',
                 }}>
-                  {['Free audit', 'No contracts', 'Response within 24 hours'].map((t) => (
+                  {['Free audit', 'No contracts', 'Prompt Response'].map((t) => (
                     <span key={t} style={{
                       display: 'flex',
                       alignItems: 'center',
