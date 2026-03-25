@@ -134,7 +134,7 @@ export default function System() {
           {/* Section Header */}
           <div style={{ maxWidth: '680px', marginBottom: '72px' }}>
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
-              HOW WE WORK
+              THE PEAKSLOCAL PROCESS
             </div>
             <h2
               className="reveal reveal-delay-1"
@@ -351,9 +351,9 @@ export default function System() {
               </div>
             </div>
 
-            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--slate)', textAlign: 'center', marginTop: '28px' }}>
-              Need something different? While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
-            </p>
+            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center', marginTop: '28px' }}>
+  Need something different? While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
+</p>
           </div>
 
           {/* 4d — Who We Help */}
@@ -376,6 +376,7 @@ export default function System() {
               </p>
             </div>
 
+           
             <div className="who-cols" style={{ display: 'flex', gap: '32px', marginBottom: '32px' }}>
               {/* Professional Services */}
               <div className="reveal" style={{ flex: 1, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
@@ -406,15 +407,16 @@ export default function System() {
                   ))}
                 </ul>
               </div>
-            </div>
+              </div>
 
-            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: '0.88rem', color: 'var(--slate)', textAlign: 'center' }}>
-              Unsure if PeaksLocal is the right fit? Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
-            </p>
-          </div>
+              <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center' }}>
+  Unsure if PeaksLocal is the right fit? Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
+</p>
+</div>
 
         </div>
       </section>
     </>
   );
 }
+
