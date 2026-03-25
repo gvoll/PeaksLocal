@@ -9,10 +9,10 @@ const stats = [
 
 const pipelineNodes = [
   { label: 'YOUR BUSINESS', sub: 'The source of truth: name, address, phone, services, hours', style: 'filled' },
-  { label: 'CORE PLATFORMS', sub: 'Google Business Profile, Apple Business Connect and Bing Places', style: 'outline' },
+  { label: 'CORE PLATFORMS', sub: 'Google Business Profile · Apple Business Connect and Bing Places', style: 'outline' },
   { label: 'TRUST SIGNALS', sub: 'Reviews · BBB · Industry Directories', style: 'outline' },
-  { label: 'DATA AGGREGATORS', sub: 'Website Schema JSON-LD· Structured Data', style: 'outline' },
-  { label: 'SEARCH + AI SYSTEMS', sub: 'Google · Siri · ChatGPT · Gemini · Perplexity', style: 'green' },
+  { label: 'DATA AGGREGATORS', sub: 'Website Schema JSON-LD · Structured Data', style: 'outline' },
+  { label: 'SEARCH  MAPS + AI SYSTEMS', sub: 'Google · Siri · ChatGPT · Gemini · Perplexity', style: 'green' },
 ];
 
 const rightItems = [

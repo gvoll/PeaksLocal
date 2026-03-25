@@ -149,10 +149,11 @@ export default function AuditForm() {
             >
               See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
             </p>
-            <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: 'var(--slate)', marginTop: '8px', textTransform: 'uppercase' }}>
-              No Obligation. No Sales Pressure.
-            </p>
+            <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.82rem', letterSpacing: '0.1em', color: '#1a3a5c', marginTop: '8px', textTransform: 'uppercase', fontWeight: '600' }}>
+  No Obligation. No Sales Pressure.
+</p>
           </div>
+
 
           {/* Form card */}
           <div className="audit-form-card reveal reveal-delay-2">
