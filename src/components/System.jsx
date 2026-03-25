@@ -172,6 +172,7 @@ export default function System() {
                 </p>
                 </div>
             <div>
+
               {/* Audit card */}
               <div className="reveal">
                 <div style={{ background: 'var(--white)', borderRadius: '14px', overflow: 'hidden', boxShadow: 'var(--shadow-card)', border: '1px solid var(--rule)' }}>
@@ -379,10 +380,10 @@ export default function System() {
               </p>
             </div>
 
-           
-            <div className="who-cols" style={{ display: 'flex', gap: '32px', marginBottom: '32px' }}>
+
+            <div className="who-cols" style={{ display: 'flex', gap: '32px', marginBottom: '32px', maxWidth: '100%', boxSizing: 'border-box' }}>
               {/* Professional Services */}
-              <div className="reveal" style={{ flex: 1, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
+              <div className="reveal" style={{ flex: 1, minWidth : 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
                 <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
                   Professional Services
                 </div>
@@ -397,7 +398,7 @@ export default function System() {
               </div>
 
               {/* Local Commerce */}
-              <div className="reveal reveal-delay-1" style={{ flex: 1, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
+              <div className="reveal reveal-delay-1" style={{ flex: 1, minWidth : 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
                 <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
                   Local Commerce
                 </div>
