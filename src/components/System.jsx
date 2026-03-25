@@ -123,6 +123,12 @@ export default function System() {
           .services-grid { flex-direction: column !important; }
           .who-cols { flex-direction: column !important; }
         }
+          @media (max-width: 768px) {
+  .who-cols {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+}
       `}</style>
       <section
         id="system"
