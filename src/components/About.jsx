@@ -1,13 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-const credentials = [
-  'SAFe Certified POPM',
-  'ScrumMaster',
-  'CU Boulder',
-  'MIS',
-  'Denver, CO',
-];
-
 const callouts = [
   {
     title: 'Verified Agency Partner',
@@ -100,28 +92,8 @@ export default function About() {
             >
               Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem: map the current system, identify the gaps, establish a plan, build the infrastructure, and maintain it. The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
             </p>
-
-            {/* Credential tags */}
-            <div className="reveal reveal-delay-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {credentials.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: '0.65rem',
-                    letterSpacing: '0.06em',
-                    color: 'var(--slate)',
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: '4px',
-                    padding: '4px 10px',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+            
+          </div> 
 
           {/* RIGHT — Callout boxes */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingTop: '52px' }}>

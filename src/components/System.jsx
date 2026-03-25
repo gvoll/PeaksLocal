@@ -165,10 +165,12 @@ export default function System() {
               We begin with a comprehensive Digital Identity Audit — this assesses your business across the essential platforms and signals influencing recommendations from search engines and AI assistants. The result is your Local Visibility Score (0–100 rating) — this shows your current online presence and highlights targeted opportunities to boost your visibility.
             </p>
 
+            <div className="reveal reveal-delay-1" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
+
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--slate)', lineHeight: 1.7 }}>
                   The example below is a pattern we see often — one strong platform and notable gaps elsewhere. The free audit shows you yours.
                 </p>
-                
+                </div>
             <div>
               {/* Audit card */}
               <div className="reveal">
@@ -246,10 +248,7 @@ export default function System() {
               </div>
 
               {/* Note below card */}
-              <div className="reveal reveal-delay-1" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--slate)', lineHeight: 1.7 }}>
-                  The example below is a pattern we see often — one strong platform and notable gaps elsewhere. The free audit shows you yours.
-                </p>
+                
                 <button className="btn-primary" style={{ flexShrink: 0 }} onClick={scrollToAudit}>
                   Get My Free Visibility Score
                 </button>
@@ -418,7 +417,7 @@ export default function System() {
 </p>
 </div>
 
-        </div>
+    
       </section>
     </>
   );
