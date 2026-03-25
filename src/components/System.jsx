@@ -173,11 +173,11 @@ export default function System() {
 
             <div className="reveal reveal-delay-1" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
 
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--slate)', lineHeight: 1.7 }}>
-                  The example below is a pattern we see often — one strong platform and notable gaps elsewhere. The free audit shows you yours.
-                </p>
-                </div>
-            <div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--slate)', lineHeight: 1.7 }}>
+                The example below is a pattern we see often — one strong platform and notable gaps elsewhere. The free audit shows you yours.
+              </p>
+            </div>
+            <div style={{ marginTop: '24px' }}>
 
               {/* Audit card */}
               <div className="reveal">
@@ -255,11 +255,10 @@ export default function System() {
               </div>
 
               {/* Note below card */}
-                
-                <button className="btn-primary" style={{ flexShrink: 0 }} onClick={scrollToAudit}>
-                  Get My Free Visibility Score
-                </button>
-              </div>
+
+              <button className="btn-primary" style={{ flexShrink: 0, marginTop: '24px' }} onClick={scrollToAudit}>
+                Get My Free Visibility Score
+              </button>
             </div>
           </div>
 
@@ -362,8 +361,8 @@ export default function System() {
             </div>
 
             <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center', marginTop: '28px' }}>
-  Need something different? While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
-</p>
+              Need something different? While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
+            </p>
           </div>
 
           {/* 4d — Who We Help */}
@@ -389,7 +388,7 @@ export default function System() {
 
             <div className="who-cols" style={{ display: 'flex', gap: '32px', marginBottom: '32px', maxWidth: '100%', boxSizing: 'border-box' }}>
               {/* Professional Services */}
-              <div className="reveal" style={{ flex: 1, minWidth : 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
+              <div className="reveal" style={{ flex: 1, minWidth: 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
                 <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
                   Professional Services
                 </div>
@@ -404,7 +403,7 @@ export default function System() {
               </div>
 
               {/* Local Commerce */}
-              <div className="reveal reveal-delay-1" style={{ flex: 1, minWidth : 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
+              <div className="reveal reveal-delay-1" style={{ flex: 1, minWidth: 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
                 <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
                   Local Commerce
                 </div>
@@ -417,14 +416,15 @@ export default function System() {
                   ))}
                 </ul>
               </div>
-              </div>
+            </div>
 
-              <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center' }}>
-  Unsure if PeaksLocal is the right fit? Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
-</p>
-</div>
+            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center' }}>
+              Unsure if PeaksLocal is the right fit? Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
+            </p>
+          </div>
+        </div>
 
-    
+
       </section>
     </>
   );

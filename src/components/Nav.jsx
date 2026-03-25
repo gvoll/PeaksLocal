@@ -188,7 +188,12 @@ export default function Nav() {
           <a href="/" style={styles.brand}>
             <img src="/peaks-local-without-tagline.png" alt="PeaksLocal logo" style={styles.logoImg} />
             <div style={styles.brandText}>
-              <span style={styles.wordmark}>PeaksLocal</span>
+              <span style={styles.wordmark}>
+                <span style={{ fontSize: '1.45rem' }}>P</span>
+                <span style={{ fontSize: '0.95rem' }}>EAKS</span>
+                <span style={{ fontSize: '1.45rem' }}>L</span>
+                <span style={{ fontSize: '0.95rem' }}>OCAL</span>
+              </span>
               <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>
             </div>
           </a>

@@ -14,6 +14,7 @@ export default function Footer() {
         @media (max-width: 720px) {
           .footer-grid { grid-template-columns: 1fr; text-align: center; }
           .footer-right-col { align-items: center !important; }
+          .footer-logo { margin: 0 auto; }
         }
         .footer-link:hover { color: var(--white) !important; }
       `}</style>
@@ -23,7 +24,7 @@ export default function Footer() {
 
             {/* Col 1 — Logo */}
             <div>
-              <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+              <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} />
             </div>
 
             {/* Col 2 — Center */}
@@ -44,9 +45,9 @@ export default function Footer() {
               <Link to="/privacy" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 Privacy Policy
               </Link>
-              <a href="mailto:contact@peakslocal.com" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+              <Link to="/contact" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 Contact
-              </a>
+              </Link>
             </div>
 
           </div>

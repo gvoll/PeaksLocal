@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const stats = [
   { num: '46%', label: 'of all Google searches have local intent', source: 'Think With Google' },
@@ -52,6 +52,7 @@ const nearMeFactors = [
 
 export default function Pipeline() {
   const sectionRef = useRef(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -119,6 +120,100 @@ export default function Pipeline() {
               The way customers find local businesses has fundamentally changed — and most businesses haven't kept up. Here's what's actually happening behind every search.
             </p>
           </div>
+
+          {/* Visibility Ecosystem Drawing */}
+          <div className="reveal" style={{ marginBottom: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+            <div style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.62rem',
+              color: 'var(--slate)',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+            }}>
+              PeaksLocal Visibility Ecosystem
+            </div>
+            <div
+              onClick={() => setLightboxOpen(true)}
+              style={{
+                border: '1px solid var(--rule)',
+                borderRadius: '14px',
+                overflow: 'hidden',
+                boxShadow: 'var(--shadow-card)',
+                maxWidth: '520px',
+                width: '100%',
+                background: 'var(--white)',
+                cursor: 'zoom-in',
+                transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--shadow-card)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >
+              <img
+                src="/drawing.jpeg"
+                alt="PeaksLocal Visibility Ecosystem"
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+            </div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'var(--slate)' }}>
+              Click to enlarge
+            </div>
+          </div>
+
+          {/* Lightbox */}
+          {lightboxOpen && (
+            <div
+              onClick={() => setLightboxOpen(false)}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 1000,
+                background: 'rgba(0,0,0,0.85)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '24px',
+                cursor: 'zoom-out',
+              }}
+            >
+              <div style={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }}>
+                <button
+                  onClick={() => setLightboxOpen(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '-14px',
+                    right: '-14px',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'var(--white)',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1rem',
+                    color: 'var(--ink)',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.3)',
+                    zIndex: 1,
+                  }}
+                >
+                  ×
+                </button>
+                <img
+                  src="/drawing.jpeg"
+                  alt="PeaksLocal Visibility Ecosystem"
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    display: 'block',
+                    maxWidth: '90vw',
+                    maxHeight: '90vh',
+                    borderRadius: '12px',
+                    boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                  }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* 3a — The "Near Me" Reality */}
           <div className="reveal" style={{ background: 'var(--ash)', borderRadius: '16px', padding: '40px', marginBottom: '72px' }}>

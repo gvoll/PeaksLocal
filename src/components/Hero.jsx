@@ -1,51 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-const platformCards = [
-  {
-    iconImg: 'https://img.icons8.com/color/1200/my-bussiness.jpg',
-    iconBg: '#fff',
-    name: 'Google Business',
-    sub: 'Search, Maps & Gemini AI',
-    badge: 'CORE',
-    badgeType: 'core',
-  },
-  {
-    iconImg: 'https://www.tailorbrands.com/wp-content/uploads/2021/01/apple_logo_1988.jpg',
-    iconBg: '#fff',
-    name: 'Apple Business Connect',
-    sub: 'Apple Maps & Siri',
-    badge: 'CORE',
-    badgeType: 'core',
-  },
-  {
-    iconImg: 'https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/21937385/binglogo.jpg?quality=90&strip=all&crop=0,0,100,100',
-    iconBg: '#fff',
-    name: 'Bing Places',
-    sub: 'Bing Maps & ChatGPT',
-    badge: 'CORE',
-    badgeType: 'core',
-  },
-  { divider: true, label: '+ Trust & Distribution Layer' },
-  {
-    icon: 'BBB',
-    iconBg: '#1a3a6b',
-    iconColor: '#fff',
-    name: 'BBB + Directories',
-    sub: 'Verified trust signals',
-    badge: 'TRUST',
-    badgeType: 'trust',
-  },
-  {
-    icon: '⊕',
-    iconBg: '#1e4976',
-    iconColor: 'var(--slate)',
-    name: 'Data Aggregators',
-    sub: '300+ endpoints & GPS systems',
-    badge: 'REACH',
-    badgeType: 'reach',
-  },
-];
-
 export default function Hero() {
   const heroRef = useRef(null);
 
@@ -84,25 +38,8 @@ export default function Hero() {
           transform: translateY(22px);
           transition: opacity 0.65s ease, transform 0.65s ease;
         }
-        .platform-card {
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 10px;
-          padding: 12px 14px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-          cursor: default;
-        }
-        .platform-card:hover {
-          background: rgba(255,255,255,0.09);
-          transform: translateX(4px);
-          border-color: rgba(58,173,100,0.3);
-        }
         @media (max-width: 960px) {
           .hero-grid { flex-direction: column !important; }
-          .hero-right { width: 100% !important; }
         }
         @media (max-width: 600px) {
           .hero-h1 { font-size: 3.2rem !important; }
@@ -246,90 +183,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN — Platform stack */}
-            <div className="hero-right" style={{ width: '300px', flexShrink: 0 }}>
-              <div className="hero-fade" style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: '0.62rem',
-                color: 'var(--slate)',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                marginBottom: '14px',
-              }}>
-                Your Visibility Network
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {platformCards.map((card, i) => {
-                  if (card.divider) {
-                    return (
-                      <div key={i} style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '6px 0',
-                      }}>
-                        <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                        <span style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: '0.6rem',
-                          color: 'var(--slate)',
-                          letterSpacing: '0.08em',
-                        }}>
-                          {card.label}
-                        </span>
-                        <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                      </div>
-                    );
-                  }
-                  return (
-                    <div key={i} className="platform-card hero-fade">
-                      <div style={{
-                        width: '34px',
-                        height: '34px',
-                        borderRadius: '7px',
-                        background: card.iconBg,
-                        color: card.iconColor,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontFamily: "'Barlow Condensed', sans-serif",
-                        fontWeight: 700,
-                        fontSize: card.icon === 'BBB' ? '0.6rem' : '1rem',
-                        flexShrink: 0,
-                        letterSpacing: card.icon === 'BBB' ? '-0.02em' : 0,
-                        overflow: 'hidden',
-                      }}>
-                        {card.iconImg ? (
-                          <img src={card.iconImg} alt={card.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                        ) : card.icon}
-                      </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontWeight: 500,
-                          fontSize: '0.8rem',
-                          color: 'var(--white)',
-                          lineHeight: 1.2,
-                          marginBottom: '2px',
-                        }}>
-                          {card.name}
-                        </div>
-                        <div style={{
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontSize: '0.7rem',
-                          color: 'var(--slate)',
-                        }}>
-                          {card.sub}
-                        </div>
-                      </div>
-                      <span className={`badge badge-${card.badgeType}`}>
-                        {card.badge}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
           </div>
         </div>
       </section>
