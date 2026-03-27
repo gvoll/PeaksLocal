@@ -36,16 +36,15 @@ export default function Footer() {
                 © 2026 PeaksLocal · Denver, Colorado
               </p>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.68rem', color: 'rgba(138,160,184,0.45)', lineHeight: 1.5 }}>
-                PeaksLocal is an independent local visibility consultancy. Google, Apple, Bing, and all platform names are trademarks of their respective owners.
-              </p>
+              PeaksLocal is an independent online identity firm. Google, Apple, Bing, and all platform names are trademarks of their respective owners.              </p>
             </div>
 
             {/* Col 3 — Links */}
             <div className="footer-right-col" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end' }}>
-              <Link to="/privacy" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+            <Link to="/privacy" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 Privacy Policy
               </Link>
-              <Link to="/contact" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+              <Link to="/contact" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 Contact
               </Link>
             </div>
