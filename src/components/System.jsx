@@ -294,9 +294,9 @@ export default function System() {
               {/* Tier 1 */}
               <div className="services-card reveal" style={{ flex: 1 }}>
                 <div style={{ background: 'var(--navy)', padding: '28px 28px 24px' }}>
-                  <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
-                    <span className="badge-navy">ONE-TIME PROJECT</span>
-                    <span className="badge-navy">FOUNDATIONAL STEP</span>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
+                    <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: 'var(--white)', fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: '3px' }}>ONE-TIME PROJECT</span>
+                    <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: 'var(--white)', fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: '3px' }}>FOUNDATIONAL STEP</span>
                   </div>
                   <h4 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--white)', letterSpacing: '0.03em', marginBottom: '12px' }}>
                     Digital Identity Build
