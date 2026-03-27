@@ -134,14 +134,25 @@ export default function Services() {
                 background: 'var(--navy)',
                 padding: '28px 28px 24px',
               }}>
-                <span className="badge-navy" style={{ marginBottom: '14px', display: 'inline-block' }}>
-                  ONE-TIME PROJECT
-                </span>
+                <span style={{
+  display: 'inline-block',
+  background: 'rgba(255,255,255,0.15)',
+  color: 'var(--white)',
+  fontFamily: "'DM Mono', monospace",
+  fontSize: '0.6rem',
+  letterSpacing: '0.1em',
+  textTransform: 'uppercase',
+  padding: '4px 10px',
+  borderRadius: '3px',
+  marginBottom: '14px',
+}}>
+  ONE-TIME PROJECT
+</span>
                 <h3 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: '1.6rem',
-                  textTransform: 'uppercase', background: 'rgba(255,255,255,0.15)', 
+                  textTransform: 'uppercase',  
                   color: 'var(--white)',
                   letterSpacing: '0.03em',
                   marginBottom: '12px',
