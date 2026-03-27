@@ -9,12 +9,11 @@ const stats = [
 
 const pipelineNodes = [
   { label: 'YOUR BUSINESS', sub: 'The source of truth: name, address, phone, services, hours', style: 'filled' },
-  { label: 'CORE PLATFORMS', sub: 'Google Business Profile· Bing Places and Apple Business Connect', style: 'outline' },
+  { label: 'CORE PLATFORMS', sub: 'Google Business Profile · Bing Places · Apple Business Connect', style: 'outline' },
   { label: 'TRUST SIGNALS', sub: 'Reviews · BBB · Industry Directories', style: 'outline' },
   { label: 'DATA AGGREGATORS', sub: 'Website Schema JSON-LD · Structured Data', style: 'outline' },
-  { label: 'SEARCH  MAPS + AI SYSTEMS', sub: 'Google · Siri · ChatGPT · Gemini · Perplexity', style: 'green' },
+  { label: 'SEARCH, MAPS + AI SYSTEMS', sub: 'Google · Siri · ChatGPT · Gemini · Perplexity', style: 'green' },
 ];
-
 const rightItems = [
   {
     title: 'Why Every Layer Matters',
@@ -287,7 +286,7 @@ export default function Pipeline() {
                   <React.Fragment key={node.label}>
                     <div
                       className={`pipeline-node-${node.style}`}
-                      style={{ borderRadius: '10px', padding: '16px 18px' }}
+                      style={{ borderRadius: '10px', padding: '16px 18px', textAlign: 'center' }}
                     >
                       <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
                         {node.label}
