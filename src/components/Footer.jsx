@@ -24,7 +24,9 @@ export default function Footer() {
 
             {/* Col 1 — Logo */}
             <div>
-              <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} />
+              </Link>
             </div>
 
             {/* Col 2 — Center */}
