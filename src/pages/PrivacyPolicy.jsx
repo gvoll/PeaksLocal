@@ -65,10 +65,7 @@ const sections = [
   {
     title: 'Contact',
     content: [
-      'If you have questions, concerns, or requests regarding this Privacy Policy or the way we handle your personal information, please contact us:',
-      'PeaksLocal',
-      'Denver, Colorado',
-      'Email: Contact via the audit form on our website',
+      'If you have questions, concerns, or requests regarding this Privacy Policy or the way we handle your personal information, please contact us via our contact form.',
       'We are committed to working with you to resolve any concerns about your privacy.',
     ],
   },
@@ -203,7 +200,7 @@ export default function PrivacyPolicy() {
                   gap: '6px',
                 }}
               >
-                ← Back to PeaksLocal
+                ← Back to PeaksLocal Home
               </a>
             </div>
           </div>
