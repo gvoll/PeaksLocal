@@ -141,11 +141,12 @@ export default function Services() {
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 700,
                   fontSize: '1.6rem',
-                  textTransform: 'uppercase',
+                  textTransform: 'uppercase', background: 'rgba(255,255,255,0.15)', 
                   color: 'var(--white)',
                   letterSpacing: '0.03em',
                   marginBottom: '12px',
                 }}>
+                  
                   Digital Identity Build
                 </h3>
                 <p style={{
