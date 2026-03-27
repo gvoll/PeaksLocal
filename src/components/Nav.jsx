@@ -35,7 +35,7 @@ const styles = {
     flexShrink: 0,
   },
   logoImg: {
-    height: '44px',
+    height: '54px',
     width: 'auto',
     objectFit: 'contain',
     borderRadius: '2px',
@@ -61,7 +61,7 @@ const styles = {
     color: 'var(--green-hi)',
     letterSpacing: '0.1em',
     lineHeight: 1,
-    fontWeight: 400,
+    fontWeight: 700,
   },
   links: {
     display: 'flex',
