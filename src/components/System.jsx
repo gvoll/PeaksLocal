@@ -361,7 +361,7 @@ export default function System() {
             </div>
 
             <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center', marginTop: '28px' }}>
-              <a href="#contact" onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) { const top = el.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: 'smooth' }); } }} style={{ color: 'var(--green)', textDecoration: 'none' }}>
+              <a href="contact" onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if (el) { const top = el.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: 'smooth' }); } }} style={{ color: 'var(--green)', textDecoration: 'none' }}>
                 Need something different?
               </a>{' '}
               While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
