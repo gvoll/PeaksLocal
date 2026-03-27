@@ -168,19 +168,33 @@ export default function PrivacyPolicy() {
                     {section.title}
                   </h2>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {section.content.map((para, i) => (
-                      <p
-                        key={i}
-                        style={{
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontSize: '0.9rem',
-                          color: 'var(--mid)',
-                          lineHeight: 1.75,
-                        }}
-                      >
-                        {para}
-                      </p>
-                    ))}
+                    {section.title === 'Contact' ? (
+                      <>
+                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.75 }}>
+                          If you have questions, concerns, or requests regarding this Privacy Policy or the way we handle your personal information, please{' '}
+                          <a href="/contact" style={{ color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}>
+                            contact us via our contact page
+                          </a>.
+                        </p>
+                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.75 }}>
+                          We are committed to working with you to resolve any concerns about your privacy.
+                        </p>
+                      </>
+                    ) : (
+                      section.content.map((para, i) => (
+                        <p
+                          key={i}
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: '0.9rem',
+                            color: 'var(--mid)',
+                            lineHeight: 1.75,
+                          }}
+                        >
+                          {para}
+                        </p>
+                      ))
+                    )}
                   </div>
                 </div>
               ))}
