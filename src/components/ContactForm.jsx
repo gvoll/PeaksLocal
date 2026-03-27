@@ -169,7 +169,7 @@ export default function ContactForm() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Let's Talk About Your Visibility
+              Let's Talk About Your Online Visibility
             </h2>
             <p
               className="reveal reveal-delay-2"
@@ -182,8 +182,7 @@ export default function ContactForm() {
                 margin: '0 auto',
               }}
             >
-              Have a question, want to learn more, or ready to get started? Reach out — we typically respond within 24 hours.
-            </p>
+Questions about how PeaksLocal services can enhance your online visibility? Please reach out and we'll respond promptly - Thank You!            </p>
           </div>
 
           {/* Grid */}
@@ -236,20 +235,6 @@ export default function ContactForm() {
                     Based in Denver, Colorado — serving local businesses across the U.S.
                   </p>
                 </div>
-              </div>
-
-              {/* Trust checklist */}
-              <div style={{ background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '20px 22px', boxShadow: 'var(--shadow-card)' }}>
-                {[
-                  'Response within 24 hours',
-                  'No commitment required',
-                  'Free visibility audit included',
-                ].map((item) => (
-                  <div key={item} className="contact-trust-row" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--mid)', padding: '8px 0', borderBottom: '1px solid var(--rule)' }}>
-                    <span style={{ color: 'var(--green-hi)', fontSize: '0.85rem', flexShrink: 0 }}>✓</span>
-                    {item}
-                  </div>
-                ))}
               </div>
             </div>
 
