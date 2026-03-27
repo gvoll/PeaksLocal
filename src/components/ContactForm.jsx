@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 
 const initialForm = {
   name: '',
-  business: '',
   email: '',
-  website: '',
-  challenge: '',
+  phone: '',
+  message: '',
 };
 
 export default function ContactForm() {
@@ -42,10 +42,12 @@ export default function ContactForm() {
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          business: form.business,
           reply_to: form.email,
-          website: form.website,
-          challenge: form.challenge || 'Not provided',
+          phone: form.phone || 'Not provided',
+          message: form.message,
+          business: 'N/A',
+          website: 'N/A',
+          challenge: 'N/A',
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -136,11 +138,24 @@ export default function ContactForm() {
           gap: 32px;
           align-items: start;
         }
-        .contact-trust-row:last-child { border-bottom: none !important; }
+        .audit-cta-strip {
+          background: var(--navy);
+          border-radius: 16px;
+          padding: 48px 40px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+        }
         @media (max-width: 820px) {
           .contact-grid { grid-template-columns: 1fr; }
           .contact-form-card { padding: 28px 20px !important; }
           .contact-name-row { grid-template-columns: 1fr !important; }
+          .audit-cta-strip {
+            flex-direction: column;
+            text-align: center;
+            padding: 36px 24px;
+          }
         }
       `}</style>
 
@@ -169,7 +184,7 @@ export default function ContactForm() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Let's Talk About Your Online Visibility
+              Let's Talk
             </h2>
             <p
               className="reveal reveal-delay-2"
@@ -182,7 +197,8 @@ export default function ContactForm() {
                 margin: '0 auto',
               }}
             >
-Questions about how PeaksLocal services can enhance your online visibility? Please reach out and we'll respond promptly - Thank You!            </p>
+              Questions about how PeaksLocal can help your business? Reach out and we'll respond promptly — Thank You!
+            </p>
           </div>
 
           {/* Grid */}
@@ -238,10 +254,11 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
               </div>
             </div>
 
-            {/* Right — Audit form (same fields) */}
+            {/* Right — Contact form */}
             <div className="contact-form-card">
               {!submitted ? (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
                   <div className="contact-name-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>
                       <label className="contact-label" htmlFor="c-name">Your name</label>
@@ -257,16 +274,17 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
                       />
                     </div>
                     <div>
-                      <label className="contact-label" htmlFor="c-business">Business name</label>
+                      <label className="contact-label" htmlFor="c-phone">
+                        Phone <span className="optional">(optional)</span>
+                      </label>
                       <input
                         className="contact-input"
-                        id="c-business"
-                        name="business"
-                        type="text"
-                        placeholder="Acme Plumbing Co."
-                        value={form.business}
+                        id="c-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="720-000-0000"
+                        value={form.phone}
                         onChange={handleChange}
-                        required
                       />
                     </div>
                   </div>
@@ -286,32 +304,16 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
                   </div>
 
                   <div>
-                    <label className="contact-label" htmlFor="c-website">Business website or location</label>
-                    <input
-                      className="contact-input"
-                      id="c-website"
-                      name="website"
-                      type="text"
-                      placeholder="acmeplumbing.com or Denver, CO"
-                      value={form.website}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="contact-label" htmlFor="c-challenge">
-                      What's your biggest visibility challenge?
-                      <span className="optional">(optional)</span>
-                    </label>
+                    <label className="contact-label" htmlFor="c-message">Message</label>
                     <textarea
                       className="contact-input"
-                      id="c-challenge"
-                      name="challenge"
-                      placeholder="What's your biggest visibility challenge? (optional — helps us tailor your audit)"
-                      rows={4}
-                      value={form.challenge}
+                      id="c-message"
+                      name="message"
+                      placeholder="How can we help you?"
+                      rows={5}
+                      value={form.message}
                       onChange={handleChange}
+                      required
                       style={{ resize: 'vertical' }}
                     />
                   </div>
@@ -328,11 +330,11 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
                     }}
                     disabled={loading}
                   >
-                    {loading ? 'Submitting…' : 'Get My Free Visibility Score'}
+                    {loading ? 'Sending…' : 'Send Message'}
                   </button>
 
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-                    {['Free audit', 'No contracts', 'Prompt Response'].map((t) => (
+                    {['No spam', 'No contracts', 'Prompt response'].map((t) => (
                       <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', color: 'var(--slate)' }}>
                         <span style={{ color: 'var(--green-hi)' }}>✓</span>
                         {t}
@@ -358,22 +360,51 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
                     ✓
                   </div>
                   <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.8rem', textTransform: 'uppercase', color: 'var(--navy)', marginBottom: '12px' }}>
-                    We'll Be in Touch Soon
+                    Message Sent!
                   </h3>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', color: 'var(--mid)', lineHeight: 1.7, maxWidth: '380px', margin: '0 auto 24px' }}>
-                    Your request has been received. We'll have your Local Visibility Score ready within 24 hours.
+                    Thanks for reaching out. We'll get back to you shortly.
                   </p>
                   <button
                     style={{ background: 'none', border: 'none', color: 'var(--green)', fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', cursor: 'pointer', textDecoration: 'underline' }}
                     onClick={() => { setSubmitted(false); setForm(initialForm); }}
                   >
-                    Submit another request
+                    Send another message
                   </button>
                 </div>
               )}
             </div>
 
           </div>
+
+          {/* Audit CTA — separated */}
+          <div style={{ maxWidth: '960px', margin: '56px auto 0' }}>
+            <div style={{ borderTop: '1px solid var(--rule)', paddingTop: '56px' }}>
+              <div className="audit-cta-strip reveal">
+                <div>
+                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'rgba(138,160,184,0.7)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
+                    Free Visibility Audit Request
+                  </div>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.9rem', textTransform: 'uppercase', color: 'var(--white)', lineHeight: 1.1, marginBottom: '8px' }}>
+                    Check Your Current Status
+                  </h3>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'rgba(138,160,184,0.85)', lineHeight: 1.65, maxWidth: '440px', margin: 0 }}>
+                    See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
+                  </p>
+                </div>
+                <div style={{ flexShrink: 0 }}>
+                  <Link
+                    to="/audit"
+                    className="btn-primary"
+                    style={{ fontSize: '1rem', padding: '15px 28px', whiteSpace: 'nowrap' }}
+                  >
+                    Get My Free Audit
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </>
