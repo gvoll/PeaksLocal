@@ -419,7 +419,10 @@ export default function System() {
             </div>
 
             <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center' }}>
-              Unsure if PeaksLocal is the right fit? Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
+              <a href="#audit" onClick={(e) => { e.preventDefault(); const el = document.getElementById('audit'); if (el) { const top = el.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: 'smooth' }); } }} style={{ color: 'var(--green)', textDecoration: 'none' }}>
+                Unsure if PeaksLocal is the right fit?
+              </a>{' '}
+              Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
             </p>
           </div>
         </div>

@@ -230,7 +230,7 @@ Questions about how PeaksLocal services can enhance your online visibility? Plea
                   </div>
                 </div>
 
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '20px' }}>
+                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '20px' }}>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'rgba(138,160,184,0.7)', lineHeight: 1.65 }}>
                     Based in Denver, Colorado — serving local businesses across the U.S.
                   </p>
