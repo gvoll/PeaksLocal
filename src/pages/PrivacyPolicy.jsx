@@ -64,10 +64,7 @@ const sections = [
   },
   {
       title: 'Contact',
-      content: [
-        'If you have questions, concerns, or requests regarding this Privacy Policy or the way we handle your personal information, please contact us via our contact page.',
-        'We are committed to working with you to resolve any concerns about your privacy.',
-      ],
+      content: [],
   },
 ];
 
