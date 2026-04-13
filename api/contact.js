@@ -23,8 +23,8 @@ export default async function handler(req, res) {
     });
 
     await transporter.sendMail({
-      from: '"PeaksLocal" <contact@peakslocal.com>',
-      to: 'contact@peakslocal.com',
+      from: '"PeaksLocal" <greg.voll@peakslocal.com>',
+      to: 'greg.voll@peakslocal.com',
       replyTo: email,
       subject: `New Contact Form Submission — ${name}`,
       html: `
