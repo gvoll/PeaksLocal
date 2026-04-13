@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 
 const initialForm = {
@@ -37,20 +36,12 @@ export default function ContactForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          reply_to: form.email,
-          phone: form.phone || 'Not provided',
-          message: form.message,
-          business: 'N/A',
-          website: 'N/A',
-          challenge: 'N/A',
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Failed');
       setSubmitted(true);
     } catch {
       alert('Something went wrong. Please try again.');
