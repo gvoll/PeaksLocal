@@ -23,17 +23,81 @@ export default async function handler(req, res) {
     });
 
     await transporter.sendMail({
-      from: `"PeaksLocal Contact" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      from: '"PeaksLocal" <contact@peakslocal.com>',
+      to: 'contact@peakslocal.com',
       replyTo: email,
       subject: `New Contact Form Submission — ${name}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f6f8;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f8;padding:40px 0;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#0f2440;padding:32px 40px;">
+            <p style="margin:0;color:#ffffff;font-size:20px;font-weight:700;letter-spacing:-0.3px;">Peaks Local</p>
+            <p style="margin:6px 0 0;color:#8aa0b8;font-size:13px;">New Contact Form Submission</p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:36px 40px 24px;">
+            <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.6;">You have a new contact request. Details below:</p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Name</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${name}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email</td>
+                <td style="padding:12px 0;font-size:14px;"><a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Phone</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${phone || 'Not provided'}</td>
+              </tr>
+              <tr>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Message</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${message.replace(/\n/g, '<br>')}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Reply prompt -->
+        <tr>
+          <td style="padding:0 40px 36px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background:#f0fdf4;border-left:4px solid #3aad64;border-radius:0 6px 6px 0;padding:14px 18px;">
+                  <p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">
+                    Reply directly to this email to respond to <strong>${name}</strong> at
+                    <a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:20px 40px;text-align:center;">
+            <p style="margin:0;color:#9ca3af;font-size:12px;">Peaks Local &nbsp;·&nbsp; <a href="https://peakslocal.com" style="color:#9ca3af;text-decoration:none;">peakslocal.com</a></p>
+          </td>
+        </tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
       `,
     });
 
