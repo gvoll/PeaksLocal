@@ -11,6 +11,7 @@ export function initAnalytics(measurementId) {
   isAnalyticsInitialized = true;
 }
 
+
 export function trackPageView(path) {
   if (!isAnalyticsInitialized || !path) {
     return;
