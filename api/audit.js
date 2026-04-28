@@ -51,20 +51,24 @@ export default async function handler(req, res) {
 
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
               <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Name</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Requestor Name:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${name}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${business}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email:</td>
                 <td style="padding:12px 0;font-size:14px;"><a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a></td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website / Location</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website URL:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;">${website}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business Type:</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${businessType}</td>
               </tr>
               <tr>
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Challenge</td>
