@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, business, email, website, challenge } = req.body;
+  const { name, business, email, website, businessType, challenge } = req.body;
 
   if (!name || !business || !email || !website) {
     return res.status(400).json({ error: 'Missing required fields' });
