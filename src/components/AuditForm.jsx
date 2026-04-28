@@ -314,7 +314,7 @@ export default function AuditForm() {
                   maxWidth: '380px',
                   margin: '0 auto 24px',
                 }}>
-                  Your request has been received. We'll have your Local Visibility Score ready within 24 hours.
+                  Your request has been received. We'll have your Local Visibility Score ready for you shortly and follow up to review.
                 </p>
                 <button
                   style={{
