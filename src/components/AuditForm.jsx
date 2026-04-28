@@ -230,13 +230,12 @@ export default function AuditForm() {
                 <div>
                   <label className="audit-label" htmlFor="challenge">
                     How would you describe your current online visibility?
-                    <span className="optional">(optional)</span>
                   </label>
                   <textarea
                     className="audit-input"
                     id="challenge"
                     name="challenge"
-                    placeholder="What's your biggest online visibility challenge? (optional — helps us tailor your audit)"
+                    placeholder="What's your biggest online visibility challenge? [Optional]"
                     rows={4}
                     value={form.challenge}
                     onChange={handleChange}
