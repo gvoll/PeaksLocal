@@ -66,7 +66,10 @@ export default async function handler(req, res) {
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website URL:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;">${website}</td>
               </tr>
-              
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business Type:</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${businessType}</td>
+              </tr>
               <tr>
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Challenge:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${challenge || 'Not provided'}</td>
