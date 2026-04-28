@@ -5,6 +5,7 @@ const initialForm = {
   business: '',
   email: '',
   website: '',
+  businessType: '',
   challenge: '',
 };
 
@@ -207,6 +208,23 @@ export default function AuditForm() {
                     onChange={handleChange}
                     required
                   />
+                </div>
+
+                <div>
+                  <label className="audit-label" htmlFor="businessType">Business type</label>
+                  <select
+                    className="audit-input"
+                    id="businessType"
+                    name="businessType"
+                    value={form.businessType}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>Select your business type [Required]</option>
+                    <option value="storefront">Physical storefront — customers visit my location</option>
+                    <option value="service_area">Service area business — I travel to customers</option>
+                    <option value="both">Both — I have a location and serve a wider area</option>
+                  </select>
                 </div>
 
                 <div>
