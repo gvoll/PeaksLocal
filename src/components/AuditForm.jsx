@@ -160,7 +160,7 @@ export default function AuditForm() {
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Jane Smith"
+                      placeholder="Jane Smith [Required]"
                       value={form.name}
                       onChange={handleChange}
                       required
@@ -173,7 +173,7 @@ export default function AuditForm() {
                       id="business"
                       name="business"
                       type="text"
-                      placeholder="Acme Plumbing Co."
+                      placeholder="Acme Plumbing Co. [Required]"
                       value={form.business}
                       onChange={handleChange}
                       required
@@ -188,7 +188,7 @@ export default function AuditForm() {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="jane@acmeplumbing.com"
+                    placeholder="jane@acmeplumbing.com [Required]"
                     value={form.email}
                     onChange={handleChange}
                     required
@@ -196,13 +196,13 @@ export default function AuditForm() {
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="website">Business website or location</label>
+                  <label className="audit-label" htmlFor="website">Business Website URL</label>
                   <input
                     className="audit-input"
                     id="website"
                     name="website"
                     type="text"
-                    placeholder="acmeplumbing.com or Denver, CO"
+                    placeholder="acmeplumbing.com [Required]"
                     value={form.website}
                     onChange={handleChange}
                     required
@@ -211,14 +211,14 @@ export default function AuditForm() {
 
                 <div>
                   <label className="audit-label" htmlFor="challenge">
-                    What's your biggest visibility challenge?
+                    How would you describe your current online visibility?
                     <span className="optional">(optional)</span>
                   </label>
                   <textarea
                     className="audit-input"
                     id="challenge"
                     name="challenge"
-                    placeholder="What's your biggest visibility challenge? (optional — helps us tailor your audit)"
+                    placeholder="What's your biggest online visibility challenge? (optional — helps us tailor your audit)"
                     rows={4}
                     value={form.challenge}
                     onChange={handleChange}
