@@ -221,9 +221,9 @@ export default function AuditForm() {
                     required
                   >
                     <option value="" disabled>Select your business type [Required]</option>
-                    <option value="storefront">Physical storefront — customers visit my location</option>
-                    <option value="service_area">Service area business — I travel to customers</option>
-                    <option value="both">Both — I have a location and serve a wider area</option>
+                    <option value="Storefront">Physical storefront — customers visit my location</option>
+                    <option value="Service_Area">Service area business — I travel to customers</option>
+                    <option value="Both">Both — I have a location and serve a wider area</option>
                   </select>
                 </div>
 
