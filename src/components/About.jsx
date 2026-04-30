@@ -18,6 +18,7 @@ const callouts = [
   },
 ];
 
+
 export default function About() {
   const sectionRef = useRef(null);
 
