@@ -4,6 +4,8 @@ import LandingPage from './pages/LandingPage.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import AuditPage from './pages/AuditPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
+import Blog from './pages/Blog.jsx';
+import BlogPost from './pages/BlogPost.jsx';
 import { trackPageView } from './lib/analytics.js';
 
 export default function App() {
@@ -17,6 +19,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/audit" element={<AuditPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactPage />} />

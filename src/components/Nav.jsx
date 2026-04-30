@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const styles = {
   nav: {
@@ -172,6 +172,12 @@ export default function Nav() {
     }
   };
 
+  const navItems = [
+    { label: 'How It Works', id: 'pipeline' },
+    { label: 'Our System', id: 'system' },
+    { label: 'About', id: 'about' },
+  ];
+
   return (
     <>
       <style>{`
@@ -200,11 +206,7 @@ export default function Nav() {
 
           {/* Desktop Links */}
           <div className="nav-links" style={styles.links}>
-            {[
-              { label: 'How It Works', id: 'pipeline' },
-              { label: 'Our System', id: 'system' },
-              { label: 'About', id: 'about' },
-            ].map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 className="nav-link-item"
@@ -214,6 +216,9 @@ export default function Nav() {
                 {item.label}
               </button>
             ))}
+            <Link to="/blog" className="nav-link-item" style={styles.link}>
+              Blog
+            </Link>
             <button
               className="nav-cta"
               style={styles.ctaBtn}
@@ -239,11 +244,7 @@ export default function Nav() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div style={styles.mobileMenu}>
-            {[
-              { label: 'How It Works', id: 'pipeline' },
-              { label: 'Our System', id: 'system' },
-              { label: 'About', id: 'about' },
-            ].map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 style={styles.mobileLink}
@@ -252,6 +253,13 @@ export default function Nav() {
                 {item.label}
               </button>
             ))}
+            <Link
+              to="/blog"
+              style={{ ...styles.mobileLink, textDecoration: 'none' }}
+              onClick={() => setMobileOpen(false)}
+            >
+              Blog
+            </Link>
             <button
               style={styles.mobileCta}
               onClick={() => scrollTo('audit')}
