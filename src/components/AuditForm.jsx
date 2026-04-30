@@ -5,6 +5,7 @@ const initialForm = {
   business: '',
   email: '',
   website: '',
+  businessType: '',
   challenge: '',
 };
 
@@ -160,7 +161,7 @@ export default function AuditForm() {
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Jane Smith"
+                      placeholder="Jane Smith [Required]"
                       value={form.name}
                       onChange={handleChange}
                       required
@@ -173,7 +174,7 @@ export default function AuditForm() {
                       id="business"
                       name="business"
                       type="text"
-                      placeholder="Acme Plumbing Co."
+                      placeholder="Acme Plumbing Co. [Required]"
                       value={form.business}
                       onChange={handleChange}
                       required
@@ -188,7 +189,7 @@ export default function AuditForm() {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="jane@acmeplumbing.com"
+                    placeholder="jane@acmeplumbing.com [Required]"
                     value={form.email}
                     onChange={handleChange}
                     required
@@ -196,13 +197,13 @@ export default function AuditForm() {
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="website">Business website or location</label>
+                  <label className="audit-label" htmlFor="website">Business Website URL</label>
                   <input
                     className="audit-input"
                     id="website"
                     name="website"
                     type="text"
-                    placeholder="acmeplumbing.com or Denver, CO"
+                    placeholder="acmeplumbing.com [Required]"
                     value={form.website}
                     onChange={handleChange}
                     required
@@ -210,15 +211,31 @@ export default function AuditForm() {
                 </div>
 
                 <div>
+                  <label className="audit-label" htmlFor="businessType">Business type</label>
+                  <select
+                    className="audit-input"
+                    id="businessType"
+                    name="businessType"
+                    value={form.businessType}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>Select your business type [Required]</option>
+                    <option value="Storefront">Physical storefront — customers visit my location</option>
+                    <option value="Service_Area">Service area business — I travel to customers</option>
+                    <option value="Both">Both — I have a location and serve a wider area</option>
+                  </select>
+                </div>
+
+                <div>
                   <label className="audit-label" htmlFor="challenge">
-                    What's your biggest visibility challenge?
-                    <span className="optional">(optional)</span>
+                    How would you describe your current online visibility?
                   </label>
                   <textarea
                     className="audit-input"
                     id="challenge"
                     name="challenge"
-                    placeholder="What's your biggest visibility challenge? (optional — helps us tailor your audit)"
+                    placeholder="What's your biggest online visibility challenge? [Optional]"
                     rows={4}
                     value={form.challenge}
                     onChange={handleChange}
@@ -297,7 +314,7 @@ export default function AuditForm() {
                   maxWidth: '380px',
                   margin: '0 auto 24px',
                 }}>
-                  Your request has been received. We'll have your Local Visibility Score ready within 24 hours.
+                  Your request has been received. We'll have your Local Visibility Score ready for you shortly and follow up to review.
                 </p>
                 <button
                   style={{
