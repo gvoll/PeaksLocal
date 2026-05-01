@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   }
 
   const { name, business, email, website, businessType, challenge } = req.body;
+  const submittedFirstName = (name || '').trim().split(/\s+/)[0] || '';
 
   if (!name || !business || !email || !website) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -118,7 +119,7 @@ export default async function handler(req, res) {
         html: auditRequestEmail.html({ firstName: submittedFirstName }),
       });
     } catch (confirmationErr) {
-      console.error('Audit confirmation email error:', confirmationErr.message);
+      console.error('Audit confirmation email error:', confirmationErr);
     }
 
     return res.status(200).json({ success: true });
