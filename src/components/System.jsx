@@ -299,7 +299,7 @@ export default function System() {
                     <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: 'var(--white)', fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: '3px' }}>FOUNDATIONAL STEP</span>
                   </div>
                   <h4 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--white)', letterSpacing: '0.03em', marginBottom: '12px' }}>
-                    Digital Identity Build
+                    Identity Build
                   </h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', lineHeight: 1.65 }}>
                     We establish your complete verified presence across the major platforms that power modern search. We'll ensure your accurate and consistent business details across all of the relevant data layers to boost your visibility.
@@ -333,7 +333,7 @@ export default function System() {
                     <span style={{ display: 'inline-block', background: 'rgba(255,255,255,0.2)', color: 'var(--white)', fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: '3px' }}>BUILD + PROFILE MANAGEMENT</span>
                   </div>
                   <h4 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--white)', letterSpacing: '0.03em', marginBottom: '12px' }}>
-                    Presence Management
+                    Identity Management
                   </h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.65 }}>
                     We strengthen, protect, and monitor your online identity and digital presence. This ensures you maintain strong visibility, regardless of how platforms or AI systems evolve.
