@@ -23,7 +23,7 @@ const styles = `
     body { background-color: #f0f4f8; font-family: 'Inter', Arial, sans-serif; color: #1a1a1a; }
     .wrapper { max-width: 580px; margin: 32px auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 16px rgba(27,58,92,0.10); }
     .header { background-color: #1B3A5C; padding: 28px 40px; text-align: center; }
-    .header img { height: 64px; width: auto; display: block; margin: 0 auto; }
+    .header img { height: 48px; width: auto; display: block; margin: 0 auto; }
     .accent-bar { height: 4px; background: linear-gradient(90deg, #1B3A5C 0%, #2E7D4F 100%); }
     .body { padding: 36px 40px 28px; }
     .greeting { font-size: 20px; font-weight: 700; color: #1B3A5C; margin-bottom: 12px; }
@@ -53,7 +53,7 @@ const styles = `
 
 const header = `
   <div class="header">
-    <img src="https://peakslocal.com/logopeaks.png" alt="PeaksLocal" style="height:64px;width:auto;display:block;margin:0 auto;" />
+    <img src="https://peakslocal.com/logopeaks.png" alt="PeaksLocal" style="height:48px;width:auto;display:block;margin:0 auto;" />
   </div>
   <div class="accent-bar"></div>
 `;
