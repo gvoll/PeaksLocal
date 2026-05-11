@@ -1,16 +1,14 @@
 import nodemailer from 'nodemailer';
-import { auditRequestEmail } from '../src/lib/emailTemplates.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, business, email, website, businessType, challenge } = req.body;
-  const submittedFirstName = (name || '').trim().split(/\s+/)[0] || '';
+  const { name, businessName, websiteURL, cityState, challenge } = req.body;
 
-  if (!name || !business || !email || !website) {
-    return res.status(400).json({ error: 'Missing required fields' });
+  if (!name?.trim() || !businessName?.trim() || !websiteURL?.trim() || !cityState?.trim()) {
+    return res.status(400).json({ error: 'Please fill in all required fields.' });
   }
 
   try {
@@ -27,8 +25,8 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: '"PeaksLocal" <greg.voll@peakslocal.com>',
       to: 'greg.voll@peakslocal.com',
-      replyTo: email,
-      subject: `New Audit Request — ${business} (${name})`,
+      replyTo: 'contact@peakslocal.com',
+      subject: `New Audit Request — ${businessName} (${name})`,
       html: `
 <!DOCTYPE html>
 <html>
@@ -58,22 +56,18 @@ export default async function handler(req, res) {
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${business}</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email:</td>
-                <td style="padding:12px 0;font-size:14px;"><a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a></td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${businessName}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website URL:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${website}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${websiteURL}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business Type:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${businessType}</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">City &amp; State:</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${cityState}</td>
               </tr>
               <tr>
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Challenge:</td>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Visibility challenge:</td>
                 <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${challenge || 'Not provided'}</td>
               </tr>
             </table>
@@ -87,8 +81,7 @@ export default async function handler(req, res) {
               <tr>
                 <td style="background:#f0fdf4;border-left:4px solid #3aad64;border-radius:0 6px 6px 0;padding:14px 18px;">
                   <p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">
-                    Reply directly to this email to respond to <strong>${name}</strong> at
-                    <a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a>
+                    Follow up with <strong>${name}</strong> using the details above. No email was provided on the audit form.
                   </p>
                 </td>
               </tr>
@@ -111,16 +104,6 @@ export default async function handler(req, res) {
       `,
     });
 
-    try {
-      await transporter.sendMail({
-        from: '"PeaksLocal" <greg.voll@peakslocal.com>',
-        to: email,
-        subject: auditRequestEmail.subject,
-        html: auditRequestEmail.html({ firstName: submittedFirstName }),
-      });
-    } catch (confirmationErr) {
-      console.error('Audit confirmation email error:', confirmationErr);
-    }
 
     return res.status(200).json({ success: true });
   } catch (err) {

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const callouts = [
   {
@@ -88,13 +89,20 @@ export default function About() {
                 fontSize: '0.92rem',
                 color: 'var(--slate)',
                 lineHeight: 1.75,
-                marginBottom: '28px',
+                marginBottom: '24px',
               }}
             >
               Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem: map the current system, identify the gaps, establish a plan, build the infrastructure, and maintain it. The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
             </p>
-            
-          </div> 
+
+            <Link
+              to="/contact"
+              className="btn-primary reveal reveal-delay-4"
+              style={{ textDecoration: 'none', display: 'inline-flex' }}
+            >
+              Get in Touch
+            </Link>
+          </div>
 
           {/* RIGHT — Callout boxes */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingTop: '52px' }}>

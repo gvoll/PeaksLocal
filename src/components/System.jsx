@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const auditRows = [
   { cat: 'Google Business Profile', status: 'Verified', pill: 'green', points: '23 / 23' },
@@ -360,12 +361,58 @@ export default function System() {
               </div>
             </div>
 
-            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center', marginTop: '28px' }}>
-  <a href="/contact" style={{ color: 'var(--green)', textDecoration: 'none' }}>
-    Need something different?
-  </a>{' '}
-  While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
-</p>
+            <div
+              className="reveal reveal-delay-2"
+              style={{
+                marginTop: '28px',
+                maxWidth: '720px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              <div
+                style={{
+                  background: '#ffffff',
+                  padding: '24px 28px',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 24px rgba(15, 36, 64, 0.1)',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '18px',
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '0.95rem',
+                    fontWeight: 600,
+                    color: '#1a3a5c',
+                    lineHeight: 1.65,
+                    margin: 0,
+                  }}
+                >
+                  <span style={{ display: 'block', marginBottom: '6px' }}>Need something different?</span>
+                  <span style={{ fontWeight: 500 }}>
+                    While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
+                  </span>
+                </p>
+                <Link
+                  to="/contact"
+                  className="btn-primary"
+                  style={{
+                    background: '#2E7D4F',
+                    color: '#ffffff',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* 4d — Who We Help */}

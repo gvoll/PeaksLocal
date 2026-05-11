@@ -37,7 +37,7 @@ export default function Footer() {
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', color: 'var(--slate)', marginBottom: '8px' }}>
                 © 2026 PeaksLocal · Denver, Colorado
               </p>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.68rem', color: 'rgba(138,160,184,0.45)', lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: '#94a3b8', lineHeight: 1.5 }}>
               PeaksLocal is an independent online identity firm. Google, Apple, Bing, and all platform names are trademarks of their respective owners.              </p>
             </div>
 

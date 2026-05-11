@@ -3,9 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 const initialForm = {
   name: '',
   business: '',
-  email: '',
   website: '',
-  businessType: '',
+  cityState: '',
   challenge: '',
 };
 
@@ -35,6 +34,10 @@ export default function AuditForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, business, website, cityState } = form;
+    if (!name.trim() || !business.trim() || !website.trim() || !cityState.trim()) {
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch('/api/audit', {
@@ -87,15 +90,13 @@ export default function AuditForm() {
           margin-bottom: 6px;
           display: block;
         }
-        .audit-label .optional {
-          color: var(--slate);
-          font-weight: 400;
-          font-size: 0.78rem;
-          margin-left: 4px;
+        .audit-label .required-asterisk {
+          color: #c62828;
+          font-weight: 700;
+          margin-left: 2px;
         }
         @media (max-width: 560px) {
           .audit-form-card { padding: 28px 20px !important; }
-          .audit-name-row { grid-template-columns: 1fr !important; }
         }
       `}</style>
       <section
@@ -153,57 +154,51 @@ export default function AuditForm() {
           <div className="audit-form-card reveal reveal-delay-2">
             {!submitted ? (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <div className="audit-name-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div>
-                    <label className="audit-label" htmlFor="name">Your name</label>
-                    <input
-                      className="audit-input"
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Jane Smith [Required]"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="audit-label" htmlFor="business">Business name</label>
-                    <input
-                      className="audit-input"
-                      id="business"
-                      name="business"
-                      type="text"
-                      placeholder="Acme Plumbing Co. [Required]"
-                      value={form.business}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-
                 <div>
-                  <label className="audit-label" htmlFor="email">Email address</label>
+                  <label className="audit-label" htmlFor="name">
+                    Your Name
+                    <span className="required-asterisk" aria-hidden="true">*</span>
+                  </label>
                   <input
                     className="audit-input"
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="jane@acmeplumbing.com [Required]"
-                    value={form.email}
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Jane Smith"
+                    value={form.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="website">Business Website URL</label>
+                  <label className="audit-label" htmlFor="business">
+                    Business Name
+                    <span className="required-asterisk" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    className="audit-input"
+                    id="business"
+                    name="business"
+                    type="text"
+                    placeholder="Acme Plumbing Co."
+                    value={form.business}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="audit-label" htmlFor="website">
+                    Business Website URL
+                    <span className="required-asterisk" aria-hidden="true">*</span>
+                  </label>
                   <input
                     className="audit-input"
                     id="website"
                     name="website"
                     type="text"
-                    placeholder="acmeplumbing.com [Required]"
+                    placeholder="https://acmeplumbing.com"
                     value={form.website}
                     onChange={handleChange}
                     required
@@ -211,31 +206,31 @@ export default function AuditForm() {
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="businessType">Business type</label>
-                  <select
+                  <label className="audit-label" htmlFor="cityState">
+                    City &amp; State Located
+                    <span className="required-asterisk" aria-hidden="true">*</span>
+                  </label>
+                  <input
                     className="audit-input"
-                    id="businessType"
-                    name="businessType"
-                    value={form.businessType}
+                    id="cityState"
+                    name="cityState"
+                    type="text"
+                    placeholder="Denver, CO"
+                    value={form.cityState}
                     onChange={handleChange}
                     required
-                  >
-                    <option value="" disabled>Select your business type [Required]</option>
-                    <option value="Storefront">Physical storefront — customers visit my location</option>
-                    <option value="Service_Area">Service area business — I travel to customers</option>
-                    <option value="Both">Both — I have a location and serve a wider area</option>
-                  </select>
+                  />
                 </div>
 
                 <div>
                   <label className="audit-label" htmlFor="challenge">
-                    How would you describe your current online visibility?
+                    Visibility Challenge
                   </label>
                   <textarea
                     className="audit-input"
                     id="challenge"
                     name="challenge"
-                    placeholder="What's your biggest online visibility challenge? [Optional]"
+                    placeholder="What’s your biggest online visibility challenge? (optional)"
                     rows={4}
                     value={form.challenge}
                     onChange={handleChange}

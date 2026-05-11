@@ -8,9 +8,9 @@ const sections = [
     content: [
       'When you submit the free visibility audit form on our website, we collect the following information:',
       '• Your name and business name',
-      '• Email address',
-      '• Business website URL or physical location',
-      '• Any additional information you voluntarily provide in the "biggest challenge" field',
+      '• Business website URL',
+      '• City and state where your business is located',
+      '• Any additional information you voluntarily provide in the visibility challenge field',
       'We may also collect standard website analytics data (such as pages visited, time on site, and referring URLs) through analytics tools. This data is collected in aggregate and is not personally identifiable.',
     ],
   },
