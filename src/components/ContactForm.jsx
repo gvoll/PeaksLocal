@@ -123,11 +123,18 @@ export default function ContactForm() {
           transition: color 0.2s;
         }
         .contact-info-link:hover { color: var(--white); }
+        .contact-layout {
+          max-width: 960px;
+          margin: 0 auto;
+        }
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr 1.6fr;
           gap: 32px;
           align-items: start;
+        }
+        .contact-layout-audit {
+          margin-top: 56px;
         }
         .audit-cta-strip {
           background: var(--navy);
@@ -146,6 +153,24 @@ export default function ContactForm() {
             flex-direction: column;
             text-align: center;
             padding: 36px 24px;
+          }
+        }
+        @media (max-width: 767px) {
+          .contact-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+          }
+          .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+          }
+          .contact-layout-form { order: 1; }
+          .contact-layout-info { order: 2; }
+          .contact-layout-audit {
+            order: 3;
+            margin-top: 0;
           }
         }
       `}</style>
@@ -192,11 +217,12 @@ export default function ContactForm() {
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="contact-grid reveal reveal-delay-1" style={{ maxWidth: '960px', margin: '0 auto' }}>
+          {/* Grid + audit — mobile order via flexbox */}
+          <div className="contact-layout">
+          <div className="contact-grid reveal reveal-delay-1">
 
             {/* Left — Contact info */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div className="contact-layout-info" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div className="contact-info-card">
                 <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'var(--slate)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                   Direct Contact
@@ -246,7 +272,7 @@ export default function ContactForm() {
             </div>
 
             {/* Right — Contact form */}
-            <div className="contact-form-card">
+            <div className="contact-form-card contact-layout-form">
               {!submitted ? (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
@@ -369,7 +395,7 @@ export default function ContactForm() {
           </div>
 
           {/* Audit CTA — separated */}
-          <div style={{ maxWidth: '960px', margin: '56px auto 0' }}>
+          <div className="contact-layout-audit">
             <div style={{ borderTop: '1px solid var(--rule)', paddingTop: '56px' }}>
               <div className="audit-cta-strip reveal">
                 <div>
@@ -394,6 +420,7 @@ export default function ContactForm() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
         </div>

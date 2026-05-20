@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import ProcessFlow from './ProcessFlow.jsx';
 
 const callouts = [
   {
@@ -19,7 +19,6 @@ const callouts = [
   },
 ];
 
-
 export default function About() {
   const sectionRef = useRef(null);
 
@@ -38,74 +37,37 @@ export default function About() {
   }, []);
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      style={{ background: 'var(--navy)', padding: '100px 0' }}
-    >
-      <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
-          gap: '72px',
-          alignItems: 'start',
-        }}>
-          {/* LEFT */}
-          <div>
-            <div className="section-eyebrow light reveal">WHY PEAKSLOCAL</div>
-            <h2
-              className="reveal reveal-delay-1"
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 800,
-                fontSize: '2.8rem',
-                textTransform: 'uppercase',
-                color: 'var(--white)',
-                lineHeight: 1.05,
-                marginBottom: '20px',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              An Engineering Mindset. A Consulting Background. A Local Focus.
-            </h2>
+    <section id="about" ref={sectionRef}>
+      <div className="about-mindset">
+        <div className="container">
+          <h2 className="about-mindset-heading reveal">
+            <span className="about-mindset-line">AN ENGINEERING MINDSET.</span>
+            <span className="about-mindset-line">A CONSULTING BACKGROUND.</span>
+            <span className="about-mindset-line">
+              A <span className="about-mindset-local">LOCAL</span> FOCUS.
+            </span>
+          </h2>
 
-            <p
-              className="reveal reveal-delay-2"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '1rem',
-                color: 'var(--slate)',
-                lineHeight: 1.75,
-                marginBottom: '20px',
-              }}
-            >
-              PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
-            </p>
+          <p className="about-mindset-body reveal reveal-delay-1">
+            PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
+          </p>
 
-            <p
-              className="reveal reveal-delay-3"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.92rem',
-                color: 'var(--slate)',
-                lineHeight: 1.75,
-                marginBottom: '24px',
-              }}
-            >
-              Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem: map the current system, identify the gaps, establish a plan, build the infrastructure, and maintain it. The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
-            </p>
+          <p className="about-mindset-body reveal reveal-delay-2">
+            Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem:
+          </p>
 
-            <Link
-              to="/contact"
-              className="btn-primary reveal reveal-delay-4"
-              style={{ textDecoration: 'none', display: 'inline-flex' }}
-            >
-              Get in Touch
-            </Link>
-          </div>
+          <ProcessFlow className="reveal reveal-delay-3" />
 
-          {/* RIGHT — Callout boxes */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingTop: '52px' }}>
+          <blockquote className="about-pull-quote reveal reveal-delay-4">
+            The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
+          </blockquote>
+        </div>
+      </div>
+
+      <div className="about-callouts-wrapper">
+        <div className="container about-callouts-grid">
+          <div aria-hidden="true" />
+          <div className="about-callouts">
             {callouts.map((c, i) => (
               <div
                 key={c.title}
@@ -162,19 +124,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 860px) {
-          #about .container > div {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-          #about .container > div > div:last-child {
-            padding-top: 0 !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-

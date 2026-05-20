@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ProcessFlow from './ProcessFlow.jsx';
 
 const auditRows = [
   { cat: 'Google Business Profile', status: 'Verified', pill: 'green', points: '23 / 23' },
@@ -120,16 +121,30 @@ export default function System() {
         .pill-green { display: inline-block; background: rgba(58,173,100,0.12); color: var(--green-hi); border: 1px solid rgba(58,173,100,0.25); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 3px; }
         .pill-red { display: inline-block; background: rgba(200,50,50,0.1); color: #c03030; border: 1px solid rgba(200,50,50,0.2); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 3px; }
         .pill-amber { display: inline-block; background: rgba(224,138,26,0.12); color: #a0620a; border: 1px solid rgba(224,138,26,0.25); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 3px; }
+        .system-intro {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+          gap: 48px;
+          align-items: center;
+          margin-bottom: 72px;
+        }
+        .system-intro-copy { max-width: 520px; }
+        .system-heading-line { display: block; }
+        .system-heading-accent { color: #3aad64; }
         @media (max-width: 840px) {
           .services-grid { flex-direction: column !important; }
           .who-cols { flex-direction: column !important; }
+          .system-intro {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
         }
-          @media (max-width: 768px) {
-  .who-cols {
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-}
+        @media (max-width: 768px) {
+          .who-cols {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+        }
       `}</style>
       <section
         id="system"
@@ -138,23 +153,32 @@ export default function System() {
       >
         <div className="container">
 
-          {/* Section Header */}
-          <div style={{ maxWidth: '680px', marginBottom: '72px' }}>
-            <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
-              THE PEAKSLOCAL SYSTEM
+          {/* Section Header + process flow */}
+          <div className="system-intro">
+            <div className="system-intro-copy">
+              <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
+                THE PEAKSLOCAL SYSTEM
+              </div>
+              <h2
+                className="reveal reveal-delay-1"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.8rem', textTransform: 'uppercase', color: 'var(--navy)', lineHeight: 1.05, marginBottom: '18px', letterSpacing: '-0.01em' }}
+              >
+                <span className="system-heading-line">A STRUCTURED PROCESS.</span>
+                <span className="system-heading-line">A VERIFIED IDENTITY.</span>
+                <span className="system-heading-line">
+                  A <span className="system-heading-accent">COMPETITIVE</span> ADVANTAGE.
+                </span>
+              </h2>
+              <p
+                className="reveal reveal-delay-2"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
+              >
+                Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
+              </p>
             </div>
-            <h2
-              className="reveal reveal-delay-1"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.8rem', textTransform: 'uppercase', color: 'var(--navy)', lineHeight: 1.05, marginBottom: '18px', letterSpacing: '-0.01em' }}
-            >
-              A Structured Process. A Verified Identity. A Competitive Advantage.
-            </h2>
-            <p
-              className="reveal reveal-delay-2"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
-            >
-              Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
-            </p>
+            <div className="reveal reveal-delay-2">
+              <ProcessFlow />
+            </div>
           </div>
 
           {/* 4a — The Audit */}
@@ -468,12 +492,55 @@ export default function System() {
               </div>
             </div>
 
-            <p className="reveal reveal-delay-2" style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'normal', fontSize: '0.95rem', fontWeight: '600', color: '#1a3a5c', textAlign: 'center' }}>
-              <a href="#audit" onClick={(e) => { e.preventDefault(); const el = document.getElementById('audit'); if (el) { const top = el.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: 'smooth' }); } }} style={{ color: 'var(--green)', textDecoration: 'none' }}>
-                Unsure if PeaksLocal is the right fit?
-              </a>{' '}
-              Our free audit provides you clarity on your current online presence — if it's already strong, we'll confirm.
-            </p>
+            <div
+              className="reveal reveal-delay-2"
+              style={{
+                marginTop: '28px',
+                maxWidth: '720px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              <div
+                style={{
+                  background: '#ffffff',
+                  padding: '24px 28px',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 24px rgba(15, 36, 64, 0.1)',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '18px',
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '0.95rem',
+                    fontWeight: 600,
+                    color: '#1a3a5c',
+                    lineHeight: 1.65,
+                    margin: 0,
+                  }}
+                >
+                  Unsure if PeaksLocal is the right fit? Our free audit gives you clarity on your current online presence.
+                </p>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  style={{
+                    background: '#2E7D4F',
+                    color: '#ffffff',
+                    display: 'inline-flex',
+                    justifyContent: 'center',
+                  }}
+                  onClick={scrollToAudit}
+                >
+                  Start with a Free Audit
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
