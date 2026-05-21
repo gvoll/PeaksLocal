@@ -4,7 +4,7 @@ import ProcessFlow from './ProcessFlow.jsx';
 const callouts = [
   {
     title: 'Verified Agency Partner',
-    body: 'Established as a Google Agency Partner, with Apple partner registration underway. This ensures secure, role-based access to your accounts (No password sharing).',
+    body: 'Established as a Google and Apple Agency Partner. This ensures secure, role-based access to your accounts (No password sharing).',
     icon: '✓',
   },
   {
