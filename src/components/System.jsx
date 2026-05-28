@@ -175,7 +175,7 @@ export default function System() {
               >
                 Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
               </p>
-            
+            </div>
             <ProcessFlow className="reveal reveal-delay-3">
               
 
