@@ -52,13 +52,8 @@ export default function About() {
             PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
           </p>
 
-          <p className="about-mindset-body reveal reveal-delay-2">
-            Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem:
-          </p>
-
-          <ProcessFlow className="reveal reveal-delay-3" />
-
           <blockquote className="about-pull-quote reveal reveal-delay-4">
+            Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem...
             The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
           </blockquote>
         </div>
