@@ -60,9 +60,21 @@ export default function About() {
       </div>
 
       <div className="about-callouts-wrapper">
-        <div className="container about-callouts-grid">
-          <div aria-hidden="true" />
-          <div className="about-callouts">
+        <div className="container about-callouts-grid"
+        style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+        >
+      
+          <div className="about-callouts"
+          style={{ 
+        width: '100%', 
+        maxWidth: '1200px', // A wider maxWidth allows 3 columns to sit comfortably side-by-side
+        margin: '0 auto', 
+        display: 'flex', 
+        flexDirection: 'row', // Aligns the boxes horizontally on the same line
+        gap: '20px', // Puts space between the boxes
+        justifyContent: 'center' // Keeps them tightly centered if the screen is huge
+      }}
+          >
             {callouts.map((c, i) => (
               <div
                 key={c.title}
@@ -76,6 +88,8 @@ export default function About() {
                   gap: '16px',
                   alignItems: 'flex-start',
                   transition: 'background 0.2s',
+                  flex: '1 1 0px',
+                  minWidth: '280px'
                 }}
               >
                 <div style={{
