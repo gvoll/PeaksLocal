@@ -154,8 +154,7 @@ export default function System() {
         <div className="container">
 
           {/* Section Header + process flow */}
-          {/* Section Header + process flow */}
-          <div className="system-intro" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="system-intro" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
             
             {/* The Eyebrow */}
             <div 
@@ -165,7 +164,6 @@ export default function System() {
                 marginBottom: '12px',
                 width: '100%',
                 maxWidth: '800px',
-                margin: '0 auto 12px auto',
                 textAlign: 'left'
               }}
             >
@@ -185,7 +183,7 @@ export default function System() {
                 letterSpacing: '-0.01em',
                 width: '100%',
                 maxWidth: '800px', 
-                margin: '0 auto 18px auto',
+                marginBottom: '18px',
                 textAlign: 'left'
               }}
             >
@@ -206,7 +204,7 @@ export default function System() {
                 lineHeight: 1.75,
                 width: '100%',
                 maxWidth: '800px', 
-                margin: '0 auto 40px auto', 
+                marginBottom: '40px', 
                 textAlign: 'left' 
               }}
             >
@@ -214,7 +212,7 @@ export default function System() {
             </p>
 
             {/* Dedicated Flow Graphic Wrapper */}
-            <div style={{ width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'center' }}>
+            <div style={{ width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'flex-start' }}>
               <ProcessFlow className="reveal reveal-delay-2"/>
             </div>
 
