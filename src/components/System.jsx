@@ -154,31 +154,70 @@ export default function System() {
         <div className="container">
 
           {/* Section Header + process flow */}
-          <div className="system-intro">
-            <div className="system-intro-copy">
-              <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
-                THE PEAKSLOCAL SYSTEM
-              </div>
-              <h2
-                className="reveal reveal-delay-1"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.8rem', textTransform: 'uppercase', color: 'var(--navy)', lineHeight: 1.05, marginBottom: '18px', letterSpacing: '-0.01em' }}
-              >
-                <span className="system-heading-line">A STRUCTURED PROCESS.</span>
-                <span className="system-heading-line">A VERIFIED IDENTITY.</span>
-                <span className="system-heading-line">
-                  A <span className="system-heading-accent">COMPETITIVE</span> ADVANTAGE.
-                </span>
-              </h2>
-              <p
-                className="reveal reveal-delay-2"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
-              >
-                Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
-              </p>
-            </div>
+          {/* Section Header + process flow */}
+          <div className="system-intro" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             
-            <ProcessFlow className="reveal reveal-delay-2"/>
-             
+            {/* The Eyebrow */}
+            <div 
+              className="section-eyebrow reveal" 
+              style={{ 
+                color: 'var(--green)', 
+                marginBottom: '12px',
+                width: '100%',
+                maxWidth: '800px',
+                margin: '0 auto 12px auto',
+                textAlign: 'left'
+              }}
+            >
+              THE PEAKSLOCAL SYSTEM
+            </div>
+
+            {/* Main Heading */}
+            <h2
+              className="reveal reveal-delay-1"
+              style={{ 
+                fontFamily: "'Barlow Condensed', sans-serif", 
+                fontWeight: 800, 
+                fontSize: '2.8rem', 
+                textTransform: 'uppercase', 
+                color: 'var(--navy)', 
+                lineHeight: 1.05, 
+                letterSpacing: '-0.01em',
+                width: '100%',
+                maxWidth: '800px', 
+                margin: '0 auto 18px auto',
+                textAlign: 'left'
+              }}
+            >
+              <span className="system-heading-line" style={{ display: 'block' }}>A STRUCTURED PROCESS.</span>
+              <span className="system-heading-line" style={{ display: 'block' }}>A VERIFIED IDENTITY.</span>
+              <span className="system-heading-line" style={{ display: 'block' }}>
+                A <span className="system-heading-accent">COMPETITIVE</span> ADVANTAGE.
+              </span>
+            </h2>
+
+            {/* Description Paragraph */}
+            <p
+              className="reveal reveal-delay-2"
+              style={{ 
+                fontFamily: "'DM Sans', sans-serif", 
+                fontSize: '1rem', 
+                color: 'var(--mid)', 
+                lineHeight: 1.75,
+                width: '100%',
+                maxWidth: '800px', 
+                margin: '0 auto 40px auto', 
+                textAlign: 'left' 
+              }}
+            >
+              Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
+            </p>
+
+            {/* Dedicated Flow Graphic Wrapper */}
+            <div style={{ width: '100%', maxWidth: '1200px', display: 'flex', justifyContent: 'center' }}>
+              <ProcessFlow className="reveal reveal-delay-2"/>
+            </div>
+
           </div>
 
           {/* 4a — The Audit */}
