@@ -87,6 +87,45 @@ export default function Blog() {
             </div>
           </div>
         </section>
+
+        <section style={{ background: 'var(--navy)', padding: '72px 0' }}>
+          <div className="container" style={{ maxWidth: '680px', textAlign: 'center' }}>
+            <div style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.7rem',
+              color: 'var(--green-hi)',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              marginBottom: '16px',
+            }}>
+              Free Audit
+            </div>
+            <h2 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 800,
+              fontSize: '2.2rem',
+              textTransform: 'uppercase',
+              color: 'var(--white)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.01em',
+              marginBottom: '16px',
+            }}>
+              Not Sure Where Your Business Stands?
+            </h2>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '1rem',
+              color: 'var(--slate)',
+              lineHeight: 1.75,
+              marginBottom: '28px',
+            }}>
+              Our free audit provides a personalized Digital Identity Report Card showing exactly where you're strong, where you have gaps, and what to fix first.
+            </p>
+            <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none' }}>
+              Get My Free Audit
+            </Link>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
