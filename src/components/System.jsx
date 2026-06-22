@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 import ProcessFlow from './ProcessFlow.jsx';
 
 const auditRows = [
@@ -364,7 +366,7 @@ export default function System() {
                     Identity Build
                   </h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', lineHeight: 1.65 }}>
-                    We establish your complete verified presence across the major platforms that power modern search. We'll ensure your accurate and consistent business details across all of the relevant data layers to boost your visibility.
+                    We establish your complete verified presence across the major platforms that power modern search. We'll ensure your accurate and consistent business details across all of the relevant <Link to="/faq" style={faqLink}>data layers</Link> to boost your visibility.
                   </p>
                 </div>
                 <div style={{ padding: '24px 28px', flex: 1 }}>

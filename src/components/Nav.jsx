@@ -219,13 +219,13 @@ export default function Nav() {
             <Link to="/blog" className="nav-link-item" style={styles.link}>
               Blog
             </Link>
-            <button
+            <Link
+              to="/audit"
               className="nav-cta"
               style={styles.ctaBtn}
-              onClick={() => scrollTo('audit')}
             >
               Free Audit
-            </button>
+            </Link>
           </div>
 
           {/* Hamburger */}
@@ -260,12 +260,13 @@ export default function Nav() {
             >
               Blog
             </Link>
-            <button
-              style={styles.mobileCta}
-              onClick={() => scrollTo('audit')}
+            <Link
+              to="/audit"
+              style={{ ...styles.mobileCta, textDecoration: 'none', display: 'block', textAlign: 'center' }}
+              onClick={() => setMobileOpen(false)}
             >
               Free Audit
-            </button>
+            </Link>
           </div>
         )}
       </nav>

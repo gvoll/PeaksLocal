@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+
+const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 
 const problems = [
   {
@@ -9,12 +12,22 @@ const problems = [
   {
     num: '02',
     title: 'Conflicting Business Information',
-    body: 'Inconsistent names, addresses, or phone numbers across online directories can damage your trust rating with search engines. This confusion can cause your business to display incorrect information or not show up in search results at all.',
+    body: null,
+    renderBody: () => (
+      <>
+        Inconsistent <Link to="/faq" style={faqLink}>names, addresses, or phone numbers</Link> across online directories can damage your trust rating with search engines. This confusion can cause your business to display incorrect information or not show up in search results at all.
+      </>
+    ),
   },
   {
     num: '03',
     title: 'Competitive Advantage',
-    body: 'If competitors proactively verify and manage their digital identity, they can surpass your visibility in search results, on maps, and within AI recommendations.',
+    body: null,
+    renderBody: () => (
+      <>
+        If competitors proactively verify and manage their <Link to="/faq" style={faqLink}>digital identity</Link>, they can surpass your visibility in search results, on maps, and within AI recommendations.
+      </>
+    ),
   },
 ];
 
@@ -102,7 +115,7 @@ export default function Problem() {
                 lineHeight: 1.75,
               }}
             >
-              Even the best businesses can be invisible to the customers actively searching for products or services — not because of their reputation, but because of gaps in their data layer that powers modern search.
+              Even the best businesses can be invisible to the customers actively searching for products or services — not because of their reputation, but because of gaps in their <Link to="/faq" style={faqLink}>data layer</Link> that powers modern search.
             </p>
           </div>
 
@@ -146,7 +159,7 @@ export default function Problem() {
                   color: 'var(--slate)',
                   lineHeight: 1.7,
                 }}>
-                  {p.body}
+                  {p.renderBody ? p.renderBody() : p.body}
                 </p>
               </div>
             ))}

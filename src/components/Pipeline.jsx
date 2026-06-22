@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 
 const stats = [
   { num: '46%', label: 'of all Google searches have local intent', source: 'Think With Google' },
@@ -17,7 +20,9 @@ const pipelineNodes = [
 const rightItems = [
   {
     title: 'Why Every Layer Matters',
-    body: "AI assistants don't have a single database they check. They cross-check multiple independent sources to confirm a business is real, active, and trustworthy. A gap at any layer weakens their trust signal.",
+    renderBody: () => (
+      <>AI assistants don't have a single database they check. They cross-check multiple independent sources to confirm a business is real, active, and trustworthy. A gap at any layer weakens their <Link to="/faq" style={faqLink}>trust signal</Link>.</>
+    ),
   },
   {
     title: 'The Consistency Problem',
@@ -25,14 +30,18 @@ const rightItems = [
   },
   {
     title: 'Untapped Potential',
-    body: 'Most local businesses have not yet managed this data layer. The ones that do gain a compounding advantage in every search, map, and AI recommendation.',
+    renderBody: () => (
+      <>Most local businesses have not yet managed this <Link to="/faq" style={faqLink}>data layer</Link>. The ones that do gain a compounding advantage in every search, map, and AI recommendation.</>
+    ),
   },
 ];
 
 const nearMeFactors = [
   {
     name: 'Relevance',
-    desc: 'How well the business matches the query. Optimize this with accurate categories, detailed service descriptions, and structured data.',
+    renderDesc: () => (
+      <>How well the business matches the query. Optimize this with accurate categories, detailed service descriptions, and <Link to="/faq" style={faqLink}>structured data</Link>.</>
+    ),
   },
   {
     name: 'Distance',
@@ -42,9 +51,9 @@ const nearMeFactors = [
     name: 'Prominence',
     desc: "The business's authority and trust. This is established by:",
     bullets: [
-      'Volume and recency of reviews.',
-      'Consistent NAP (Name, Address, Phone number) data across directories.',
-      'Verified presence across multiple independent platforms.',
+      { text: 'Volume and recency of reviews.' },
+      { renderText: () => <>Consistent <Link to="/faq" style={faqLink}>NAP (Name, Address, Phone number)</Link> data across directories.</> },
+      { text: 'Verified presence across multiple independent platforms.' },
     ],
   },
 ];
@@ -229,13 +238,15 @@ export default function Pipeline() {
               {nearMeFactors.map((f) => (
                 <div key={f.name} className="nearme-factor">
                   <div className="nearme-factor-name">{f.name}</div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', lineHeight: 1.65 }}>{f.desc}</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', lineHeight: 1.65 }}>
+                    {f.renderDesc ? f.renderDesc() : f.desc}
+                  </p>
                   {f.bullets && (
                     <ul style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                      {f.bullets.map((b) => (
-                        <li key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--mid)' }}>
+                      {f.bullets.map((b, bi) => (
+                        <li key={bi} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--mid)' }}>
                           <span style={{ color: 'var(--green-hi)', flexShrink: 0 }}>·</span>
-                          {b}
+                          {b.renderText ? b.renderText() : b.text}
                         </li>
                       ))}
                     </ul>
@@ -313,7 +324,7 @@ export default function Pipeline() {
                         {item.title}
                       </h4>
                       <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.92rem', color: 'var(--mid)', lineHeight: 1.7 }}>
-                        {item.body}
+                        {item.renderBody ? item.renderBody() : item.body}
                       </p>
                     </div>
                   ))}
