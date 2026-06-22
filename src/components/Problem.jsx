@@ -15,7 +15,7 @@ const problems = [
     body: null,
     renderBody: () => (
       <>
-        Inconsistent <Link to="/faq" style={faqLink}>names, addresses, or phone numbers</Link> across online directories can damage your trust rating with search engines. This confusion can cause your business to display incorrect information or not show up in search results at all.
+        Inconsistent <Link to="/faq#nap-consistency" style={faqLink}>names, addresses, or phone numbers</Link> across online directories can damage your trust rating with search engines. This confusion can cause your business to display incorrect information or not show up in search results at all.
       </>
     ),
   },
@@ -25,7 +25,7 @@ const problems = [
     body: null,
     renderBody: () => (
       <>
-        If competitors proactively verify and manage their <Link to="/faq" style={faqLink}>digital identity</Link>, they can surpass your visibility in search results, on maps, and within AI recommendations.
+        If competitors proactively verify and manage their <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link>, they can surpass your visibility in search results, on maps, and within AI recommendations.
       </>
     ),
   },
@@ -115,7 +115,7 @@ export default function Problem() {
                 lineHeight: 1.75,
               }}
             >
-              Even the best businesses can be invisible to the customers actively searching for products or services — not because of their reputation, but because of gaps in their <Link to="/faq" style={faqLink}>data layer</Link> that powers modern search.
+              Even the best businesses can be invisible to the customers actively searching for products or services — not because of their reputation, but because of gaps in their <Link to="/faq#data-layer" style={faqLink}>data layer</Link> that powers modern search.
             </p>
           </div>
 

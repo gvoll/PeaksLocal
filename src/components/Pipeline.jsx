@@ -21,7 +21,7 @@ const rightItems = [
   {
     title: 'Why Every Layer Matters',
     renderBody: () => (
-      <>AI assistants don't have a single database they check. They cross-check multiple independent sources to confirm a business is real, active, and trustworthy. A gap at any layer weakens their <Link to="/faq" style={faqLink}>trust signal</Link>.</>
+      <>AI assistants don't have a single database they check. They cross-check multiple independent sources to confirm a business is real, active, and trustworthy. A gap at any layer weakens their <Link to="/faq#trust-signal" style={faqLink}>trust signal</Link>.</>
     ),
   },
   {
@@ -31,7 +31,7 @@ const rightItems = [
   {
     title: 'Untapped Potential',
     renderBody: () => (
-      <>Most local businesses have not yet managed this <Link to="/faq" style={faqLink}>data layer</Link>. The ones that do gain a compounding advantage in every search, map, and AI recommendation.</>
+      <>Most local businesses have not yet managed this <Link to="/faq#data-layer" style={faqLink}>data layer</Link>. The ones that do gain a compounding advantage in every search, map, and AI recommendation.</>
     ),
   },
 ];
@@ -40,7 +40,7 @@ const nearMeFactors = [
   {
     name: 'Relevance',
     renderDesc: () => (
-      <>How well the business matches the query. Optimize this with accurate categories, detailed service descriptions, and <Link to="/faq" style={faqLink}>structured data</Link>.</>
+      <>How well the business matches the query. Optimize this with accurate categories, detailed service descriptions, and <Link to="/faq#structured-data" style={faqLink}>structured data</Link>.</>
     ),
   },
   {
@@ -52,7 +52,7 @@ const nearMeFactors = [
     desc: "The business's authority and trust. This is established by:",
     bullets: [
       { text: 'Volume and recency of reviews.' },
-      { renderText: () => <>Consistent <Link to="/faq" style={faqLink}>NAP (Name, Address, Phone number)</Link> data across directories.</> },
+      { renderText: () => <>Consistent <Link to="/faq#nap-consistency" style={faqLink}>NAP (Name, Address, Phone number)</Link> data across directories.</> },
       { text: 'Verified presence across multiple independent platforms.' },
     ],
   },

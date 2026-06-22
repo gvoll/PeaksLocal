@@ -57,7 +57,7 @@ export default function About() {
 
           <blockquote className="about-pull-quote reveal reveal-delay-4">
             Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem...<br />
-            The result is a service that treats your <Link to="/faq" style={faqLink}>digital identity</Link> the way a good IT partner treats your network — built right, kept running, and documented throughout.
+            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network — built right, kept running, and documented throughout.
           </blockquote>
         </div>
       </div>
