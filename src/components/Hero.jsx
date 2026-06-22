@@ -119,7 +119,7 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal builds and maintains the <Link to="/faq" style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' }}>verified digital identity</Link> that search engines, Apple Maps, and AI assistants rely on to recommend your business — not your competitor's.
+                PeaksLocal builds and maintains the <Link to="/faq#what-is-digital-identity" style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' }}>verified digital identity</Link> that search engines, Apple Maps, and AI assistants rely on to recommend your business — not your competitor's.
               </p>
 
               {/* Pull quote */}
