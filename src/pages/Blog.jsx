@@ -65,14 +65,12 @@ export default function Blog() {
             <div className="blog-grid">
               {posts.map((post) => (
                 <article className="blog-card" key={post.id}>
-                  {post.coverImage?.url ? (
+                  {post.coverImage?.url && (
                     <img
                       src={post.coverImage.url}
                       alt={post.coverImage.description || post.coverImage.title || post.title}
                       className="blog-card-image"
                     />
-                  ) : (
-                    <div className="blog-card-image blog-card-image-placeholder" />
                   )}
                   <div className="blog-card-content">
                     {post.publishedDate && (
