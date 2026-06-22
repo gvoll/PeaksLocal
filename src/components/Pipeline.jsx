@@ -264,21 +264,28 @@ export default function Pipeline() {
             className="stats-grid-4 reveal"
             style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '80px' }}
           >
-            {stats.map((stat) => (
-              <div key={stat.num} className="stat-card-pipeline">
-                <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.4rem', color: 'var(--navy)', lineHeight: 1, marginBottom: '10px' }}>
-                  {stat.num}
+            {stats.map((stat) => {
+              const isDark = stat.num === '$0';
+              return (
+                <div
+                  key={stat.num}
+                  className="stat-card-pipeline"
+                  style={isDark ? { background: 'var(--navy)', border: '1px solid var(--navy)' } : {}}
+                >
+                  <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.4rem', color: isDark ? 'var(--white)' : 'var(--navy)', lineHeight: 1, marginBottom: '10px' }}>
+                    {stat.num}
+                  </div>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', color: isDark ? 'rgba(255,255,255,0.7)' : 'var(--mid)', lineHeight: 1.5, marginBottom: stat.source ? '8px' : 0 }}>
+                    {stat.label}
+                  </p>
+                  {stat.source && (
+                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', color: 'var(--slate)', letterSpacing: '0.06em' }}>
+                      — {stat.source}
+                    </span>
+                  )}
                 </div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', color: 'var(--mid)', lineHeight: 1.5, marginBottom: stat.source ? '8px' : 0 }}>
-                  {stat.label}
-                </p>
-                {stat.source && (
-                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', color: 'var(--slate)', letterSpacing: '0.06em' }}>
-                    — {stat.source}
-                  </span>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* 3c — How AI Finds Local Businesses */}
