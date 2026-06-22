@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   const heroRef = useRef(null);
@@ -118,7 +119,7 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal builds and maintains the verified digital identity that search engines, Apple Maps, and AI assistants rely on to recommend your business — not your competitor's.
+                PeaksLocal builds and maintains the <Link to="/faq" style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' }}>verified digital identity</Link> that search engines, Apple Maps, and AI assistants rely on to recommend your business — not your competitor's.
               </p>
 
               {/* Pull quote */}
@@ -141,13 +142,13 @@ export default function Hero() {
 
               {/* CTAs */}
               <div className="hero-fade" style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap', marginBottom: '28px' }}>
-                <button
+                <Link
+                  to="/audit"
                   className="btn-primary"
-                  style={{ fontSize: '1rem', padding: '15px 28px' }}
-                  onClick={scrollToAudit}
+                  style={{ fontSize: '1rem', padding: '15px 28px', textDecoration: 'none' }}
                 >
                   Get My Free Visibility Score
-                </button>
+                </Link>
                 <button
                   className="btn-ghost"
                   onClick={scrollToPipeline}

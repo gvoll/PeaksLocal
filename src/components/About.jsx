@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import ProcessFlow from './ProcessFlow.jsx';
+
+const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 
 const callouts = [
   {
@@ -54,7 +57,7 @@ export default function About() {
 
           <blockquote className="about-pull-quote reveal reveal-delay-4">
             Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem...<br />
-            The result is a service that treats your digital identity the way a good IT partner treats your network — built right, kept running, and documented throughout.
+            The result is a service that treats your <Link to="/faq" style={faqLink}>digital identity</Link> the way a good IT partner treats your network — built right, kept running, and documented throughout.
           </blockquote>
         </div>
       </div>
