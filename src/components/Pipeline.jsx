@@ -275,7 +275,7 @@ export default function Pipeline() {
                   <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.4rem', color: isDark ? 'var(--white)' : 'var(--navy)', lineHeight: 1, marginBottom: '10px' }}>
                     {stat.num}
                   </div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.8rem', color: isDark ? 'rgba(255,255,255,0.7)' : 'var(--mid)', lineHeight: 1.5, marginBottom: stat.source ? '8px' : 0 }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isDark ? '0.92rem' : '0.8rem', color: isDark ? 'rgba(255,255,255,0.7)' : 'var(--mid)', lineHeight: 1.5, marginBottom: stat.source ? '8px' : 0 }}>
                     {stat.label}
                   </p>
                   {stat.source && (
