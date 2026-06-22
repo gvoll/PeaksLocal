@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import LandingPage from './pages/LandingPage.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
@@ -9,6 +9,12 @@ import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import { trackPageView } from './lib/analytics.js';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 export default function App() {
   const location = useLocation();
 
@@ -18,6 +24,8 @@ export default function App() {
   }, [location.pathname, location.search]);
 
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/blog" element={<Blog />} />
@@ -27,5 +35,6 @@ export default function App() {
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactPage />} />
     </Routes>
+    </>
   );
 }
