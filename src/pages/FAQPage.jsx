@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
@@ -138,6 +138,18 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const id = hash.slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    }
+  }, []);
 
   return (
     <>
