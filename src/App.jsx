@@ -7,6 +7,8 @@ import ContactPage from './pages/ContactPage.jsx';
 import FAQPage from './pages/FAQPage.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
+import HowItWorksPage from './pages/HowItWorksPage.jsx';
+import ServicesPage from './pages/ServicesPage.jsx';
 import { trackPageView } from './lib/analytics.js';
 
 function ScrollToTop() {
@@ -34,6 +36,8 @@ export default function App() {
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/audit" element={<AuditPage />} />
       <Route path="/faq" element={<FAQPage />} />
+      <Route path="/how-it-works" element={<HowItWorksPage />} />
+      <Route path="/services" element={<ServicesPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactPage />} />
     </Routes>
