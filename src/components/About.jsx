@@ -17,7 +17,7 @@ const callouts = [
   },
   {
     title: 'Local Roots, National Reach',
-    body: 'While Denver-based, we are fully remote-capable. We serve businesses across the country, providing the same high-level, structured approach as we do to our local partners.',
+    body: 'Based in Denver and rooted in the Front Range, we work with local businesses across Colorado and nationwide. Any business ready to strengthen its local digital identity can work with us, whether you are in Denver, Dallas, or anywhere in between.',
     icon: '◎',
   },
 ];
@@ -52,12 +52,12 @@ export default function About() {
           </h2>
 
           <p className="about-mindset-body reveal reveal-delay-1">
-            PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs — from early-stage startups to Fortune 500 enterprises.
+            PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs, from early-stage startups to Fortune 500 enterprises.
           </p>
 
           <blockquote className="about-pull-quote reveal reveal-delay-4">
             Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem...<br />
-            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network — built right, kept running, and documented throughout.
+            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network: built right, kept running, and documented throughout.
           </blockquote>
         </div>
       </div>

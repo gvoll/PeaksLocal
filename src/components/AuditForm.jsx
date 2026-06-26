@@ -142,7 +142,7 @@ export default function AuditForm() {
                 margin: '0 auto',
               }}
             >
-              See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
+              See how your business currently stands across Google, Maps, and AI platforms. We work with local businesses across Denver, the Front Range, and anywhere in the US ready to take their digital identity seriously.
             </p>
             <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.82rem', letterSpacing: '0.1em', color: '#1a3a5c', marginTop: '8px', textTransform: 'uppercase', fontWeight: '600' }}>
   No Obligation. No Sales Pressure.

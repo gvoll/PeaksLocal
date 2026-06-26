@@ -35,7 +35,9 @@ export default function Footer() {
                 Be Seen on Search, Maps + AI
               </p>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.78rem', color: 'var(--slate)', marginBottom: '8px' }}>
-                © 2026 PeaksLocal · Denver, Colorado
+                © 2026 PeaksLocal · Denver, Colorado<br />
+                Serving the Front Range and local businesses nationwide<br />
+                <a href="tel:+17204413167" style={{ color: 'var(--slate)', textDecoration: 'none' }}>720.441.3167</a>
               </p>
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: '#94a3b8', lineHeight: 1.5 }}>
               PeaksLocal is an independent online identity firm. Google, Apple, Bing, and all platform names are trademarks of their respective owners.              </p>
