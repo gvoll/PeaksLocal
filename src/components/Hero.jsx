@@ -105,9 +105,9 @@ export default function Hero() {
                   letterSpacing: '-0.01em',
                 }}
               >
-                Stop Being the<br />
-                <span style={{ color: 'var(--green-hi)' }}>Best-Kept Secret</span><br />
-                in Town.
+                One Trusted Identity.<br />
+                <span style={{ color: 'var(--green-hi)' }}>Everywhere Your</span><br />
+                Customers Search.
               </h1>
 
               {/* Sub */}
@@ -119,7 +119,7 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal builds and maintains the <Link to="/faq#what-is-digital-identity" style={{ color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' }}>verified digital identity</Link> that search engines, Apple Maps, and AI assistants rely on to recommend your business, not your competitor's.
+                PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search... so customers find you, not your competitor.
               </p>
 
               {/* Pull quote */}
