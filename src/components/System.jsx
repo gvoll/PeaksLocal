@@ -563,7 +563,7 @@ export default function System() {
                     margin: 0,
                   }}
                 >
-                  Unsure if PeaksLocal is the right fit? Our free audit gives you clarity on your current online presence.
+                  <strong>Unsure if PeaksLocal is the right fit?</strong><br />Our free audit gives you clarity on your current online presence.
                 </p>
                 <button
                   type="button"

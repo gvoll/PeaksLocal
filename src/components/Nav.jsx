@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const styles = {
@@ -46,9 +46,9 @@ const styles = {
     gap: '1px',
   },
   wordmark: {
-    fontFamily: "'Barlow Condensed', sans-serif",
+    fontFamily: "'Ysabeau SC', sans-serif",
     fontWeight: 700,
-    fontSize: '1.3rem',
+    fontSize: '1.4rem',
     color: 'var(--white)',
     letterSpacing: '0.06em',
     lineHeight: 1,
@@ -151,12 +151,28 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [whoOpen, setWhoOpen] = useState(false);
+  const [mobileWhoOpen, setMobileWhoOpen] = useState(false);
+  const [systemOpen, setSystemOpen] = useState(false);
+  const [mobileSystemOpen, setMobileSystemOpen] = useState(false);
+  const whoRef = useRef(null);
+  const systemRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleClickOutside = (e) => {
+      if (whoRef.current && !whoRef.current.contains(e.target)) setWhoOpen(false);
+      if (systemRef.current && !systemRef.current.contains(e.target)) setSystemOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const scrollTo = (id) => {
@@ -173,9 +189,7 @@ export default function Nav() {
   };
 
   const navItems = [
-    { label: 'How It Works', id: 'pipeline' },
-    { label: 'Our System', id: 'system' },
-    { label: 'About', id: 'about' },
+    { label: 'Local Search', id: 'pipeline' },
   ];
 
   return (
@@ -187,6 +201,46 @@ export default function Nav() {
         }
         .nav-link-item:hover { color: var(--white) !important; }
         .nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
+        .nav-dropdown {
+          position: relative;
+        }
+        .nav-dropdown-menu {
+          position: absolute;
+          top: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--navy);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 8px;
+          padding: 6px;
+          min-width: 160px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+          z-index: 200;
+        }
+        .nav-dropdown-item {
+          display: block;
+          width: 100%;
+          padding: 9px 14px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.85rem;
+          color: var(--slate);
+          background: none;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          text-align: left;
+          text-decoration: none;
+          transition: background 0.15s, color 0.15s;
+          white-space: nowrap;
+        }
+        .nav-dropdown-item:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+        .nav-dropdown-chevron {
+          display: inline-block;
+          margin-left: 4px;
+          font-size: 0.65rem;
+          transition: transform 0.2s;
+          vertical-align: middle;
+        }
       `}</style>
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
         <div style={styles.inner}>
@@ -194,12 +248,7 @@ export default function Nav() {
           <a href="/" style={styles.brand}>
             <img src="/peaks-local-without-tagline.png" alt="PeaksLocal logo" style={styles.logoImg} />
             <div style={styles.brandText}>
-              <span style={styles.wordmark}>
-                <span style={{ fontSize: '1.45rem' }}>P</span>
-                <span style={{ fontSize: '0.95rem' }}>EAKS</span>
-                <span style={{ fontSize: '1.45rem' }}>L</span>
-                <span style={{ fontSize: '0.95rem' }}>OCAL</span>
-              </span>
+              <span style={styles.wordmark}>PeaksLocal</span>
               <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>
             </div>
           </a>
@@ -216,6 +265,74 @@ export default function Nav() {
                 {item.label}
               </button>
             ))}
+
+            {/* PeaksLocal System dropdown */}
+            <div className="nav-dropdown" ref={systemRef}>
+              <button
+                className="nav-link-item"
+                style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
+                onClick={() => setSystemOpen(!systemOpen)}
+              >
+                PeaksLocal System
+                <span className="nav-dropdown-chevron" style={{ transform: systemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+              </button>
+              {systemOpen && (
+                <div className="nav-dropdown-menu">
+                  <button
+                    className="nav-dropdown-item"
+                    onClick={() => { setSystemOpen(false); scrollTo('system'); }}
+                  >
+                    Our Process
+                  </button>
+                  <button
+                    className="nav-dropdown-item"
+                    onClick={() => { setSystemOpen(false); scrollTo('services'); }}
+                  >
+                    Service Options
+                  </button>
+                  <Link
+                    to="/review-funnels"
+                    className="nav-dropdown-item"
+                    onClick={() => setSystemOpen(false)}
+                  >
+                    Review Funnels
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Who We Help dropdown */}
+            <div
+              className="nav-dropdown"
+              ref={whoRef}
+            >
+              <button
+                className="nav-link-item"
+                style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
+                onClick={() => setWhoOpen(!whoOpen)}
+              >
+                Who We Help
+                <span className="nav-dropdown-chevron" style={{ transform: whoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+              </button>
+              {whoOpen && (
+                <div className="nav-dropdown-menu">
+                  <button
+                    className="nav-dropdown-item"
+                    onClick={() => { setWhoOpen(false); scrollTo('who'); }}
+                  >
+                    Clients
+                  </button>
+                  <Link
+                    to="/partners"
+                    className="nav-dropdown-item"
+                    onClick={() => setWhoOpen(false)}
+                  >
+                    Partners
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link to="/blog" className="nav-link-item" style={styles.link}>
               Blog
             </Link>
@@ -253,6 +370,64 @@ export default function Nav() {
                 {item.label}
               </button>
             ))}
+            {/* PeaksLocal System mobile */}
+            <button
+              style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
+              onClick={() => setMobileSystemOpen(!mobileSystemOpen)}
+            >
+              PeaksLocal System
+              <span style={{ fontSize: '0.7rem', color: 'var(--slate)', transition: 'transform 0.2s', display: 'inline-block', transform: mobileSystemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+            </button>
+            {mobileSystemOpen && (
+              <>
+                <button
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('system'); }}
+                >
+                  Our Process
+                </button>
+                <button
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('services'); }}
+                >
+                  Service Options
+                </button>
+                <Link
+                  to="/review-funnels"
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); }}
+                >
+                  Review Funnels
+                </Link>
+              </>
+            )}
+
+            {/* Who We Help mobile */}
+            <button
+              style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
+              onClick={() => setMobileWhoOpen(!mobileWhoOpen)}
+            >
+              Who We Help
+              <span style={{ fontSize: '0.7rem', color: 'var(--slate)', transition: 'transform 0.2s', display: 'inline-block', transform: mobileWhoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+            </button>
+            {mobileWhoOpen && (
+              <>
+                <button
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileWhoOpen(false); scrollTo('who'); }}
+                >
+                  Clients
+                </button>
+                <Link
+                  to="/partners"
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileWhoOpen(false); }}
+                >
+                  Partners
+                </Link>
+              </>
+            )}
+
             <Link
               to="/blog"
               style={{ ...styles.mobileLink, textDecoration: 'none' }}

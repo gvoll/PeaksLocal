@@ -253,6 +253,62 @@ export default function Services() {
             </div>
           </div>
 
+          {/* Review funnel callout */}
+          <div
+            className="reveal reveal-delay-2"
+            style={{
+              marginTop: '40px',
+              padding: '24px 28px',
+              background: 'rgba(58,173,100,0.06)',
+              border: '1px solid rgba(58,173,100,0.18)',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '24px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div>
+              <div style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700,
+                fontSize: '1rem',
+                textTransform: 'uppercase',
+                color: 'var(--white)',
+                letterSpacing: '0.04em',
+                marginBottom: '6px',
+              }}>
+                Included: Branded Review Funnel
+              </div>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.85rem',
+                color: 'var(--slate)',
+                lineHeight: 1.65,
+                margin: 0,
+                maxWidth: '520px',
+              }}>
+                Every engagement includes a branded review page built for your business type, with the right platforms and templates to make it easy for clients to leave feedback.
+              </p>
+            </div>
+            <a
+              href="/review-funnels"
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: '0.75rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'var(--green-hi)',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+            >
+              See how it works →
+            </a>
+          </div>
+
           {/* Footer note */}
           <p
             className="reveal reveal-delay-2"
