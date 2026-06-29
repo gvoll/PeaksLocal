@@ -106,8 +106,8 @@ export default function Hero() {
                 }}
               >
                 Stop Being the<br />
-                Best-Kept Secret<br />
-                <span style={{ color: 'var(--green-hi)' }}>in Town.</span>
+                <span style={{ color: 'var(--green-hi)' }}>Best-Kept Secret</span><br />
+                in Town.
               </h1>
 
               {/* Sub */}
