@@ -60,6 +60,7 @@ const nearMeFactors = [
 
 export default function Pipeline() {
   const sectionRef = useRef(null);
+  const zeroCardRef = useRef(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
@@ -73,7 +74,23 @@ export default function Pipeline() {
     );
     const reveals = sectionRef.current?.querySelectorAll('.reveal');
     reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+
+    const zeroObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('zero-visible');
+            }, 700);
+            zeroObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (zeroCardRef.current) zeroObserver.observe(zeroCardRef.current);
+
+    return () => { observer.disconnect(); zeroObserver.disconnect(); };
   }, []);
 
   const scrollToSystem = () => {
@@ -94,6 +111,13 @@ export default function Pipeline() {
         .nearme-factor { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; }
         .nearme-factor-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--navy); letter-spacing: 0.04em; margin-bottom: 6px; }
         .stat-card-pipeline { background: var(--ash); border: 1px solid var(--rule); border-radius: 10px; padding: 24px 20px; }
+        @keyframes zero-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(58,173,100,0); }
+          50% { box-shadow: 0 0 0 10px rgba(58,173,100,0.28); }
+        }
+        .stat-card-zero.zero-visible {
+          animation: zero-pulse 1.6s ease 0s 3;
+        }
         @media (max-width: 900px) {
           .pipeline-grid { flex-direction: column !important; }
           .pipeline-left { width: 100% !important; }
@@ -269,7 +293,8 @@ export default function Pipeline() {
               return (
                 <div
                   key={stat.num}
-                  className="stat-card-pipeline"
+                  ref={isDark ? zeroCardRef : null}
+                  className={`stat-card-pipeline${isDark ? ' stat-card-zero' : ''}`}
                   style={isDark ? { background: 'var(--navy)', border: '1px solid var(--navy)' } : {}}
                 >
                   <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.4rem', color: isDark ? 'var(--white)' : 'var(--navy)', lineHeight: 1, marginBottom: '10px' }}>

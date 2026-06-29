@@ -46,9 +46,18 @@ export default function Footer() {
 
             {/* Col 3 — Links */}
             <div className="footer-right-col" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end' }}>
+              <Link to="/reviews" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+                Leave a Review
+              </Link>
+              <Link to="/partners" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+                Interested in Partnering?
+              </Link>
               <Link to="/faq" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 FAQ
               </Link>
+              <a href="/#about" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
+                About
+              </a>
               <Link to="/privacy" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
                 Privacy Policy
               </Link>

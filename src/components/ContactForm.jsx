@@ -5,6 +5,7 @@ const initialForm = {
   name: '',
   email: '',
   phone: '',
+  inquiryType: '',
   message: '',
 };
 
@@ -84,6 +85,25 @@ export default function ContactForm() {
           color: var(--ink);
           margin-bottom: 6px;
           display: block;
+        }
+        .inquiry-options { display: flex; gap: 12px; flex-wrap: wrap; }
+        .inquiry-radio { display: none; }
+        .inquiry-option {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.84rem;
+          color: var(--mid);
+          border: 1.5px solid var(--rule);
+          border-radius: 20px;
+          padding: 7px 16px;
+          cursor: pointer;
+          transition: border-color 0.2s, color 0.2s, background 0.2s;
+          user-select: none;
+        }
+        .inquiry-radio:checked + .inquiry-option {
+          border-color: var(--green-hi);
+          color: var(--green);
+          background: rgba(58,173,100,0.07);
+          font-weight: 500;
         }
         .contact-label .optional {
           color: var(--slate);
@@ -303,6 +323,27 @@ export default function ContactForm() {
                         value={form.phone}
                         onChange={handleChange}
                       />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="contact-label">Inquiry type</label>
+                    <div className="inquiry-options">
+                      {['Client inquiry', 'Partner inquiry', 'General question'].map((opt) => (
+                        <React.Fragment key={opt}>
+                          <input
+                            className="inquiry-radio"
+                            type="radio"
+                            id={`inq-${opt}`}
+                            name="inquiryType"
+                            value={opt}
+                            checked={form.inquiryType === opt}
+                            onChange={handleChange}
+                            required
+                          />
+                          <label className="inquiry-option" htmlFor={`inq-${opt}`}>{opt}</label>
+                        </React.Fragment>
+                      ))}
                     </div>
                   </div>
 
