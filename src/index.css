@@ -558,6 +558,12 @@ input, textarea {
   color: var(--green-mid);
 }
 
+.blog-post-hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  margin: 40px 0;
+}
+
 .blog-post-external-wrap {
   margin-top: 28px;
 }

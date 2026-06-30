@@ -79,14 +79,13 @@ export default function Pipeline() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('zero-visible');
-            }, 700);
-            zeroObserver.unobserve(entry.target);
+            entry.target.classList.add('zero-visible');
+          } else {
+            entry.target.classList.remove('zero-visible');
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     );
     if (zeroCardRef.current) zeroObserver.observe(zeroCardRef.current);
 
@@ -112,11 +111,19 @@ export default function Pipeline() {
         .nearme-factor-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--navy); letter-spacing: 0.04em; margin-bottom: 6px; }
         .stat-card-pipeline { background: var(--ash); border: 1px solid var(--rule); border-radius: 10px; padding: 24px 20px; }
         @keyframes zero-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(58,173,100,0); }
-          50% { box-shadow: 0 0 0 10px rgba(58,173,100,0.28); }
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(58,173,100,0);
+            border-color: rgba(58,173,100,0.3);
+            border-width: 1px;
+          }
+          50% {
+            box-shadow: 0 0 28px 10px rgba(58,173,100,0.55), inset 0 0 12px rgba(58,173,100,0.1);
+            border-color: rgb(58,173,100);
+            border-width: 2px;
+          }
         }
         .stat-card-zero.zero-visible {
-          animation: zero-pulse 1.6s ease 0s 3;
+          animation: zero-pulse 1.8s ease-in-out infinite;
         }
         @media (max-width: 900px) {
           .pipeline-grid { flex-direction: column !important; }
