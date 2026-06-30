@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import { getPostBySlug } from '../lib/contentful.js';
@@ -24,6 +24,7 @@ const richTextOptions = {
     [BLOCKS.OL_LIST]: (node, children) => <ol className="blog-post-list">{children}</ol>,
     [BLOCKS.LIST_ITEM]: (node, children) => <li className="blog-post-list-item">{children}</li>,
     [BLOCKS.QUOTE]: (node, children) => <blockquote className="blog-post-quote">{children}</blockquote>,
+    [BLOCKS.HR]: () => <hr className="blog-post-hr" />,
     [INLINES.HYPERLINK]: (node, children) => (
       <a href={node.data.uri} target="_blank" rel="noreferrer" className="blog-post-link">
         {children}

@@ -1,19 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const linkStyle = { fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' };
+
 export default function Footer() {
   return (
     <>
       <style>{`
         .footer-grid {
           display: grid;
-          grid-template-columns: 1fr 1.5fr 1fr;
-          gap: 40px;
-          align-items: start;
+          grid-template-columns: 1fr auto 1fr auto 1fr;
+          gap: 0;
+          align-items: center;
+        }
+        .footer-divider {
+          width: 1px;
+          height: 60px;
+          background: rgba(255,255,255,0.1);
+          margin: 0 32px;
         }
         @media (max-width: 720px) {
-          .footer-grid { grid-template-columns: 1fr; text-align: center; }
-          .footer-right-col { align-items: center !important; }
+          .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+          .footer-divider { display: none; }
+          .footer-links-left { align-items: center !important; }
+          .footer-links-right { align-items: center !important; }
           .footer-logo { margin: 0 auto; }
         }
         .footer-link:hover { color: var(--white) !important; }
@@ -22,48 +32,42 @@ export default function Footer() {
         <div className="container">
           <div className="footer-grid" style={{ paddingBottom: '32px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
 
-            {/* Col 1 — Logo */}
-            <div>
-              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} />
-              </Link>
+            {/* Col 1 — Left links */}
+            <div className="footer-links-left" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-start' }}>
+              <Link to="/reviews" className="footer-link" style={linkStyle}>Leave a Review</Link>
+              <Link to="/partners" className="footer-link" style={linkStyle}>Interested in Partnering?</Link>
+              <Link to="/faq" className="footer-link" style={linkStyle}>FAQ</Link>
             </div>
 
-            {/* Col 2 — Tagline + service area + phone */}
+            {/* Divider */}
+            <div className="footer-divider" />
+
+            {/* Col 2 — Logo + tagline + service area */}
             <div style={{ textAlign: 'center' }}>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.72rem', color: 'var(--green-hi)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
+              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '70px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }} />
+              </Link>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.72rem', color: 'var(--green-hi)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
                 Be Seen on Search, Maps + AI
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)' }}>
                   Serving the Front Range and local businesses nationwide
                 </span>
-                <a href="tel:+17204413167" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', marginTop: '4px' }}>
+                <a href="tel:+17204413167" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', textDecoration: 'none', marginTop: '2px' }}>
                   720.441.3167
                 </a>
               </div>
             </div>
 
-            {/* Col 3 — Links */}
-            <div className="footer-right-col" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end' }}>
-              <Link to="/reviews" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                Leave a Review
-              </Link>
-              <Link to="/partners" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                Interested in Partnering?
-              </Link>
-              <Link to="/faq" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                FAQ
-              </Link>
-              <a href="/#about" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                About
-              </a>
-              <Link to="/privacy" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                Privacy Policy
-              </Link>
-              <Link to="/contact" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}>
-                Contact
-              </Link>
+            {/* Divider */}
+            <div className="footer-divider" />
+
+            {/* Col 3 — Right links */}
+            <div className="footer-links-right" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end' }}>
+              <a href="/#about" className="footer-link" style={linkStyle}>About</a>
+              <Link to="/privacy" target="_blank" rel="noreferrer" className="footer-link" style={linkStyle}>Privacy Policy</Link>
+              <Link to="/contact" target="_blank" rel="noreferrer" className="footer-link" style={linkStyle}>Contact</Link>
             </div>
 
           </div>
