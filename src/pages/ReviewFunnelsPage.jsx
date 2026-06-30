@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../components/SEO.jsx';
 
 const NAV_LINKS = [
   { label: 'Why a Review Funnel', href: '#why' },
@@ -376,6 +377,11 @@ export default function ReviewFunnelsPage() {
 
   return (
     <>
+      <SEO
+        title="Review Funnels — Get More Reviews with Less Friction"
+        description="Every PeaksLocal client gets a branded review page that makes it easy for customers to leave a review on Google, Yelp, and Bing — with templates to reduce blank-page anxiety."
+        canonical="/review-funnels"
+      />
       <style>{`
         .rf-jump-link {
           font-family: 'DM Sans', sans-serif;

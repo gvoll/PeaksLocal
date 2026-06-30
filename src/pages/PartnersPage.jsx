@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../components/SEO.jsx';
 
 const partnerTypes = [
   {
@@ -58,6 +59,11 @@ export default function PartnersPage() {
 
   return (
     <>
+      <SEO
+        title="Agency + Referral Partners"
+        description="Work with PeaksLocal as a referral or white-label partner. We handle local digital identity so you can stay focused on your core services while keeping your clients covered."
+        canonical="/partners"
+      />
       <style>{`
         .partner-scenario {
           border-bottom: 1px solid rgba(255,255,255,0.08);

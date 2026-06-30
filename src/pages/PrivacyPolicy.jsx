@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../components/SEO.jsx';
 
 const sections = [
   {
@@ -75,6 +76,11 @@ export default function PrivacyPolicy() {
 
   return (
     <>
+      <SEO
+        title="Privacy Policy"
+        description="PeaksLocal privacy policy — how we collect, use, and protect your information."
+        canonical="/privacy"
+      />
       <Nav />
       <main style={{ background: 'var(--ash)', minHeight: '100vh', paddingTop: '68px' }}>
         {/* Header */}
