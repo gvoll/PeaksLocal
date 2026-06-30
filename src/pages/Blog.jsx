@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import { getAllPosts } from '../lib/contentful.js';
+import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -46,6 +47,11 @@ export default function Blog() {
 
   return (
     <>
+      <SEO
+        title="Blog — Local Search + Digital Identity Insights"
+        description="Practical insights for local businesses on Google Business Profile, Apple Maps, AI search visibility, and managing your digital identity. Updated regularly by the PeaksLocal team."
+        canonical="/blog"
+      />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
         <section className="blog-page">

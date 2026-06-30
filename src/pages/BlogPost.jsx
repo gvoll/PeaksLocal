@@ -5,6 +5,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import { getPostBySlug } from '../lib/contentful.js';
+import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -71,6 +72,14 @@ export default function BlogPost() {
 
   return (
     <>
+      {post && (
+        <SEO
+          title={post.title}
+          description={post.excerpt || undefined}
+          canonical={`/blog/${post.slug}`}
+          image={post.coverImage?.url || undefined}
+        />
+      )}
       <Nav />
       <main style={{ paddingTop: '68px' }}>
         <article className="blog-post-page">
