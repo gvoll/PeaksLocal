@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
+import SEO from '../components/SEO.jsx';
 
 const faqs = [
   {
@@ -158,6 +159,11 @@ export default function FAQPage() {
 
   return (
     <>
+      <SEO
+        title="FAQ — Local Search, Digital Identity + AI Visibility"
+        description="Answers to common questions about local SEO, digital identity, Google Business Profile, Apple Maps, structured data, and how PeaksLocal helps your business get found."
+        canonical="/faq"
+      />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO.jsx';
 
 const platforms = [
   {
@@ -50,6 +51,11 @@ const platforms = [
 export default function ReviewsPage() {
   return (
     <>
+      <SEO
+        title="Leave a Review"
+        description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
+        canonical="/reviews"
+      />
       <style>{`
         .review-btn {
           display: flex;
