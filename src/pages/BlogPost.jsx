@@ -73,12 +73,30 @@ export default function BlogPost() {
   return (
     <>
       {post && (
-        <SEO
-          title={post.title}
-          description={post.excerpt || undefined}
-          canonical={`/blog/${post.slug}`}
-          image={post.coverImage?.url || undefined}
-        />
+        <>
+          <SEO
+            title={post.title}
+            description={post.excerpt || undefined}
+            canonical={`/blog/${post.slug}`}
+            image={post.coverImage?.url || undefined}
+          />
+          <script type="application/ld+json">{JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt || undefined,
+            "url": `https://www.peakslocal.com/blog/${post.slug}`,
+            "datePublished": post.publishedDate || undefined,
+            "image": post.coverImage?.url || "https://www.peakslocal.com/og-image.jpg",
+            "author": { "@type": "Organization", "name": "PeaksLocal" },
+            "publisher": {
+              "@type": "Organization",
+              "name": "PeaksLocal",
+              "logo": { "@type": "ImageObject", "url": "https://www.peakslocal.com/peaks-local-without-tagline.png" }
+            },
+            "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.peakslocal.com/blog/${post.slug}` }
+          })}</script>
+        </>
       )}
       <Nav />
       <main style={{ paddingTop: '68px' }}>
