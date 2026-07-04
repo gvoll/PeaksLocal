@@ -1,3 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "peakslocal.com" }],
+      "destination": "https://www.peakslocal.com/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/((?!api/|sitemap\\.xml|robots\\.txt).*)", "destination": "/index.html" }]
 }
