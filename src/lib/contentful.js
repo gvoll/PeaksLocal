@@ -9,11 +9,20 @@ const client = createClient({
   accessToken,
 });
 
-const previewClient = createClient({
-  space,
-  accessToken: previewToken,
-  host: 'preview.contentful.com',
-});
+let previewClient = null;
+function getPreviewClient() {
+  if (!previewToken) {
+    throw new Error('VITE_CONTENTFUL_PREVIEW_TOKEN is not configured; preview mode is unavailable.');
+  }
+  if (!previewClient) {
+    previewClient = createClient({
+      space,
+      accessToken: previewToken,
+      host: 'preview.contentful.com',
+    });
+  }
+  return previewClient;
+}
 
 const BLOG_CONTENT_TYPE = 'blogPost';
 
@@ -51,7 +60,7 @@ export async function getAllPosts() {
 export async function getPostBySlug(slug, { preview = false } = {}) {
   if (!slug) return null;
 
-  const activeClient = preview ? previewClient : client;
+  const activeClient = preview ? getPreviewClient() : client;
   const response = await activeClient.getEntries({
     content_type: BLOG_CONTENT_TYPE,
     'fields.slug': slug,
@@ -68,7 +77,7 @@ export async function getPostBySlug(slug, { preview = false } = {}) {
 export async function getPostByEntryId(entryId, { preview = false } = {}) {
   if (!entryId) return null;
 
-  const activeClient = preview ? previewClient : client;
+  const activeClient = preview ? getPreviewClient() : client;
   const item = await activeClient.getEntry(entryId);
   return normalizePost(item);
 }
