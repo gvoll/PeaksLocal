@@ -546,6 +546,7 @@ input, textarea {
   color: var(--navy-mid);
   margin: 16px 0;
   font-style: italic;
+  white-space: pre-line;
 }
 
 .blog-post-link {
@@ -560,8 +561,12 @@ input, textarea {
 
 .blog-post-hr {
   border: none;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(30,73,118,0.35);
   margin: 40px 0;
+}
+
+.blog-post-paragraph + .blog-post-quote {
+  margin-top: 0;
 }
 
 .blog-post-external-wrap {

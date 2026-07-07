@@ -37,6 +37,7 @@ export default function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/blog-preview/:id" element={<BlogPost />} />
       <Route path="/audit" element={<AuditPage />} />
       <Route path="/faq" element={<FAQPage />} />
       <Route path="/reviews" element={<ReviewsPage />} />
