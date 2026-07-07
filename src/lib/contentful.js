@@ -2,11 +2,27 @@ import { createClient } from 'contentful';
 
 const space = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const accessToken = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+const previewToken = import.meta.env.VITE_CONTENTFUL_PREVIEW_TOKEN;
 
 const client = createClient({
   space,
   accessToken,
 });
+
+let previewClient = null;
+function getPreviewClient() {
+  if (!previewToken) {
+    throw new Error('VITE_CONTENTFUL_PREVIEW_TOKEN is not configured; preview mode is unavailable.');
+  }
+  if (!previewClient) {
+    previewClient = createClient({
+      space,
+      accessToken: previewToken,
+      host: 'preview.contentful.com',
+    });
+  }
+  return previewClient;
+}
 
 const BLOG_CONTENT_TYPE = 'blogPost';
 
@@ -41,10 +57,11 @@ export async function getAllPosts() {
   return response.items.map(normalizePost);
 }
 
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug, { preview = false } = {}) {
   if (!slug) return null;
 
-  const response = await client.getEntries({
+  const activeClient = preview ? getPreviewClient() : client;
+  const response = await activeClient.getEntries({
     content_type: BLOG_CONTENT_TYPE,
     'fields.slug': slug,
     limit: 1,
@@ -52,4 +69,15 @@ export async function getPostBySlug(slug) {
 
   if (!response.items.length) return null;
   return normalizePost(response.items[0]);
+}
+
+// Search-by-slug on the Preview API is backed by a search index that lags
+// behind CMA writes by a few minutes. Fetching by entry ID goes straight to
+// the entry and is always current, so preview links use this instead.
+export async function getPostByEntryId(entryId, { preview = false } = {}) {
+  if (!entryId) return null;
+
+  const activeClient = preview ? getPreviewClient() : client;
+  const item = await activeClient.getEntry(entryId);
+  return normalizePost(item);
 }

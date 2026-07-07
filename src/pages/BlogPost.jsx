@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
-import { getPostBySlug } from '../lib/contentful.js';
+import { getPostBySlug, getPostByEntryId } from '../lib/contentful.js';
 import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
@@ -35,7 +35,9 @@ const richTextOptions = {
 };
 
 export default function BlogPost() {
-  const { slug } = useParams();
+  const { slug, id } = useParams();
+  const [searchParams] = useSearchParams();
+  const preview = id ? true : searchParams.get('preview') === 'true';
   const [post, setPost] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState('');
@@ -45,7 +47,9 @@ export default function BlogPost() {
 
     async function fetchPost() {
       try {
-        const foundPost = await getPostBySlug(slug);
+        const foundPost = id
+          ? await getPostByEntryId(id, { preview })
+          : await getPostBySlug(slug, { preview });
         if (!isMounted) return;
 
         if (!foundPost) {
@@ -68,7 +72,7 @@ export default function BlogPost() {
     return () => {
       isMounted = false;
     };
-  }, [slug]);
+  }, [slug, id, preview]);
 
   return (
     <>
