@@ -375,7 +375,8 @@ input, textarea {
 }
 
 .blog-page-title {
-  font-family: var(--font-barlow);
+  font-family: 'Ysabeau SC', sans-serif;
+  font-weight: 700;
   color: var(--navy);
   letter-spacing: 0.02em;
   font-size: clamp(2rem, 4vw, 2.8rem);
