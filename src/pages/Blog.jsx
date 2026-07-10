@@ -83,9 +83,13 @@ export default function Blog() {
             )}
 
             {showScrollCue && (
-              <div className="blog-scroll-cue" aria-hidden="true">
-                <span>↓ more articles below</span>
-              </div>
+              <button
+                className="blog-scroll-cue"
+                onClick={() => document.querySelector('.blog-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                aria-label="Scroll to articles"
+              >
+                ↓ more articles below
+              </button>
             )}
 
             <div className="blog-grid">
