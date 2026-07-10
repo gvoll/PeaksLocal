@@ -18,6 +18,20 @@ export default function Blog() {
   const [posts, setPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState('');
+  const [showScrollCue, setShowScrollCue] = React.useState(false);
+
+  React.useEffect(() => {
+    if (posts.length > 3) setShowScrollCue(true);
+  }, [posts]);
+
+  React.useEffect(() => {
+    if (!showScrollCue) return;
+    const onScroll = () => {
+      if (window.scrollY > 280) setShowScrollCue(false);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [showScrollCue]);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -66,6 +80,12 @@ export default function Blog() {
             {error && <p className="blog-state-message blog-state-error">{error}</p>}
             {!loading && !error && posts.length === 0 && (
               <p className="blog-state-message">No blog posts published yet.</p>
+            )}
+
+            {showScrollCue && (
+              <div className="blog-scroll-cue" aria-hidden="true">
+                <span>↓ more articles below</span>
+              </div>
             )}
 
             <div className="blog-grid">
