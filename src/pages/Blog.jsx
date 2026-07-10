@@ -83,31 +83,28 @@ export default function Blog() {
             )}
 
             {showScrollCue && (
-              <div className="blog-scroll-cue" aria-hidden="true">
-                <span>↓ more articles below</span>
-              </div>
+              <button
+                className="blog-scroll-cue"
+                onClick={() => document.querySelector('.blog-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                aria-label="Scroll to articles"
+              >
+                ↓ more articles below
+              </button>
             )}
 
-            <div className="blog-grid">
+            <div className="blog-list">
               {posts.map((post) => (
-                <article className="blog-card" key={post.id}>
-                  {post.coverImage?.url && (
-                    <img
-                      src={post.coverImage.url}
-                      alt={post.coverImage.description || post.coverImage.title || post.title}
-                      className="blog-card-image"
-                    />
-                  )}
-                  <div className="blog-card-content">
+                <article className="blog-list-item" key={post.id}>
+                  <Link to={`/blog/${post.slug}`} className="blog-list-link">
                     {post.publishedDate && (
-                      <p className="blog-card-date">{formatDate(post.publishedDate)}</p>
+                      <p className="blog-list-date">{formatDate(post.publishedDate)}</p>
                     )}
-                    <h2 className="blog-card-title">{post.title}</h2>
-                    {post.excerpt && <p className="blog-card-excerpt">{post.excerpt}</p>}
-                    <Link to={`/blog/${post.slug}`} className="blog-read-more">
-                      Read More
-                    </Link>
-                  </div>
+                    <div className="blog-list-body">
+                      <h2 className="blog-list-title">{post.title}</h2>
+                      {post.excerpt && <p className="blog-list-excerpt">{post.excerpt}</p>}
+                    </div>
+                    <span className="blog-list-arrow" aria-hidden="true">→</span>
+                  </Link>
                 </article>
               ))}
             </div>
