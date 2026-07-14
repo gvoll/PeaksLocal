@@ -87,7 +87,11 @@ export default function Hero() {
                 padding: '6px 12px',
                 borderRadius: '4px',
               }}>
-                Serving Denver, the Front Range, and Local Businesses Nationwide
+                Serving Denver,{' '}
+                <Link to="/serve" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                  the Front Range
+                </Link>
+                , and Local Businesses Nationwide
                 <span className="blink-dot" />
               </div>
 

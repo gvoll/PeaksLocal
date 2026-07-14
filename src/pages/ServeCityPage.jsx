@@ -184,17 +184,8 @@ export default function ServeCityPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section style={{ background: 'var(--navy)', padding: '64px 0' }}>
-          <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
-            <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none' }}>
-              Get My Free Visibility Score
-            </Link>
-          </div>
-        </section>
-
         {/* Sources */}
-        <section style={{ background: 'var(--white)', padding: '40px 0 64px' }}>
+        <section style={{ background: city.sab ? 'var(--ash)' : 'var(--white)', padding: '0 0 48px' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -224,6 +215,15 @@ export default function ServeCityPage() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section style={{ background: 'var(--navy)', padding: '64px 0' }}>
+          <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+            <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none' }}>
+              Get My Free Visibility Score
+            </Link>
           </div>
         </section>
 
