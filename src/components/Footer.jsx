@@ -37,6 +37,7 @@ export default function Footer() {
               <Link to="/reviews" className="footer-link" style={linkStyle}>Leave a Review</Link>
               <Link to="/partners" className="footer-link" style={linkStyle}>Interested in Partnering?</Link>
               <Link to="/faq" className="footer-link" style={linkStyle}>FAQ</Link>
+              <Link to="/serve" className="footer-link" style={linkStyle}>Areas We Serve</Link>
             </div>
 
             {/* Divider */}

@@ -12,6 +12,8 @@ import ServicesPage from './pages/ServicesPage.jsx';
 import ReviewsPage from './pages/ReviewsPage.jsx';
 import ReviewFunnelsPage from './pages/ReviewFunnelsPage.jsx';
 import PartnersPage from './pages/PartnersPage.jsx';
+import ServePage from './pages/ServePage.jsx';
+import ServeCityPage from './pages/ServeCityPage.jsx';
 import { trackPageView } from './lib/analytics.js';
 
 function ScrollToTop() {
@@ -45,6 +47,8 @@ export default function App() {
       <Route path="/partners" element={<PartnersPage />} />
       <Route path="/how-it-works" element={<HowItWorksPage />} />
       <Route path="/services" element={<ServicesPage />} />
+      <Route path="/serve" element={<ServePage />} />
+      <Route path="/serve/:city" element={<ServeCityPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactPage />} />
     </Routes>
