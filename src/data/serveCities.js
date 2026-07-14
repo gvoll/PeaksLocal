@@ -31,7 +31,7 @@ export const serveCities = [
     landscape: [
       [{ text: 'Denver searchers are early adopters of AI tools like ChatGPT and Google AI Overviews. To remain visible, businesses must ensure their digital identity is structured for machine-readability. Accurate data is the difference between being featured in an AI response or being overlooked entirely.' }],
       [{ text: 'Building organic and AI-driven visibility is essential in a market where local service keywords can cost over $50 per click. PeaksLocal secures this high-value reach without the ongoing ad spend.' }],
-      [{ text: "From home services in the suburbs to professional firms in Cherry Creek, Denver's dense market requires precise profile management. We help businesses across every sector stand out in map packs and AI results where even a small inconsistency can lead to invisibility." }],
+      [{ text: "From hospitality in LoDo and RiNo to professional firms in Cherry Creek and retail across the Highlands, Denver's dense, neighborhood-driven market requires precise profile management. We help businesses across every sector stand out in map packs and AI results where even a small inconsistency can lead to invisibility." }],
     ],
     sabHeading: 'Built for Service Area Businesses',
     sab: [
@@ -62,6 +62,7 @@ export const serveCities = [
         { text: 'With record enrollment growth at CU Boulder, exceeding 40,500 students in 2024', citation: 2 },
         { text: ", a rolling cycle of new residents creates a high-stakes local search landscape. For Boulder businesses, accurate digital identity isn't just about being found; it's about standing up to the scrutiny of a savvy, brand-agnostic audience." },
       ],
+      [{ text: "That intensity plays out differently by district: Pearl Street's boutiques and restaurants draw a tourist and downtown crowd, University Hill runs on student foot traffic along Broadway, and North Boulder's NoBo Art District has built a genuine cluster of galleries and independent retail. Each audience searches differently, and each needs a profile built for it." }],
     ],
     sabHeading: null,
     sab: null,
@@ -89,6 +90,7 @@ export const serveCities = [
         { text: ' (including 4.5 million at Garden of the Gods', citation: 3 },
         { text: ') increasingly use structured data to find breakfast spots or gear shops on the fly.' },
       ],
+      [{ text: 'Locally, that plays out district by district: the historic boutiques and galleries of Old Colorado City, a downtown core with the highest restaurant and nightlife density in the city, the luxury market surrounding the Broadmoor, and a newer retail corridor along Powers Boulevard and Briargate to the north. A business in one district competes on entirely different terms than one in another.' }],
       [{ text: 'By securing your digital identity, you capture this high-value audience of newcomers and travelers who prioritize accurate search results over traditional word-of-mouth. PeaksLocal ensures your business is visible in the map packs and AI responses that drive the Springs’ unique economy.' }],
     ],
     sabHeading: null,
