@@ -5,6 +5,11 @@ import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
 import { serveCities, getServeCity } from '../data/serveCities.js';
 
+const furtherReading = [
+  { slug: 'what-determines-local-search-visibility', title: 'What Actually Determines Whether Your Business Shows Up in Local Search' },
+  { slug: 'google-ai-search-update-local-businesses', title: "Google Just Rewrote How Search Works. Here's What It Means for Local Businesses." },
+];
+
 function RichText({ parts, slug, style }) {
   return (
     <p style={style}>
@@ -211,6 +216,39 @@ export default function ServeCityPage() {
               ))}
               . See all <Link to="/serve" style={{ color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}>areas we serve</Link>.
             </p>
+          </div>
+        </section>
+
+        {/* Further Reading */}
+        <section style={{ background: city.sab ? 'var(--white)' : 'var(--ash)', padding: '48px 0' }}>
+          <div className="container" style={{ maxWidth: '800px' }}>
+            <div style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.65rem',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--slate)',
+              marginBottom: '14px',
+            }}>
+              Further Reading
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {furtherReading.map((post) => (
+                <Link
+                  key={post.slug}
+                  to={`/blog/${post.slug}`}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '0.9rem',
+                    color: 'var(--navy)',
+                    textDecoration: 'none',
+                    padding: '10px 0',
+                  }}
+                >
+                  {post.title} →
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
