@@ -304,6 +304,45 @@ export default function WhoWeHelp() {
             </p>
           </div>
 
+          {/* Areas We Serve strip */}
+          <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
+            <Link
+              to="/serve"
+              style={{
+                textAlign: 'center',
+                padding: '20px 40px',
+                border: '1px solid var(--rule)',
+                borderRadius: '12px',
+                background: 'var(--white)',
+                maxWidth: '67%',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                flexWrap: 'wrap',
+              }}
+            >
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.9rem',
+                color: 'var(--navy)',
+              }}>
+                Serving Denver, Boulder &amp; Colorado Springs
+              </span>
+              <span style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: '0.72rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'var(--green)',
+                fontWeight: 600,
+              }}>
+                See areas we serve →
+              </span>
+            </Link>
+          </div>
+
           {/* Two columns */}
           <div
             className="who-cols"
@@ -381,7 +420,7 @@ export default function WhoWeHelp() {
           </div>
 
           {/* Audit chip */}
-          <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+          <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{
               textAlign: 'center',
               padding: '28px 40px',
@@ -405,45 +444,6 @@ export default function WhoWeHelp() {
                 Start with a Free Audit
               </Link>
             </div>
-          </div>
-
-          {/* Areas We Serve strip */}
-          <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Link
-              to="/serve"
-              style={{
-                textAlign: 'center',
-                padding: '20px 40px',
-                border: '1px solid var(--rule)',
-                borderRadius: '12px',
-                background: 'var(--white)',
-                maxWidth: '67%',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                flexWrap: 'wrap',
-              }}
-            >
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '0.9rem',
-                color: 'var(--navy)',
-              }}>
-                Serving Denver, Boulder &amp; Colorado Springs
-              </span>
-              <span style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: '0.72rem',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: 'var(--green)',
-                fontWeight: 600,
-              }}>
-                See areas we serve →
-              </span>
-            </Link>
           </div>
 
         </div>
