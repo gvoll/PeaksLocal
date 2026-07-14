@@ -31,7 +31,7 @@ export const serveCities = [
     landscape: [
       [{ text: 'Denver searchers are early adopters of AI tools like ChatGPT and Google AI Overviews. To remain visible, businesses must ensure their digital identity is structured for machine-readability. Accurate data is the difference between being featured in an AI response or being overlooked entirely.' }],
       [{ text: 'Building organic and AI-driven visibility is essential in a market where local service keywords can cost over $50 per click. PeaksLocal secures this high-value reach without the ongoing ad spend.' }],
-      [{ text: "From hospitality in LoDo and RiNo to professional firms in Cherry Creek and retail across the Highlands, Denver's dense, neighborhood-driven market requires precise profile management. We help businesses across every sector stand out in map packs and AI results where even a small inconsistency can lead to invisibility." }],
+      [{ text: "Denver's small business density varies block by block: hospitality clusters in LoDo and RiNo, boutique retail runs through the Highlands, Washington Park, and City Park, and professional and office firms concentrate downtown, in Cherry Creek, and along the Denver Tech Center corridor to the south. The University neighborhood near DU adds its own mix of local service businesses. That kind of hyperlocal variation is exactly why a one-size-fits-all profile fails, and why we help businesses across every sector stand out in map packs and AI results where even a small inconsistency can lead to invisibility." }],
     ],
     sabHeading: 'Built for Service Area Businesses',
     sab: [
