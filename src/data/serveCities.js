@@ -38,6 +38,7 @@ export const serveCities = [
       [{ text: 'Traditional SEO often fails service area businesses (SABs) that lack a physical storefront. PeaksLocal bridges this gap with geographic signals and cross-platform consistency, ensuring contractors and consultants compete effectively against location-based businesses in both traditional and AI discovery.' }],
     ],
     areas: ['Aurora', 'Lakewood', 'Westminster', 'Thornton', 'Englewood', 'Centennial', 'Littleton', 'Commerce City', 'Golden', 'Broomfield'],
+    neighborhoods: ['LoDo', 'RiNo', 'Highlands', 'Washington Park', 'City Park', 'Downtown', 'Cherry Creek', 'University'],
     sources: [
       'Colorado Secretary of State, 2024 Q1 Business & Economic Indicators Report: new filing count (statewide figure)',
       'Denverite / U.S. Census Bureau population estimates, reported March 2025 and January 2026: metro population figures',

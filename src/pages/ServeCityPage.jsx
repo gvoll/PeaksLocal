@@ -169,6 +169,36 @@ export default function ServeCityPage() {
                 </span>
               ))}
             </div>
+
+            {city.neighborhoods && (
+              <div style={{ marginBottom: '32px' }}>
+                <div style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--slate)',
+                  marginBottom: '10px',
+                }}>
+                  {city.name} Neighborhoods We Frequently Work In
+                </div>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                  {city.neighborhoods.map((n) => (
+                    <span key={n} style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: '0.78rem',
+                      color: 'var(--mid)',
+                      background: 'var(--white)',
+                      borderRadius: '16px',
+                      padding: '5px 12px',
+                    }}>
+                      {n}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--mid)' }}>
               Also serving{' '}
               {otherCities.map((c, i) => (
