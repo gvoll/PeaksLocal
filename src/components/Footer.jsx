@@ -53,7 +53,11 @@ export default function Footer() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)' }}>
-                  Serving the Front Range and local businesses nationwide
+                  Serving Denver,{' '}
+                  <Link to="/serve" className="footer-link" style={{ color: 'var(--slate)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
+                    the Front Range
+                  </Link>
+                  , and Local Businesses Nationwide
                 </span>
                 <a href="tel:+17204413167" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', textDecoration: 'none', marginTop: '2px' }}>
                   720.441.3167
