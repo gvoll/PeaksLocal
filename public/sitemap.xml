@@ -56,6 +56,26 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://www.peakslocal.com/serve</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.peakslocal.com/serve/denver</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.peakslocal.com/serve/boulder</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.peakslocal.com/serve/colorado-springs</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://www.peakslocal.com/contact</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
