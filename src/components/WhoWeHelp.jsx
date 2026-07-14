@@ -304,6 +304,55 @@ export default function WhoWeHelp() {
             </p>
           </div>
 
+          {/* Business shapes strip */}
+          <div
+            className="who-cols reveal reveal-delay-2"
+            style={{ display: 'flex', gap: '16px', marginBottom: '40px' }}
+          >
+            {[
+              { icon: '📍', title: 'Single Location', desc: 'One storefront, one profile to get right' },
+              { icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate' },
+              { icon: '🏢', title: 'Multi-Location', desc: 'Consistent profiles across every location, zero drift' },
+            ].map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '12px',
+                  background: 'var(--white)',
+                  border: '1px solid var(--rule)',
+                  borderRadius: '10px',
+                  padding: '16px 18px',
+                }}
+              >
+                <span style={{ fontSize: '1.2rem', lineHeight: 1, flexShrink: 0 }}>{item.icon}</span>
+                <div>
+                  <div style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    textTransform: 'uppercase',
+                    color: 'var(--navy)',
+                    letterSpacing: '0.02em',
+                    marginBottom: '4px',
+                  }}>
+                    {item.title}
+                  </div>
+                  <div style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '0.82rem',
+                    color: 'var(--mid)',
+                    lineHeight: 1.5,
+                  }}>
+                    {item.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
           {/* Areas We Serve strip */}
           <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
             <Link
