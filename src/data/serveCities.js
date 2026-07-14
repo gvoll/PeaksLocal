@@ -68,6 +68,7 @@ export const serveCities = [
     sabHeading: null,
     sab: null,
     areas: ['Lafayette', 'Louisville', 'Longmont', 'Broomfield', 'Erie'],
+    neighborhoods: ['Pearl Street', 'University Hill', 'North Boulder', 'Gunbarrel'],
     sources: [
       'U.S. Census Bureau QuickFacts, Boulder city, Colorado (2024 estimate)',
       'CU Boulder Today, "CU Boulder enrollment driven by record retention" (September 19, 2024)',
@@ -97,6 +98,7 @@ export const serveCities = [
     sabHeading: null,
     sab: null,
     areas: ['Manitou Springs', 'Fountain', 'Monument', 'Castle Rock'],
+    neighborhoods: ['Old Colorado City', 'Downtown', 'The Broadmoor', 'Briargate'],
     sources: [
       'Colorado Springs Gazette, "Military base employment in Colorado Springs and El Paso County" (September 2025), citing Fort Carson and Peterson-Schriever SFB public affairs data',
       'Visit Colorado Springs, 2024 Pikes Peak Region visitor press release',
