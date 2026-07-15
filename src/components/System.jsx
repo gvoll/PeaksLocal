@@ -30,22 +30,6 @@ const tier2Items = [
   'Monthly visibility report',
 ];
 
-const professional = [
-  'Law firms & legal practices',
-  'Medical & dental practices',
-  'Real estate professionals',
-  'Financial advisors & CPAs',
-  'Consultants & agencies',
-];
-
-const commerce = [
-  'Contractors & home services',
-  'Restaurants & hospitality',
-  'Local retail & boutiques',
-  'Wellness & fitness studios',
-  'Auto services & trades',
-];
-
 export default function System() {
   const sectionRef = useRef(null);
 
@@ -474,110 +458,6 @@ export default function System() {
                 >
                   Contact Us
                 </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 4d — Who We Help */}
-          <div>
-            <div style={{ maxWidth: '640px', marginBottom: '40px' }}>
-              <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
-                WHO WE HELP
-              </div>
-              <h3
-                className="reveal reveal-delay-1"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2rem', textTransform: 'uppercase', color: 'var(--navy)', lineHeight: 1.05, marginBottom: '16px', letterSpacing: '-0.01em' }}
-              >
-                Built for Businesses To Win on Local Reputation.
-              </h3>
-              <p
-                className="reveal reveal-delay-2"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
-              >
-                PeaksLocal is ideal for established businesses whose bottom line relies on local visibility. If your customers are searching for services "near me," being found online is essential for your success.
-              </p>
-            </div>
-
-
-            <div className="who-cols" style={{ display: 'flex', gap: '32px', marginBottom: '32px', maxWidth: '100%', boxSizing: 'border-box' }}>
-              {/* Professional Services */}
-              <div className="reveal" style={{ flex: 1, minWidth: 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
-                <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
-                  Professional Services
-                </div>
-                <ul>
-                  {professional.map((item) => (
-                    <li key={item} className="who-list-item">
-                      <span className="who-dot" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Local Commerce */}
-              <div className="reveal reveal-delay-1" style={{ flex: 1, minWidth: 0, background: 'var(--white)', border: '1px solid var(--rule)', borderRadius: '12px', padding: '28px 24px', boxShadow: 'var(--shadow-card)' }}>
-                <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.1rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.05em', marginBottom: '16px', paddingBottom: '12px', borderBottom: '2px solid var(--green-pale)' }}>
-                  Local Commerce
-                </div>
-                <ul>
-                  {commerce.map((item) => (
-                    <li key={item} className="who-list-item">
-                      <span className="who-dot" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div
-              className="reveal reveal-delay-2"
-              style={{
-                marginTop: '28px',
-                maxWidth: '720px',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              <div
-                style={{
-                  background: '#ffffff',
-                  padding: '24px 28px',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 24px rgba(15, 36, 64, 0.1)',
-                  textAlign: 'center',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '18px',
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.95rem',
-                    fontWeight: 600,
-                    color: '#1a3a5c',
-                    lineHeight: 1.65,
-                    margin: 0,
-                  }}
-                >
-                  <strong>Unsure if PeaksLocal is the right fit?</strong><br />Our free audit gives you clarity on your current online presence.
-                </p>
-                <button
-                  type="button"
-                  className="btn-primary"
-                  style={{
-                    background: '#2E7D4F',
-                    color: '#ffffff',
-                    display: 'inline-flex',
-                    justifyContent: 'center',
-                  }}
-                  onClick={scrollToAudit}
-                >
-                  Start with a Free Audit
-                </button>
               </div>
             </div>
           </div>
