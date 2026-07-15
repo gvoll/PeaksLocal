@@ -5,7 +5,6 @@ import PlatformStrip from '../components/PlatformStrip.jsx';
 import Problem from '../components/Problem.jsx';
 import Pipeline from '../components/Pipeline.jsx';
 import System from '../components/System.jsx';
-import About from '../components/About.jsx';
 import WhoWeHelp, { PartnerSection } from '../components/WhoWeHelp.jsx';
 import AuditForm from '../components/AuditForm.jsx';
 import Footer from '../components/Footer.jsx';
@@ -35,7 +34,6 @@ export default function LandingPage() {
         <Problem />
         <Pipeline />
         <System />
-        <About />
         <WhoWeHelp />
         <PartnerSection />
         <AuditForm />

@@ -12,6 +12,7 @@ import ServicesPage from './pages/ServicesPage.jsx';
 import ReviewsPage from './pages/ReviewsPage.jsx';
 import ReviewFunnelsPage from './pages/ReviewFunnelsPage.jsx';
 import PartnersPage from './pages/PartnersPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
 import ServePage from './pages/ServePage.jsx';
 import ServeCityPage from './pages/ServeCityPage.jsx';
 import { trackPageView } from './lib/analytics.js';
@@ -45,6 +46,7 @@ export default function App() {
       <Route path="/reviews" element={<ReviewsPage />} />
       <Route path="/review-funnels" element={<ReviewFunnelsPage />} />
       <Route path="/partners" element={<PartnersPage />} />
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/how-it-works" element={<HowItWorksPage />} />
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/serve" element={<ServePage />} />

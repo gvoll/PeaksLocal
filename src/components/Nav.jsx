@@ -333,6 +333,9 @@ export default function Nav() {
               )}
             </div>
 
+            <Link to="/about" className="nav-link-item" style={styles.link}>
+              About
+            </Link>
             <Link to="/blog" className="nav-link-item" style={styles.link}>
               Blog
             </Link>
@@ -428,6 +431,13 @@ export default function Nav() {
               </>
             )}
 
+            <Link
+              to="/about"
+              style={{ ...styles.mobileLink, textDecoration: 'none' }}
+              onClick={() => setMobileOpen(false)}
+            >
+              About
+            </Link>
             <Link
               to="/blog"
               style={{ ...styles.mobileLink, textDecoration: 'none' }}
