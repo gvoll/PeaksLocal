@@ -17,7 +17,7 @@ const callouts = [
   },
   {
     title: 'Local Roots, National Reach',
-    body: 'Based in Denver and rooted in the Front Range, we work with local businesses across Colorado and nationwide. Any business ready to strengthen its local digital identity can work with us, whether you are in Denver, Dallas, or anywhere in between.',
+    body: 'Based in Denver and rooted in the Front Range, we work with local businesses across Colorado and nationwide. Any business ready to strengthen its local digital identity can work with us, whether you are in Denver, Dallas, or anywhere in between. We offer in-person appointments for local clients, with virtual consultations available whenever that\'s easier or preferred.',
     icon: '◎',
   },
 ];
