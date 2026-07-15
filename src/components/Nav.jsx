@@ -333,11 +333,11 @@ export default function Nav() {
               )}
             </div>
 
-            <Link to="/about" className="nav-link-item" style={styles.link}>
-              About
-            </Link>
             <Link to="/blog" className="nav-link-item" style={styles.link}>
               Blog
+            </Link>
+            <Link to="/about" className="nav-link-item" style={styles.link}>
+              About
             </Link>
             <Link
               to="/audit"
@@ -432,18 +432,18 @@ export default function Nav() {
             )}
 
             <Link
-              to="/about"
-              style={{ ...styles.mobileLink, textDecoration: 'none' }}
-              onClick={() => setMobileOpen(false)}
-            >
-              About
-            </Link>
-            <Link
               to="/blog"
               style={{ ...styles.mobileLink, textDecoration: 'none' }}
               onClick={() => setMobileOpen(false)}
             >
               Blog
+            </Link>
+            <Link
+              to="/about"
+              style={{ ...styles.mobileLink, textDecoration: 'none' }}
+              onClick={() => setMobileOpen(false)}
+            >
+              About
             </Link>
             <Link
               to="/audit"
