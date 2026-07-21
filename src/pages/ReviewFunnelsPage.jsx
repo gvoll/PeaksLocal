@@ -804,7 +804,7 @@ export default function ReviewFunnelsPage() {
               fontStyle: 'italic',
               marginBottom: '40px',
             }}>
-              Note: these are starting points, not templates to copy verbatim. Authentic, specific feedback is more useful for future clients and more trusted by platforms.
+              Note: these are starting points, not templates to copy verbatim. If a lot of reviews sound too similar, review platforms can flag that pattern as inauthentic, even when every review is genuine. Encourage clients to make it their own. Curious how platforms actually evaluate reviews? <Link to="/blog/google-review-policy-confirmed-vs-speculated" style={{ color: 'rgba(138,160,184,0.85)', textDecoration: 'underline' }}>Read what's confirmed, and what's just rumor.</Link>
             </p>
 
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
