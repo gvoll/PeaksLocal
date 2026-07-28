@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(source /Users/gvoll/.claude/.env)",
+      "mcp__ccd_session_mgmt__list_events",
+      "mcp__Claude_Browser__read_console_messages",
+      "Bash(source ~/.claude/.env)",
+      "mcp__Claude_Browser__get_page_text",
+      "mcp__Claude_Preview__preview_screenshot",
+      "mcp__ccd_session_mgmt__list_sessions",
+      "mcp__ccd_session_mgmt__search_session_transcripts",
+      "mcp__scheduled-tasks__list_scheduled_tasks",
+      "Bash(launchctl list *)",
+      "mcp__visualize__read_me",
+      "mcp__Claude_Preview__preview_console_logs",
+      "mcp__ccd_session_mgmt__get_session",
+      "Bash(log show *)",
+      "mcp__Claude_Browser__find",
+      "mcp__Claude_Browser__read_page",
+      "Bash(python3 /Users/gvoll/.claude/scripts/peakslocal_sheets_update.py *)",
+      "Bash(bash /Users/gvoll/.claude/scripts/peakslocal_notify.sh *)"
+    ]
+  }
+}
