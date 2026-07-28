@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SEO from '../components/SEO.jsx';
 
 const platforms = [
@@ -49,6 +49,8 @@ const platforms = [
 ];
 
 export default function ReviewsPage() {
+  const [consentChecked, setConsentChecked] = useState(false);
+
   return (
     <>
       <SEO
@@ -166,6 +168,82 @@ export default function ReviewsPage() {
           ))}
         </div>
 
+        {/* Review guidance + consent */}
+        <div style={{
+          maxWidth: '420px',
+          width: '100%',
+          marginTop: '32px',
+          padding: '24px 24px 20px',
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: '10px',
+        }}>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 600,
+            fontSize: '0.88rem',
+            color: 'rgba(255,255,255,0.75)',
+            marginBottom: '12px',
+          }}>
+            Not sure what to say?
+          </p>
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {[
+              'What problem were you trying to solve?',
+              'What did working together actually look like?',
+              'What changed or improved for your business?',
+            ].map((prompt) => (
+              <li key={prompt} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                <span style={{ color: 'var(--green-hi)', flexShrink: 0, marginTop: '1px', fontSize: '0.8rem' }}>·</span>
+                <span style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '0.82rem',
+                  color: 'var(--slate)',
+                  lineHeight: 1.6,
+                }}>
+                  {prompt}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '0.78rem',
+            color: 'rgba(138,160,184,0.6)',
+            fontStyle: 'italic',
+            marginBottom: '16px',
+          }}>
+            No need to answer all three — even one honest sentence goes a long way.
+          </p>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={consentChecked}
+              onChange={(e) => setConsentChecked(e.target.checked)}
+              style={{ marginTop: '3px', accentColor: 'var(--green-hi)', flexShrink: 0, width: '15px', height: '15px' }}
+            />
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.78rem',
+              color: 'var(--slate)',
+              lineHeight: 1.6,
+            }}>
+              I give PeaksLocal permission to feature my review on their website.
+            </span>
+          </label>
+          {consentChecked && (
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.75rem',
+              color: 'var(--green-hi)',
+              marginTop: '10px',
+              fontStyle: 'italic',
+            }}>
+              Thank you — we appreciate it!
+            </p>
+          )}
+        </div>
+
         {/* Apple Maps note */}
         <div style={{
           maxWidth: '420px',
@@ -183,7 +261,11 @@ export default function ReviewsPage() {
             lineHeight: 1.65,
             margin: 0,
           }}>
-            <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>A note on Apple Maps:</strong> Apple does not currently support direct reviews for service-area businesses. Leaving a review on Yelp is the best way to support our Apple Maps presence in the meantime.
+            <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>Regarding Service Area Businesses (SABs) on Apple Maps:</strong>
+            <ul style={{ listStyle: 'disc', paddingLeft: '18px', margin: '10px 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <li>Apple does <strong style={{ color: 'rgba(255,255,255,0.7)' }}>NOT</strong> currently support direct reviews for SABs.</li>
+              <li>Yelp reviews are the best way to support our Apple Maps presence in the meantime.</li>
+            </ul>
           </p>
         </div>
 
