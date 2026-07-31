@@ -7,18 +7,31 @@ const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationC
 const callouts = [
   {
     title: 'Verified Agency Partner',
-    body: 'Established as a Google and Apple Agency Partner. This ensures secure, role-based access to your accounts (No password sharing).',
     icon: '✓',
+    points: [
+      'Google & Apple Agency Partner',
+      'Secure, role-based access to your accounts',
+      'No password sharing, ever',
+    ],
   },
   {
     title: 'Program Management Approach',
-    body: 'Benefit from 20+ years of experience delivering complex systems projects. Expect a clear, structured process with documented deliverables and defined milestones.',
     icon: '⊙',
+    points: [
+      '20+ years delivering complex systems projects',
+      'Clear, structured process',
+      'Documented deliverables & defined milestones',
+    ],
   },
   {
     title: 'Local Roots, National Reach',
-    body: 'Based in Denver and rooted in the Front Range, we work with local businesses across Colorado and nationwide. Any business ready to strengthen its local digital identity can work with us, whether you are in Denver, Dallas, or anywhere in between. We offer in-person appointments for local clients, with virtual consultations available whenever that\'s easier or preferred.',
     icon: '◎',
+    points: [
+      'Based in Denver, serving Colorado & nationwide',
+      'Any business ready to grow, near or far',
+      'In-person appointments for local clients',
+      'Virtual consultations available for everyone',
+    ],
   },
 ];
 
@@ -122,14 +135,25 @@ export default function About() {
                   }}>
                     {c.title}
                   </h4>
-                  <p style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.85rem',
-                    color: 'var(--slate)',
-                    lineHeight: 1.65,
-                  }}>
-                    {c.body}
-                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '7px' }}>
+                    {c.points.map((point) => (
+                      <li
+                        key={point}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '8px',
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: '0.85rem',
+                          color: 'var(--slate)',
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        <span style={{ color: 'var(--green-hi)', fontSize: '0.8rem', marginTop: '2px', flexShrink: 0 }}>✓</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}

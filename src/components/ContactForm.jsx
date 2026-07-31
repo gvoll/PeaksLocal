@@ -304,9 +304,27 @@ export default function ContactForm() {
                   </div>
                 </div>
 
+                {/* Appointments */}
+                <div className="contact-info-item">
+                  <div className="contact-info-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3aad64" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2"/>
+                      <path d="M16 2v4M8 2v4M3 10h18"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: '0.75rem', color: 'var(--white)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
+                      Appointments
+                    </div>
+                    <span className="contact-info-link" style={{ display: 'block' }}>
+                      Available In-person (local clients) or Virtual, based on your preference
+                    </span>
+                  </div>
+                </div>
+
                 <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '20px' }}>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'rgba(138,160,184,0.7)', lineHeight: 1.65 }}>
-                    Proudly based in Denver, Colorado 80222 — serving local businesses here and across the U.S.
+                    Proudly based in Denver, Colorado 80222 · serving local businesses here and across the U.S.
                   </p>
                 </div>
               </div>
