@@ -53,15 +53,18 @@ export default function Footer() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)' }}>
-                  Serving Denver,{' '}
+                  Based in Denver, CO 80222 · serving{' '}
                   <Link to="/serve" className="footer-link" style={{ color: 'var(--slate)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
                     the Front Range
                   </Link>
-                  , and Local Businesses Nationwide
+                  {' '}and local businesses nationwide
                 </span>
                 <a href="tel:+17204413167" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', textDecoration: 'none', marginTop: '2px' }}>
                   720.441.3167
                 </a>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', marginTop: '2px' }}>
+                  Mon–Fri, 8am–6pm · Closed Sat &amp; Sun
+                </span>
               </div>
             </div>
 
