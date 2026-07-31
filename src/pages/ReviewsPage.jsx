@@ -261,7 +261,7 @@ export default function ReviewsPage() {
             lineHeight: 1.65,
             margin: 0,
           }}>
-            <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>Regarding Service Area Businesses (SABs) on Apple Maps:</strong>
+            <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>Regarding Service Area Businesses (SABs), such as PeaksLocal, on Apple Maps:</strong>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', margin: '10px 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <li>Apple does <strong style={{ color: 'rgba(255,255,255,0.7)' }}>NOT</strong> currently support direct reviews for SABs.</li>
               <li>Yelp reviews are the best way to support our Apple Maps presence in the meantime.</li>

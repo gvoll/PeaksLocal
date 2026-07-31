@@ -27,3 +27,4 @@ Thumbs.db
 # local Claude Code config
 .claude/settings.local.json
 .claude/launch.json
+.claude/
