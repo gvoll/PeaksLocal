@@ -63,7 +63,7 @@ export default function Footer() {
                   720.441.3167
                 </a>
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', marginTop: '2px' }}>
-                  Mon–Fri, 8am–6pm · Closed Sat &amp; Sun
+                  Mon–Fri, 7am–6pm · Closed Sat &amp; Sun
                 </span>
               </div>
             </div>

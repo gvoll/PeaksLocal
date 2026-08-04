@@ -23,7 +23,7 @@ const platforms = [
     name: 'Yelp',
     action: 'Review us on Yelp',
     sub: 'Also supports our Apple Maps presence',
-    url: 'ADD_YELP_URL_HERE',
+    url: 'https://www.yelp.com/writeareview/biz/4bKWOG9AyebH6gp4omeYpQ?return_url=%2Fbiz%2F4bKWOG9AyebH6gp4omeYpQ&review_origin=biz-details-war-button',
     bg: '#D32323',
     border: 'none',
     iconColor: '#fff',
@@ -33,19 +33,20 @@ const platforms = [
       </svg>
     ),
   },
-  {
-    name: 'Bing',
-    action: 'Find us on Bing',
-    sub: 'For Windows and Edge users',
-    url: 'ADD_BING_PLACES_URL_HERE',
-    bg: '#008373',
-    border: 'none',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#fff" d="M5 3l4 1.5v13l5-2.8-2-1.2 1-6 5 1.8V15l-9 5-4-2.3z"/>
-      </svg>
-    ),
-  },
+  // Bing: restore when listing is approved and published
+  // {
+  //   name: 'Bing',
+  //   action: 'Find us on Bing',
+  //   sub: 'For Windows and Edge users',
+  //   url: 'ADD_BING_PLACES_URL_HERE',
+  //   bg: '#008373',
+  //   border: 'none',
+  //   icon: (
+  //     <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  //       <path fill="#fff" d="M5 3l4 1.5v13l5-2.8-2-1.2 1-6 5 1.8V15l-9 5-4-2.3z"/>
+  //     </svg>
+  //   ),
+  // },
 ];
 
 export default function ReviewsPage() {
@@ -110,7 +111,7 @@ export default function ReviewsPage() {
             marginBottom: '16px',
           }}>
             Thank You for Working<br />
-            <span style={{ color: 'var(--green-hi)' }}>with PeaksLocal!</span>
+            <span style={{ color: 'var(--green-hi)', fontVariant: 'small-caps', textTransform: 'none' }}>with PeaksLocal<span style={{ color: 'var(--white)' }}>!</span></span>
           </h1>
           <p style={{
             fontFamily: "'DM Sans', sans-serif",
