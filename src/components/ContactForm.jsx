@@ -296,7 +296,7 @@ export default function ContactForm() {
                       Hours
                     </div>
                     <span className="contact-info-link" style={{ display: 'block' }}>
-                      Mon–Fri, 8am–6pm
+                      Mon–Fri, 7am–6pm
                     </span>
                     <span className="contact-info-link" style={{ display: 'block' }}>
                       Closed Sat &amp; Sun
