@@ -207,7 +207,7 @@ export default function ContactForm() {
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)', justifyContent: 'center' }}>
               GET IN TOUCH
             </div>
-            <h2
+            <h1
               className="reveal reveal-delay-1"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
@@ -221,7 +221,7 @@ export default function ContactForm() {
               }}
             >
               Let's Talk
-            </h2>
+            </h1>
             <p
               className="reveal reveal-delay-2"
               style={{

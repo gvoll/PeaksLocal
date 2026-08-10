@@ -8,7 +8,8 @@ const initialForm = {
   challenge: '',
 };
 
-export default function AuditForm() {
+export default function AuditForm({ headingLevel = 'h2' }) {
+  const MainHeading = headingLevel;
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -116,7 +117,7 @@ export default function AuditForm() {
             >
               FREE VISIBILITY AUDIT REQUEST
             </div>
-            <h2
+            <MainHeading
               className="reveal reveal-delay-1"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
@@ -130,7 +131,7 @@ export default function AuditForm() {
               }}
             >
               Check Your Current Status
-            </h2>
+            </MainHeading>
             <p
               className="reveal reveal-delay-2"
               style={{

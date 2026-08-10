@@ -30,7 +30,8 @@ const tier2Items = [
   'Monthly visibility report',
 ];
 
-export default function System() {
+export default function System({ headingLevel = 'h2' }) {
+  const MainHeading = headingLevel;
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -157,18 +158,18 @@ export default function System() {
             </div>
 
             {/* Main Heading */}
-            <h2
+            <MainHeading
               className="reveal reveal-delay-1"
-              style={{ 
-                fontFamily: "'Barlow Condensed', sans-serif", 
-                fontWeight: 800, 
-                fontSize: '2.8rem', 
-                textTransform: 'uppercase', 
-                color: 'var(--navy)', 
-                lineHeight: 1.05, 
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 800,
+                fontSize: '2.8rem',
+                textTransform: 'uppercase',
+                color: 'var(--navy)',
+                lineHeight: 1.05,
                 letterSpacing: '-0.01em',
                 width: '100%',
-                maxWidth: '800px', 
+                maxWidth: '800px',
                 marginBottom: '18px',
                 textAlign: 'left'
               }}
@@ -178,7 +179,7 @@ export default function System() {
               <span className="system-heading-line" style={{ display: 'block' }}>
                 A <span className="system-heading-accent">COMPETITIVE</span> ADVANTAGE.
               </span>
-            </h2>
+            </MainHeading>
 
             {/* Description Paragraph */}
             <p

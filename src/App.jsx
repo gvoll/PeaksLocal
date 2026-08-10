@@ -15,6 +15,7 @@ import PartnersPage from './pages/PartnersPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ServePage from './pages/ServePage.jsx';
 import ServeCityPage from './pages/ServeCityPage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 import { trackPageView } from './lib/analytics.js';
 
 function ScrollToTop() {
@@ -53,6 +54,7 @@ export default function App() {
       <Route path="/serve/:city" element={<ServeCityPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
     </>
   );

@@ -56,13 +56,13 @@ export default function About() {
     <section id="about" ref={sectionRef}>
       <div className="about-mindset">
         <div className="container">
-          <h2 className="about-mindset-heading reveal">
+          <h1 className="about-mindset-heading reveal">
             <span className="about-mindset-line">AN ENGINEERING MINDSET.</span>
             <span className="about-mindset-line">A CONSULTING BACKGROUND.</span>
             <span className="about-mindset-line">
               A <span className="about-mindset-local">LOCAL</span> FOCUS.
             </span>
-          </h2>
+          </h1>
 
           <p className="about-mindset-body reveal reveal-delay-1">
             PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs, from early-stage startups to Fortune 500 enterprises.
