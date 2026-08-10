@@ -164,6 +164,18 @@ export default function FAQPage() {
         description="Answers to common questions about local SEO, digital identity, Google Business Profile, Apple Maps, structured data, and how PeaksLocal helps your business get found."
         canonical="/faq"
       />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((item) => ({
+          "@type": "Question",
+          "name": item.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.a,
+          },
+        })),
+      })}</script>
       <Nav />
       <main style={{ paddingTop: '68px' }}>
 

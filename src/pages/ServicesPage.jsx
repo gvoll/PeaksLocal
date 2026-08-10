@@ -14,7 +14,7 @@ export default function ServicesPage() {
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
-        <System />
+        <System headingLevel="h1" />
       </main>
       <Footer />
     </>

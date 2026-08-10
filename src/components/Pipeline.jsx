@@ -58,7 +58,8 @@ const nearMeFactors = [
   },
 ];
 
-export default function Pipeline() {
+export default function Pipeline({ headingLevel = 'h2' }) {
+  const MainHeading = headingLevel;
   const sectionRef = useRef(null);
   const zeroCardRef = useRef(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -146,12 +147,12 @@ export default function Pipeline() {
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
               HOW MODERN SEARCH ACTUALLY WORKS
             </div>
-            <h2
+            <MainHeading
               className="reveal reveal-delay-1"
               style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '2.8rem', textTransform: 'uppercase', color: 'var(--navy)', lineHeight: 1.05, marginBottom: '18px', letterSpacing: '-0.01em' }}
             >
               Search Isn't Just Google Anymore. And It's Getting More Complex.
-            </h2>
+            </MainHeading>
             <p
               className="reveal reveal-delay-2"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}

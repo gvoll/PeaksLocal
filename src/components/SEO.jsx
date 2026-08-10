@@ -5,17 +5,18 @@ const BASE_URL = 'https://www.peakslocal.com';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`;
 const DEFAULT_DESCRIPTION = 'PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search — so customers find you, not your competitor.';
 
-export default function SEO({ title, description, canonical, image }) {
+export default function SEO({ title, description, canonical, image, noindex }) {
   const fullTitle = title ? `${title} | PeaksLocal` : 'PeaksLocal — Be Seen on Search, Maps + AI';
   const desc = description || DEFAULT_DESCRIPTION;
   const img = image || DEFAULT_IMAGE;
   const url = canonical ? `${BASE_URL}${canonical}` : BASE_URL;
 
   return (
-    <Helmet>
+    <Helmet defer={false}>
       <title>{fullTitle}</title>
       <meta name="description" content={desc} />
       <link rel="canonical" href={url} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
 
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={desc} />
