@@ -15,7 +15,7 @@ const auditRows = [
 ];
 
 const scoreFill = 5;
-const scoreLabel = 'Fair';
+const scoreLabel = 'Fair Visibility';
 
 const priorityNextSteps = [
   'Claim and complete your Apple Business Connect listing',
@@ -272,7 +272,7 @@ export default function System({ headingLevel = 'h2' }) {
                             />
                           ))}
                         </div>
-                        <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '0.85rem', color: '#e08a1a', letterSpacing: '0.04em', marginTop: '6px' }}>
+                        <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '0.85rem', color: '#e08a1a', letterSpacing: '0.04em', marginTop: '6px', whiteSpace: 'nowrap' }}>
                           {scoreLabel}
                         </div>
                       </div>
