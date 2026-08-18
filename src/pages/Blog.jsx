@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import { getAllPosts } from '../lib/contentful.js';
+import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
@@ -15,8 +16,9 @@ function formatDate(dateString) {
 }
 
 export default function Blog() {
-  const [posts, setPosts] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const preloaded = getPreload('posts:all');
+  const [posts, setPosts] = React.useState(preloaded || []);
+  const [loading, setLoading] = React.useState(!preloaded);
   const [error, setError] = React.useState('');
   const [showScrollCue, setShowScrollCue] = React.useState(false);
 
@@ -34,6 +36,7 @@ export default function Blog() {
   }, [showScrollCue]);
 
   React.useEffect(() => {
+    if (preloaded) return;
     let isMounted = true;
 
     async function fetchPosts() {
