@@ -5,6 +5,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import { getPostBySlug, getPostByEntryId } from '../lib/contentful.js';
+import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
@@ -38,11 +39,13 @@ export default function BlogPost() {
   const { slug, id } = useParams();
   const [searchParams] = useSearchParams();
   const preview = id ? true : searchParams.get('preview') === 'true';
-  const [post, setPost] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
+  const preloaded = !id && !preview ? getPreload(`post:${slug}`) : undefined;
+  const [post, setPost] = React.useState(preloaded || null);
+  const [loading, setLoading] = React.useState(!preloaded);
   const [error, setError] = React.useState('');
 
   React.useEffect(() => {
+    if (preloaded) return;
     let isMounted = true;
 
     async function fetchPost() {
