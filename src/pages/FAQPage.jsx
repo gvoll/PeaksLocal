@@ -62,16 +62,18 @@ const faqs = [
   },
 ];
 
+// Keep alphabetical by term — this list is meant to grow, and the compact
+// TOC below assumes alphabetical order rather than sorting at render time.
 const glossary = [
+  { id: 'centroid', term: 'Centroid', def: 'The calculated center point Google uses to represent a service area business\'s location, since there\'s no physical address to pin. It\'s a weaker distance signal than an exact address, which is why service area businesses often see a smaller effective ranking radius than physical locations.' },
+  { id: 'citation', term: 'Citation', def: 'Any online mention of your business name, address, and phone number, found on directories, review sites, or industry listings. Consistent citations build platform trust.' },
   { id: 'data-layer', term: 'Data Layer', def: 'The underlying collection of structured business information (profiles, schema, citations, and signals) that platforms use to understand and recommend your business. It\'s the foundation beneath any search or AI visibility strategy.' },
   { id: 'entity', term: 'Entity', def: 'How a search engine or AI system understands a business as a distinct, real-world thing, not just a keyword match.' },
   { id: 'knowledge-graph', term: 'Knowledge Graph', def: 'A database Google and other platforms use to store verified facts about businesses, people, and places. Getting your business into it improves recommendation accuracy.' },
   { id: 'localbusiness-schema', term: 'LocalBusiness Schema', def: 'A specific type of structured data markup that tells search engines exactly what kind of business you are, where you\'re located, and how to reach you.' },
-  { id: 'citation', term: 'Citation', def: 'Any online mention of your business name, address, and phone number, found on directories, review sites, or industry listings. Consistent citations build platform trust.' },
+  { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
   { id: 'review-recency', term: 'Review Recency', def: 'How recently you\'ve received reviews. Platforms weight recent reviews more heavily than older ones; a steady stream matters more than a one-time burst.' },
   { id: 'trust-signal', term: 'Trust Signal', def: 'Any verified data point that tells a platform your business is real and reliable: a claimed profile, a consistent NAP, a review response, or a schema tag.' },
-  { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
-  { id: 'centroid', term: 'Centroid', def: 'The calculated center point Google uses to represent a service area business\'s location, since there\'s no physical address to pin. It\'s a weaker distance signal than an exact address, which is why service area businesses often see a smaller effective ranking radius than physical locations.' },
 ];
 
 function AccordionItem({ id, q, a, isOpen, onToggle }) {
@@ -261,6 +263,25 @@ export default function FAQPage() {
             }}>
               Terms You'll See Us Use
             </h2>
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              rowGap: '6px',
+              columnGap: '10px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.8rem',
+              color: 'var(--slate)',
+              marginBottom: '32px',
+            }}>
+              {glossary.map((item, i) => (
+                <React.Fragment key={item.id}>
+                  <a href={`#${item.id}`} style={{ color: 'var(--slate)', textDecoration: 'none' }}>
+                    {item.term}
+                  </a>
+                  {i < glossary.length - 1 && <span aria-hidden="true">·</span>}
+                </React.Fragment>
+              ))}
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
               {glossary.map((item, i) => (
                 <div
