@@ -601,6 +601,7 @@ input, textarea {
 .blog-post-excerpt {
   color: var(--mid);
   font-size: 1.05rem;
+  font-style: italic;
 }
 
 .blog-post-cover {
