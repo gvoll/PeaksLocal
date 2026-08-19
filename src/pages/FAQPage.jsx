@@ -71,6 +71,7 @@ const glossary = [
   { id: 'review-recency', term: 'Review Recency', def: 'How recently you\'ve received reviews. Platforms weight recent reviews more heavily than older ones; a steady stream matters more than a one-time burst.' },
   { id: 'trust-signal', term: 'Trust Signal', def: 'Any verified data point that tells a platform your business is real and reliable: a claimed profile, a consistent NAP, a review response, or a schema tag.' },
   { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
+  { id: 'centroid', term: 'Centroid', def: 'The calculated center point Google uses to represent a service area business\'s location, since there\'s no physical address to pin. It\'s a weaker distance signal than an exact address, which is why service area businesses often see a smaller effective ranking radius than physical locations.' },
 ];
 
 function AccordionItem({ id, q, a, isOpen, onToggle }) {
