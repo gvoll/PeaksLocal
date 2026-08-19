@@ -22,6 +22,8 @@ const richTextOptions = {
     [BLOCKS.PARAGRAPH]: (node, children) => <p className="blog-post-paragraph">{children}</p>,
     [BLOCKS.HEADING_2]: (node, children) => <h2 className="blog-post-h2">{children}</h2>,
     [BLOCKS.HEADING_3]: (node, children) => <h3 className="blog-post-h3">{children}</h3>,
+    [BLOCKS.HEADING_4]: (node, children) => <h4 className="blog-post-h4">{children}</h4>,
+    [BLOCKS.HEADING_5]: (node, children) => <h5 className="blog-post-h5">{children}</h5>,
     [BLOCKS.UL_LIST]: (node, children) => <ul className="blog-post-list">{children}</ul>,
     [BLOCKS.OL_LIST]: (node, children) => <ol className="blog-post-list">{children}</ol>,
     [BLOCKS.LIST_ITEM]: (node, children) => <li className="blog-post-list-item">{children}</li>,
