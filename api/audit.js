@@ -1,14 +1,31 @@
 import nodemailer from 'nodemailer';
+import { escapeHtml, isWithinLength } from '../src/lib/emailSafety.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, businessName, websiteURL, cityState, challenge } = req.body;
+  const { name, businessName, websiteURL, cityState, challenge, phone } = req.body;
+
+  // Honeypot: this form has no legitimate phone field. A bot that
+  // auto-fills every field will populate it, so silently pretend success
+  // without actually sending anything.
+  if (phone) {
+    return res.status(200).json({ success: true });
+  }
 
   if (!name?.trim() || !businessName?.trim() || !websiteURL?.trim() || !cityState?.trim()) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
+  }
+  if (
+    !isWithinLength(name, 200) ||
+    !isWithinLength(businessName, 200) ||
+    !isWithinLength(websiteURL, 300) ||
+    !isWithinLength(cityState, 200) ||
+    !isWithinLength(challenge || '', 5000)
+  ) {
+    return res.status(400).json({ error: 'One or more fields is too long.' });
   }
 
   try {
@@ -21,6 +38,12 @@ export default async function handler(req, res) {
         pass: process.env.SMTP_PASS,
       },
     });
+
+    const safeName = escapeHtml(name);
+    const safeBusinessName = escapeHtml(businessName);
+    const safeWebsiteURL = escapeHtml(websiteURL);
+    const safeCityState = escapeHtml(cityState);
+    const safeChallenge = escapeHtml(challenge);
 
     await transporter.sendMail({
       from: '"PeaksLocal" <greg.voll@peakslocal.com>',
@@ -52,23 +75,23 @@ export default async function handler(req, res) {
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Requestor Name:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${name}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${safeName}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${businessName}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${safeBusinessName}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website URL:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${websiteURL}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${safeWebsiteURL}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">City &amp; State:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${cityState}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${safeCityState}</td>
               </tr>
               <tr>
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Visibility challenge:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${challenge || 'Not provided'}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${safeChallenge || 'Not provided'}</td>
               </tr>
             </table>
           </td>
@@ -81,7 +104,7 @@ export default async function handler(req, res) {
               <tr>
                 <td style="background:#f0fdf4;border-left:4px solid #3aad64;border-radius:0 6px 6px 0;padding:14px 18px;">
                   <p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">
-                    Follow up with <strong>${name}</strong> using the details above. No email was provided on the audit form.
+                    Follow up with <strong>${safeName}</strong> using the details above. No email was provided on the audit form.
                   </p>
                 </td>
               </tr>

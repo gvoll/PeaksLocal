@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const initialForm = {
   name: '',
-  business: '',
-  website: '',
+  businessName: '',
+  websiteURL: '',
   cityState: '',
   challenge: '',
+  phone: '', // honeypot — real users never see or fill this in; this form has no legitimate phone field
 };
 
 export default function AuditForm({ headingLevel = 'h2' }) {
@@ -35,8 +36,8 @@ export default function AuditForm({ headingLevel = 'h2' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, business, website, cityState } = form;
-    if (!name.trim() || !business.trim() || !website.trim() || !cityState.trim()) {
+    const { name, businessName, websiteURL, cityState } = form;
+    if (!name.trim() || !businessName.trim() || !websiteURL.trim() || !cityState.trim()) {
       return;
     }
     setLoading(true);
@@ -155,6 +156,17 @@ export default function AuditForm({ headingLevel = 'h2' }) {
           <div className="audit-form-card reveal reveal-delay-2">
             {!submitted ? (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {/* Honeypot — hidden from real users, bots that auto-fill every field will populate it */}
+                <input
+                  type="text"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                />
                 <div>
                   <label className="audit-label" htmlFor="name">
                     Your Name
@@ -173,34 +185,34 @@ export default function AuditForm({ headingLevel = 'h2' }) {
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="business">
+                  <label className="audit-label" htmlFor="businessName">
                     Business Name
                     <span className="required-asterisk" aria-hidden="true">*</span>
                   </label>
                   <input
                     className="audit-input"
-                    id="business"
-                    name="business"
+                    id="businessName"
+                    name="businessName"
                     type="text"
                     placeholder="Acme Plumbing Co."
-                    value={form.business}
+                    value={form.businessName}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="audit-label" htmlFor="website">
+                  <label className="audit-label" htmlFor="websiteURL">
                     Business Website URL
                     <span className="required-asterisk" aria-hidden="true">*</span>
                   </label>
                   <input
                     className="audit-input"
-                    id="website"
-                    name="website"
+                    id="websiteURL"
+                    name="websiteURL"
                     type="text"
                     placeholder="https://acmeplumbing.com"
-                    value={form.website}
+                    value={form.websiteURL}
                     onChange={handleChange}
                     required
                   />
