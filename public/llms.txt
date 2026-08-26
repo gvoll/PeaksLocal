@@ -1,0 +1,18 @@
+# PeaksLocal
+
+> PeaksLocal builds and maintains the verified digital identity that search engines, Apple Maps, Bing, and AI assistants rely on to recommend local businesses. Based in Denver, Colorado, serving Denver, Boulder, and Colorado Springs, plus service-area businesses nationwide.
+
+PeaksLocal manages a business's presence across Google Business Profile, Apple Business Connect, Bing Places, website structured data, and trust directories, so the business shows up accurately in local search, map results, and AI-generated answers.
+
+## Key pages
+
+- [Home](https://www.peakslocal.com/): Overview of PeaksLocal's local digital identity management service.
+- [Services](https://www.peakslocal.com/services): What PeaksLocal manages across each platform.
+- [How It Works](https://www.peakslocal.com/how-it-works): The audit-to-optimization process.
+- [Free Audit](https://www.peakslocal.com/audit): Request a free Digital Identity Report Card.
+- [Areas We Serve](https://www.peakslocal.com/serve): Denver, Boulder, and Colorado Springs service-area pages.
+- [Blog](https://www.peakslocal.com/blog): Articles on local SEO, AI search, and platform policy changes affecting local businesses.
+- [About](https://www.peakslocal.com/about): About PeaksLocal.
+- [FAQ](https://www.peakslocal.com/faq): Common questions about the service.
+- [Reviews](https://www.peakslocal.com/reviews): Client reviews.
+- [Contact](https://www.peakslocal.com/contact): Get in touch.

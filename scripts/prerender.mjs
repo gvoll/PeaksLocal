@@ -29,6 +29,24 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const SITE_URL = 'https://www.peakslocal.com';
 
+// A Contentful→Vercel deploy hook means every content edit triggers a full
+// site build, and this build fetches posts from Contentful live. Without a
+// retry, a single transient blip (rate limit, network hiccup) here fails
+// the ENTIRE build — not just the blog — blocking every pending deploy,
+// including unrelated code fixes, until the next successful run.
+async function fetchPostsWithRetry(contentfulMod, attempts = 3, delayMs = 2000) {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await contentfulMod.getAllPosts();
+    } catch (err) {
+      if (attempt === attempts) throw err;
+      console.warn(`[prerender] Contentful fetch failed (attempt ${attempt}/${attempts}), retrying in ${delayMs}ms:`, err.message);
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      delayMs *= 2;
+    }
+  }
+}
+
 const STATIC_ROUTES = [
   { routePath: '/', priority: '1.0', changefreq: 'weekly' },
   { routePath: '/about', priority: '0.7', changefreq: 'monthly' },
@@ -76,7 +94,7 @@ async function main() {
     setPreload = preloadMod.setPreload;
     clearPreload = preloadMod.clearPreload;
 
-    posts = await contentfulMod.getAllPosts();
+    posts = await fetchPostsWithRetry(contentfulMod);
   } catch (err) {
     await vite.close();
     console.error('[prerender] Failed to load app modules or fetch Contentful posts:');
@@ -124,12 +142,34 @@ async function main() {
     rendered += 1;
   }
 
+  // Prerender the catch-all NotFoundPage to dist/404.html. Any path that
+  // doesn't match one of the routes above (and isn't handled by the
+  // /blog/:slug or /blog-preview/:id rewrites in vercel.json for
+  // not-yet-prerendered Contentful posts) falls through to Vercel's
+  // built-in 404.html handling, which serves this file with a genuine
+  // HTTP 404 status. Without this, an unmatched path previously fell
+  // through vercel.json's old catch-all rewrite straight to dist/index.html
+  // (the homepage) with a 200 status — a textbook soft-404 that's invisible
+  // to a quick manual check but gets flagged by Search Console.
+  clearPreload();
+  let notFoundHtml;
+  try {
+    const { bodyHtml, helmet } = renderRoute('/__prerender_404_marker__');
+    notFoundHtml = buildPageHtml(baseTemplate, helmet, bodyHtml);
+  } catch (err) {
+    await vite.close();
+    console.error('[prerender] Failed rendering the 404 page:');
+    console.error(err);
+    process.exit(1);
+  }
+  fs.writeFileSync(path.join(DIST, '404.html'), notFoundHtml);
+
   await vite.close();
 
   const sitemapXml = buildSitemap(routes);
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemapXml);
 
-  console.log(`[prerender] Wrote ${rendered} prerendered route(s) and dist/sitemap.xml (${routes.length} URLs, ${validPosts.length} from Contentful).`);
+  console.log(`[prerender] Wrote ${rendered} prerendered route(s), dist/404.html, and dist/sitemap.xml (${routes.length} URLs, ${validPosts.length} from Contentful).`);
 }
 
 function buildPageHtml(baseTemplate, helmet, bodyHtml) {
