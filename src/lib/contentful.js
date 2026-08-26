@@ -2,26 +2,23 @@ import { createClient } from 'contentful';
 
 const space = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const accessToken = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
-const previewToken = import.meta.env.VITE_CONTENTFUL_PREVIEW_TOKEN;
 
 const client = createClient({
   space,
   accessToken,
 });
 
-let previewClient = null;
-function getPreviewClient() {
-  if (!previewToken) {
-    throw new Error('VITE_CONTENTFUL_PREVIEW_TOKEN is not configured; preview mode is unavailable.');
-  }
-  if (!previewClient) {
-    previewClient = createClient({
-      space,
-      accessToken: previewToken,
-      host: 'preview.contentful.com',
-    });
-  }
-  return previewClient;
+// Preview mode (draft/unpublished content) is fetched through /api/preview-post
+// instead of directly from Contentful. The preview token can read unpublished
+// entries, so it must never reach the client bundle — Vite bakes every
+// VITE_-prefixed env var into client JS, so it's kept as a server-only env
+// var used exclusively by that serverless function.
+async function fetchPreviewPost({ id, slug }) {
+  const params = id ? `id=${encodeURIComponent(id)}` : `slug=${encodeURIComponent(slug)}`;
+  const response = await fetch(`/api/preview-post?${params}`);
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error('Failed to fetch preview content.');
+  return response.json();
 }
 
 const BLOG_CONTENT_TYPE = 'blogPost';
@@ -60,8 +57,9 @@ export async function getAllPosts() {
 export async function getPostBySlug(slug, { preview = false } = {}) {
   if (!slug) return null;
 
-  const activeClient = preview ? getPreviewClient() : client;
-  const response = await activeClient.getEntries({
+  if (preview) return fetchPreviewPost({ slug });
+
+  const response = await client.getEntries({
     content_type: BLOG_CONTENT_TYPE,
     'fields.slug': slug,
     limit: 1,
@@ -77,7 +75,8 @@ export async function getPostBySlug(slug, { preview = false } = {}) {
 export async function getPostByEntryId(entryId, { preview = false } = {}) {
   if (!entryId) return null;
 
-  const activeClient = preview ? getPreviewClient() : client;
-  const item = await activeClient.getEntry(entryId);
+  if (preview) return fetchPreviewPost({ id: entryId });
+
+  const item = await client.getEntry(entryId);
   return normalizePost(item);
 }
