@@ -88,7 +88,11 @@ export default function Blog() {
             {showScrollCue && (
               <button
                 className="blog-scroll-cue"
-                onClick={() => document.querySelector('.blog-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                onClick={() => {
+                  setShowScrollCue(false);
+                  const items = document.querySelectorAll('.blog-list-item');
+                  items[items.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }}
                 aria-label="Scroll to articles"
               >
                 ↓ more articles below
