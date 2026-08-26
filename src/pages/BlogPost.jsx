@@ -101,7 +101,7 @@ export default function BlogPost() {
             "publisher": {
               "@type": "Organization",
               "name": "PeaksLocal",
-              "logo": { "@type": "ImageObject", "url": "https://www.peakslocal.com/peaks-local-without-tagline.png" }
+              "logo": { "@type": "ImageObject", "url": "https://www.peakslocal.com/logo-mark-512.png" }
             },
             "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.peakslocal.com/blog/${post.slug}` }
           })}</script>
