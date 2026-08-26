@@ -1,20 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const items = heroRef.current?.querySelectorAll('.hero-fade');
-    if (!items) return;
-    items.forEach((el, i) => {
-      setTimeout(() => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 120 + i * 130);
-    });
-  }, []);
-
   const scrollToAudit = () => {
     const el = document.getElementById('audit');
     if (el) {
@@ -34,11 +21,20 @@ export default function Hero() {
   return (
     <>
       <style>{`
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         .hero-fade {
           opacity: 0;
-          transform: translateY(22px);
-          transition: opacity 0.65s ease, transform 0.65s ease;
+          animation: heroFadeUp 0.65s ease forwards;
         }
+        .hero-fade:nth-child(1) { animation-delay: 120ms; }
+        .hero-fade:nth-child(2) { animation-delay: 250ms; }
+        .hero-fade:nth-child(3) { animation-delay: 380ms; }
+        .hero-fade:nth-child(4) { animation-delay: 510ms; }
+        .hero-fade:nth-child(5) { animation-delay: 640ms; }
+        .hero-fade:nth-child(6) { animation-delay: 770ms; }
         @media (max-width: 960px) {
           .hero-grid { flex-direction: column !important; }
         }
@@ -49,7 +45,6 @@ export default function Hero() {
       `}</style>
       <section
         id="hero"
-        ref={heroRef}
         style={{
           background: 'var(--navy)',
           minHeight: '100vh',
