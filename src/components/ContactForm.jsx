@@ -7,6 +7,7 @@ const initialForm = {
   phone: '',
   inquiryType: '',
   message: '',
+  website: '', // honeypot — real users never see or fill this in
 };
 
 export default function ContactForm() {
@@ -334,6 +335,18 @@ export default function ContactForm() {
             <div className="contact-form-card contact-layout-form">
               {!submitted ? (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+                  {/* Honeypot — hidden from real users, bots that auto-fill every field will populate it */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={form.website}
+                    onChange={handleChange}
+                    tabIndex="-1"
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  />
 
                   <div className="contact-name-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>

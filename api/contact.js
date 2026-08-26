@@ -7,7 +7,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, phone, message } = req.body;
+  const { name, email, phone, message, website } = req.body;
+
+  // Honeypot: real users never see or fill this field in. A bot that
+  // auto-fills every field will populate it, so silently pretend success
+  // without actually sending anything.
+  if (website) {
+    return res.status(200).json({ success: true });
+  }
+
   const submittedFirstName = escapeHtml((name || '').trim().split(/\s+/)[0] || '');
 
   if (!name || !email || !message) {

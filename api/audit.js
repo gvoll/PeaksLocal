@@ -6,7 +6,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, businessName, websiteURL, cityState, challenge } = req.body;
+  const { name, businessName, websiteURL, cityState, challenge, phone } = req.body;
+
+  // Honeypot: this form has no legitimate phone field. A bot that
+  // auto-fills every field will populate it, so silently pretend success
+  // without actually sending anything.
+  if (phone) {
+    return res.status(200).json({ success: true });
+  }
 
   if (!name?.trim() || !businessName?.trim() || !websiteURL?.trim() || !cityState?.trim()) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
