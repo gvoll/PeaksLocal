@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { contactFormEmail } from '../src/lib/emailTemplates.js';
+import { escapeHtml, isValidEmail, isWithinLength } from '../src/lib/emailSafety.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -7,10 +8,16 @@ export default async function handler(req, res) {
   }
 
   const { name, email, phone, message } = req.body;
-  const submittedFirstName = (name || '').trim().split(/\s+/)[0] || '';
+  const submittedFirstName = escapeHtml((name || '').trim().split(/\s+/)[0] || '');
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Please provide a valid email address.' });
+  }
+  if (!isWithinLength(name, 200) || !isWithinLength(phone || '', 40) || !isWithinLength(message, 5000)) {
+    return res.status(400).json({ error: 'One or more fields is too long.' });
   }
 
   try {
@@ -24,6 +31,11 @@ export default async function handler(req, res) {
       },
     });
 
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
 
     await transporter.sendMail({
       from: '"PeaksLocal" <greg.voll@peakslocal.com>',
@@ -55,19 +67,19 @@ export default async function handler(req, res) {
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Name</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${name}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${safeName}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email</td>
-                <td style="padding:12px 0;font-size:14px;"><a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a></td>
+                <td style="padding:12px 0;font-size:14px;"><a href="mailto:${safeEmail}" style="color:#3aad64;text-decoration:none;">${safeEmail}</a></td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Phone</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${phone || 'Not provided'}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;">${safePhone || 'Not provided'}</td>
               </tr>
               <tr>
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Message</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${message.replace(/\n/g, '<br>')}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${safeMessage}</td>
               </tr>
             </table>
           </td>
@@ -80,8 +92,8 @@ export default async function handler(req, res) {
               <tr>
                 <td style="background:#f0fdf4;border-left:4px solid #3aad64;border-radius:0 6px 6px 0;padding:14px 18px;">
                   <p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">
-                    Reply directly to this email to respond to <strong>${name}</strong> at
-                    <a href="mailto:${email}" style="color:#3aad64;text-decoration:none;">${email}</a>
+                    Reply directly to this email to respond to <strong>${safeName}</strong> at
+                    <a href="mailto:${safeEmail}" style="color:#3aad64;text-decoration:none;">${safeEmail}</a>
                   </p>
                 </td>
               </tr>
