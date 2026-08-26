@@ -246,7 +246,16 @@ export default function Nav() {
         <div style={styles.inner}>
           {/* Brand */}
           <a href="/" style={styles.brand}>
-            <img src="/peaks-local-without-tagline.png" alt="PeaksLocal logo" style={styles.logoImg} />
+            <picture>
+              <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
+              <img
+                src="/peaks-local-without-tagline.png"
+                width="241"
+                height="200"
+                alt="PeaksLocal logo"
+                style={styles.logoImg}
+              />
+            </picture>
             <div style={styles.brandText}>
               <span style={styles.wordmark}>PeaksLocal</span>
               <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>

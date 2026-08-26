@@ -95,7 +95,16 @@ export default function ReviewsPage() {
 
         {/* Logo */}
         <a href="/" style={{ marginBottom: '40px', display: 'block' }}>
-          <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" style={{ height: '72px', width: 'auto' }} />
+          <picture>
+            <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
+            <img
+              src="/peaks-local-without-tagline.png"
+              width="241"
+              height="200"
+              alt="PeaksLocal"
+              style={{ height: '72px', width: 'auto' }}
+            />
+          </picture>
         </a>
 
         {/* Headline */}

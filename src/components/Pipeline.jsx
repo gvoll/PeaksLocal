@@ -188,11 +188,20 @@ export default function Pipeline({ headingLevel = 'h2' }) {
               onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
               onMouseLeave={e => { e.currentTarget.style.boxShadow = 'var(--shadow-card)'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >
-              <img
-                src="/drawing.jpeg"
-                alt="PeaksLocal Visibility Ecosystem"
-                style={{ display: 'block', width: '100%', height: 'auto' }}
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/drawing-700.webp 700w, /drawing.webp 970w"
+                  sizes="(max-width: 520px) 100vw, 520px"
+                />
+                <img
+                  src="/drawing.jpeg"
+                  width="970"
+                  height="725"
+                  alt="PeaksLocal Visibility Ecosystem"
+                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                />
+              </picture>
             </div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'var(--slate)' }}>
               Click to enlarge
@@ -239,18 +248,23 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                 >
                   ×
                 </button>
-                <img
-                  src="/drawing.jpeg"
-                  alt="PeaksLocal Visibility Ecosystem"
-                  onClick={e => e.stopPropagation()}
-                  style={{
-                    display: 'block',
-                    maxWidth: '90vw',
-                    maxHeight: '90vh',
-                    borderRadius: '12px',
-                    boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
-                  }}
-                />
+                <picture>
+                  <source type="image/webp" srcSet="/drawing.webp" />
+                  <img
+                    src="/drawing.jpeg"
+                    width="970"
+                    height="725"
+                    alt="PeaksLocal Visibility Ecosystem"
+                    onClick={e => e.stopPropagation()}
+                    style={{
+                      display: 'block',
+                      maxWidth: '90vw',
+                      maxHeight: '90vh',
+                      borderRadius: '12px',
+                      boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                    }}
+                  />
+                </picture>
               </div>
             </div>
           )}
