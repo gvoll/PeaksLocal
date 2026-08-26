@@ -9,7 +9,7 @@ export default function AboutPage() {
     <>
       <SEO
         title="About PeaksLocal — Denver-Based Digital Identity Firm"
-        description="PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems. Learn about our program management approach to local digital identity."
+        description="PeaksLocal improves your digital identity and online visibility across Google, Apple Maps, Bing, Yelp, social, and directories, plus reviews."
         canonical="/about"
       />
       <Nav />

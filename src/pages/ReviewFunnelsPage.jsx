@@ -379,7 +379,7 @@ export default function ReviewFunnelsPage() {
     <>
       <SEO
         title="Review Funnels — Get More Reviews with Less Friction"
-        description="Every PeaksLocal client gets a branded review page that makes it easy for customers to leave a review on Google, Yelp, and Bing — with templates to reduce blank-page anxiety."
+        description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
         canonical="/review-funnels"
       />
       <style>{`

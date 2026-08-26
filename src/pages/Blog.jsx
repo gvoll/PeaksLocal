@@ -66,7 +66,7 @@ export default function Blog() {
     <>
       <SEO
         title="Blog — Local Search + Digital Identity Insights"
-        description="Practical insights for local businesses on Google Business Profile, Apple Maps, AI search visibility, and managing your digital identity. Updated regularly by the PeaksLocal team."
+        description="The PeaksLocal blog covers how to improve your digital identity and online visibility across Google Business Profile, Apple Maps, Bing, and AI search."
         canonical="/blog"
       />
       <Nav />

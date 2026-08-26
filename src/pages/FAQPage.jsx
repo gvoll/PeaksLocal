@@ -164,7 +164,7 @@ export default function FAQPage() {
     <>
       <SEO
         title="FAQ — Local Search, Digital Identity + AI Visibility"
-        description="Answers to common questions about local SEO, digital identity, Google Business Profile, Apple Maps, structured data, and how PeaksLocal helps your business get found."
+        description="Answers on boosting your digital identity and local visibility across Google Business Profile, Apple Maps, Bing, Yelp, directories, reviews, and AI search."
         canonical="/faq"
       />
       <script type="application/ld+json">{JSON.stringify({

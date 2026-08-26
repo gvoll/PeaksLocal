@@ -9,7 +9,7 @@ export const serveCities = [
     name: 'Denver',
     tagline: "Colorado's largest and most competitive local search market",
     seoTitle: 'Local Digital Identity Management for Denver Businesses',
-    seoDescription: "PeaksLocal manages verified local presence for Denver-area businesses across Google, Apple Maps, Bing, and AI search. Built for Denver's competitive, tech-forward search market.",
+    seoDescription: "PeaksLocal strengthens Denver businesses' digital identity and local visibility across Google, Apple Maps, Bing, and Yelp, for a competitive market.",
     intro: [
       { text: "Denver's rapid growth has intensified local search competition. Businesses that secure their digital identity early gain a significant advantage in a crowded market." },
     ],
@@ -50,7 +50,7 @@ export const serveCities = [
     name: 'Boulder',
     tagline: 'A small city with an outsized, highly sophisticated search audience',
     seoTitle: 'Local Digital Identity Management for Boulder Businesses',
-    seoDescription: "PeaksLocal manages verified local presence for Boulder-area businesses across Google, Apple Maps, Bing, and AI search. Built for Boulder's sophisticated, AI-savvy search audience.",
+    seoDescription: "PeaksLocal strengthens Boulder businesses' digital identity and local visibility across Google, Apple Maps, Bing, and Yelp, for an AI-savvy audience.",
     intro: [
       { text: 'Boulder punches above its weight as a local search market. Despite a population of just over 106k', citation: 1 },
       { text: ', it generates search volume and review activity typical of cities twice its size.' },
@@ -79,7 +79,7 @@ export const serveCities = [
     name: 'Colorado Springs',
     tagline: "A military, tourism, and growing tech market that's still underserved",
     seoTitle: 'Local Digital Identity Management for Colorado Springs Businesses',
-    seoDescription: 'PeaksLocal manages verified local presence for Colorado Springs businesses across Google, Apple Maps, Bing, and AI search. Built for a military, tourism, and tech-driven market.',
+    seoDescription: "PeaksLocal strengthens Colorado Springs businesses' visibility across Google, Apple Maps, Bing, and Yelp, for a military and tourism market.",
     intro: [
       { text: "Colorado Springs is a distinct, underserved market shaped by a military presence, a booming tourism sector, and a rapidly expanding tech industry. Unlike Denver or Boulder, its local search landscape is defined by high-intent audiences with little established brand loyalty." },
     ],

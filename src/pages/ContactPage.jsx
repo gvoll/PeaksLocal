@@ -9,7 +9,7 @@ export default function ContactPage() {
     <>
       <SEO
         title="Contact PeaksLocal"
-        description="Get in touch with PeaksLocal to discuss your local digital identity, a free audit, or a potential partnership. We work with businesses across Denver, the Front Range, and nationwide."
+        description="Contact PeaksLocal to boost your digital identity and online visibility across Google, Apple Maps, Bing, Yelp, social, directories, and reviews."
         canonical="/contact"
       />
       <Nav />
