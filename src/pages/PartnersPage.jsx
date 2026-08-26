@@ -61,7 +61,7 @@ export default function PartnersPage() {
     <>
       <SEO
         title="Agency + Referral Partners"
-        description="Work with PeaksLocal as a referral or white-label partner. We handle local digital identity so you can stay focused on your core services while keeping your clients covered."
+        description="Refer clients who need better digital identity and online visibility to PeaksLocal, your Google, Apple Maps, Bing, Yelp, and directory management partner."
         canonical="/partners"
       />
       <style>{`

@@ -46,7 +46,17 @@ export default function Footer() {
             {/* Col 2 — Logo + tagline + service area */}
             <div style={{ textAlign: 'center' }}>
               <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                <img src="/peaks-local-without-tagline.png" alt="PeaksLocal" className="footer-logo" style={{ height: '70px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }} />
+                <picture>
+                  <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
+                  <img
+                    src="/peaks-local-without-tagline.png"
+                    width="241"
+                    height="200"
+                    alt="PeaksLocal"
+                    className="footer-logo"
+                    style={{ height: '70px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }}
+                  />
+                </picture>
               </Link>
               <p style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.72rem', color: 'var(--green-hi)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
                 Be Seen on Search, Maps + AI
@@ -82,10 +92,10 @@ export default function Footer() {
 
           {/* Bottom bar — copyright + legal */}
           <div style={{ padding: '20px 0 24px', textAlign: 'center' }}>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', color: 'rgba(138,160,184,0.7)', margin: '0 0 6px', fontStyle: 'italic' }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', color: 'var(--slate)', margin: '0 0 6px', fontStyle: 'italic' }}>
               © 2026 PeaksLocal · Denver, Colorado
             </p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'rgba(138,160,184,0.55)', margin: 0, fontStyle: 'italic', lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.72rem', color: 'var(--slate)', margin: 0, fontStyle: 'italic', lineHeight: 1.6 }}>
               PeaksLocal is an independent online identity firm. Google, Apple, Bing, and all platform names are trademarks of their respective owners.
             </p>
           </div>

@@ -9,7 +9,7 @@ export default function ServicesPage() {
     <>
       <SEO
         title="Local Digital Identity Services — PeaksLocal"
-        description="PeaksLocal manages your verified presence across Google, Apple Maps, Bing, and AI search. See how our local identity system works for service area and physical location businesses."
+        description="See how PeaksLocal builds and strengthens your local visibility across Google Business Profile, Apple Maps, Bing Places, Yelp, social, and directories."
         canonical="/services"
       />
       <Nav />

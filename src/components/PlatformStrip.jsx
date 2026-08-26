@@ -30,7 +30,7 @@ export default function PlatformStrip() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
                 fontWeight: 400,
-                color: 'var(--slate)',
+                color: '#94aac2',
                 whiteSpace: 'nowrap',
                 padding: '6px 12px',
                 transition: 'color 0.2s',

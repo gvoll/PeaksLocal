@@ -88,6 +88,7 @@ export default function BlogPost() {
             description={post.excerpt || undefined}
             canonical={`/blog/${post.slug}`}
             image={post.coverImage?.url || undefined}
+            noindex={preview}
           />
           <script type="application/ld+json">{JSON.stringify({
             "@context": "https://schema.org",
