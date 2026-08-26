@@ -81,7 +81,16 @@ async function main() {
     // Force these through Vite's transform pipeline instead of Node's native
     // ESM/CJS interop, which fails to detect react-helmet-async's named
     // exports (Helmet, HelmetProvider) when the package is left external.
-    ssr: { noExternal: ['react-helmet-async'] },
+    // react-router-dom/react-router hit the exact same issue starting with
+    // v7's restructured package exports.
+    ssr: {
+      noExternal: ['react-helmet-async', 'react-router-dom', 'react-router'],
+      // react-router(-dom) v7's package exports offer a "module-sync"
+      // condition Vite doesn't request by default, so without this it falls
+      // through to the CJS "default" build, which breaks when forced
+      // through the ESM-only SSR transform pipeline above.
+      resolve: { conditions: ['module-sync'] },
+    },
   });
 
   let posts = [];

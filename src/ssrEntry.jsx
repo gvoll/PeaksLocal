@@ -9,7 +9,9 @@
 // react-helmet-async's SSR context lookup.
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server.js';
+// react-router-dom v7 removed the `/server.js` subpath — StaticRouter now
+// lives in the base react-router package instead.
+import { StaticRouter } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx';
 
