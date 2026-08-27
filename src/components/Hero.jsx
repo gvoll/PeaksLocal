@@ -90,9 +90,10 @@ export default function Hero() {
                 <span className="blink-dot" />
               </div>
 
-              {/* H1 */}
+              {/* H1 — intentionally not .hero-fade: this is the LCP element,
+                  it renders at full opacity immediately instead of fading in. */}
               <h1
-                className="hero-fade hero-h1"
+                className="hero-h1"
                 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 800,
