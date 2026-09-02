@@ -146,7 +146,7 @@ async function main() {
       process.exit(1);
     }
 
-    const html = buildPageHtml(baseTemplate, helmet, bodyHtml);
+    const html = buildPageHtml(baseTemplate, helmet, bodyHtml, route.preload);
     writeRoute(route.routePath, html);
     rendered += 1;
   }
@@ -181,7 +181,16 @@ async function main() {
   console.log(`[prerender] Wrote ${rendered} prerendered route(s), dist/404.html, and dist/sitemap.xml (${routes.length} URLs, ${validPosts.length} from Contentful).`);
 }
 
-function buildPageHtml(baseTemplate, helmet, bodyHtml) {
+// Serialized into the page so the browser's first render starts from the same
+// data the server rendered with. "<" is escaped so a "</script>" inside any
+// CMS string can't close the tag early.
+function buildPreloadScript(preload) {
+  if (!preload) return '';
+  const json = JSON.stringify({ [preload.key]: preload.value }).replace(/</g, '\\u003c');
+  return `<script>window.__PEAKS_PRELOAD__=${json}</script>`;
+}
+
+function buildPageHtml(baseTemplate, helmet, bodyHtml, preload) {
   const startMarker = '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
   const endMarker = '<link rel="preconnect" href="https://fonts.googleapis.com" />';
   const startIdx = baseTemplate.indexOf(startMarker);
@@ -198,7 +207,10 @@ function buildPageHtml(baseTemplate, helmet, bodyHtml) {
   const helmetHead = [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString()].join('\n    ');
 
   const withHead = `${before}\n    ${helmetHead}\n    ${after}`;
-  return withHead.replace('<div id="root"></div>', `<div id="root">${bodyHtml}</div>`);
+  return withHead.replace(
+    '<div id="root"></div>',
+    `${buildPreloadScript(preload)}<div id="root">${bodyHtml}</div>`
+  );
 }
 
 function writeRoute(routePath, html) {

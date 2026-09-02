@@ -11,7 +11,9 @@ import { jsonLdProps } from '../lib/jsonLd.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
-  return new Date(dateString).toLocaleDateString(undefined, {
+  // Fixed locale — see the matching note in Blog.jsx: an ambient locale
+  // differs between the Node prerender and the visitor's browser.
+  return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
