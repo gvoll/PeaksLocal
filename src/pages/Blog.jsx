@@ -68,6 +68,7 @@ export default function Blog() {
         title="Blog — Local Search + Digital Identity Insights"
         description="The PeaksLocal blog covers how to improve your digital identity and online visibility across Google Business Profile, Apple Maps, Bing, and AI search."
         canonical="/blog"
+        breadcrumbs={[{ name: 'Blog', path: '/blog' }]}
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>

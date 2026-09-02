@@ -167,6 +167,7 @@ export default function FAQPage() {
         title="FAQ — Local Search, Digital Identity + AI Visibility"
         description="Answers on boosting your digital identity and local visibility across Google Business Profile, Apple Maps, Bing, Yelp, directories, reviews, and AI search."
         canonical="/faq"
+        breadcrumbs={[{ name: 'FAQ', path: '/faq' }]}
       />
       <script type="application/ld+json" {...jsonLdProps({
         "@context": "https://schema.org",

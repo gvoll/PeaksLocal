@@ -58,6 +58,7 @@ export default function ReviewsPage() {
         title="Leave a Review"
         description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
         canonical="/reviews"
+        breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
       />
       <style>{`
         .review-btn {

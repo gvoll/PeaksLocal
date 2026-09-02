@@ -11,6 +11,7 @@ export default function ContactPage() {
         title="Contact PeaksLocal"
         description="Contact PeaksLocal to boost your digital identity and online visibility across Google, Apple Maps, Bing, Yelp, social, directories, and reviews."
         canonical="/contact"
+        breadcrumbs={[{ name: 'Contact', path: '/contact' }]}
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>

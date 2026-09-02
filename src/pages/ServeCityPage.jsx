@@ -67,6 +67,7 @@ export default function ServeCityPage() {
         title={city.seoTitle}
         description={city.seoDescription}
         canonical={`/serve/${city.slug}`}
+        breadcrumbs={[{ name: 'Areas We Serve', path: '/serve' }, { name: city.name, path: `/serve/${city.slug}` }]}
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>

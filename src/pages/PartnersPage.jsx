@@ -63,6 +63,7 @@ export default function PartnersPage() {
         title="Agency + Referral Partners"
         description="Refer clients who need better digital identity and online visibility to PeaksLocal, your Google, Apple Maps, Bing, Yelp, and directory management partner."
         canonical="/partners"
+        breadcrumbs={[{ name: 'Partners', path: '/partners' }]}
       />
       <style>{`
         .partner-scenario {
