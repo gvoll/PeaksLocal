@@ -199,6 +199,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                   width="970"
                   height="725"
                   alt="Diagram of business data flowing from Google Business Profile, Bing Places, and Apple Business Connect through trust signals and structured data to AI search systems like ChatGPT, Siri, and Gemini"
+                  loading="lazy"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
               </picture>
