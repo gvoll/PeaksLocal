@@ -67,7 +67,7 @@ async function main() {
     console.error('[prerender] dist/index.html not found — run `vite build` first.');
     process.exit(1);
   }
-  const baseTemplate = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+  const baseTemplate = inlineStylesheet(fs.readFileSync(path.join(DIST, 'index.html'), 'utf8'));
 
   // Middleware-mode Vite server: gives us the app's own modules (JSX
   // transformed, import.meta.env populated from .env.local exactly like a
@@ -179,6 +179,37 @@ async function main() {
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemapXml);
 
   console.log(`[prerender] Wrote ${rendered} prerendered route(s), dist/404.html, and dist/sitemap.xml (${routes.length} URLs, ${validPosts.length} from Contentful).`);
+}
+
+// Vite links the built CSS as a plain stylesheet, which blocks the first paint
+// on a second round trip. The bundle is small enough (~13KB, and it compresses
+// with the HTML) that inlining it is a clear win on a high-latency mobile
+// connection: the page can paint straight from the HTML response. Falls back to
+// leaving the link alone if anything about the markup isn't what we expect.
+function inlineStylesheet(template) {
+  const linkPattern = /<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/;
+  const match = template.match(linkPattern);
+  if (!match) {
+    console.warn('[prerender] No built stylesheet link found — leaving CSS as-is.');
+    return template;
+  }
+
+  const cssFile = path.join(DIST, match[1]);
+  if (!fs.existsSync(cssFile)) {
+    console.warn(`[prerender] ${match[1]} not found on disk — leaving CSS as-is.`);
+    return template;
+  }
+
+  const css = fs.readFileSync(cssFile, 'utf8');
+  // A literal "</style" in the CSS would close the tag early. Nothing in this
+  // codebase does that, but bail rather than emit a broken page if it ever does.
+  if (/<\/style/i.test(css)) {
+    console.warn('[prerender] CSS contains "</style" — leaving it as an external link.');
+    return template;
+  }
+
+  console.log(`[prerender] Inlined ${match[1]} (${(css.length / 1024).toFixed(1)} kB) to drop a render-blocking request.`);
+  return template.replace(linkPattern, `<style>${css}</style>`);
 }
 
 // Serialized into the page so the browser's first render starts from the same

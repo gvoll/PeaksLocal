@@ -3,10 +3,25 @@ import { createClient } from 'contentful';
 const space = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const accessToken = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
-const client = createClient({
-  space,
-  accessToken,
-});
+// Built on first use rather than at module load. createClient() throws when
+// the env vars are missing, and this module sits on App.jsx's static import
+// chain (via Blog/BlogPost), so throwing here took down every route on the
+// site — a blank page everywhere, not just the blog. Deferring it keeps the
+// failure inside the data calls, where Blog/BlogPost already catch it and
+// show their error state, and lets `npm run dev` run without credentials.
+let client;
+
+function getClient() {
+  if (!client) {
+    if (!space || !accessToken) {
+      throw new Error(
+        'Contentful credentials missing — set VITE_CONTENTFUL_SPACE_ID and VITE_CONTENTFUL_ACCESS_TOKEN.'
+      );
+    }
+    client = createClient({ space, accessToken });
+  }
+  return client;
+}
 
 // Preview mode (draft/unpublished content) is fetched through /api/preview-post
 // instead of directly from Contentful. The preview token can read unpublished
@@ -46,7 +61,7 @@ function normalizePost(item) {
 }
 
 export async function getAllPosts() {
-  const response = await client.getEntries({
+  const response = await getClient().getEntries({
     content_type: BLOG_CONTENT_TYPE,
     order: ['-fields.publishedDate'],
   });
@@ -59,7 +74,7 @@ export async function getPostBySlug(slug, { preview = false } = {}) {
 
   if (preview) return fetchPreviewPost({ slug });
 
-  const response = await client.getEntries({
+  const response = await getClient().getEntries({
     content_type: BLOG_CONTENT_TYPE,
     'fields.slug': slug,
     limit: 1,
@@ -77,6 +92,6 @@ export async function getPostByEntryId(entryId, { preview = false } = {}) {
 
   if (preview) return fetchPreviewPost({ id: entryId });
 
-  const item = await client.getEntry(entryId);
+  const item = await getClient().getEntry(entryId);
   return normalizePost(item);
 }
