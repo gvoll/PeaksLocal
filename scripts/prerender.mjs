@@ -223,12 +223,17 @@ function buildPreloadScript(preload) {
 
 function buildPageHtml(baseTemplate, helmet, bodyHtml, preload) {
   const startMarker = '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
-  const endMarker = '<link rel="preconnect" href="https://fonts.googleapis.com" />';
+  // A purpose-built comment, not tied to any specific asset (fonts, meta
+  // tags, etc.) that might change later — see the matching comment in
+  // index.html. The previous marker was the Google Fonts preconnect link,
+  // which broke this exact way the day fonts were self-hosted and it was
+  // removed.
+  const endMarker = "<!-- scripts/prerender.mjs splices in each route's own title/meta/link";
   const startIdx = baseTemplate.indexOf(startMarker);
   const endIdx = baseTemplate.indexOf(endMarker);
   if (startIdx === -1 || endIdx === -1 || !baseTemplate.includes('<div id="root"></div>')) {
     throw new Error(
-      'dist/index.html no longer matches the markers this script expects (viewport meta / preconnect link / empty #root div). ' +
+      'dist/index.html no longer matches the markers this script expects (viewport meta / prerender-marker comment / empty #root div). ' +
       'Update the markers in scripts/prerender.mjs to match the current index.html structure.'
     );
   }

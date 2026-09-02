@@ -19,43 +19,21 @@
     <meta name="twitter:card" content="summary_large_image" data-rh="true" />
     <meta name="twitter:image" content="https://www.peakslocal.com/og-image.jpg" data-rh="true" />
     <title>PeaksLocal — Be Seen on Search, Maps + AI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://fonts.gstatic.com/s/ysabeausc/v4/Noai6Uro3JCIKAbW46nMorJZyP7kKRflbw-bVWqDbYAsn9T4ft0.woff2"
-      crossorigin
-    />
-    <!-- The homepage's actual LCP element (the H1) is set in Barlow
-         Condensed 800, not Ysabeau SC (that's the nav wordmark, which
-         PageSpeed misattributed as LCP before the H1's fade animation
-         was removed in a later fix). -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B47b1z3bWuYMBYro.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Lora:ital,wght@1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Lora:ital,wght@1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Lora:ital,wght@1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- scripts/prerender.mjs splices in each route's own title/meta/link
+         tags above this comment and keeps everything from here down as-is.
+         Don't remove this marker without updating that script's endMarker to
+         match — it's what broke the build the last time the font setup
+         changed underneath it. -->
+    <!-- Fonts are self-hosted (see the @font-face block at the top of
+         index.css) — no fonts.googleapis.com/fonts.gstatic.com round trip
+         needed anymore, so no preconnect either. Preloading just the 2 files
+         actually needed for first paint: the H1 (the homepage's real LCP
+         element) is Barlow Condensed 800; the nav wordmark is Ysabeau SC 700,
+         which PageSpeed misattributed as LCP before the H1's fade animation
+         was removed in an earlier fix. Every other weight loads normally,
+         discovered from the inlined CSS like any other asset. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/barlow-condensed-800.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/ysabeau-sc-700.woff2" crossorigin />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
