@@ -7,6 +7,7 @@ import Footer from '../components/Footer.jsx';
 import { getPostBySlug, getPostByEntryId } from '../lib/contentful.js';
 import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
+import { jsonLdProps } from '../lib/jsonLd.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -90,7 +91,7 @@ export default function BlogPost() {
             image={post.coverImage?.url || undefined}
             noindex={preview}
           />
-          <script type="application/ld+json">{JSON.stringify({
+          <script type="application/ld+json" {...jsonLdProps({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": post.title,
@@ -105,7 +106,7 @@ export default function BlogPost() {
               "logo": { "@type": "ImageObject", "url": "https://www.peakslocal.com/logo-mark-512.png" }
             },
             "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.peakslocal.com/blog/${post.slug}` }
-          })}</script>
+          })} />
         </>
       )}
       <Nav />
