@@ -8,7 +8,10 @@ import SEO from '../components/SEO.jsx';
 
 function formatDate(dateString) {
   if (!dateString) return '';
-  return new Date(dateString).toLocaleDateString(undefined, {
+  // Fixed locale, not the ambient one: the prerender runs in Node and the
+  // visitor's browser may resolve a different default, which would render a
+  // different date string and break hydration.
+  return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

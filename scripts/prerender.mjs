@@ -67,7 +67,7 @@ async function main() {
     console.error('[prerender] dist/index.html not found — run `vite build` first.');
     process.exit(1);
   }
-  const baseTemplate = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+  const baseTemplate = inlineStylesheet(fs.readFileSync(path.join(DIST, 'index.html'), 'utf8'));
 
   // Middleware-mode Vite server: gives us the app's own modules (JSX
   // transformed, import.meta.env populated from .env.local exactly like a
@@ -146,7 +146,7 @@ async function main() {
       process.exit(1);
     }
 
-    const html = buildPageHtml(baseTemplate, helmet, bodyHtml);
+    const html = buildPageHtml(baseTemplate, helmet, bodyHtml, route.preload);
     writeRoute(route.routePath, html);
     rendered += 1;
   }
@@ -181,7 +181,47 @@ async function main() {
   console.log(`[prerender] Wrote ${rendered} prerendered route(s), dist/404.html, and dist/sitemap.xml (${routes.length} URLs, ${validPosts.length} from Contentful).`);
 }
 
-function buildPageHtml(baseTemplate, helmet, bodyHtml) {
+// Vite links the built CSS as a plain stylesheet, which blocks the first paint
+// on a second round trip. The bundle is small enough (~13KB, and it compresses
+// with the HTML) that inlining it is a clear win on a high-latency mobile
+// connection: the page can paint straight from the HTML response. Falls back to
+// leaving the link alone if anything about the markup isn't what we expect.
+function inlineStylesheet(template) {
+  const linkPattern = /<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/;
+  const match = template.match(linkPattern);
+  if (!match) {
+    console.warn('[prerender] No built stylesheet link found — leaving CSS as-is.');
+    return template;
+  }
+
+  const cssFile = path.join(DIST, match[1]);
+  if (!fs.existsSync(cssFile)) {
+    console.warn(`[prerender] ${match[1]} not found on disk — leaving CSS as-is.`);
+    return template;
+  }
+
+  const css = fs.readFileSync(cssFile, 'utf8');
+  // A literal "</style" in the CSS would close the tag early. Nothing in this
+  // codebase does that, but bail rather than emit a broken page if it ever does.
+  if (/<\/style/i.test(css)) {
+    console.warn('[prerender] CSS contains "</style" — leaving it as an external link.');
+    return template;
+  }
+
+  console.log(`[prerender] Inlined ${match[1]} (${(css.length / 1024).toFixed(1)} kB) to drop a render-blocking request.`);
+  return template.replace(linkPattern, `<style>${css}</style>`);
+}
+
+// Serialized into the page so the browser's first render starts from the same
+// data the server rendered with. "<" is escaped so a "</script>" inside any
+// CMS string can't close the tag early.
+function buildPreloadScript(preload) {
+  if (!preload) return '';
+  const json = JSON.stringify({ [preload.key]: preload.value }).replace(/</g, '\\u003c');
+  return `<script>window.__PEAKS_PRELOAD__=${json}</script>`;
+}
+
+function buildPageHtml(baseTemplate, helmet, bodyHtml, preload) {
   const startMarker = '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
   const endMarker = '<link rel="preconnect" href="https://fonts.googleapis.com" />';
   const startIdx = baseTemplate.indexOf(startMarker);
@@ -198,7 +238,10 @@ function buildPageHtml(baseTemplate, helmet, bodyHtml) {
   const helmetHead = [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString()].join('\n    ');
 
   const withHead = `${before}\n    ${helmetHead}\n    ${after}`;
-  return withHead.replace('<div id="root"></div>', `<div id="root">${bodyHtml}</div>`);
+  return withHead.replace(
+    '<div id="root"></div>',
+    `${buildPreloadScript(preload)}<div id="root">${bodyHtml}</div>`
+  );
 }
 
 function writeRoute(routePath, html) {
