@@ -191,7 +191,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
               <picture>
                 <source
                   type="image/webp"
-                  srcSet="/drawing-700.webp 700w, /drawing.webp 970w"
+                  srcSet="/drawing-520.webp 520w, /drawing-700.webp 700w, /drawing.webp 970w"
                   sizes="(max-width: 520px) 100vw, 520px"
                 />
                 <img

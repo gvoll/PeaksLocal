@@ -2,6 +2,67 @@
    CSS DESIGN SYSTEM — PEAKSLOCAL
    ============================================= */
 
+/* Self-hosted fonts. Previously loaded from fonts.googleapis.com, which put
+   every font behind a 2-hop chain (HTML -> Google's CSS -> the actual font
+   files, since the file URLs can only be discovered after that CSS arrives)
+   and depended on Google's servers for a request on the critical rendering
+   path. Serving these from the same origin as the HTML removes both.
+
+   Only 7 files: DM Sans and DM Mono are requested elsewhere in the codebase
+   at weights 500/600/700, but Google Fonts serves those as byte-identical
+   copies of the 400 file under this family (verified directly against their
+   API) — those weights render as regular weight today regardless of hosting,
+   so one file covers all of them here without changing what's on screen. */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/dm-sans-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-sans-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/dm-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/lora-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Ysabeau SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ysabeau-sc-700.woff2') format('woff2');
+}
+
 :root {
   /* Color Palette */
   --navy: #0f2440;
