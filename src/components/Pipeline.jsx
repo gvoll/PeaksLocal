@@ -198,7 +198,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                   src="/drawing.jpeg"
                   width="970"
                   height="725"
-                  alt="PeaksLocal Visibility Ecosystem"
+                  alt="Diagram of business data flowing from Google Business Profile, Bing Places, and Apple Business Connect through trust signals and structured data to AI search systems like ChatGPT, Siri, and Gemini"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
               </picture>
@@ -254,7 +254,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                     src="/drawing.jpeg"
                     width="970"
                     height="725"
-                    alt="PeaksLocal Visibility Ecosystem"
+                    alt="Diagram of business data flowing from Google Business Profile, Bing Places, and Apple Business Connect through trust signals and structured data to AI search systems like ChatGPT, Siri, and Gemini"
                     onClick={e => e.stopPropagation()}
                     style={{
                       display: 'block',

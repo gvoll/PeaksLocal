@@ -101,7 +101,7 @@ export default function ReviewsPage() {
               src="/peaks-local-without-tagline.png"
               width="241"
               height="200"
-              alt="PeaksLocal"
+              alt="PeaksLocal logo"
               style={{ height: '72px', width: 'auto' }}
             />
           </picture>
