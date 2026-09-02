@@ -14,7 +14,7 @@
 // firstName is optional - falls back to "Hi there," if not provided.
 // Update AUDIT_FORM_URL to match your actual audit form anchor/route.
 
-const AUDIT_FORM_URL = 'https://peakslocal.com/#audit';
+const AUDIT_FORM_URL = 'https://www.peakslocal.com/#audit';
 
 const styles = `
   <style>
@@ -53,7 +53,7 @@ const styles = `
 
 const header = `
   <div class="header">
-    <img src="https://peakslocal.com/logopeaks.png" alt="PeaksLocal" style="height:48px;width:auto;display:block;margin:0 auto;" />
+    <img src="https://www.peakslocal.com/logopeaks.png" alt="PeaksLocal" style="height:48px;width:auto;display:block;margin:0 auto;" />
   </div>
   <div class="accent-bar"></div>
 `;
@@ -61,7 +61,7 @@ const header = `
 const signature = `
   <div class="sig">
     <p class="sig-name">The PeaksLocal Team</p>
-    <p class="sig-web"><a href="https://peakslocal.com">peakslocal.com</a></p>
+    <p class="sig-web"><a href="https://www.peakslocal.com">peakslocal.com</a></p>
   </div>
 `;
 
@@ -106,8 +106,8 @@ export const auditRequestEmail = {
   </div>
   <div class="footer">
     <p>You're receiving this because you submitted a visibility audit request at
-    <a href="https://peakslocal.com">peakslocal.com</a>. &nbsp;&middot;&nbsp;
-    <a href="https://peakslocal.com/privacy">Privacy Policy</a></p>
+    <a href="https://www.peakslocal.com">peakslocal.com</a>. &nbsp;&middot;&nbsp;
+    <a href="https://www.peakslocal.com/privacy">Privacy Policy</a></p>
   </div>
 </div>
 </body>
@@ -155,8 +155,8 @@ export const contactFormEmail = {
   </div>
   <div class="footer">
     <p>You're receiving this because you submitted a message at
-    <a href="https://peakslocal.com">peakslocal.com</a>. &nbsp;&middot;&nbsp;
-    <a href="https://peakslocal.com/privacy">Privacy Policy</a></p>
+    <a href="https://www.peakslocal.com">peakslocal.com</a>. &nbsp;&middot;&nbsp;
+    <a href="https://www.peakslocal.com/privacy">Privacy Policy</a></p>
   </div>
 </div>
 </body>
