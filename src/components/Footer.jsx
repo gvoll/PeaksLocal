@@ -54,6 +54,7 @@ export default function Footer() {
                     height="200"
                     alt="PeaksLocal logo"
                     className="footer-logo"
+                    loading="lazy"
                     style={{ height: '70px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }}
                   />
                 </picture>
