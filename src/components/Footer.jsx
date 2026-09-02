@@ -52,7 +52,7 @@ export default function Footer() {
                     src="/peaks-local-without-tagline.png"
                     width="241"
                     height="200"
-                    alt="PeaksLocal"
+                    alt="PeaksLocal logo"
                     className="footer-logo"
                     style={{ height: '70px', width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto 12px' }}
                   />
@@ -84,6 +84,8 @@ export default function Footer() {
             {/* Col 3 — Right links */}
             <div className="footer-links-right" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'flex-end' }}>
               <Link to="/about" className="footer-link" style={linkStyle}>About</Link>
+              <Link to="/services" className="footer-link" style={linkStyle}>Services</Link>
+              <Link to="/how-it-works" className="footer-link" style={linkStyle}>How It Works</Link>
               <Link to="/privacy" target="_blank" rel="noreferrer" className="footer-link" style={linkStyle}>Privacy Policy</Link>
               <Link to="/contact" target="_blank" rel="noreferrer" className="footer-link" style={linkStyle}>Contact</Link>
             </div>
