@@ -6,7 +6,17 @@ import App from './App.jsx';
 import './index.css';
 import { initAnalytics } from './lib/analytics.js';
 
-initAnalytics(import.meta.env.VITE_GA_MEASUREMENT_ID);
+// Deferred off the critical path: gtag.js is ~165KB and was loading eagerly,
+// competing with hydration and first paint for bandwidth and main-thread time
+// on every visit. requestIdleCallback runs it once the browser is actually
+// idle, with a timeout so it still fires within 2s even under sustained load;
+// Safari lacks the API, so it falls back to a macrotask delay there.
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => initAnalytics(measurementId), { timeout: 2000 });
+} else {
+  setTimeout(() => initAnalytics(measurementId), 0);
+}
 
 const rootElement = document.getElementById('root');
 
