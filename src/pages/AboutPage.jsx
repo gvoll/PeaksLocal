@@ -11,6 +11,7 @@ export default function AboutPage() {
         title="About PeaksLocal — Denver-Based Digital Identity Firm"
         description="PeaksLocal improves your digital identity and online visibility across Google, Apple Maps, Bing, Yelp, social, and directories, plus reviews."
         canonical="/about"
+        breadcrumbs={[{ name: 'About', path: '/about' }]}
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>

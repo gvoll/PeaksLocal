@@ -381,6 +381,7 @@ export default function ReviewFunnelsPage() {
         title="Review Funnels — Get More Reviews with Less Friction"
         description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
         canonical="/review-funnels"
+        breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
       />
       <style>{`
         .rf-jump-link {

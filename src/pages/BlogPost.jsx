@@ -90,6 +90,7 @@ export default function BlogPost() {
             canonical={`/blog/${post.slug}`}
             image={post.coverImage?.url || undefined}
             noindex={preview}
+            breadcrumbs={[{ name: 'Blog', path: '/blog' }, { name: post.title, path: `/blog/${post.slug}` }]}
           />
           <script type="application/ld+json" {...jsonLdProps({
             "@context": "https://schema.org",

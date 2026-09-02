@@ -12,6 +12,7 @@ export default function ServePage() {
         title="Areas We Serve — Local Digital Identity Management in Colorado"
         description="PeaksLocal manages verified local presence for businesses across Denver, Boulder, and Colorado Springs. See how we approach each market."
         canonical="/serve"
+        breadcrumbs={[{ name: 'Areas We Serve', path: '/serve' }]}
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
