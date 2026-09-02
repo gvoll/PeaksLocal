@@ -19,6 +19,11 @@
     <meta name="twitter:card" content="summary_large_image" data-rh="true" />
     <meta name="twitter:image" content="https://www.peakslocal.com/og-image.jpg" data-rh="true" />
     <title>PeaksLocal — Be Seen on Search, Maps + AI</title>
+    <!-- scripts/prerender.mjs splices in each route's own title/meta/link
+         tags above this comment and keeps everything from here down as-is.
+         Don't remove this marker without updating that script's endMarker to
+         match — it's what broke the build the last time the font setup
+         changed underneath it. -->
     <!-- Fonts are self-hosted (see the @font-face block at the top of
          index.css) — no fonts.googleapis.com/fonts.gstatic.com round trip
          needed anymore, so no preconnect either. Preloading just the 2 files
