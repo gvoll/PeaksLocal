@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Nav from '../components/Nav.jsx';
 import Hero from '../components/Hero.jsx';
 import PlatformStrip from '../components/PlatformStrip.jsx';
+import AudienceNav from '../components/AudienceNav.jsx';
 import Problem from '../components/Problem.jsx';
 import Pipeline from '../components/Pipeline.jsx';
 import System from '../components/System.jsx';
@@ -32,6 +33,7 @@ export default function LandingPage() {
       <main>
         <Hero />
         <PlatformStrip />
+        <AudienceNav />
         <Problem />
         <Pipeline />
         <System />
