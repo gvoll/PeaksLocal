@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
+import { jsonLdProps } from '../lib/jsonLd.js';
 
 const faqs = [
   {
@@ -167,7 +168,7 @@ export default function FAQPage() {
         description="Answers on boosting your digital identity and local visibility across Google Business Profile, Apple Maps, Bing, Yelp, directories, reviews, and AI search."
         canonical="/faq"
       />
-      <script type="application/ld+json">{JSON.stringify({
+      <script type="application/ld+json" {...jsonLdProps({
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": faqs.map((item) => ({
@@ -178,7 +179,7 @@ export default function FAQPage() {
             "text": item.a,
           },
         })),
-      })}</script>
+      })} />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
 
