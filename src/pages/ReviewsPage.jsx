@@ -280,6 +280,48 @@ export default function ReviewsPage() {
           </p>
         </div>
 
+        {/* QR code download */}
+        <div style={{
+          maxWidth: '420px',
+          width: '100%',
+          marginTop: '24px',
+          padding: '20px 24px',
+          background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: '10px',
+          textAlign: 'center',
+        }}>
+          <img
+            src="/reviews-qr.png"
+            alt="QR code linking to this review page"
+            width="110"
+            height="110"
+            style={{ borderRadius: '6px', marginBottom: '12px' }}
+          />
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '0.8rem',
+            color: 'var(--slate)',
+            lineHeight: 1.6,
+            marginBottom: '10px',
+          }}>
+            Scan or download this QR code to share this page on invoices, business cards, or anywhere in person.
+          </p>
+          <a
+            href="/reviews-qr.png"
+            download="peakslocal-review-qr.png"
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              color: 'var(--green-hi)',
+              textDecoration: 'none',
+            }}
+          >
+            Download QR Code ↓
+          </a>
+        </div>
+
         {/* Footer note */}
         <p style={{
           fontFamily: "'DM Sans', sans-serif",
