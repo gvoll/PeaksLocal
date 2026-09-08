@@ -517,7 +517,7 @@ export default function ReviewFunnelsPage() {
                 {
                   n: '02',
                   title: 'One link for everything',
-                  body: 'Your review page works as a QR code on invoices, a link in email signatures, a button in follow-up messages, and a destination in print materials. One URL handles all of it.',
+                  body: "Every review page comes with a downloadable QR code pointing at it, ready for invoices, business cards, table tents, or anywhere a URL is awkward to type. It's also a link in email signatures, a button in follow-up messages, and a destination in print materials — one URL handles all of it.",
                 },
                 {
                   n: '03',
@@ -563,6 +563,14 @@ export default function ReviewFunnelsPage() {
                 </div>
               ))}
             </div>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.85rem',
+              color: 'var(--slate)',
+              marginTop: '28px',
+            }}>
+              This isn't hypothetical — <Link to="/reviews" style={{ color: 'var(--green-hi)', fontWeight: 600 }}>see PeaksLocal's own review page</Link>, QR code included, as a live example.
+            </p>
           </div>
         </section>
 
