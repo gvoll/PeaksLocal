@@ -223,26 +223,13 @@ export function PartnerSection() {
   );
 }
 
-export default function WhoWeHelp() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll('.reveal');
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const whoWeHelpStyles = `
         .who-list-item {
           display: flex;
           align-items: center;
@@ -264,7 +251,28 @@ export default function WhoWeHelp() {
         @media (max-width: 768px) {
           .who-cols { flex-direction: column !important; }
         }
-      `}</style>
+`;
+
+export default function WhoWeHelp() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const reveals = sectionRef.current?.querySelectorAll('.reveal');
+    reveals?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: whoWeHelpStyles }} />
       <section
         id="who"
         ref={sectionRef}

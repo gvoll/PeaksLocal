@@ -58,6 +58,45 @@ const nearMeFactors = [
   },
 ];
 
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const pipelineStyles = `
+        .pipeline-node-filled { background: var(--navy); border: 2px solid var(--navy); color: var(--white); }
+        .pipeline-node-outline { background: transparent; border: 2px solid var(--rule); color: var(--ink); }
+        .pipeline-node-green { background: var(--green); border: 2px solid var(--green); color: var(--white); }
+        .pipeline-arrow { display: flex; align-items: center; justify-content: center; height: 28px; color: var(--slate); font-size: 1.2rem; flex-shrink: 0; }
+        .nearme-factor { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; }
+        .nearme-factor-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--navy); letter-spacing: 0.04em; margin-bottom: 6px; }
+        .stat-card-pipeline { background: var(--ash); border: 1px solid var(--rule); border-radius: 10px; padding: 24px 20px; }
+        @keyframes zero-pulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(58,173,100,0);
+            border-color: rgba(58,173,100,0.3);
+            border-width: 1px;
+          }
+          50% {
+            box-shadow: 0 0 28px 10px rgba(58,173,100,0.55), inset 0 0 12px rgba(58,173,100,0.1);
+            border-color: rgb(58,173,100);
+            border-width: 2px;
+          }
+        }
+        .stat-card-zero.zero-visible {
+          animation: zero-pulse 1.8s ease-in-out infinite;
+        }
+        @media (max-width: 900px) {
+          .pipeline-grid { flex-direction: column !important; }
+          .pipeline-left { width: 100% !important; }
+          .stats-grid-4 { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 560px) {
+          .stats-grid-4 { grid-template-columns: 1fr !important; }
+        }
+`;
+
 export default function Pipeline({ headingLevel = 'h2' }) {
   const MainHeading = headingLevel;
   const sectionRef = useRef(null);
@@ -103,38 +142,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
 
   return (
     <>
-      <style>{`
-        .pipeline-node-filled { background: var(--navy); border: 2px solid var(--navy); color: var(--white); }
-        .pipeline-node-outline { background: transparent; border: 2px solid var(--rule); color: var(--ink); }
-        .pipeline-node-green { background: var(--green); border: 2px solid var(--green); color: var(--white); }
-        .pipeline-arrow { display: flex; align-items: center; justify-content: center; height: 28px; color: var(--slate); font-size: 1.2rem; flex-shrink: 0; }
-        .nearme-factor { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; }
-        .nearme-factor-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; color: var(--navy); letter-spacing: 0.04em; margin-bottom: 6px; }
-        .stat-card-pipeline { background: var(--ash); border: 1px solid var(--rule); border-radius: 10px; padding: 24px 20px; }
-        @keyframes zero-pulse {
-          0%, 100% {
-            box-shadow: 0 0 0 0 rgba(58,173,100,0);
-            border-color: rgba(58,173,100,0.3);
-            border-width: 1px;
-          }
-          50% {
-            box-shadow: 0 0 28px 10px rgba(58,173,100,0.55), inset 0 0 12px rgba(58,173,100,0.1);
-            border-color: rgb(58,173,100);
-            border-width: 2px;
-          }
-        }
-        .stat-card-zero.zero-visible {
-          animation: zero-pulse 1.8s ease-in-out infinite;
-        }
-        @media (max-width: 900px) {
-          .pipeline-grid { flex-direction: column !important; }
-          .pipeline-left { width: 100% !important; }
-          .stats-grid-4 { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 560px) {
-          .stats-grid-4 { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: pipelineStyles }} />
       <section
         id="pipeline"
         ref={sectionRef}
