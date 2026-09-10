@@ -10,51 +10,13 @@ const initialForm = {
   website: '', // honeypot — real users never see or fill this in
 };
 
-export default function ContactForm() {
-  const [form, setForm] = useState(initialForm);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll('.reveal');
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error('Failed');
-      setSubmitted(true);
-    } catch {
-      alert('Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const contactFormStyles = `
         .contact-form-card {
           background: var(--white);
           border: 1px solid var(--rule);
@@ -194,7 +156,53 @@ export default function ContactForm() {
             margin-top: 0;
           }
         }
-      `}</style>
+`;
+
+export default function ContactForm() {
+  const [form, setForm] = useState(initialForm);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const reveals = sectionRef.current?.querySelectorAll('.reveal');
+    reveals?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSubmitted(true);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: contactFormStyles }} />
 
       <section
         id="contact"
@@ -495,9 +503,9 @@ export default function ContactForm() {
                   <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'rgba(138,160,184,0.7)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
                     Free Visibility Audit Request
                   </div>
-                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.9rem', textTransform: 'uppercase', color: 'var(--white)', lineHeight: 1.1, marginBottom: '8px' }}>
+                  <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.9rem', textTransform: 'uppercase', color: 'var(--white)', lineHeight: 1.1, marginBottom: '8px' }}>
                     Check Your Current Status
-                  </h3>
+                  </h2>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'rgba(138,160,184,0.85)', lineHeight: 1.65, maxWidth: '440px', margin: 0 }}>
                     See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
                   </p>

@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 
 const linkStyle = { fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' };
 
-export default function Footer() {
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const footerStyles = `
         .footer-grid {
           display: grid;
           grid-template-columns: 1fr auto 1fr auto 1fr;
@@ -27,7 +30,12 @@ export default function Footer() {
           .footer-logo { margin: 0 auto; }
         }
         .footer-link:hover { color: var(--white) !important; }
-      `}</style>
+`;
+
+export default function Footer() {
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: footerStyles }} />
       <footer style={{ background: 'var(--navy)', borderTop: '1px solid rgba(255,255,255,0.07)', padding: '48px 0 0' }}>
         <div className="container">
           <div className="footer-grid" style={{ paddingBottom: '32px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>

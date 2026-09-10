@@ -21,20 +21,13 @@ const paths = [
   },
 ];
 
-export default function AudienceNav() {
-  const navRef = useRef(null);
-
-  const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const audienceNavStyles = `
         .audience-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -63,7 +56,22 @@ export default function AudienceNav() {
         .audience-card:hover .audience-cta {
           color: var(--green-hi);
         }
-      `}</style>
+`;
+
+export default function AudienceNav() {
+  const navRef = useRef(null);
+
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: audienceNavStyles }} />
       <section
         id="audience-nav"
         ref={navRef}

@@ -49,18 +49,13 @@ const platforms = [
   // },
 ];
 
-export default function ReviewsPage() {
-  const [consentChecked, setConsentChecked] = useState(false);
-
-  return (
-    <>
-      <SEO
-        title="Leave a Review"
-        description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
-        canonical="/reviews"
-        breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
-      />
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const reviewsPageStyles = `
         .review-btn {
           display: flex;
           align-items: center;
@@ -83,7 +78,20 @@ export default function ReviewsPage() {
         @media (max-width: 480px) {
           .review-btn { padding: 16px 20px; }
         }
-      `}</style>
+`;
+
+export default function ReviewsPage() {
+  const [consentChecked, setConsentChecked] = useState(false);
+
+  return (
+    <>
+      <SEO
+        title="Leave a Review — Google, Yelp & Bing"
+        description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
+        canonical="/reviews"
+        breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
+      />
+      <style dangerouslySetInnerHTML={{ __html: reviewsPageStyles }} />
       <main style={{
         minHeight: '100vh',
         background: 'var(--navy)',
@@ -265,19 +273,18 @@ export default function ReviewsPage() {
           border: '1px solid rgba(255,255,255,0.08)',
           borderRadius: '10px',
         }}>
-          <p style={{
+          <div style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: '0.8rem',
             color: 'var(--slate)',
             lineHeight: 1.65,
-            margin: 0,
           }}>
             <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>Regarding Service Area Businesses (SABs), such as PeaksLocal, on Apple Maps:</strong>
             <ul style={{ listStyle: 'disc', paddingLeft: '18px', margin: '10px 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <li>Apple does <strong style={{ color: 'rgba(255,255,255,0.7)' }}>NOT</strong> currently support direct reviews for SABs.</li>
               <li>Yelp reviews are the best way to support our Apple Maps presence in the meantime.</li>
             </ul>
-          </p>
+          </div>
         </div>
 
         {/* QR code download */}

@@ -31,28 +31,13 @@ const problems = [
   },
 ];
 
-export default function Problem() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll('.reveal');
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const problemStyles = `
         .problem-card {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.08);
@@ -81,7 +66,30 @@ export default function Problem() {
           border-color: rgba(58,173,100,0.25);
           background: rgba(255,255,255,0.06);
         }
-      `}</style>
+`;
+
+export default function Problem() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    const reveals = sectionRef.current?.querySelectorAll('.reveal');
+    reveals?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: problemStyles }} />
       <section
         id="problem"
         ref={sectionRef}

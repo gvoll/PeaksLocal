@@ -63,7 +63,7 @@ export default function ServicesPage() {
   return (
     <>
       <SEO
-        title="Local Digital Identity Services — PeaksLocal"
+        title="Local Digital Identity Services"
         description="See how PeaksLocal builds and strengthens your local visibility across Google Business Profile, Apple Maps, Bing Places, Yelp, social, and directories."
         canonical="/services"
         breadcrumbs={[{ name: 'Services', path: '/services' }]}

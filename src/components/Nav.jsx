@@ -147,6 +147,61 @@ const styles = {
   },
 };
 
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" — browsers never decode entities
+// inside it — but React's normal text-child serialization HTML-escapes
+// apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;). As a JSX text child that
+// mismatch shipped broken font-family CSS in prerendered HTML and produced a
+// SSR/client hydration mismatch on every page (Nav renders on all of them).
+const navDropdownStyles = `
+  @media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .nav-hamburger { display: flex !important; }
+  }
+  .nav-link-item:hover { color: var(--white) !important; }
+  .nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 160px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 200;
+  }
+  .nav-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 9px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--slate);
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-dropdown-item:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+  .nav-dropdown-chevron {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+    vertical-align: middle;
+  }
+`;
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -194,54 +249,7 @@ export default function Nav() {
 
   return (
     <>
-      <style>{`
-        @media (max-width: 768px) {
-          .nav-links { display: none !important; }
-          .nav-hamburger { display: flex !important; }
-        }
-        .nav-link-item:hover { color: var(--white) !important; }
-        .nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
-        .nav-dropdown {
-          position: relative;
-        }
-        .nav-dropdown-menu {
-          position: absolute;
-          top: calc(100% + 12px);
-          left: 50%;
-          transform: translateX(-50%);
-          background: var(--navy);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 8px;
-          padding: 6px;
-          min-width: 160px;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-          z-index: 200;
-        }
-        .nav-dropdown-item {
-          display: block;
-          width: 100%;
-          padding: 9px 14px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.85rem;
-          color: var(--slate);
-          background: none;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          text-align: left;
-          text-decoration: none;
-          transition: background 0.15s, color 0.15s;
-          white-space: nowrap;
-        }
-        .nav-dropdown-item:hover { background: rgba(255,255,255,0.06); color: var(--white); }
-        .nav-dropdown-chevron {
-          display: inline-block;
-          margin-left: 4px;
-          font-size: 0.65rem;
-          transition: transform 0.2s;
-          vertical-align: middle;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: navDropdownStyles }} />
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
         <div style={styles.inner}>
           {/* Brand */}
