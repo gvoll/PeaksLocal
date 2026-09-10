@@ -20,6 +20,22 @@ function formatDate(dateString) {
   });
 }
 
+// Some Contentful entries link internally via the bare apex domain, which
+// 308-redirects to the canonical www host (see vercel.json) — rewrite those
+// so blog links don't send crawlers or visitors through a redirect hop.
+function resolveHref(uri) {
+  try {
+    const url = new URL(uri);
+    if (url.hostname === 'peakslocal.com') {
+      url.hostname = 'www.peakslocal.com';
+      return url.toString();
+    }
+  } catch {
+    // relative or malformed URI — leave untouched
+  }
+  return uri;
+}
+
 const richTextOptions = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <p className="blog-post-paragraph">{children}</p>,
@@ -33,7 +49,7 @@ const richTextOptions = {
     [BLOCKS.QUOTE]: (node, children) => <blockquote className="blog-post-quote">{children}</blockquote>,
     [BLOCKS.HR]: () => <hr className="blog-post-hr" />,
     [INLINES.HYPERLINK]: (node, children) => (
-      <a href={node.data.uri} target="_blank" rel="noreferrer" className="blog-post-link">
+      <a href={resolveHref(node.data.uri)} target="_blank" rel="noreferrer" className="blog-post-link">
         {children}
       </a>
     ),

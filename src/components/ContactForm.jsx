@@ -503,9 +503,9 @@ export default function ContactForm() {
                   <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'rgba(138,160,184,0.7)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px' }}>
                     Free Visibility Audit Request
                   </div>
-                  <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.9rem', textTransform: 'uppercase', color: 'var(--white)', lineHeight: 1.1, marginBottom: '8px' }}>
+                  <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.9rem', textTransform: 'uppercase', color: 'var(--white)', lineHeight: 1.1, marginBottom: '8px' }}>
                     Check Your Current Status
-                  </h3>
+                  </h2>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'rgba(138,160,184,0.85)', lineHeight: 1.65, maxWidth: '440px', margin: 0 }}>
                     See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
                   </p>

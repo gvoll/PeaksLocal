@@ -206,7 +206,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                   src="/drawing.jpeg"
                   width="970"
                   height="725"
-                  alt="Diagram of business data flowing from Google Business Profile, Bing Places, and Apple Business Connect through trust signals and structured data to AI search systems like ChatGPT, Siri, and Gemini"
+                  alt="Diagram of business data flowing from Google, Bing, and Apple listings to AI search platforms"
                   loading="lazy"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                 />
@@ -263,7 +263,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                     src="/drawing.jpeg"
                     width="970"
                     height="725"
-                    alt="Diagram of business data flowing from Google Business Profile, Bing Places, and Apple Business Connect through trust signals and structured data to AI search systems like ChatGPT, Siri, and Gemini"
+                    alt="Diagram of business data flowing from Google, Bing, and Apple listings to AI search platforms"
                     onClick={e => e.stopPropagation()}
                     style={{
                       display: 'block',

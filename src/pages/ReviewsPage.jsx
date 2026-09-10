@@ -86,7 +86,7 @@ export default function ReviewsPage() {
   return (
     <>
       <SEO
-        title="Leave a Review"
+        title="Leave a Review — Google, Yelp & Bing"
         description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
         canonical="/reviews"
         breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}

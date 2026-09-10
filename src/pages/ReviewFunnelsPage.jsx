@@ -429,7 +429,7 @@ export default function ReviewFunnelsPage() {
   return (
     <>
       <SEO
-        title="Review Funnels — Get More Reviews with Less Friction"
+        title="Review Funnels — More Reviews, Less Friction"
         description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
         canonical="/review-funnels"
         breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
