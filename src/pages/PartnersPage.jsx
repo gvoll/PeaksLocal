@@ -54,6 +54,21 @@ const scenarios = [
   },
 ];
 
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const partnersPageStyles = `
+        .partner-scenario {
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .partner-scenario:first-child {
+          border-top: 1px solid rgba(255,255,255,0.08);
+        }
+`;
+
 export default function PartnersPage() {
   const [openScenario, setOpenScenario] = useState(null);
 
@@ -65,14 +80,7 @@ export default function PartnersPage() {
         canonical="/partners"
         breadcrumbs={[{ name: 'Partners', path: '/partners' }]}
       />
-      <style>{`
-        .partner-scenario {
-          border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .partner-scenario:first-child {
-          border-top: 1px solid rgba(255,255,255,0.08);
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: partnersPageStyles }} />
       <Nav />
       <main style={{ paddingTop: '68px', background: 'var(--navy)' }}>
 

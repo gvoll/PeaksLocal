@@ -9,6 +9,56 @@ const initialForm = {
   phone: '', // honeypot — real users never see or fill this in; this form has no legitimate phone field
 };
 
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const auditFormStyles = `
+        .audit-form-card {
+          background: var(--white);
+          border: 1px solid var(--rule);
+          border-radius: 16px;
+          padding: 40px 40px;
+          box-shadow: 0 8px 40px rgba(15,36,64,0.1);
+          max-width: 640px;
+          margin: 0 auto;
+        }
+        .audit-input {
+          padding: 12px 16px;
+          border: 1.5px solid var(--rule);
+          border-radius: 6px;
+          font-size: 0.95rem;
+          font-family: 'DM Sans', sans-serif;
+          color: var(--ink);
+          background: var(--white);
+          width: 100%;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .audit-input:focus {
+          border-color: var(--green-hi);
+          box-shadow: 0 0 0 3px rgba(58,173,100,0.12);
+        }
+        .audit-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: var(--ink);
+          margin-bottom: 6px;
+          display: block;
+        }
+        .audit-label .required-asterisk {
+          color: #c62828;
+          font-weight: 700;
+          margin-left: 2px;
+        }
+        @media (max-width: 560px) {
+          .audit-form-card { padding: 28px 20px !important; }
+        }
+`;
+
 export default function AuditForm({ headingLevel = 'h2' }) {
   const MainHeading = headingLevel;
   const [form, setForm] = useState(initialForm);
@@ -58,49 +108,7 @@ export default function AuditForm({ headingLevel = 'h2' }) {
 
   return (
     <>
-      <style>{`
-        .audit-form-card {
-          background: var(--white);
-          border: 1px solid var(--rule);
-          border-radius: 16px;
-          padding: 40px 40px;
-          box-shadow: 0 8px 40px rgba(15,36,64,0.1);
-          max-width: 640px;
-          margin: 0 auto;
-        }
-        .audit-input {
-          padding: 12px 16px;
-          border: 1.5px solid var(--rule);
-          border-radius: 6px;
-          font-size: 0.95rem;
-          font-family: 'DM Sans', sans-serif;
-          color: var(--ink);
-          background: var(--white);
-          width: 100%;
-          outline: none;
-          transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .audit-input:focus {
-          border-color: var(--green-hi);
-          box-shadow: 0 0 0 3px rgba(58,173,100,0.12);
-        }
-        .audit-label {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.85rem;
-          font-weight: 500;
-          color: var(--ink);
-          margin-bottom: 6px;
-          display: block;
-        }
-        .audit-label .required-asterisk {
-          color: #c62828;
-          font-weight: 700;
-          margin-left: 2px;
-        }
-        @media (max-width: 560px) {
-          .audit-form-card { padding: 28px 20px !important; }
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{ __html: auditFormStyles }} />
       <section
         id="audit"
         ref={sectionRef}

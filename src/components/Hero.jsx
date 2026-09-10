@@ -1,26 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Hero() {
-  const scrollToAudit = () => {
-    const el = document.getElementById('audit');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
-  const scrollToPipeline = () => {
-    const el = document.getElementById('pipeline');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const heroStyles = `
         @keyframes heroFadeUp {
           from { opacity: 0; transform: translateY(22px); }
           to { opacity: 1; transform: translateY(0); }
@@ -42,7 +29,28 @@ export default function Hero() {
           .hero-h1 { font-size: 3.2rem !important; }
           .hero-trust { flex-direction: column; gap: 8px !important; }
         }
-      `}</style>
+`;
+
+export default function Hero() {
+  const scrollToAudit = () => {
+    const el = document.getElementById('audit');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToPipeline = () => {
+    const el = document.getElementById('pipeline');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: heroStyles }} />
       <section
         id="hero"
         style={{

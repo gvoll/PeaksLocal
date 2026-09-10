@@ -39,35 +39,13 @@ const tier2Items = [
   'Monthly visibility report',
 ];
 
-export default function System({ headingLevel = 'h2' }) {
-  const MainHeading = headingLevel;
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const reveals = sectionRef.current?.querySelectorAll('.reveal');
-    reveals?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToAudit = () => {
-    const el = document.getElementById('audit');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <>
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const systemStyles = `
         .services-card {
           background: var(--white);
           border: 1px solid var(--rule);
@@ -142,7 +120,37 @@ export default function System({ headingLevel = 'h2' }) {
             gap: 16px !important;
           }
         }
-      `}</style>
+`;
+
+export default function System({ headingLevel = 'h2' }) {
+  const MainHeading = headingLevel;
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    const reveals = sectionRef.current?.querySelectorAll('.reveal');
+    reveals?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToAudit = () => {
+    const el = document.getElementById('audit');
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: systemStyles }} />
       <section
         id="system"
         ref={sectionRef}

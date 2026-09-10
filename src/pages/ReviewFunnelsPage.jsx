@@ -362,28 +362,13 @@ function TemplateCard({ template, isOpen, onToggle }) {
   );
 }
 
-export default function ReviewFunnelsPage() {
-  const [demoTab, setDemoTab] = useState('location');
-  const [openTemplate, setOpenTemplate] = useState(null);
-
-  const scrollTo = (href) => {
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 96;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <>
-      <SEO
-        title="Review Funnels — Get More Reviews with Less Friction"
-        description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
-        canonical="/review-funnels"
-        breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
-      />
-      <style>{`
+// Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
+// child. <style> content is HTML "raw text" -- browsers never decode entities
+// inside it -- but React's normal text-child serialization HTML-escapes
+// quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
+// prerendered CSS and caused an SSR/client hydration mismatch wherever this
+// component renders.
+const reviewFunnelsPageStyles = `
         .rf-jump-link {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.8rem;
@@ -426,7 +411,30 @@ export default function ReviewFunnelsPage() {
           .rf-demo-grid { grid-template-columns: 1fr !important; }
           .rf-why-grid { grid-template-columns: 1fr !important; }
         }
-      `}</style>
+`;
+
+export default function ReviewFunnelsPage() {
+  const [demoTab, setDemoTab] = useState('location');
+  const [openTemplate, setOpenTemplate] = useState(null);
+
+  const scrollTo = (href) => {
+    const id = href.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <SEO
+        title="Review Funnels — Get More Reviews with Less Friction"
+        description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
+        canonical="/review-funnels"
+        breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
+      />
+      <style dangerouslySetInnerHTML={{ __html: reviewFunnelsPageStyles }} />
 
       <Nav />
       <main style={{ paddingTop: '68px', background: 'var(--navy)' }}>
