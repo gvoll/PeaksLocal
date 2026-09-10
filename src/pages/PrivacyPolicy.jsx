@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <SEO
-        title="Privacy Policy"
+        title="Privacy Policy & Data Practices"
         description="PeaksLocal privacy policy — how we collect, use, and protect your information."
         canonical="/privacy"
         breadcrumbs={[{ name: 'Privacy Policy', path: '/privacy' }]}
