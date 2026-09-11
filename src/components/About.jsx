@@ -77,7 +77,7 @@ export default function About() {
           </blockquote>
 
           <p className="about-mindset-body reveal reveal-delay-4" style={{ marginBottom: 0 }}>
-            I'd welcome the chance to be your local visibility partner, so please <Link to="/contact" style={faqLink}>reach out</Link> anytime.
+            I'd appreciate the chance to be your local visibility partner, so please <Link to="/contact" style={faqLink}>reach out</Link> anytime to review your current digital identity.
           </p>
 
           <p
