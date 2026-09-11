@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx';
 import './index.css';
-import { initAnalytics } from './lib/analytics.js';
+import { initAnalytics, initClarity } from './lib/analytics.js';
 
 // Deferred off the critical path: gtag.js is ~165KB and was loading eagerly,
 // competing with hydration and first paint for bandwidth and main-thread time
@@ -12,10 +12,13 @@ import { initAnalytics } from './lib/analytics.js';
 // idle, with a timeout so it still fires within 2s even under sustained load;
 // Safari lacks the API, so it falls back to a macrotask delay there.
 const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
 if ('requestIdleCallback' in window) {
   requestIdleCallback(() => initAnalytics(measurementId), { timeout: 2000 });
+  requestIdleCallback(() => initClarity(clarityProjectId), { timeout: 2000 });
 } else {
   setTimeout(() => initAnalytics(measurementId), 0);
+  setTimeout(() => initClarity(clarityProjectId), 0);
 }
 
 const rootElement = document.getElementById('root');
