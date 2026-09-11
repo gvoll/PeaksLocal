@@ -76,8 +76,12 @@ export default function About() {
             The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your infrastructure: built right, optimized through ongoing monitoring, and documented throughout.
           </blockquote>
 
+          <p className="about-mindset-body reveal reveal-delay-4" style={{ marginBottom: 0 }}>
+            I'd welcome the chance to be your local visibility partner, so please <Link to="/contact" style={faqLink}>reach out</Link> anytime.
+          </p>
+
           <p
-            className="reveal reveal-delay-4"
+            className="reveal reveal-delay-5"
             style={{
               fontFamily: "'Dancing Script', cursive",
               fontSize: '2rem',
