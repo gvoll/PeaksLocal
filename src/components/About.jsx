@@ -65,13 +65,29 @@ export default function About() {
           </h1>
 
           <p className="about-mindset-body reveal reveal-delay-1">
-            PeaksLocal was founded by a Denver-based consultant with 20+ years of experience building operational systems and managing complex programs, from early-stage startups to Fortune 500 enterprises.
+            PeaksLocal was founded by a Denver-based consultant with 20+ years of experience across operational systems, product lifecycle management, and complex program delivery. That experience spans early-stage startups to Fortune 500 enterprises.
           </p>
 
-          <blockquote className="about-pull-quote reveal reveal-delay-4">
-            Where most local marketing agencies focus on tactics, we bring a program manager's discipline to the problem...<br />
-            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network: built right, kept running, and documented throughout.
+          <p className="about-mindset-body reveal reveal-delay-2">
+            Most local marketing agencies focus on tactics and one-off campaigns, while I treat your digital identity holistically. My focus is building consistency across every platform as the foundation for local visibility in search, maps, and AI. My background brings the same program management discipline to that work: clear objectives, defined milestones, and open communication from day one.
+          </p>
+
+          <blockquote className="about-pull-quote reveal reveal-delay-3">
+            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network: built right, optimized through ongoing monitoring, and documented throughout.
           </blockquote>
+
+          <p
+            className="reveal reveal-delay-4"
+            style={{
+              fontFamily: "'Dancing Script', cursive",
+              fontSize: '2rem',
+              color: 'rgba(255,255,255,0.9)',
+              marginTop: '20px',
+              marginBottom: 0,
+            }}
+          >
+            Greg Voll, Founder
+          </p>
         </div>
       </div>
 
