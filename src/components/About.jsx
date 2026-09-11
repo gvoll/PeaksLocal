@@ -73,7 +73,7 @@ export default function About() {
           </p>
 
           <blockquote className="about-pull-quote reveal reveal-delay-3">
-            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your network: built right, optimized through ongoing monitoring, and documented throughout.
+            The result is a service that treats your <Link to="/faq#what-is-digital-identity" style={faqLink}>digital identity</Link> the way a good IT partner treats your infrastructure: built right, optimized through ongoing monitoring, and documented throughout.
           </blockquote>
 
           <p
