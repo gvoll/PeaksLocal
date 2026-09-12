@@ -7,7 +7,7 @@ import SEO from '../components/SEO.jsx';
 const NAV_LINKS = [
   { label: 'Why a Review Funnel', href: '#why' },
   { label: 'See It in Action', href: '#demo' },
-  { label: 'Apple Maps + SABs', href: '#apple' },
+  { label: 'Platform Notes', href: '#apple' },
   { label: 'Review Templates', href: '#templates' },
   { label: 'Get Yours', href: '#cta' },
 ];
@@ -58,8 +58,8 @@ function AcmeDemo({ type }) {
         },
         {
           name: 'Apple Maps',
-          action: 'Review us on Apple Maps',
-          sub: 'For iPhone and Mac users',
+          action: 'Find us on Apple Maps',
+          sub: "Reviews shown here are pulled from Yelp",
           bg: '#1c1c1e',
           border: 'none',
           icon: (
@@ -69,22 +69,9 @@ function AcmeDemo({ type }) {
           ),
         },
         {
-          name: 'Yelp',
-          action: 'Review us on Yelp',
-          sub: 'Also supports Apple Maps',
-          bg: '#D32323',
-          border: 'none',
-          icon: (
-            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" fill="#D32323"/>
-              <text x="12" y="16" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold" fontFamily="serif">y</text>
-            </svg>
-          ),
-        },
-        {
           name: 'Bing',
           action: 'Find us on Bing',
-          sub: 'For Windows and Edge users',
+          sub: 'Reviews shown here are pulled from Yelp too',
           bg: '#008373',
           border: 'none',
           icon: (
@@ -110,34 +97,9 @@ function AcmeDemo({ type }) {
             </svg>
           ),
         },
-        {
-          name: 'Yelp',
-          action: 'Review us on Yelp',
-          sub: 'Also supports our Apple Maps presence',
-          bg: '#D32323',
-          border: 'none',
-          icon: (
-            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" fill="#D32323"/>
-              <text x="12" y="16" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold" fontFamily="serif">y</text>
-            </svg>
-          ),
-        },
-        {
-          name: 'Bing',
-          action: 'Find us on Bing',
-          sub: 'For Windows and Edge users',
-          bg: '#008373',
-          border: 'none',
-          icon: (
-            <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path fill="#fff" d="M5 3l4 1.5v13l5-2.8-2-1.2 1-6 5 1.8V15l-9 5-4-2.3z"/>
-            </svg>
-          ),
-        },
       ];
 
-  const appleNote = !isLocation && (
+  const platformNote = (
     <div style={{
       marginTop: '12px',
       padding: '12px 16px',
@@ -152,7 +114,8 @@ function AcmeDemo({ type }) {
         lineHeight: 1.6,
         margin: 0,
       }}>
-        <strong style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>A note on Apple Maps:</strong> Apple does not currently support direct reviews for service-area businesses. Leaving a review on Yelp is the best way to support our Apple Maps presence in the meantime.
+        Yelp isn't shown above, see why in <a href="#apple" style={{ color: 'var(--green-hi)' }}>Platform Notes</a> below.
+        {!isLocation && ' Apple Maps and Bing aren\'t shown either, a separate, SAB-specific gap covered there too.'}
       </p>
     </div>
   );
@@ -235,7 +198,98 @@ function AcmeDemo({ type }) {
           </div>
         ))}
       </div>
-      {appleNote}
+
+      {isLocation && (
+        <p style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: '0.75rem',
+          color: 'rgba(255,255,255,0.5)',
+          lineHeight: 1.6,
+          margin: '12px 0 0',
+        }}>
+          Apple Maps and Bing don't have review systems of their own, both are showing your Yelp reviews. Managing your Yelp profile is what actually keeps all three in sync.
+        </p>
+      )}
+
+      <div style={{ marginTop: '16px' }}>
+        <div style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: '0.65rem',
+          color: 'var(--green-hi)',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+        }}>
+          Connect to Other Platforms, Such As
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {[
+            {
+              name: 'Facebook',
+              icon: (
+                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="12" fill="#1877F2"/>
+                  <path fill="#fff" d="M15.5 12.5h-2v7h-3v-7H9V10h1.5V8.7c0-1.6.7-2.7 2.7-2.7h1.9v2.4h-1.2c-.6 0-.9.3-.9.9V10h2.1l-.3 2.5z"/>
+                </svg>
+              ),
+            },
+            {
+              name: 'Instagram',
+              icon: (
+                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="ig-grad" x1="0" y1="24" x2="24" y2="0">
+                      <stop offset="0" stopColor="#FED576"/>
+                      <stop offset="0.35" stopColor="#F47133"/>
+                      <stop offset="0.65" stopColor="#BC3081"/>
+                      <stop offset="1" stopColor="#4F5BD5"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="24" height="24" rx="6" fill="url(#ig-grad)"/>
+                  <rect x="6" y="6" width="12" height="12" rx="3.5" fill="none" stroke="#fff" strokeWidth="1.4"/>
+                  <circle cx="12" cy="12" r="3" fill="none" stroke="#fff" strokeWidth="1.4"/>
+                  <circle cx="16" cy="8" r="0.9" fill="#fff"/>
+                </svg>
+              ),
+            },
+            {
+              name: 'LinkedIn',
+              icon: (
+                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+                  <path fill="#fff" d="M7.3 9.6h2.4V17H7.3V9.6zM8.5 8.4c-.8 0-1.3-.5-1.3-1.2S7.7 6 8.5 6s1.3.5 1.3 1.2-.5 1.2-1.3 1.2zM11.3 9.6h2.3v1h.03c.32-.6 1.1-1.2 2.27-1.2 2.43 0 2.87 1.5 2.87 3.5V17h-2.4v-3.7c0-.9 0-2-1.24-2s-1.43.95-1.43 1.94V17h-2.4V9.6z"/>
+                </svg>
+              ),
+            },
+            {
+              name: 'Clutch',
+              icon: (
+                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="6" fill="#EF5A28"/>
+                  <path fill="#fff" d="M12 6a6 6 0 100 12 6 6 0 000-12zm0 2.2a3.8 3.8 0 110 7.6 3.8 3.8 0 010-7.6z"/>
+                </svg>
+              ),
+            },
+          ].map(({ name, icon }) => (
+            <div key={name} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.78rem',
+              color: 'var(--slate)',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '20px',
+              padding: '6px 14px 6px 8px',
+            }}>
+              {icon}
+              {name}
+            </div>
+          ))}
+        </div>
+      </div>
+      {platformNote}
     </div>
   );
 }
@@ -430,7 +484,7 @@ export default function ReviewFunnelsPage() {
     <>
       <SEO
         title="Review Funnels — More Reviews, Less Friction"
-        description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow Google, Yelp, and Bing reviews, with easy-to-use templates."
+        description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow your Google reviews, with Yelp, Apple Maps, and Bing profile management built in."
         canonical="/review-funnels"
         breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
       />
@@ -471,10 +525,99 @@ export default function ReviewFunnelsPage() {
               color: 'var(--slate)',
               lineHeight: 1.75,
               maxWidth: '640px',
-              marginBottom: '40px',
+              marginBottom: '16px',
             }}>
-              Every PeaksLocal client gets a branded review page built for their business — one link that works across every platform, with templates to help clients say something real without the blank-page anxiety.
+              Every PeaksLocal client receives a free branded, custom review page:
             </p>
+            <ul style={{
+              listStyle: 'disc',
+              paddingLeft: '20px',
+              margin: '0 0 40px',
+              maxWidth: '640px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+            }}>
+              {[
+                {
+                  text: 'This single link safely directs customers to platforms where review requests are allowed.',
+                },
+                {
+                  text: "Your page's platform options depend on your business type: physical location vs. service-area business (SAB).",
+                  subItems: [
+                    {
+                      text: 'Yelp prohibits direct review requests entirely, so we handle profile management there instead.',
+                      subItems: [
+                        "Note that Apple and Bing Maps do not have their own reviews feature but use your business' Yelp profile for reviews.",
+                      ],
+                    },
+                    "SABs also lose Apple and Bing Maps visibility since they don't have physical locations and they don't provide a Place Card needed to be displayed on their maps.",
+                    <>For more details, see our <a href="#apple" style={{ color: 'var(--green-hi)' }}>Platform Notes</a> section below.</>,
+                  ],
+                },
+                {
+                  text: 'Also, we provide templates to help your customers write authentic feedback without the blank-page anxiety.',
+                  subItems: [
+                    <>For more details, see our <a href="#templates" style={{ color: 'var(--green-hi)' }}>Review Templates</a> section below.</>,
+                  ],
+                },
+              ].map((item, i) => (
+                <li key={i} style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '1rem',
+                  color: 'var(--slate)',
+                  lineHeight: 1.75,
+                }}>
+                  {item.text}
+                  {item.subItems && (
+                    <ul style={{
+                      listStyle: 'circle',
+                      paddingLeft: '20px',
+                      margin: '10px 0 0',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px',
+                    }}>
+                      {item.subItems.map((sub, j) => {
+                        const subText = typeof sub === 'object' && !React.isValidElement(sub) ? sub.text : sub;
+                        const nested = typeof sub === 'object' && !React.isValidElement(sub) ? sub.subItems : null;
+                        return (
+                          <li key={j} style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: '0.92rem',
+                            color: 'rgba(138,160,184,0.85)',
+                            lineHeight: 1.7,
+                          }}>
+                            {subText}
+                            {nested && (
+                              <ul style={{
+                                listStyle: '"– "',
+                                paddingLeft: '20px',
+                                margin: '8px 0 0',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '6px',
+                              }}>
+                                {nested.map((n, k) => (
+                                  <li key={k} style={{
+                                    fontFamily: "'DM Sans', sans-serif",
+                                    fontSize: '0.88rem',
+                                    color: 'rgba(138,160,184,0.7)',
+                                    lineHeight: 1.65,
+                                  }}>
+                                    {n}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
 
             {/* Jump nav */}
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -642,7 +785,7 @@ export default function ReviewFunnelsPage() {
                   lineHeight: 1.65,
                   marginBottom: '16px',
                 }}>
-                  Businesses with a verified physical location can have a Place Card on Apple Maps, which supports direct reviews. All four major platforms are available.
+                  Businesses with a verified physical location get a Place Card on Apple Maps, giving them a presence there, but Apple Maps has no written-review system of its own, it displays Yelp's reviews instead. Google is the only true direct request here; Apple Maps and Bing are informational, and Yelp is handled through profile management rather than a direct ask (see Platform Notes below).
                 </p>
                 <AcmeDemo type="location" />
               </div>
@@ -655,7 +798,7 @@ export default function ReviewFunnelsPage() {
                   lineHeight: 1.65,
                   marginBottom: '16px',
                 }}>
-                  Service-area businesses operate without a public address and don't qualify for an Apple Maps Place Card. Google is primary, Yelp covers the Apple gap, and Bing extends reach into AI-powered search.
+                  Service-area businesses operate without a public address and don't qualify for an Apple Maps Place Card, and Bing runs into the same problem since it imports its listing data from your Google Business Profile. Google is the only platform available here for a direct request; Yelp is handled through profile management rather than a direct ask (see Platform Notes below).
                 </p>
                 <AcmeDemo type="sab" />
               </div>
@@ -663,7 +806,7 @@ export default function ReviewFunnelsPage() {
           </div>
         </section>
 
-        {/* Apple SAB section */}
+        {/* Platform Notes section */}
         <section id="apple" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)', scrollMarginTop: '88px' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
@@ -683,10 +826,74 @@ export default function ReviewFunnelsPage() {
               textTransform: 'uppercase',
               color: 'var(--white)',
               lineHeight: 1.05,
+              marginBottom: '40px',
+            }}>
+              Platform Notes
+            </h2>
+
+            {/* Yelp: universal, applies to every client */}
+            <h3 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 700,
+              fontSize: '1.3rem',
+              textTransform: 'uppercase',
+              color: 'var(--white)',
+              letterSpacing: '0.02em',
+              marginBottom: '8px',
+            }}>
+              Yelp: Managed, Not Solicited
+            </h3>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.8rem',
+              color: 'rgba(138,160,184,0.6)',
+              fontStyle: 'italic',
+              marginBottom: '16px',
+            }}>
+              Applies to every client, physical location or service area.
+            </p>
+            <div style={{
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '12px',
+              padding: '24px',
+              marginBottom: '48px',
+            }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {[
+                  "Yelp prohibits asking anyone for a review, direct or indirect. Doing so risks your reviews being excluded from their algorithm, or a public Consumer Alert on your own listing.",
+                  "That's why Yelp is never a button in a PeaksLocal review funnel, for a physical location or a service-area business.",
+                  "Instead, we keep your Yelp profile complete and accurate and respond to what comes in naturally. Yelp is also a primary review source for Apple Maps and Bing, so a well-maintained Yelp profile helps there too.",
+                ].map((item) => (
+                  <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--slate)', lineHeight: 1.6 }}>
+                    <span style={{ color: 'var(--green-hi)', flexShrink: 0, marginTop: '2px' }}>·</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Apple + Bing: SAB-specific technical gap */}
+            <h3 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 700,
+              fontSize: '1.3rem',
+              textTransform: 'uppercase',
+              color: 'var(--white)',
+              letterSpacing: '0.02em',
+              marginBottom: '8px',
+            }}>
+              Service-Area Businesses: The Apple + Bing Gap
+            </h3>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '0.8rem',
+              color: 'rgba(138,160,184,0.6)',
+              fontStyle: 'italic',
               marginBottom: '24px',
             }}>
-              Apple Maps + Service-Area Businesses
-            </h2>
+              Only relevant if you're a service-area business, physical-location clients aren't affected.
+            </p>
 
             <div style={{
               display: 'grid',
@@ -711,14 +918,14 @@ export default function ReviewFunnelsPage() {
                   letterSpacing: '0.06em',
                   marginBottom: '12px',
                 }}>
-                  The limitation
+                  Apple Maps
                 </div>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
-                    'Apple reviews require a Place Card',
-                    'Place Cards require a verified physical address',
-                    "SABs (home-based, mobile, remote) don't qualify",
-                    'No Place Card = no Apple review profile',
+                    "Apple Maps has no written-review system of its own, for any business. It displays Yelp's reviews instead, and offers a thumbs-up/thumbs-down that's currently private to the person who gave it in the US.",
+                    'A Place Card is what determines whether you show up on Apple Maps at all, not whether you get your own reviews there.',
+                    'Place Cards require a verified physical address.',
+                    "SABs (home-based, mobile, remote) don't qualify, so they don't appear on Apple Maps at all, not even with Yelp's reviews surfaced.",
                   ].map((item) => (
                     <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--slate)', lineHeight: 1.5 }}>
                       <span style={{ color: 'rgba(255,120,110,0.8)', flexShrink: 0, marginTop: '1px' }}>·</span>
@@ -729,8 +936,8 @@ export default function ReviewFunnelsPage() {
               </div>
 
               <div style={{
-                background: 'rgba(58,173,100,0.07)',
-                border: '1px solid rgba(58,173,100,0.2)',
+                background: 'rgba(255,59,48,0.07)',
+                border: '1px solid rgba(255,59,48,0.2)',
                 borderRadius: '12px',
                 padding: '24px',
               }}>
@@ -739,21 +946,21 @@ export default function ReviewFunnelsPage() {
                   fontWeight: 700,
                   fontSize: '0.95rem',
                   textTransform: 'uppercase',
-                  color: 'var(--green-hi)',
+                  color: 'rgba(255,120,110,0.9)',
                   letterSpacing: '0.06em',
                   marginBottom: '12px',
                 }}>
-                  The workaround
+                  Bing
                 </div>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
-                    'Yelp reviews feed Apple Maps in certain cases',
-                    'Strong Yelp presence = best indirect Apple signal',
-                    'Builds your Yelp profile directly',
-                    'Apple Maps visibility improves over time',
+                    "Bing has no written-review system of its own either, for any business, it also just displays Yelp's (and other third parties') reviews.",
+                    'Bing imports its listing data from your Google Business Profile rather than offering independent address controls',
+                    "Since an SAB has no public address in GBP, Bing doesn't create a proper map location for it either",
+                    'No map location means no reviews surfaced there at all, the same practical result as Apple, for a different reason',
                   ].map((item) => (
                     <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--slate)', lineHeight: 1.5 }}>
-                      <span style={{ color: 'var(--green-hi)', flexShrink: 0, marginTop: '1px' }}>·</span>
+                      <span style={{ color: 'rgba(255,120,110,0.8)', flexShrink: 0, marginTop: '1px' }}>·</span>
                       {item}
                     </li>
                   ))}
@@ -857,9 +1064,19 @@ export default function ReviewFunnelsPage() {
               color: 'var(--slate)',
               lineHeight: 1.75,
               maxWidth: '520px',
+              margin: '0 auto 16px',
+            }}>
+              Every PeaksLocal client receives a free branded review funnel built for your business type and the appropriate platform(s) with a link you can use anywhere.
+            </p>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '1rem',
+              color: 'var(--slate)',
+              lineHeight: 1.75,
+              maxWidth: '520px',
               margin: '0 auto 32px',
             }}>
-              Every PeaksLocal engagement includes a branded review funnel built for your business type, with the right platforms, the right framing, and a link you can use anywhere.
+              · Start with a free Visibility Score to see where you stand, your review funnel comes standard once you're a client.
             </p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none' }}>

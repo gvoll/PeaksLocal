@@ -19,20 +19,10 @@ const platforms = [
       </svg>
     ),
   },
-  {
-    name: 'Yelp',
-    action: 'Review us on Yelp',
-    sub: 'Also supports our Apple Maps presence',
-    url: 'https://www.yelp.com/writeareview/biz/4bKWOG9AyebH6gp4omeYpQ?return_url=%2Fbiz%2F4bKWOG9AyebH6gp4omeYpQ&review_origin=biz-details-war-button',
-    bg: '#D32323',
-    border: 'none',
-    iconColor: '#fff',
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#fff" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 13.5c-.2.7-.9 1.1-1.6.9l-2.1-.6c-.7-.2-1.1-.9-.9-1.6l1.5-5.1c.1-.3.4-.4.7-.3l3.3 1c.3.1.4.4.3.7l-1.2 5zm6.3-1.8l-1.8 1.4c-.6.4-1.4.3-1.8-.3l-3-4.2c-.2-.3-.1-.6.2-.8l2.8-2c.3-.2.6-.1.8.2l3 4.2c.4.5.3 1.3-.2 1.5zm-2.3-7.4l-.3 3.5c0 .3-.3.5-.6.5l-3.5-.3c-.3 0-.5-.3-.5-.6l.3-3.5c0-.3.3-.5.6-.5l3.5.3c.4 0 .6.3.5.6z"/>
-      </svg>
-    ),
-  },
+  // Yelp: intentionally not a review-solicitation button. Yelp's own policy
+  // prohibits asking anyone to review a business, direct or indirect, so this
+  // page (whose entire purpose is asking for a review) never links to Yelp.
+  // Yelp presence is managed/optimized, not solicited, see ReviewFunnelsPage.
   // Bing: restore when listing is approved and published
   // {
   //   name: 'Bing',
@@ -86,8 +76,8 @@ export default function ReviewsPage() {
   return (
     <>
       <SEO
-        title="Leave a Review — Google, Yelp & Bing"
-        description="Had a good experience with PeaksLocal? Leave us a review on Google, Yelp, or Bing — it takes about a minute and helps other local businesses find us."
+        title="Leave a Review — Google"
+        description="Had a good experience with PeaksLocal? Leave us a review on Google — it takes about a minute and helps other local businesses find us."
         canonical="/reviews"
         breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
       />
@@ -261,30 +251,6 @@ export default function ReviewsPage() {
               Thank you — we appreciate it!
             </p>
           )}
-        </div>
-
-        {/* Apple Maps note */}
-        <div style={{
-          maxWidth: '420px',
-          width: '100%',
-          marginTop: '24px',
-          padding: '16px 20px',
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '10px',
-        }}>
-          <div style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: '0.8rem',
-            color: 'var(--slate)',
-            lineHeight: 1.65,
-          }}>
-            <strong style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>Regarding Service Area Businesses (SABs), such as PeaksLocal, on Apple Maps:</strong>
-            <ul style={{ listStyle: 'disc', paddingLeft: '18px', margin: '10px 0 0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <li>Apple does <strong style={{ color: 'rgba(255,255,255,0.7)' }}>NOT</strong> currently support direct reviews for SABs.</li>
-              <li>Yelp reviews are the best way to support our Apple Maps presence in the meantime.</li>
-            </ul>
-          </div>
         </div>
 
         {/* QR code download */}
