@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const oneTimeItems = [
   'Google, Apple & Bing profile setup and full optimization',
@@ -261,6 +262,60 @@ export default function Services() {
             </div>
           </div>
 
+          {/* Need something different */}
+          <div
+            className="reveal reveal-delay-2"
+            style={{
+              marginTop: '28px',
+              maxWidth: '720px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            <div
+              style={{
+                background: '#ffffff',
+                padding: '24px 28px',
+                borderRadius: '12px',
+                boxShadow: '0 4px 24px rgba(15, 36, 64, 0.1)',
+                textAlign: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '18px',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '0.95rem',
+                  fontWeight: 600,
+                  color: '#1a3a5c',
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                <span style={{ display: 'block', marginBottom: '6px' }}>Need something different?</span>
+                <span style={{ fontWeight: 500 }}>
+                  While our standard tiers are flexible, we can create a custom plan for specific services or unique project needs. Contact us to discuss a tailored solution.
+                </span>
+              </p>
+              <Link
+                to="/contact"
+                className="btn-primary"
+                style={{
+                  background: '#2E7D4F',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                }}
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+
           {/* Review funnel callout */}
           <div
             className="reveal reveal-delay-2"
@@ -283,7 +338,7 @@ export default function Services() {
                 fontWeight: 700,
                 fontSize: '1rem',
                 textTransform: 'uppercase',
-                color: 'var(--white)',
+                color: 'var(--navy)',
                 letterSpacing: '0.04em',
                 marginBottom: '6px',
               }}>
@@ -292,7 +347,7 @@ export default function Services() {
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
-                color: 'var(--slate)',
+                color: 'var(--mid)',
                 lineHeight: 1.65,
                 margin: 0,
                 maxWidth: '520px',
@@ -324,12 +379,28 @@ export default function Services() {
               fontFamily: "'DM Sans', sans-serif",
               fontStyle: 'italic',
               fontSize: '0.85rem',
-              color: 'var(--slate)',
+              color: 'var(--mid)',
               textAlign: 'center',
               marginTop: '32px',
             }}
           >
-            À la carte options available. Not ready for full management? Start with the free audit — no commitment required.
+            À la carte options available. Not ready for full management? Start with{' '}
+            <button
+              onClick={scrollToAudit}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                font: 'inherit',
+                fontStyle: 'italic',
+                color: 'var(--green)',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+            >
+              the free audit
+            </button>
+            {' '}— no commitment required.
           </p>
         </div>
       </section>
