@@ -347,7 +347,7 @@ export default function Services() {
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.85rem',
-                color: 'var(--slate)',
+                color: 'var(--mid)',
                 lineHeight: 1.65,
                 margin: 0,
                 maxWidth: '520px',
@@ -379,12 +379,28 @@ export default function Services() {
               fontFamily: "'DM Sans', sans-serif",
               fontStyle: 'italic',
               fontSize: '0.85rem',
-              color: 'var(--slate)',
+              color: 'var(--mid)',
               textAlign: 'center',
               marginTop: '32px',
             }}
           >
-            À la carte options available. Not ready for full management? Start with the free audit — no commitment required.
+            À la carte options available. Not ready for full management? Start with{' '}
+            <button
+              onClick={scrollToAudit}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                font: 'inherit',
+                fontStyle: 'italic',
+                color: 'var(--green)',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+            >
+              the free audit
+            </button>
+            {' '}— no commitment required.
           </p>
         </div>
       </section>
