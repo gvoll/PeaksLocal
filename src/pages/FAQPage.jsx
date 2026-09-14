@@ -17,6 +17,11 @@ const faqs = [
     a: 'Not exactly. Traditional SEO focuses on keywords and content ranking. PeaksLocal focuses on the underlying identity and data layer that makes visibility possible across search, maps, and AI, before content strategy even enters the picture.',
   },
   {
+    id: 'what-is-geo',
+    q: 'What is GEO (generative engine optimization), and do I need it?',
+    a: "GEO is a term for optimizing content so AI tools like ChatGPT and Google's AI Overviews cite or recommend your business. Google's own team has said there's nothing special businesses need to do for AI-generated answers beyond solid, ordinary local SEO: AI Overviews and AI Mode pull from the same underlying search index that ranks your regular listings, there's no separate database a GEO service gets you into. A business with accurate profiles, real reviews, and content that clearly answers what customers ask is already doing the work GEO promises.",
+  },
+  {
     id: 'nap-consistency',
     q: 'Why does NAP consistency matter?',
     a: 'NAP stands for Name, Address, Phone. When these match exactly across every platform, search systems trust the information and are more likely to surface your business. Mismatches create confusion; platforms resolve that confusion by recommending someone else.',
@@ -75,6 +80,7 @@ const glossary = [
   { id: 'citation', term: 'Citation', def: 'Two related but distinct meanings. In local SEO, any online mention of your business name, address, and phone number, found on directories, review sites, or industry listings; consistent citations build platform trust. In AI search, a source an AI engine pulls from when generating an answer, which doesn\'t always come with your business actually being named (see: ghost citation).' },
   { id: 'data-layer', term: 'Data Layer', def: 'The underlying collection of structured business information (profiles, schema, citations, and signals) that platforms use to understand and recommend your business. It\'s the foundation beneath any search or AI visibility strategy.' },
   { id: 'entity', term: 'Entity', def: 'How a search engine or AI system understands a business as a distinct, real-world thing, not just a keyword match.' },
+  { id: 'geo', term: 'GEO (Generative Engine Optimization)', def: "A term for optimizing content so AI tools like ChatGPT and Google's AI Overviews cite or recommend a business. Google has said no separate strategy is needed here: AI-generated answers pull from the same underlying search index as regular results, so solid local SEO already covers it." },
   { id: 'knowledge-graph', term: 'Knowledge Graph', def: 'A database Google and other platforms use to store verified facts about businesses, people, and places. Getting your business into it improves recommendation accuracy.' },
   { id: 'localbusiness-schema', term: 'LocalBusiness Schema', def: 'A specific type of structured data markup that tells search engines exactly what kind of business you are, where you\'re located, and how to reach you.' },
   { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
