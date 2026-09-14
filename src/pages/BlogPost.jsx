@@ -13,10 +13,17 @@ function formatDate(dateString) {
   if (!dateString) return '';
   // Fixed locale — see the matching note in Blog.jsx: an ambient locale
   // differs between the Node prerender and the visitor's browser.
+  //
+  // Fixed timeZone: 'UTC' too. Contentful's publishedDate is a calendar date,
+  // not a moment in time, but a bare date string parses as midnight UTC.
+  // Formatting that in the visitor's local timezone (Denver is UTC-6/-7)
+  // rolls it back to the previous day. Reading it back out in UTC returns
+  // the same calendar date that was entered.
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 }
 
