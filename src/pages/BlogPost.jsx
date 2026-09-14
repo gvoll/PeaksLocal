@@ -20,6 +20,38 @@ function formatDate(dateString) {
   });
 }
 
+function textFromNode(node) {
+  if (!node) return '';
+  if (node.nodeType === 'text') return node.value || '';
+  if (node.content) return node.content.map(textFromNode).join('');
+  return '';
+}
+
+function slugifyHeading(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+// Pillar posts (long, multi-section explainers) get a jump nav; short
+// reactive posts don't need one. Heading-4 count is a cheap, reliable proxy
+// for "long enough to need in-page navigation" without a separate word-count
+// pass over the rendered output.
+const JUMP_NAV_MIN_HEADINGS = 4;
+
+function extractHeadings(bodyDocument) {
+  if (!bodyDocument?.content) return [];
+  return bodyDocument.content
+    .filter((node) => node.nodeType === BLOCKS.HEADING_4)
+    .map((node) => {
+      const text = textFromNode(node);
+      return { text, slug: slugifyHeading(text) };
+    })
+    .filter((h) => h.text);
+}
+
 // Some Contentful entries link internally via the bare apex domain, which
 // 308-redirects to the canonical www host (see vercel.json) — rewrite those
 // so blog links don't send crawlers or visitors through a redirect hop.
@@ -41,7 +73,9 @@ const richTextOptions = {
     [BLOCKS.PARAGRAPH]: (node, children) => <p className="blog-post-paragraph">{children}</p>,
     [BLOCKS.HEADING_2]: (node, children) => <h2 className="blog-post-h2">{children}</h2>,
     [BLOCKS.HEADING_3]: (node, children) => <h3 className="blog-post-h3">{children}</h3>,
-    [BLOCKS.HEADING_4]: (node, children) => <h4 className="blog-post-h4">{children}</h4>,
+    [BLOCKS.HEADING_4]: (node, children) => (
+      <h4 className="blog-post-h4" id={slugifyHeading(textFromNode(node))}>{children}</h4>
+    ),
     [BLOCKS.HEADING_5]: (node, children) => <h5 className="blog-post-h5">{children}</h5>,
     [BLOCKS.UL_LIST]: (node, children) => <ul className="blog-post-list">{children}</ul>,
     [BLOCKS.OL_LIST]: (node, children) => <ol className="blog-post-list">{children}</ol>,
@@ -156,6 +190,21 @@ export default function BlogPost() {
                     className="blog-post-cover"
                   />
                 )}
+
+                {(() => {
+                  const headings = extractHeadings(post.body);
+                  if (headings.length < JUMP_NAV_MIN_HEADINGS) return null;
+                  return (
+                    <nav className="blog-post-jump-nav" aria-label="Jump to section">
+                      <span className="blog-post-jump-nav-label">Jump to:</span>
+                      {headings.map((h) => (
+                        <a key={h.slug} href={`#${h.slug}`} className="blog-post-jump-nav-link">
+                          {h.text}
+                        </a>
+                      ))}
+                    </nav>
+                  );
+                })()}
 
                 <section className="blog-post-body">
                   {post.body ? (
