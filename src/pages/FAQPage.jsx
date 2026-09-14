@@ -42,6 +42,11 @@ const faqs = [
     a: 'Reviews signal trust to both customers and platforms. Volume, recency, and owner responses all factor into how platforms rank and recommend your business. One strong, recent review can move the needle more than most technical fixes.',
   },
   {
+    id: 'review-gating-policy',
+    q: 'What is review gating, and why does Google prohibit it?',
+    a: "Review gating means steering only your happiest customers toward leaving a public review, often by asking for feedback privately first and only directing satisfied customers on to the review platform. Google's policy explicitly prohibits this, alongside incentivized reviews and pressuring customers for a review while they're still on site. The distinction that matters: an organic review that happens to praise a specific staff member is fine. What's prohibited is the business side, training staff or building a process to solicit reviews selectively.",
+  },
+  {
     id: 'report-card',
     q: 'What is the free report card?',
     a: 'It\'s a scored audit (0–100) of your digital identity across all seven categories: business profiles, structured data, NAP consistency, trust directories, reviews, social identity, and ongoing maintenance. You get a breakdown of where you\'re strong, where you\'re weak, and what to fix first.',
@@ -73,6 +78,7 @@ const glossary = [
   { id: 'knowledge-graph', term: 'Knowledge Graph', def: 'A database Google and other platforms use to store verified facts about businesses, people, and places. Getting your business into it improves recommendation accuracy.' },
   { id: 'localbusiness-schema', term: 'LocalBusiness Schema', def: 'A specific type of structured data markup that tells search engines exactly what kind of business you are, where you\'re located, and how to reach you.' },
   { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
+  { id: 'review-gating', term: 'Review Gating', def: "Steering only your happiest customers toward leaving a public review, for example by asking for feedback privately first and only directing satisfied customers on to the review platform. Google's policy explicitly prohibits this, alongside incentivized reviews and other selective solicitation." },
   { id: 'review-recency', term: 'Review Recency', def: 'How recently you\'ve received reviews. Platforms weight recent reviews more heavily than older ones; a steady stream matters more than a one-time burst.' },
   { id: 'trust-signal', term: 'Trust Signal', def: 'Any verified data point that tells a platform your business is real and reliable: a claimed profile, a consistent NAP, a review response, or a schema tag.' },
 ];
