@@ -45,6 +45,7 @@ function normalizePost(item) {
     slug: item.fields?.slug ?? '',
     excerpt: item.fields?.excerpt ?? '',
     publishedDate: item.fields?.publishedDate ?? null,
+    updatedAt: item.sys?.updatedAt ?? null,
     body: item.fields?.body ?? null,
     externalLink: item.fields?.externalLink ?? '',
     commentary: item.fields?.commentary ?? '',

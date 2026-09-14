@@ -126,7 +126,7 @@ async function main() {
       routePath: `/blog/${p.slug}`,
       priority: '0.8',
       changefreq: 'monthly',
-      lastmod: p.publishedDate || undefined,
+      lastmod: (p.updatedAt || p.publishedDate || '').slice(0, 10) || undefined,
       preload: { key: `post:${p.slug}`, value: p },
     })),
   ];
