@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <>
       <SEO
-        title="About — Denver-Based Digital Identity Firm"
+        title="About: Denver-Based Digital Identity Firm"
         description="PeaksLocal improves your digital identity and online visibility across Google, Apple Maps, Bing, Yelp, social, and directories, plus reviews."
         canonical="/about"
         breadcrumbs={[{ name: 'About', path: '/about' }]}

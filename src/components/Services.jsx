@@ -5,13 +5,13 @@ const oneTimeItems = [
   'Google, Apple & Bing profile setup and full optimization',
   'JSON-LD schema deployment on your website',
   'BBB liaison and trust directory claims',
-  'Data aggregator submission — 300+ endpoints',
+  'Data aggregator submission: 300+ endpoints',
   'Social profile NAP synchronization',
   'Completion report with before/after Identity Score',
 ];
 
 const ongoingItems = [
-  'Monthly profile updates — photos, posts, attributes',
+  'Monthly profile updates: photos, posts, attributes',
   'Review monitoring and response management',
   'Review velocity strategy',
   'Citation drift detection and correction',
@@ -128,7 +128,7 @@ export default function Services() {
                 lineHeight: 1.75,
               }}
             >
-              Two phases designed around your business — not a one-size-fits-all package.
+              Two phases designed around your business, not a one-size-fits-all package.
             </p>
           </div>
 
@@ -400,7 +400,7 @@ export default function Services() {
             >
               the free audit
             </button>
-            {' '}— no commitment required.
+            {', no commitment required.'}
           </p>
         </div>
       </section>

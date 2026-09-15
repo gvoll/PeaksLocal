@@ -13,7 +13,7 @@ const DEFAULT_DESCRIPTION = 'PeaksLocal manages your verified local presence acr
 // inside Helmet would work for client-side navigation but silently vanish
 // from the static HTML crawlers actually receive.
 export default function SEO({ title, description, canonical, image, noindex, breadcrumbs }) {
-  const fullTitle = title ? `${title} | PeaksLocal` : 'PeaksLocal — Be Seen on Search, Maps + AI';
+  const fullTitle = title ? `${title} | PeaksLocal` : 'PeaksLocal: Be Seen on Search, Maps + AI';
   const desc = description || DEFAULT_DESCRIPTION;
   const img = image || DEFAULT_IMAGE;
   const url = canonical ? `${BASE_URL}${canonical}` : BASE_URL;

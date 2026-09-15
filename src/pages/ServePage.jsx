@@ -9,7 +9,7 @@ export default function ServePage() {
   return (
     <>
       <SEO
-        title="Areas We Serve — Colorado Digital Identity"
+        title="Areas We Serve: Colorado Digital Identity"
         description="PeaksLocal manages verified local presence for businesses across Denver, Boulder, and Colorado Springs. See how we approach each market."
         canonical="/serve"
         breadcrumbs={[{ name: 'Areas We Serve', path: '/serve' }]}

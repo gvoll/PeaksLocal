@@ -242,7 +242,7 @@ export default function ContactForm() {
                 margin: '0 auto',
               }}
             >
-              Questions about how PeaksLocal can help your business? Reach out and we'll respond promptly — Thank You!
+              Questions about how PeaksLocal can help your business? Reach out and we'll respond promptly. Thank You!
             </p>
           </div>
 
@@ -507,7 +507,7 @@ export default function ContactForm() {
                     Check Your Current Status
                   </h2>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'rgba(138,160,184,0.85)', lineHeight: 1.65, maxWidth: '440px', margin: 0 }}>
-                    See how your business currently stands across Google, Maps, and AI platforms — and identify key opportunities to boost your visibility.
+                    See how your business currently stands across Google, Maps, and AI platforms, and identify key opportunities to boost your visibility.
                   </p>
                 </div>
                 <div style={{ flexShrink: 0 }}>
