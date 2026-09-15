@@ -114,8 +114,8 @@ export default function Hero() {
                 }}
               >
                 One Trusted Identity.<br />
-                <span style={{ color: 'var(--green-hi)' }}>Everywhere Your</span><br />
-                Customers Search.
+                <span style={{ color: 'var(--green-hi)' }}>Built for Local Search</span><br />
+                and Found by AI.
               </h1>
 
               {/* Sub */}

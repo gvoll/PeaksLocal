@@ -28,7 +28,11 @@ export default function LandingPage() {
 
   return (
     <>
-      <SEO canonical="/" />
+      <SEO
+        canonical="/"
+        title="Denver Local Search, AI + SEO"
+        description="PeaksLocal boosts your local SEO across Google, Apple Maps, Bing + AI search so Denver customers find you first. Get your free visibility score today."
+      />
       <Nav />
       <main>
         <Hero />
