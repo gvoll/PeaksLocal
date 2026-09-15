@@ -308,7 +308,7 @@ export default function WhoWeHelp() {
                 lineHeight: 1.75,
               }}
             >
-              PeaksLocal works best for businesses where being found locally is directly tied to revenue. If your customers search "near me," visibility is not optional.
+              PeaksLocal works best for small, local businesses where being found is tied directly to revenue: if your customers search "near me," visibility isn't optional.
             </p>
           </div>
 

@@ -212,7 +212,7 @@ export default function System({ headingLevel = 'h2' }) {
                 textAlign: 'left' 
               }}
             >
-              Local visibility is not an isolated task. It's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
+              Local visibility runs on the same discipline as any other business system, built with program management rigor, maintained as a repeatable process, and monitored with detailed reporting across local SEO and AI search optimization alike.
             </p>
 
             {/* Dedicated Flow Graphic Wrapper */}
@@ -376,7 +376,7 @@ export default function System({ headingLevel = 'h2' }) {
               Since every business is unique, we audit your current state, review findings, prioritize high-impact actions, and define a project scope aligned with your goals.
             </p>
             <p style={{ fontFamily: "'Lora', serif", fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.65 }}>
-              The audit drives the scope. No predetermined packages forced onto situations they don't fit.
+              The audit comes first. What we recommend after that is scoped to what your business actually needs.
             </p>
           </div>
 
