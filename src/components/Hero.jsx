@@ -127,7 +127,7 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search... so customers find you, not your competitor.
+                PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search so Denver customers find you, not your competitor.
               </p>
 
               {/* Pull quote */}
