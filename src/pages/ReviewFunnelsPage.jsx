@@ -18,21 +18,21 @@ const TEMPLATES = [
     label: 'The Quick One',
     sub: 'For clients who want to say something but don\'t know where to start',
     prompt: 'Working with [Business Name] was straightforward from the start. They helped us with [what you worked on] and the results were clear: [one outcome]. Easy to recommend.',
-    note: 'Just fill in the brackets — the rest is already there.',
+    note: 'Just fill in the brackets. The rest is already there.',
   },
   {
     id: 'detailed',
     label: 'The Detailed One',
     sub: 'For clients who want to be thorough',
-    prompt: 'We came to [Business Name] because [the problem you were trying to solve]. The process was [how it went — communication, timeline, etc.]. What stood out was [one specific thing]. Since working with them, [the result or change]. If you\'re dealing with something similar, they\'re worth a conversation.',
-    note: 'Answer each prompt in a sentence or two — it writes itself.',
+    prompt: 'We came to [Business Name] because [the problem you were trying to solve]. The process was [how it went: communication, timeline, etc.]. What stood out was [one specific thing]. Since working with them, [the result or change]. If you\'re dealing with something similar, they\'re worth a conversation.',
+    note: 'Answer each prompt in a sentence or two. It writes itself.',
   },
   {
     id: 'skeptic',
     label: 'The Honest One',
     sub: 'For clients who feel awkward writing reviews',
     prompt: 'I don\'t usually write reviews, but [Business Name] earned one. They [what they did] and it made a real difference for [your business or situation]. Honest feedback: [one thing that worked well]. Worth it.',
-    note: 'Honest reviews are the most useful ones — for future clients and for the business.',
+    note: 'Honest reviews are the most useful ones: for future clients and for the business.',
   },
 ];
 
@@ -483,7 +483,7 @@ export default function ReviewFunnelsPage() {
   return (
     <>
       <SEO
-        title="Review Funnels — More Reviews, Less Friction"
+        title="Review Funnels: More Reviews, Less Friction"
         description="Improve your online reputation with PeaksLocal's review funnel: one branded link to grow your Google reviews, with Yelp, Apple Maps, and Bing profile management built in."
         canonical="/review-funnels"
         breadcrumbs={[{ name: 'Review Funnels', path: '/review-funnels' }]}
@@ -668,7 +668,7 @@ export default function ReviewFunnelsPage() {
                 {
                   n: '02',
                   title: 'One link for everything',
-                  body: "Every review page comes with a downloadable QR code pointing at it, ready for invoices, business cards, table tents, or anywhere a URL is awkward to type. It's also a link in email signatures, a button in follow-up messages, and a destination in print materials — one URL handles all of it.",
+                  body: "Every review page comes with a downloadable QR code pointing at it, ready for invoices, business cards, table tents, or anywhere a URL is awkward to type. It's also a link in email signatures, a button in follow-up messages, and a destination in print materials. One URL handles all of it.",
                 },
                 {
                   n: '03',
@@ -720,7 +720,7 @@ export default function ReviewFunnelsPage() {
               color: 'var(--slate)',
               marginTop: '28px',
             }}>
-              This isn't hypothetical — <Link to="/reviews" style={{ color: 'var(--green-hi)', fontWeight: 600 }}>see PeaksLocal's own review page</Link>, QR code included, as a live example.
+              This isn't hypothetical: <Link to="/reviews" style={{ color: 'var(--green-hi)', fontWeight: 600 }}>see PeaksLocal's own review page</Link>, QR code included, as a live example.
             </p>
           </div>
         </section>
@@ -1019,7 +1019,7 @@ export default function ReviewFunnelsPage() {
               maxWidth: '620px',
               marginBottom: '8px',
             }}>
-              Most clients want to leave a review and don't know how to start. These prompts give them a frame, not a script. The words should be theirs — these just remove the friction.
+              Most clients want to leave a review and don't know how to start. These prompts give them a frame, not a script. The words should be theirs. These just remove the friction.
             </p>
             <p style={{
               fontFamily: "'DM Sans', sans-serif",

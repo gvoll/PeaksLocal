@@ -167,9 +167,9 @@ export function PartnerSection() {
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
               {[
-                'Local digital identity falls outside your core offering — we handle it so you stay focused.',
+                'Local digital identity falls outside your core offering. We handle it so you stay focused.',
                 'Your clients get a dedicated expert; you stay in your lane without losing the relationship.',
-                'No formal program or revenue share required — just a conversation about what works for both of us.',
+                'No formal program or revenue share required, just a conversation about what works for both of us.',
                 'Flexible arrangements: warm referrals, white-label support, or project handoffs.',
               ].map((item) => (
                 <li key={item} style={{

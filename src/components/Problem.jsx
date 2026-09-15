@@ -7,7 +7,7 @@ const problems = [
   {
     num: '01',
     title: 'Invisible to \'Near Me\' Searches',
-    body: 'When someone searches "best [service] near me" — on Google, through Siri, or by asking ChatGPT — the results come from verified business data. If your information is incomplete or inconsistent, AI systems skip you. Silently, every time.',
+    body: 'When someone searches "best [service] near me," on Google, through Siri, or by asking ChatGPT, the results come from verified business data. If your information is incomplete or inconsistent, AI systems skip you. Silently, every time.',
   },
   {
     num: '02',

@@ -23,7 +23,7 @@ const sections = [
       '• Communicate with you about your audit results and recommendations',
       '• Respond to inquiries or follow-up questions about our services',
       '• Understand how to improve our website and services',
-      'We do not use your information for automated decision-making or profiling. Your information is reviewed by a real person — Greg Voll, founder of PeaksLocal — who prepares your visibility audit.',
+      'We do not use your information for automated decision-making or profiling. Your information is reviewed by a real person, Greg Voll, founder of PeaksLocal, who prepares your visibility audit.',
     ],
   },
   {
@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
     <>
       <SEO
         title="Privacy Policy & Data Practices"
-        description="PeaksLocal privacy policy — how we collect, use, and protect your information."
+        description="PeaksLocal privacy policy: how we collect, use, and protect your information."
         canonical="/privacy"
         breadcrumbs={[{ name: 'Privacy Policy', path: '/privacy' }]}
       />

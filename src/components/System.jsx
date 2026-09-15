@@ -31,7 +31,7 @@ const tier1Items = [
 ];
 
 const tier2Items = [
-  'Monthly profile updates — photos, posts, attributes',
+  'Monthly profile updates: photos, posts, attributes',
   'Review monitoring and response management',
   'Review velocity strategy',
   'Citation drift detection and correction',
@@ -212,7 +212,7 @@ export default function System({ headingLevel = 'h2' }) {
                 textAlign: 'left' 
               }}
             >
-              Local visibility is not an isolated task — it's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
+              Local visibility is not an isolated task. It's infrastructure. We build it with program management discipline, maintain it like a systematic process, and monitor its performance with detailed reporting.
             </p>
 
             {/* Dedicated Flow Graphic Wrapper */}
@@ -251,7 +251,7 @@ export default function System({ headingLevel = 'h2' }) {
                   {/* Card header */}
                   <div style={{ background: 'var(--navy)', padding: '20px 24px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
                     <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.65rem', color: 'var(--slate)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '8px' }}>
-                      LOCAL VISIBILITY AUDIT — SAMPLE
+                      LOCAL VISIBILITY AUDIT: SAMPLE
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
                       <div>

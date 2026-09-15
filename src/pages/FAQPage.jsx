@@ -176,7 +176,7 @@ export default function FAQPage() {
   return (
     <>
       <SEO
-        title="FAQ — Local Search, Digital Identity & AI"
+        title="FAQ: Local Search, Digital Identity & AI"
         description="Answers on boosting your digital identity and local visibility across Google Business Profile, Apple Maps, Bing, Yelp, directories, reviews, and AI search."
         canonical="/faq"
         breadcrumbs={[{ name: 'FAQ', path: '/faq' }]}
@@ -219,7 +219,7 @@ export default function FAQPage() {
               letterSpacing: '-0.01em',
               marginBottom: '20px',
             }}>
-              What Is Digital Identity —<br />
+              What Is Digital Identity,<br />
               <span style={{ color: 'var(--green-hi)' }}>And Why Does It Matter?</span>
             </h1>
             <p style={{

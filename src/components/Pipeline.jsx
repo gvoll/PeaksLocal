@@ -26,7 +26,7 @@ const rightItems = [
   },
   {
     title: 'The Consistency Problem',
-    body: "If your phone number on Google differs from what's in a data aggregator, or your address on Apple Maps doesn't match your website schema, AI systems treat those discrepancies as reliability signals — and often skip your business entirely.",
+    body: "If your phone number on Google differs from what's in a data aggregator, or your address on Apple Maps doesn't match your website schema, AI systems treat those discrepancies as reliability signals, and often skip your business entirely.",
   },
   {
     title: 'Untapped Potential',
@@ -165,7 +165,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
               className="reveal reveal-delay-2"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
             >
-              The way customers find local businesses has fundamentally changed — and most businesses haven't kept up. Here's what's actually happening behind every search.
+              The way customers find local businesses has fundamentally changed, and most businesses haven't kept up. Here's what's actually happening behind every search.
             </p>
           </div>
 
@@ -284,7 +284,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
               When Someone Searches "Near Me," Here's What Decides Who Shows Up.
             </h3>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', color: 'var(--mid)', lineHeight: 1.75, marginBottom: '28px', maxWidth: '700px' }}>
-              "Near me" searches are one of the most valuable queries a local business can appear in — and one of the most misunderstood. The results aren't random. Every platform uses the same three criteria to decide which businesses to recommend:
+              "Near me" searches are one of the most valuable queries a local business can appear in, and one of the most misunderstood. The results aren't random. Every platform uses the same three criteria to decide which businesses to recommend:
             </p>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.65rem', color: 'var(--slate)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px' }}>
               Key Factors for Local Search Ranking
@@ -336,7 +336,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                   </p>
                   {stat.source && (
                     <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', color: 'var(--slate)', letterSpacing: '0.06em' }}>
-                      — {stat.source}
+                      · {stat.source}
                     </span>
                   )}
                 </div>
@@ -398,7 +398,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
                     style={{ borderLeft: '4px solid var(--green)', background: 'var(--ash)', borderRadius: '0 10px 10px 0', padding: '20px 22px', marginTop: '4px' }}
                   >
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--ink)', lineHeight: 1.7 }}>
-                      <strong style={{ color: 'var(--navy)' }}>If your information is incomplete or inconsistent anywhere in this chain, AI systems may skip your business entirely</strong> — including when a customer is actively looking for exactly what you offer.
+                      <strong style={{ color: 'var(--navy)' }}>If your information is incomplete or inconsistent anywhere in this chain, AI systems may skip your business entirely</strong>, including when a customer is actively looking for exactly what you offer.
                     </p>
                   </div>
                 </div>
@@ -412,7 +412,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
             style={{ borderTop: '1px solid var(--rule)', paddingTop: '48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap' }}
           >
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75, maxWidth: '620px' }}>
-              This is what PeaksLocal is built to fix. We establish and maintain your verified presence at every layer of this pipeline — so by the time a recommendation engine asks "can I trust this business data?", the answer is a consistent, verified yes.
+              This is what PeaksLocal is built to fix. We establish and maintain your verified presence at every layer of this pipeline, so by the time a recommendation engine asks "can I trust this business data?", the answer is a consistent, verified yes.
             </p>
             <button className="btn-primary" onClick={scrollToSystem}>
               See How We Work →

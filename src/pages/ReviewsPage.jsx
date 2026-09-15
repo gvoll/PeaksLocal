@@ -76,8 +76,8 @@ export default function ReviewsPage() {
   return (
     <>
       <SEO
-        title="Leave a Review — Google"
-        description="Had a good experience with PeaksLocal? Leave us a review on Google — it takes about a minute and helps other local businesses find us."
+        title="Leave a Review: Google"
+        description="Had a good experience with PeaksLocal? Leave us a review on Google. It takes about a minute and helps other local businesses find us."
         canonical="/reviews"
         breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
       />
@@ -222,7 +222,7 @@ export default function ReviewsPage() {
             fontStyle: 'italic',
             marginBottom: '16px',
           }}>
-            No need to answer all three — even one honest sentence goes a long way.
+            No need to answer all three, even one honest sentence goes a long way.
           </p>
           <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
             <input
@@ -248,7 +248,7 @@ export default function ReviewsPage() {
               marginTop: '10px',
               fontStyle: 'italic',
             }}>
-              Thank you — we appreciate it!
+              Thank you, we appreciate it!
             </p>
           )}
         </div>

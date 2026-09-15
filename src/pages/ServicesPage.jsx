@@ -27,7 +27,7 @@ const servicesJsonLd = {
       "provider": provider,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Identity Build — Your Plan May Include",
+        "name": "Identity Build: Your Plan May Include",
         "itemListElement": [
           'Google, Apple & Bing profile setup and full optimization',
           'JSON-LD schema deployment on your website',
@@ -46,9 +46,9 @@ const servicesJsonLd = {
       "provider": provider,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Identity Management — As Your Identity Management Partner",
+        "name": "Identity Management: As Your Identity Management Partner",
         "itemListElement": [
-          'Monthly profile updates — photos, posts, attributes',
+          'Monthly profile updates: photos, posts, attributes',
           'Review monitoring and response management',
           'Review velocity strategy',
           'Citation drift detection and correction',
