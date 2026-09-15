@@ -4,7 +4,7 @@ import { jsonLdProps } from '../lib/jsonLd.js';
 
 const BASE_URL = 'https://www.peakslocal.com';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`;
-const DEFAULT_DESCRIPTION = 'PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search — so customers find you, not your competitor.';
+const DEFAULT_DESCRIPTION = 'PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search so customers find you, not your competitor.';
 
 // `breadcrumbs` is the trail after Home, e.g. [{ name: 'Serve', path: '/serve' },
 // { name: 'Denver', path: '/serve/denver' }]. Rendered as a plain sibling
