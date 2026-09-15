@@ -42,7 +42,7 @@ export default function ServePage() {
               lineHeight: 1.75,
               maxWidth: '620px',
             }}>
-              PeaksLocal is a Denver-based local digital identity firm serving businesses across Colorado's Front Range. We manage your verified presence across Google, Apple Maps, Bing, and AI search so customers find you when it matters, whether you run a physical location or a service area business.
+              PeaksLocal is a Denver-based local digital identity firm serving small businesses across Colorado's Front Range. We manage your verified presence across Google, Apple Maps, Bing, and AI search so customers find you when it matters, whether you run a physical location or a service area business.
             </p>
           </div>
         </section>
