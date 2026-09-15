@@ -123,7 +123,7 @@ export default function Problem() {
                 lineHeight: 1.75,
               }}
             >
-              Even the best businesses can be invisible to customers actively searching for products or services, not because of their reputation, but because of gaps in local SEO fundamentals like the <Link to="/faq#data-layer" style={faqLink}>data layer</Link> that powers modern search.
+              Even the best businesses can be invisible to customers actively searching for products or services. It's usually not a reputation problem. It's gaps in local SEO fundamentals, like the <Link to="/faq#data-layer" style={faqLink}>data layer</Link> that powers modern search.
             </p>
           </div>
 
