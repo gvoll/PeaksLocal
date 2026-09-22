@@ -41,19 +41,13 @@ const audienceNavStyles = `
           font-size: 1rem;
           color: var(--white);
           margin: 0;
-        }
-        .ep-actions {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 18px;
-          flex-wrap: wrap;
+          max-width: 640px;
         }
         .ep-actions-buttons {
           display: flex;
           align-items: center;
           gap: 10px;
-          flex-shrink: 0;
+          margin: 14px 0;
         }
         .ep-start-btn {
           display: inline-flex;
@@ -145,18 +139,14 @@ const audienceNavStyles = `
           text-transform: uppercase;
           color: var(--white);
           margin: 0 0 14px;
+          font-size: 1.15rem;
         }
         .ep-rank-num {
           font-family: 'DM Mono', monospace;
           font-weight: 500;
           color: var(--green-hi);
+          font-size: 1.05rem;
         }
-        .ep-rank-1 .ep-rank-label { font-size: 1.4rem; }
-        .ep-rank-1 .ep-rank-num { font-size: 0.85rem; }
-        .ep-rank-2 .ep-rank-label { font-size: 1.1rem; }
-        .ep-rank-2 .ep-rank-num { font-size: 0.74rem; }
-        .ep-rank-3 .ep-rank-label { font-size: 0.92rem; }
-        .ep-rank-3 .ep-rank-num { font-size: 0.66rem; }
         @media (max-width: 480px) {
           .ep-rank-label { flex-direction: column; gap: 2px; }
         }
@@ -180,8 +170,8 @@ const audienceNavStyles = `
         .ep-chip-other { border-style: dashed; color: rgba(138,160,184,0.6); }
         .ep-bottom-row {
           text-align: center;
-          margin-top: 36px;
-          padding-top: 22px;
+          margin-top: 28px;
+          padding-top: 16px;
           border-top: 1px solid rgba(255,255,255,0.08);
         }
         .ep-bottom-btn {
@@ -294,13 +284,10 @@ export default function AudienceNav() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: audienceNavStyles }} />
-      <section id="audience-nav" style={{ background: 'var(--navy)', padding: '56px 0 80px' }}>
+      <section id="audience-nav" style={{ background: 'var(--navy)', padding: '56px 0 24px' }}>
         <div className="container">
-          <div className="ep-actions">
-            <p className="ep-eyebrow-copy">
-              <span className="section-eyebrow">Not sure where to start?</span>
-              Please tell us about your business and we&rsquo;ll highlight your relevant content:
-            </p>
+          <div>
+            <span className="section-eyebrow">Not sure where to start?</span>
             <div className="ep-actions-buttons">
               <button type="button" className="ep-start-btn" onClick={handleStartHere}>
                 Start Here
@@ -321,6 +308,9 @@ export default function AudienceNav() {
                 </span>
               </button>
             </div>
+            <p className="ep-eyebrow-copy">
+              Please tell us about your business and we&rsquo;ll highlight your relevant content:
+            </p>
           </div>
 
           <div

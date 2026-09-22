@@ -27,7 +27,14 @@ const heroStyles = `
         }
         @media (max-width: 600px) {
           .hero-h1 { font-size: 3.2rem !important; }
-          .hero-trust { flex-direction: column; gap: 8px !important; }
+          .hero-cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+        }
+        .btn-ghost.hero-not-sure {
+          color: var(--green-hi);
+          font-size: 1rem;
+        }
+        .btn-ghost.hero-not-sure:hover {
+          color: var(--white);
         }
 `;
 
@@ -40,8 +47,8 @@ export default function Hero() {
     }
   };
 
-  const scrollToPipeline = () => {
-    const el = document.getElementById('pipeline');
+  const scrollToAudienceNav = () => {
+    const el = document.getElementById('audience-nav');
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
@@ -57,7 +64,7 @@ export default function Hero() {
           background: 'var(--navy)',
           minHeight: '100vh',
           paddingTop: '120px',
-          paddingBottom: '80px',
+          paddingBottom: '56px',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -148,48 +155,50 @@ export default function Hero() {
                 </p>
               </blockquote>
 
-              {/* CTAs */}
-              <div className="hero-fade" style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap', marginBottom: '28px' }}>
+              {/* CTA + trust points: side by side on larger screens,
+                  stacked on mobile via the .hero-cta-row media query below */}
+              <div className="hero-fade hero-cta-row" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '28px',
+                flexWrap: 'wrap',
+                marginBottom: '18px',
+              }}>
                 <Link
                   to="/audit"
                   className="btn-primary"
                   style={{ fontSize: '1rem', padding: '15px 28px', textDecoration: 'none' }}
                 >
-                  Get My Free Visibility Score
+                  Get My FREE Visibility Score
                 </Link>
-                <button
-                  className="btn-ghost"
-                  onClick={scrollToPipeline}
-                >
-                  See How It Works →
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {[
+                    'No commitment required',
+                    'Response within 24 hours',
+                  ].map((item) => (
+                    <span key={item} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: '0.8rem',
+                      color: 'var(--slate)',
+                    }}>
+                      <span style={{ color: 'var(--green-hi)', fontSize: '0.9rem' }}>✓</span>
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              {/* Trust line */}
-              <div className="hero-fade hero-trust" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '20px',
-                flexWrap: 'wrap',
-              }}>
-                {[
-                  'Free visibility score (0–100)',
-                  'No commitment required',
-                  'Response within 24 hours',
-                ].map((item) => (
-                  <span key={item} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.8rem',
-                    color: 'var(--slate)',
-                  }}>
-                    <span style={{ color: 'var(--green-hi)', fontSize: '0.9rem' }}>✓</span>
-                    {item}
-                  </span>
-                ))}
-              </div>
+              {/* Alternate path for visitors who aren't ready to convert yet */}
+              <button
+                className="hero-fade btn-ghost hero-not-sure"
+                onClick={scrollToAudienceNav}
+                style={{ padding: 0 }}
+              >
+                Not Sure Where to Start? →
+              </button>
             </div>
 
           </div>
