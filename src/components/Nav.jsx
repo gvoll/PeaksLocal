@@ -81,30 +81,28 @@ const styles = {
     border: 'none',
     padding: 0,
   },
-  getStartedPill: {
+  getStartedLink: {
     fontFamily: "'DM Sans', sans-serif",
-    fontSize: '0.85rem',
+    fontSize: '0.88rem',
     fontWeight: 600,
     color: 'var(--green-hi)',
-    background: 'rgba(58,173,100,0.14)',
+    background: 'none',
     border: 'none',
-    borderRadius: '20px',
-    padding: '7px 14px',
+    padding: 0,
     cursor: 'pointer',
-    transition: 'background 0.15s ease',
+    transition: 'color 0.2s ease',
   },
-  mobileGetStarted: {
+  mobileGetStartedLink: {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: '0.95rem',
     fontWeight: 600,
     color: 'var(--green-hi)',
-    background: 'rgba(58,173,100,0.14)',
+    background: 'none',
     border: 'none',
-    borderRadius: '6px',
     padding: '10px 0',
     cursor: 'pointer',
     width: '100%',
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: '4px',
   },
   ctaBtn: {
@@ -158,20 +156,6 @@ const styles = {
     width: '100%',
     display: 'block',
   },
-  mobileCta: {
-    marginTop: '12px',
-    fontFamily: "'DM Sans', sans-serif",
-    fontSize: '0.95rem',
-    fontWeight: 500,
-    color: 'var(--white)',
-    background: 'var(--green)',
-    border: 'none',
-    borderRadius: '5px',
-    padding: '12px 18px',
-    cursor: 'pointer',
-    width: '100%',
-    textAlign: 'center',
-  },
 };
 
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
@@ -184,6 +168,15 @@ const navDropdownStyles = `
   @media (max-width: 768px) {
     .nav-links { display: none !important; }
     .nav-hamburger { display: flex !important; }
+    .nav-divider { display: none !important; }
+    .nav-cta-persistent { padding: 7px 14px !important; font-size: 0.78rem !important; }
+  }
+  .nav-divider {
+    display: inline-block;
+    width: 1px;
+    height: 22px;
+    background: rgba(255,255,255,0.14);
+    flex-shrink: 0;
   }
   .nav-link-item:hover { color: var(--white) !important; }
   .nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
@@ -234,7 +227,7 @@ const navDropdownStyles = `
     content: '';
     position: absolute;
     inset: -6px -10px;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1.5px solid var(--green-hi);
     opacity: 0;
     animation: navGetStartedPulse 1.8s ease-out 3;
@@ -247,7 +240,7 @@ const navDropdownStyles = `
   @media (prefers-reduced-motion: reduce) {
     .nav-pulse::after { animation: none; }
   }
-  .nav-get-started:hover { background: rgba(58,173,100,0.2) !important; }
+  .nav-get-started:hover { color: var(--white) !important; }
 `;
 
 export default function Nav() {
@@ -291,10 +284,6 @@ export default function Nav() {
     }
   };
 
-  const navItems = [
-    { label: 'Local Search', id: 'pipeline' },
-  ];
-
   const handleGetStarted = () => {
     trackEvent('entry_point_nav_click');
     scrollTo('audience-nav');
@@ -323,119 +312,120 @@ export default function Nav() {
             </div>
           </a>
 
-          {/* Desktop Links */}
-          <div className="nav-links" style={styles.links}>
-            <button
-              className="nav-pulse nav-get-started"
-              style={styles.getStartedPill}
-              onClick={handleGetStarted}
-            >
-              Get Started
-            </button>
-            {navItems.map((item) => (
+          {/* Right side: nav links (desktop only), divider, persistent CTA, hamburger (mobile only) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <div className="nav-links" style={styles.links}>
               <button
-                key={item.id}
-                className="nav-link-item"
-                style={styles.link}
-                onClick={() => scrollTo(item.id)}
+                className="nav-pulse nav-get-started"
+                style={styles.getStartedLink}
+                onClick={handleGetStarted}
               >
-                {item.label}
+                Get Started
               </button>
-            ))}
 
-            {/* PeaksLocal System dropdown */}
-            <div className="nav-dropdown" ref={systemRef}>
-              <button
-                className="nav-link-item"
-                style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
-                onClick={() => setSystemOpen(!systemOpen)}
+              {/* PeaksLocal System dropdown */}
+              <div className="nav-dropdown" ref={systemRef}>
+                <button
+                  className="nav-link-item"
+                  style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
+                  onClick={() => setSystemOpen(!systemOpen)}
+                >
+                  PeaksLocal System
+                  <span className="nav-dropdown-chevron" style={{ transform: systemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+                </button>
+                {systemOpen && (
+                  <div className="nav-dropdown-menu">
+                    <button
+                      className="nav-dropdown-item"
+                      onClick={() => { setSystemOpen(false); scrollTo('system'); }}
+                    >
+                      Our Process
+                    </button>
+                    <button
+                      className="nav-dropdown-item"
+                      onClick={() => { setSystemOpen(false); scrollTo('services'); }}
+                    >
+                      Service Options
+                    </button>
+                    <button
+                      className="nav-dropdown-item"
+                      onClick={() => { setSystemOpen(false); scrollTo('pipeline'); }}
+                    >
+                      Local Search
+                    </button>
+                    <Link
+                      to="/review-funnels"
+                      className="nav-dropdown-item"
+                      onClick={() => setSystemOpen(false)}
+                    >
+                      Review Funnels
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Who We Help dropdown */}
+              <div
+                className="nav-dropdown"
+                ref={whoRef}
               >
-                PeaksLocal System
-                <span className="nav-dropdown-chevron" style={{ transform: systemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-              </button>
-              {systemOpen && (
-                <div className="nav-dropdown-menu">
-                  <button
-                    className="nav-dropdown-item"
-                    onClick={() => { setSystemOpen(false); scrollTo('system'); }}
-                  >
-                    Our Process
-                  </button>
-                  <button
-                    className="nav-dropdown-item"
-                    onClick={() => { setSystemOpen(false); scrollTo('services'); }}
-                  >
-                    Service Options
-                  </button>
-                  <Link
-                    to="/review-funnels"
-                    className="nav-dropdown-item"
-                    onClick={() => setSystemOpen(false)}
-                  >
-                    Review Funnels
-                  </Link>
-                </div>
-              )}
+                <button
+                  className="nav-link-item"
+                  style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
+                  onClick={() => setWhoOpen(!whoOpen)}
+                >
+                  Who We Help
+                  <span className="nav-dropdown-chevron" style={{ transform: whoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+                </button>
+                {whoOpen && (
+                  <div className="nav-dropdown-menu">
+                    <button
+                      className="nav-dropdown-item"
+                      onClick={() => { setWhoOpen(false); scrollTo('who'); }}
+                    >
+                      Clients
+                    </button>
+                    <Link
+                      to="/partners"
+                      className="nav-dropdown-item"
+                      onClick={() => setWhoOpen(false)}
+                    >
+                      Partners
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link to="/blog" className="nav-link-item" style={styles.link}>
+                Blog
+              </Link>
+              <Link to="/about" className="nav-link-item" style={styles.link}>
+                About
+              </Link>
             </div>
 
-            {/* Who We Help dropdown */}
-            <div
-              className="nav-dropdown"
-              ref={whoRef}
-            >
-              <button
-                className="nav-link-item"
-                style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
-                onClick={() => setWhoOpen(!whoOpen)}
-              >
-                Who We Help
-                <span className="nav-dropdown-chevron" style={{ transform: whoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-              </button>
-              {whoOpen && (
-                <div className="nav-dropdown-menu">
-                  <button
-                    className="nav-dropdown-item"
-                    onClick={() => { setWhoOpen(false); scrollTo('who'); }}
-                  >
-                    Clients
-                  </button>
-                  <Link
-                    to="/partners"
-                    className="nav-dropdown-item"
-                    onClick={() => setWhoOpen(false)}
-                  >
-                    Partners
-                  </Link>
-                </div>
-              )}
-            </div>
+            <span className="nav-divider" />
 
-            <Link to="/blog" className="nav-link-item" style={styles.link}>
-              Blog
-            </Link>
-            <Link to="/about" className="nav-link-item" style={styles.link}>
-              About
-            </Link>
             <Link
               to="/audit"
-              className="nav-cta"
+              className="nav-cta nav-cta-persistent"
               style={styles.ctaBtn}
             >
               Free Audit
             </Link>
-          </div>
 
-          {/* Hamburger */}
-          <button
-            className="nav-hamburger"
-            style={{ ...styles.hamburger, display: 'none' }}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span style={styles.hamburgerLine} />
-            <span style={styles.hamburgerLine} />
-            <span style={styles.hamburgerLine} />
-          </button>
+            {/* Hamburger */}
+            <button
+              className="nav-hamburger"
+              style={{ ...styles.hamburger, display: 'none' }}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span style={styles.hamburgerLine} />
+              <span style={styles.hamburgerLine} />
+              <span style={styles.hamburgerLine} />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -443,20 +433,11 @@ export default function Nav() {
           <div style={styles.mobileMenu}>
             <button
               className="nav-pulse"
-              style={styles.mobileGetStarted}
+              style={styles.mobileGetStartedLink}
               onClick={handleGetStarted}
             >
               Get Started
             </button>
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                style={styles.mobileLink}
-                onClick={() => scrollTo(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
             {/* PeaksLocal System mobile */}
             <button
               style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
@@ -478,6 +459,12 @@ export default function Nav() {
                   onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('services'); }}
                 >
                   Service Options
+                </button>
+                <button
+                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('pipeline'); }}
+                >
+                  Local Search
                 </button>
                 <Link
                   to="/review-funnels"
@@ -528,13 +515,6 @@ export default function Nav() {
               onClick={() => setMobileOpen(false)}
             >
               About
-            </Link>
-            <Link
-              to="/audit"
-              style={{ ...styles.mobileCta, textDecoration: 'none', display: 'block', textAlign: 'center' }}
-              onClick={() => setMobileOpen(false)}
-            >
-              Free Audit
             </Link>
           </div>
         )}

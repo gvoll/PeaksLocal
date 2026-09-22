@@ -41,13 +41,17 @@ const audienceNavStyles = `
           font-size: 1rem;
           color: var(--white);
           margin: 0;
-          max-width: 640px;
+          max-width: 520px;
+          text-align: center;
+        }
+        .ep-eyebrow-copy .section-eyebrow {
+          justify-content: center;
         }
         .ep-actions-buttons {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin: 14px 0;
+          margin-top: 16px;
         }
         .ep-start-btn {
           display: inline-flex;
@@ -286,8 +290,11 @@ export default function AudienceNav() {
       <style dangerouslySetInnerHTML={{ __html: audienceNavStyles }} />
       <section id="audience-nav" style={{ background: 'var(--navy)', padding: '56px 0 24px' }}>
         <div className="container">
-          <div>
-            <span className="section-eyebrow">Not sure where to start?</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+            <p className="ep-eyebrow-copy">
+              <span className="section-eyebrow">Not sure where to start?</span>
+              Please tell us about your business so we can route you to relevant content, faster:
+            </p>
             <div className="ep-actions-buttons">
               <button type="button" className="ep-start-btn" onClick={handleStartHere}>
                 Start Here
@@ -308,9 +315,6 @@ export default function AudienceNav() {
                 </span>
               </button>
             </div>
-            <p className="ep-eyebrow-copy">
-              Please tell us about your business and we&rsquo;ll highlight your relevant content:
-            </p>
           </div>
 
           <div
