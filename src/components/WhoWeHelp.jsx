@@ -251,6 +251,13 @@ const whoWeHelpStyles = `
         @media (max-width: 768px) {
           .who-cols { flex-direction: column !important; }
         }
+        @keyframes shapeCardHighlight {
+          0% { box-shadow: 0 0 0 0 rgba(58,173,100,0.5); border-color: var(--green-hi); }
+          100% { box-shadow: 0 0 0 10px rgba(58,173,100,0); border-color: var(--rule); }
+        }
+        .shape-card.is-highlighted {
+          animation: shapeCardHighlight 1.6s ease-out;
+        }
 `;
 
 export default function WhoWeHelp() {
@@ -318,12 +325,14 @@ export default function WhoWeHelp() {
             style={{ display: 'flex', gap: '16px', marginBottom: '40px' }}
           >
             {[
-              { icon: '📍', title: 'Single Location', desc: 'One storefront, one profile to get right' },
-              { icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate' },
-              { icon: '🏢', title: 'Multi-Location', desc: 'Consistent profiles across every location, zero drift' },
+              { id: 'who-single', icon: '📍', title: 'Single Location', desc: 'One storefront, one profile to get right' },
+              { id: 'who-sab', icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate' },
+              { id: 'who-multi', icon: '🏢', title: 'Multi-Location', desc: 'Consistent profiles across every location, zero drift' },
             ].map((item) => (
               <div
                 key={item.title}
+                id={item.id}
+                className="shape-card"
                 style={{
                   flex: 1,
                   display: 'flex',

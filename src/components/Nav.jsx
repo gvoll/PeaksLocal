@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { trackEvent } from '../lib/analytics.js';
 
 const styles = {
   nav: {
@@ -79,6 +80,32 @@ const styles = {
     background: 'none',
     border: 'none',
     padding: 0,
+  },
+  getStartedPill: {
+    fontFamily: "'DM Sans', sans-serif",
+    fontSize: '0.85rem',
+    fontWeight: 600,
+    color: 'var(--green-hi)',
+    background: 'rgba(58,173,100,0.14)',
+    border: 'none',
+    borderRadius: '20px',
+    padding: '7px 14px',
+    cursor: 'pointer',
+    transition: 'background 0.15s ease',
+  },
+  mobileGetStarted: {
+    fontFamily: "'DM Sans', sans-serif",
+    fontSize: '0.95rem',
+    fontWeight: 600,
+    color: 'var(--green-hi)',
+    background: 'rgba(58,173,100,0.14)',
+    border: 'none',
+    borderRadius: '6px',
+    padding: '10px 0',
+    cursor: 'pointer',
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '4px',
   },
   ctaBtn: {
     fontFamily: "'DM Sans', sans-serif",
@@ -200,6 +227,27 @@ const navDropdownStyles = `
     transition: transform 0.2s;
     vertical-align: middle;
   }
+  .nav-pulse {
+    position: relative;
+  }
+  .nav-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -6px -10px;
+    border-radius: 20px;
+    border: 1.5px solid var(--green-hi);
+    opacity: 0;
+    animation: navGetStartedPulse 1.8s ease-out 3;
+    pointer-events: none;
+  }
+  @keyframes navGetStartedPulse {
+    0% { transform: scale(1); opacity: 0.55; }
+    100% { transform: scale(1.3); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-pulse::after { animation: none; }
+  }
+  .nav-get-started:hover { background: rgba(58,173,100,0.2) !important; }
 `;
 
 export default function Nav() {
@@ -247,6 +295,11 @@ export default function Nav() {
     { label: 'Local Search', id: 'pipeline' },
   ];
 
+  const handleGetStarted = () => {
+    trackEvent('entry_point_nav_click');
+    scrollTo('audience-nav');
+  };
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: navDropdownStyles }} />
@@ -272,6 +325,13 @@ export default function Nav() {
 
           {/* Desktop Links */}
           <div className="nav-links" style={styles.links}>
+            <button
+              className="nav-pulse nav-get-started"
+              style={styles.getStartedPill}
+              onClick={handleGetStarted}
+            >
+              Get Started
+            </button>
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -381,6 +441,13 @@ export default function Nav() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div style={styles.mobileMenu}>
+            <button
+              className="nav-pulse"
+              style={styles.mobileGetStarted}
+              onClick={handleGetStarted}
+            >
+              Get Started
+            </button>
             {navItems.map((item) => (
               <button
                 key={item.id}
