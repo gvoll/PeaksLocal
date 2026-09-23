@@ -54,42 +54,41 @@ const audienceNavStyles = `
           margin-top: 16px;
         }
         .ep-start-btn {
+          position: relative;
           display: inline-flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           font-family: 'DM Mono', monospace;
-          font-size: 0.72rem;
+          font-size: 0.92rem;
           font-weight: 600;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          color: var(--navy);
-          background: var(--green-hi);
+          color: var(--green-hi);
+          background: none;
           border: none;
-          border-radius: 6px;
-          padding: 12px 18px;
+          padding: 0;
           cursor: pointer;
           white-space: nowrap;
-          transition: background 0.15s ease;
+          transition: color 0.15s ease;
         }
-        .ep-start-btn:hover { background: #4fc178; }
-        .ep-icon-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          flex-shrink: 0;
-          border-radius: 6px;
-          border: 1px solid rgba(255,255,255,0.16);
-          background: rgba(255,255,255,0.04);
-          color: var(--slate);
-          cursor: pointer;
-          transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+        .ep-start-btn:hover { color: var(--white); }
+        .ep-start-btn .arrow {
+          font-size: 1.35em;
+          line-height: 1;
         }
-        .ep-icon-btn:hover {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(255,255,255,0.28);
-          color: var(--white);
+        .ep-start-btn::after {
+          content: '';
+          position: absolute;
+          inset: -8px -12px;
+          border-radius: 10px;
+          border: 1.5px solid var(--green-hi);
+          opacity: 0;
+          animation: startHerePulse 1.8s ease-out 3;
+          pointer-events: none;
+        }
+        @keyframes startHerePulse {
+          0% { transform: scale(1); opacity: 0.55; }
+          100% { transform: scale(1.3); opacity: 0; }
         }
         .ep-chevron {
           display: inline-block;
@@ -197,6 +196,7 @@ const audienceNavStyles = `
         .ep-bottom-btn:hover { color: var(--white); }
         @media (prefers-reduced-motion: reduce) {
           .ep-body, .ep-chevron { transition: none !important; }
+          .ep-start-btn::after { animation: none; }
         }
 `;
 
@@ -273,12 +273,6 @@ export default function AudienceNav() {
     scrollToId('audience-nav');
   };
 
-  const handleToggleIcon = () => {
-    const next = !open;
-    setOpen(next);
-    trackEvent('entry_point_visibility', { open: next, source: 'icon' });
-  };
-
   const handleHideBottom = () => {
     setOpen(false);
     trackEvent('entry_point_visibility', { open: false, source: 'bottom' });
@@ -296,23 +290,14 @@ export default function AudienceNav() {
               Please tell us about your business so we can route you to relevant content, faster:
             </p>
             <div className="ep-actions-buttons">
-              <button type="button" className="ep-start-btn" onClick={handleStartHere}>
-                Start Here
-              </button>
               <button
                 type="button"
-                className="ep-icon-btn"
+                className="ep-start-btn"
+                onClick={handleStartHere}
                 aria-expanded={open}
                 aria-controls="audience-nav-body"
-                aria-label="Collapse this section"
-                onClick={handleToggleIcon}
               >
-                <span
-                  className="ep-chevron"
-                  style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                >
-                  &#8964;
-                </span>
+                Start Here <span className="arrow">&darr;</span>
               </button>
             </div>
           </div>
