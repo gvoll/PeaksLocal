@@ -78,12 +78,19 @@ function resolveHref(uri) {
 const richTextOptions = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <p className="blog-post-paragraph">{children}</p>,
+    // Contentful's "Heading 2"/"Heading 3" styles are never actually picked by
+    // content authors (every published post uses "Heading 4"/"Heading 5" for
+    // subsection sizing), which left every post's real DOM skipping straight
+    // from the page's <h1> title to <h4>. Rendering HEADING_4/HEADING_5 as
+    // <h2>/<h3> fixes that heading-level skip for screen readers while keeping
+    // each post's existing visual style (same classNames) and requiring no
+    // changes to already-published Contentful content.
     [BLOCKS.HEADING_2]: (node, children) => <h2 className="blog-post-h2">{children}</h2>,
     [BLOCKS.HEADING_3]: (node, children) => <h3 className="blog-post-h3">{children}</h3>,
     [BLOCKS.HEADING_4]: (node, children) => (
-      <h4 className="blog-post-h4" id={slugifyHeading(textFromNode(node))}>{children}</h4>
+      <h2 className="blog-post-h4" id={slugifyHeading(textFromNode(node))}>{children}</h2>
     ),
-    [BLOCKS.HEADING_5]: (node, children) => <h5 className="blog-post-h5">{children}</h5>,
+    [BLOCKS.HEADING_5]: (node, children) => <h3 className="blog-post-h5">{children}</h3>,
     [BLOCKS.UL_LIST]: (node, children) => <ul className="blog-post-list">{children}</ul>,
     [BLOCKS.OL_LIST]: (node, children) => <ol className="blog-post-list">{children}</ol>,
     [BLOCKS.LIST_ITEM]: (node, children) => <li className="blog-post-list-item">{children}</li>,

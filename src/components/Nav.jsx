@@ -295,7 +295,7 @@ export default function Nav() {
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
         <div style={styles.inner}>
           {/* Brand */}
-          <a href="/" style={styles.brand}>
+          <a href="/" style={styles.brand} aria-label="PeaksLocal home">
             <picture>
               <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
               <img
