@@ -29,24 +29,22 @@ const heroStyles = `
           .hero-h1 { font-size: 3.2rem !important; }
           .hero-cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
-        .btn-ghost.hero-not-sure {
+        .hero-find-path-link {
+          background: none;
+          border: none;
+          padding: 0;
+          font: inherit;
           color: var(--green-hi);
-          font-size: 1rem;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          cursor: pointer;
         }
-        .btn-ghost.hero-not-sure:hover {
+        .hero-find-path-link:hover {
           color: var(--white);
         }
 `;
 
 export default function Hero() {
-  const scrollToAudit = () => {
-    const el = document.getElementById('audit');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
   const scrollToAudienceNav = () => {
     const el = document.getElementById('audience-nav');
     if (el) {
@@ -138,26 +136,25 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal manages your verified local presence across Google, Apple Maps, Bing, and AI search so Denver customers find you, not your competitor.
+                PeaksLocal builds and maintains your verified business data for local search across Google, Apple Maps, Bing, and AI...so customers find you, not your competitor.
               </p>
 
-              {/* Pull quote */}
-              <blockquote className="hero-fade" style={{
-                borderLeft: '3px solid var(--green)',
-                paddingLeft: '20px',
+              {/* Alternate path for visitors who aren't ready to convert yet */}
+              <p className="hero-fade" style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.95rem',
+                color: 'var(--slate)',
                 marginBottom: '36px',
-                maxWidth: '500px',
               }}>
-                <p style={{
-                  fontFamily: "'Lora', serif",
-                  fontStyle: 'italic',
-                  fontSize: '0.95rem',
-                  color: 'var(--slate)',
-                  lineHeight: 1.65,
-                }}>
-                  "If your business information isn't verified, consistent, and trusted across the platforms that power modern search, your competitors are being recommended instead of you."
-                </p>
-              </blockquote>
+                Not sure where to start? Click{' '}
+                <button
+                  type="button"
+                  className="hero-find-path-link"
+                  onClick={scrollToAudienceNav}
+                >
+                  Find My Path
+                </button>
+              </p>
 
               {/* CTA + trust points: side by side on larger screens,
                   stacked on mobile via the .hero-cta-row media query below */}
@@ -173,12 +170,12 @@ export default function Hero() {
                   className="btn-primary"
                   style={{ fontSize: '1rem', padding: '15px 28px', textDecoration: 'none' }}
                 >
-                  Get My FREE Visibility Score
+                  Get My Free Visibility Score
                 </Link>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
                     'No commitment required',
-                    'Response within 24 hours',
+                    'Response within one business day',
                   ].map((item) => (
                     <span key={item} style={{
                       display: 'flex',
@@ -194,15 +191,6 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
-
-              {/* Alternate path for visitors who aren't ready to convert yet */}
-              <button
-                className="hero-fade btn-ghost hero-not-sure"
-                onClick={scrollToAudienceNav}
-                style={{ padding: 0 }}
-              >
-                Not Sure Where to Start? →
-              </button>
             </div>
 
           </div>

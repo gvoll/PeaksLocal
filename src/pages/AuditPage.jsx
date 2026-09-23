@@ -15,7 +15,7 @@ export default function AuditPage() {
       />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
-        <AuditForm headingLevel="h1" />
+        <AuditForm headingLevel="h1" showWhatHappensNext />
       </main>
       <Footer />
     </>

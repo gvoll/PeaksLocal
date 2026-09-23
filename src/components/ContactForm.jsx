@@ -516,7 +516,7 @@ export default function ContactForm() {
                     className="btn-primary"
                     style={{ fontSize: '1rem', padding: '15px 28px', whiteSpace: 'nowrap' }}
                   >
-                    Get My Free Audit
+                    Get My Free Visibility Score
                   </Link>
                 </div>
               </div>

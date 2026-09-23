@@ -286,8 +286,8 @@ export default function AudienceNav() {
         <div className="container">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <p className="ep-eyebrow-copy">
-              <span className="section-eyebrow">Not sure where to start?</span>
-              Please tell us about your business so we can route you to relevant content, faster:
+              <span className="section-eyebrow">Find My Path</span>
+              Please tell us about your business so we can route you faster to your solution or relevant content:
             </p>
             <div className="ep-actions-buttons">
               <button
