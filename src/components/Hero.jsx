@@ -100,8 +100,7 @@ export default function Hero() {
                 Serving Denver,{' '}
                 <Link to="/serve" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
                   the Front Range
-                </Link>
-                , and Local Businesses Nationwide
+                </Link>, and Local Businesses Nationwide
                 <span className="blink-dot" />
               </div>
 
@@ -148,7 +147,7 @@ export default function Hero() {
                   fontFamily: "'Lora', serif",
                   fontStyle: 'italic',
                   fontSize: '0.95rem',
-                  color: 'rgba(138,160,184,0.85)',
+                  color: 'var(--slate)',
                   lineHeight: 1.65,
                 }}>
                   "If your business information isn't verified, consistent, and trusted across the platforms that power modern search, your competitors are being recommended instead of you."
