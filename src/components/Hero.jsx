@@ -97,10 +97,15 @@ export default function Hero() {
                 padding: '6px 12px',
                 borderRadius: '4px',
               }}>
-                Serving Denver,{' '}
-                <Link to="/serve" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-                  the Front Range
-                </Link>, and Local Businesses Nationwide
+                {/* Wrapped in one span so flex `gap` (meant for the space
+                    before the blink-dot) doesn't also insert itself between
+                    the Link and the surrounding text as separate flex items. */}
+                <span>
+                  Serving Denver,{' '}
+                  <Link to="/serve" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                    the Front Range
+                  </Link>, and Local Businesses Nationwide
+                </span>
                 <span className="blink-dot" />
               </div>
 
