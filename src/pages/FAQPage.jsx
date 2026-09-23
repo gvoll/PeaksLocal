@@ -352,7 +352,7 @@ export default function FAQPage() {
                 Contact Us
               </Link>
               <Link to="/audit" className="btn-ghost" style={{ textDecoration: 'none' }}>
-                Get Your Free Report Card →
+                Get My Free Visibility Score
               </Link>
             </div>
           </div>

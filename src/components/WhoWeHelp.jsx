@@ -507,7 +507,7 @@ export default function WhoWeHelp() {
                 Our free audit gives you clarity on your current online presence.
               </p>
               <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-block' }}>
-                Start with a Free Audit
+                Get My Free Visibility Score
               </Link>
             </div>
           </div>

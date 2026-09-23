@@ -320,7 +320,7 @@ export default function Nav() {
                 style={styles.getStartedLink}
                 onClick={handleGetStarted}
               >
-                Get Started
+                Find My Path
               </button>
 
               {/* PeaksLocal System dropdown */}
@@ -436,7 +436,7 @@ export default function Nav() {
               style={styles.mobileGetStartedLink}
               onClick={handleGetStarted}
             >
-              Get Started
+              Find My Path
             </button>
             {/* PeaksLocal System mobile */}
             <button

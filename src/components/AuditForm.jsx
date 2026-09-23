@@ -59,7 +59,7 @@ const auditFormStyles = `
         }
 `;
 
-export default function AuditForm({ headingLevel = 'h2' }) {
+export default function AuditForm({ headingLevel = 'h2', showWhatHappensNext = false }) {
   const MainHeading = headingLevel;
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
@@ -157,8 +157,68 @@ export default function AuditForm({ headingLevel = 'h2' }) {
             <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.82rem', letterSpacing: '0.1em', color: '#1a3a5c', marginTop: '8px', textTransform: 'uppercase', fontWeight: '600' }}>
   No Obligation. No Sales Pressure.
 </p>
+            <p className="reveal reveal-delay-3" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', marginTop: '10px' }}>
+              You'll hear from a PeaksLocal rep within one business day.
+            </p>
           </div>
 
+          {showWhatHappensNext && (
+            <div className="reveal reveal-delay-2" style={{ maxWidth: '600px', margin: '0 auto 48px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: '0.7rem',
+                letterSpacing: '0.12em',
+                color: 'var(--green)',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+                marginBottom: '4px',
+              }}>
+                What Happens After You Submit
+              </div>
+              {[
+                {
+                  title: 'We review it, within one business day.',
+                  body: 'Greg personally checks your current presence across Google, Apple Maps, Bing, and AI search.',
+                },
+                {
+                  title: 'You get your Visibility Score.',
+                  body: "A personalized report showing exactly where you're strong, where you have gaps, and what to fix first.",
+                },
+                {
+                  title: 'We walk you through it.',
+                  body: 'A quick call or email to go over your results together. No contracts to sign, no sales pitch.',
+                },
+              ].map((item, i) => (
+                <div key={item.title} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                  <span style={{
+                    flexShrink: 0,
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: 'rgba(58,173,100,0.12)',
+                    border: '1.5px solid var(--green-hi)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '0.9rem',
+                    color: 'var(--green)',
+                  }}>
+                    {i + 1}
+                  </span>
+                  <div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: '0.92rem', color: 'var(--ink)', marginBottom: '2px' }}>
+                      {item.title}
+                    </div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', lineHeight: 1.6 }}>
+                      {item.body}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* Form card */}
           <div className="audit-form-card reveal reveal-delay-2">
@@ -330,7 +390,7 @@ export default function AuditForm({ headingLevel = 'h2' }) {
                   maxWidth: '380px',
                   margin: '0 auto 24px',
                 }}>
-                  Your request has been received. We'll have your Local Visibility Score ready for you shortly and follow up to review.
+                  Your request has been received. You'll hear from a PeaksLocal rep within one business day with your Local Visibility Score.
                 </p>
                 <button
                   style={{

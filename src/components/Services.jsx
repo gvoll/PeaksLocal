@@ -189,7 +189,7 @@ export default function Services() {
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
                 <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Start with a Free Audit
+                  Get My Free Visibility Score
                 </button>
               </div>
             </div>
@@ -256,7 +256,7 @@ export default function Services() {
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
                 <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Start with a Free Audit
+                  Get My Free Visibility Score
                 </button>
               </div>
             </div>
