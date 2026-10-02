@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 import ProcessFlow from './ProcessFlow.jsx';
@@ -20,6 +21,21 @@ const priorityNextSteps = [
   'Claim and complete your Apple Business Connect listing',
   'Add structured data (JSON-LD) to your website',
   'Standardize your info across Bing, BBB, and industry directories',
+];
+
+const diyDifferences = [
+  {
+    label: 'It Drifts Out of Sync',
+    text: 'A DIY fix or a one-time agency cleanup starts accurate. Without monitoring, listings quietly fall out of sync, and one wrong detail chips away at the trust signal all the others were building.',
+  },
+  {
+    label: 'It Rarely Covers Everything',
+    text: 'Most attempts focus on Google alone. Apple, Bing, structured data, and trust directories, the signals that increasingly shape AI-assisted search, usually go untouched.',
+  },
+  {
+    label: "It Doesn't Stick",
+    text: 'A one-time fix decays. Our monthly phase exists because maintenance has to be built in, not bolted on.',
+  },
 ];
 
 const tier1Items = [
@@ -220,6 +236,63 @@ export default function System({ headingLevel = 'h2' }) {
               <ProcessFlow className="reveal reveal-delay-2"/>
             </div>
 
+          </div>
+
+          {/* Tried DIY or an agency before */}
+          <div
+            className="plan-card reveal"
+            style={{ maxWidth: '900px', marginBottom: '72px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px' }}
+          >
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--green)' }}>
+              TRIED DIY OR AN AGENCY BEFORE?
+            </div>
+            <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.7rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.02em', margin: 0 }}>
+              Why This Might Look Different From What You Tried Before
+            </h3>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', color: 'var(--mid)', lineHeight: 1.7, margin: 0, maxWidth: '660px' }}>
+              Most DIY fixes and one-time agency cleanups look fine on day one. The trouble tends to come from what the first pass didn't cover, and from what happens after.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '6px' }}>
+              {diyDifferences.map((item, i) => (
+                <div key={item.label} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <span style={{
+                    flexShrink: 0,
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    background: 'var(--green-hi)',
+                    color: 'var(--white)',
+                    fontFamily: "'DM Mono', monospace",
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    {i + 1}
+                  </span>
+                  <div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: '0.95rem', color: 'var(--ink)', marginBottom: '2px' }}>
+                      {item.label}
+                    </div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', lineHeight: 1.55 }}>
+                      {item.text}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: "'Lora', serif", fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.65, margin: '8px 0 0' }}>
+              This is why the engagement has two phases: an audit to find what's actually wrong, then ongoing management so it stays fixed.
+            </p>
+            <div>
+              <Link
+                to="/blog/diy-local-seo-vs-hiring-an-agency"
+                style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--green-hi)', textDecoration: 'none' }}
+              >
+                Read the full comparison →
+              </Link>
+            </div>
           </div>
 
           {/* 4a — The Audit */}

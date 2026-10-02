@@ -19,6 +19,12 @@ const ongoingItems = [
   'Your dedicated Director of Digital Presence',
 ];
 
+const multiLocationPoints = [
+  'A dedicated listing for every location, not one profile stretched across addresses',
+  'All locations grouped under one account for easy bulk management',
+  'Pricing and scope sized to how many locations you run',
+];
+
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
 // child. <style> content is HTML "raw text" -- browsers never decode entities
 // inside it -- but React's normal text-child serialization HTML-escapes
@@ -130,6 +136,27 @@ export default function Services() {
             >
               Two phases designed around your business, not a one-size-fits-all package.
             </p>
+            <div
+              className="reveal reveal-delay-2"
+              style={{ marginTop: '20px', display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap' }}
+            >
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.95rem', fontWeight: 600, color: '#1a3a5c' }}>
+                Already know what you need?
+              </span>
+              <Link
+                to="/contact"
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: '0.78rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--green-hi)',
+                  textDecoration: 'none',
+                }}
+              >
+                Get a quote →
+              </Link>
+            </div>
           </div>
 
           {/* Cards */}
@@ -259,6 +286,66 @@ export default function Services() {
                   Get My Free Visibility Score
                 </button>
               </div>
+            </div>
+          </div>
+
+          {/* Multi-location */}
+          <div
+            className="reveal reveal-delay-2"
+            style={{
+              marginTop: '28px',
+              maxWidth: '720px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              background: 'rgba(58,173,100,0.06)',
+              border: '1px solid rgba(58,173,100,0.25)',
+              borderRadius: '12px',
+              padding: '30px 36px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700,
+                fontSize: '1.25rem',
+                textTransform: 'uppercase',
+                color: 'var(--navy)',
+                letterSpacing: '0.03em',
+                margin: 0,
+              }}
+            >
+              Multi-Location Google Business Profile Management
+            </h3>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.88rem', color: 'var(--mid)', lineHeight: 1.6, margin: 0 }}>
+              Managing more than one location? Here's how it works:
+            </p>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {multiLocationPoints.map((point) => (
+                <li key={point} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                  <span className="service-check">✓</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--mid)', lineHeight: 1.55 }}>
+                    {point}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <Link
+                to="/contact"
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--green-hi)',
+                  textDecoration: 'none',
+                }}
+              >
+                Get a Multi-Location Quote →
+              </Link>
             </div>
           </div>
 
