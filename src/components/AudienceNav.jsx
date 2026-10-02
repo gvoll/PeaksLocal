@@ -2,31 +2,41 @@ import React, { useState } from 'react';
 import { trackEvent } from '../lib/analytics.js';
 
 const FAMILIARITY_OPTIONS = [
-  { value: 'know', label: 'I know what I need', target: 'services' },
-  { value: 'new', label: 'New to local SEO', target: 'problem' },
-  { value: 'diy', label: 'Tried DIY or an agency', target: 'system' },
-  { value: 'not_sure', label: 'Not sure', target: 'problem', isOther: true },
+  { value: 'know', label: 'I know what I need', target: 'services', stop: { title: 'Services', note: 'You know what you need' } },
+  { value: 'new', label: 'New to local SEO', target: 'problem', stop: { title: 'The Visibility Problem', note: 'A plain-language start' } },
+  { value: 'diy', label: 'Tried DIY or an agency', target: 'system', stop: { title: 'The PeaksLocal System', note: 'How this differs from a past attempt' } },
+  { value: 'not_sure', label: 'Not sure', target: 'problem', isOther: true, stop: { title: 'The Visibility Problem', note: 'A plain-language start' } },
 ];
 
 const BUSINESS_SETUP_OPTIONS = [
-  { value: 'single', label: 'Single location', target: 'who', highlightId: 'who-single' },
-  { value: 'sab', label: 'Service area', target: 'who', highlightId: 'who-sab' },
-  { value: 'multi', label: 'Multi-location', target: 'who', highlightId: 'who-multi' },
-  { value: 'not_sure', label: 'Not sure', target: 'who', isOther: true },
+  { value: 'single', label: 'Single location', target: 'who', highlightId: 'who-single', stop: { title: 'Who PeaksLocal Helps', note: 'Single-location card, highlighted' } },
+  { value: 'sab', label: 'Service area', target: 'who', highlightId: 'who-sab', stop: { title: 'Who PeaksLocal Helps', note: 'Service-area card, highlighted' } },
+  { value: 'multi', label: 'Multi-location', target: 'who', highlightId: 'who-multi', stop: { title: 'Who PeaksLocal Helps', note: 'Multi-location card, highlighted' } },
+  { value: 'not_sure', label: 'Not sure', target: 'who', isOther: true, stop: { title: 'Who PeaksLocal Helps', note: 'All three business shapes' } },
 ];
 
 const SEO_STATUS_OPTIONS = [
-  { value: 'none', label: 'Nothing set up', target: 'audit' },
-  { value: 'inconsistent', label: 'Inconsistent', target: 'audit' },
-  { value: 'managed', label: 'Managed, not working', target: 'audit' },
-  { value: 'not_sure', label: 'Not sure', target: 'audit', isOther: true },
+  { value: 'none', label: 'Nothing set up', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Nothing is set up yet' } },
+  { value: 'inconsistent', label: 'Inconsistent', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Details do not match everywhere' } },
+  { value: 'managed', label: 'Managed, not working', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Managed, but not producing results' } },
+  { value: 'not_sure', label: 'Not sure', target: 'audit', isOther: true, stop: { title: 'Free Visibility Audit', note: 'Start with a free audit' } },
 ];
 
 const PARTNERSHIP_OPTIONS = [
-  { value: 'referral', label: 'Warm referral', target: 'partners' },
-  { value: 'white_label', label: 'White-label support', target: 'partners' },
-  { value: 'handoff', label: 'Project handoff', target: 'partners' },
-  { value: 'not_sure', label: 'Not sure', target: 'partners', isOther: true },
+  { value: 'referral', label: 'Warm referral', target: 'partners', stop: { title: 'Work With PeaksLocal', note: 'How warm referrals work' } },
+  { value: 'white_label', label: 'White-label support', target: 'partners', stop: { title: 'Work With PeaksLocal', note: 'How white-label support works' } },
+  { value: 'handoff', label: 'Project handoff', target: 'partners', stop: { title: 'Work With PeaksLocal', note: 'How project handoffs work' } },
+  { value: 'not_sure', label: 'Not sure', target: 'partners', isOther: true, stop: { title: 'Work With PeaksLocal', note: 'The ways we partner' } },
+];
+
+const OWNER_QUESTIONS = [
+  { axis: 'familiarity', num: '01', label: 'Local SEO Familiarity', options: FAMILIARITY_OPTIONS },
+  { axis: 'business_setup', num: '02', label: 'Your Current Business Setup/Structure', options: BUSINESS_SETUP_OPTIONS },
+  { axis: 'seo_status', num: '03', label: 'Current Status of your Local SEO Setup', options: SEO_STATUS_OPTIONS },
+];
+
+const PARTNER_QUESTIONS = [
+  { axis: 'partnership_type', num: null, label: 'Partnership Type', options: PARTNERSHIP_OPTIONS },
 ];
 
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
@@ -194,6 +204,78 @@ const audienceNavStyles = `
           transition: color 0.15s ease;
         }
         .ep-bottom-btn:hover { color: var(--white); }
+        .ep-slot {
+          margin: 14px auto 0;
+          max-width: 440px;
+          min-height: 92px;
+          display: flex;
+          align-items: stretch;
+          justify-content: center;
+        }
+        .ep-slot-card {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 8px 14px;
+          text-align: left;
+          border: 1px solid rgba(255,255,255,0.14);
+          border-radius: 10px;
+          background: rgba(255,255,255,0.04);
+          padding: 12px 16px;
+        }
+        .ep-slot-card.is-empty {
+          justify-content: center;
+          border-style: dashed;
+          border-color: rgba(255,255,255,0.12);
+          background: transparent;
+        }
+        .ep-slot-empty { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: rgba(138,160,184,0.75); }
+        .ep-slot-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+        .ep-slot-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.6rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--slate);
+        }
+        .ep-slot-title { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--white); }
+        .ep-slot-note { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--slate); }
+        .ep-slot-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; margin-left: auto; }
+        .ep-go-link {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--green-hi);
+          background: none;
+          border: none;
+          padding: 6px 0;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: color 0.15s ease;
+        }
+        .ep-go-link:hover { color: var(--white); }
+        .ep-next-link {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.74rem;
+          color: rgba(138,160,184,0.9);
+          background: none;
+          border: none;
+          padding: 3px 0;
+          cursor: pointer;
+          transition: color 0.15s ease;
+        }
+        .ep-next-link:hover { color: var(--white); }
+        .ep-go-link:focus-visible, .ep-next-link:focus-visible, .ep-chip:focus-visible {
+          outline: 2px solid var(--green-hi);
+          outline-offset: 3px;
+        }
+        @media (max-width: 520px) {
+          .ep-slot-actions { align-items: flex-start; margin-left: 0; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .ep-body, .ep-chevron { transition: none !important; }
           .ep-start-btn::after { animation: none; }
@@ -222,12 +304,14 @@ function ChipGroup({ axis, options, selected, onSelect }) {
       {options.map((opt) => {
         const classes = ['ep-chip'];
         if (opt.isOther) classes.push('ep-chip-other');
-        if (selected === opt.value) classes.push('is-active');
+        const isActive = selected === opt.value;
+        if (isActive) classes.push('is-active');
         return (
           <button
             key={opt.value}
             type="button"
             className={classes.join(' ')}
+            aria-pressed={isActive}
             onClick={() => onSelect(axis, opt)}
           >
             {opt.label}
@@ -238,27 +322,82 @@ function ChipGroup({ axis, options, selected, onSelect }) {
   );
 }
 
+function DestinationCard({ question, nextQuestion, selected, onGo, onNext }) {
+  const opt = question.options.find((o) => o.value === selected);
+  return (
+    <div className="ep-slot" aria-live="polite">
+      {opt ? (
+        <div className="ep-slot-card">
+          <div className="ep-slot-text">
+            <span className="ep-slot-label">Takes you to</span>
+            <span className="ep-slot-title">{opt.stop.title}</span>
+            <span className="ep-slot-note">{opt.stop.note}</span>
+          </div>
+          <div className="ep-slot-actions">
+            <button type="button" className="ep-go-link" onClick={() => onGo(question, opt)}>
+              Take me there &rarr;
+            </button>
+            {nextQuestion && (
+              <button type="button" className="ep-next-link" onClick={() => onNext(question, nextQuestion)}>
+                Or answer question {nextQuestion.num} &darr;
+              </button>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="ep-slot-card is-empty">
+          <span className="ep-slot-empty">Pick one to see where it leads</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AudienceNav() {
   const [open, setOpen] = useState(true);
   const [relationship, setRelationship] = useState('owner');
-  const [familiarity, setFamiliarity] = useState(null);
-  const [businessSetup, setBusinessSetup] = useState(null);
-  const [seoStatus, setSeoStatus] = useState(null);
-  const [partnershipType, setPartnershipType] = useState(null);
-
-  const selectionSetters = {
-    familiarity: setFamiliarity,
-    business_setup: setBusinessSetup,
-    seo_status: setSeoStatus,
-    partnership_type: setPartnershipType,
-  };
+  const [selections, setSelections] = useState({});
 
   const handleSelect = (axis, opt) => {
-    selectionSetters[axis](opt.value);
-    trackEvent('entry_point_select', { axis, value: opt.value });
+    const isSame = selections[axis] === opt.value;
+    setSelections((prev) => ({ ...prev, [axis]: isSame ? null : opt.value }));
+    if (!isSame) trackEvent('entry_point_select', { axis, value: opt.value });
+  };
+
+  const handleGo = (question, opt) => {
+    const list = relationship === 'owner' ? OWNER_QUESTIONS : PARTNER_QUESTIONS;
+    const answeredCount = list.filter((q) => selections[q.axis]).length;
+    trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount });
     scrollToId(opt.target);
     if (opt.highlightId) flashHighlight(opt.highlightId);
   };
+
+  const handleNext = (fromQuestion, nextQuestion) => {
+    trackEvent('entry_point_next', { axis: fromQuestion.axis });
+    const cluster = document.getElementById(`ep-q-${nextQuestion.axis}`);
+    if (!cluster) return;
+    const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    cluster.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+    const firstChip = cluster.querySelector('.ep-chip');
+    if (firstChip) firstChip.focus({ preventScroll: true });
+  };
+
+  const renderQuestions = (list) =>
+    list.map((q, i) => (
+      <div key={q.axis} id={`ep-q-${q.axis}`} className={`ep-rank-cluster ep-rank-${i + 1}`}>
+        <p className="ep-rank-label">
+          {q.num && <span className="ep-rank-num">{q.num}</span>} {q.label}
+        </p>
+        <ChipGroup axis={q.axis} options={q.options} selected={selections[q.axis]} onSelect={handleSelect} />
+        <DestinationCard
+          question={q}
+          nextQuestion={list[i + 1]}
+          selected={selections[q.axis]}
+          onGo={handleGo}
+          onNext={handleNext}
+        />
+      </div>
+    ));
 
   const handleRelationship = (value) => {
     setRelationship(value);
@@ -334,41 +473,7 @@ export default function AudienceNav() {
 
             {relationship === 'owner' ? (
               <div className="ep-view">
-                <div className="ep-rank-stack">
-                  <div className="ep-rank-cluster ep-rank-1">
-                    <p className="ep-rank-label">
-                      <span className="ep-rank-num">01</span> Local SEO Familiarity
-                    </p>
-                    <ChipGroup
-                      axis="familiarity"
-                      options={FAMILIARITY_OPTIONS}
-                      selected={familiarity}
-                      onSelect={handleSelect}
-                    />
-                  </div>
-                  <div className="ep-rank-cluster ep-rank-2">
-                    <p className="ep-rank-label">
-                      <span className="ep-rank-num">02</span> Your Current Business Setup/Structure
-                    </p>
-                    <ChipGroup
-                      axis="business_setup"
-                      options={BUSINESS_SETUP_OPTIONS}
-                      selected={businessSetup}
-                      onSelect={handleSelect}
-                    />
-                  </div>
-                  <div className="ep-rank-cluster ep-rank-3">
-                    <p className="ep-rank-label">
-                      <span className="ep-rank-num">03</span> Current Status of your Local SEO Setup
-                    </p>
-                    <ChipGroup
-                      axis="seo_status"
-                      options={SEO_STATUS_OPTIONS}
-                      selected={seoStatus}
-                      onSelect={handleSelect}
-                    />
-                  </div>
-                </div>
+                <div className="ep-rank-stack">{renderQuestions(OWNER_QUESTIONS)}</div>
               </div>
             ) : (
               <div className="ep-view">
@@ -376,17 +481,7 @@ export default function AudienceNav() {
                   Local digital identity falls outside your core offering. We handle it so you stay
                   focused, and your client gets a dedicated expert.
                 </p>
-                <div className="ep-rank-stack">
-                  <div className="ep-rank-cluster ep-rank-1">
-                    <p className="ep-rank-label">Partnership Type</p>
-                    <ChipGroup
-                      axis="partnership_type"
-                      options={PARTNERSHIP_OPTIONS}
-                      selected={partnershipType}
-                      onSelect={handleSelect}
-                    />
-                  </div>
-                </div>
+                <div className="ep-rank-stack">{renderQuestions(PARTNER_QUESTIONS)}</div>
               </div>
             )}
 
