@@ -92,19 +92,6 @@ const styles = {
     cursor: 'pointer',
     transition: 'color 0.2s ease',
   },
-  mobileGetStartedLink: {
-    fontFamily: "'DM Sans', sans-serif",
-    fontSize: '0.95rem',
-    fontWeight: 600,
-    color: 'var(--green-hi)',
-    background: 'none',
-    border: 'none',
-    padding: '10px 0',
-    cursor: 'pointer',
-    width: '100%',
-    textAlign: 'left',
-    marginBottom: '4px',
-  },
   ctaBtn: {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: '0.88rem',
@@ -165,11 +152,22 @@ const styles = {
 // mismatch shipped broken font-family CSS in prerendered HTML and produced a
 // SSR/client hydration mismatch on every page (Nav renders on all of them).
 const navDropdownStyles = `
+  .nav-fmp-mobile { display: none; }
   @media (max-width: 768px) {
     .nav-links { display: none !important; }
     .nav-hamburger { display: flex !important; }
     .nav-divider { display: none !important; }
-    .nav-cta-persistent { padding: 7px 14px !important; font-size: 0.78rem !important; }
+    .nav-fmp-mobile { display: inline-block !important; font-size: 0.78rem !important; white-space: nowrap; }
+    .nav-cta-persistent { padding: 7px 10px !important; font-size: 0.78rem !important; white-space: nowrap; }
+    .nav-inner { padding: 0 16px !important; gap: 10px !important; }
+    .nav-brand { flex-shrink: 1 !important; min-width: 0; overflow: hidden; gap: 8px !important; }
+    .nav-brand img { height: 48px !important; }
+    .nav-wordmark { font-size: 1.1rem !important; }
+    .nav-tagline { font-size: 0.6rem !important; letter-spacing: 0.04em !important; white-space: nowrap; }
+    .nav-right { gap: 12px !important; flex-shrink: 0; }
+  }
+  @media (max-width: 560px) {
+    .nav-brand-text { display: none !important; }
   }
   .nav-divider {
     display: inline-block;
@@ -286,6 +284,7 @@ export default function Nav() {
 
   const handleGetStarted = () => {
     trackEvent('entry_point_nav_click');
+    setMobileOpen(false);
     scrollTo('audience-nav');
   };
 
@@ -293,9 +292,9 @@ export default function Nav() {
     <>
       <style dangerouslySetInnerHTML={{ __html: navDropdownStyles }} />
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
-        <div style={styles.inner}>
+        <div className="nav-inner" style={styles.inner}>
           {/* Brand */}
-          <a href="/" style={styles.brand} aria-label="PeaksLocal home">
+          <a href="/" className="nav-brand" style={styles.brand} aria-label="PeaksLocal home">
             <picture>
               <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
               <img
@@ -306,14 +305,14 @@ export default function Nav() {
                 style={styles.logoImg}
               />
             </picture>
-            <div style={styles.brandText}>
-              <span style={styles.wordmark}>PeaksLocal</span>
-              <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>
+            <div className="nav-brand-text" style={styles.brandText}>
+              <span className="nav-wordmark" style={styles.wordmark}>PeaksLocal</span>
+              <span className="nav-tagline" style={styles.tagline}>Be Seen on Search, Maps + AI</span>
             </div>
           </a>
 
           {/* Right side: nav links (desktop only), divider, persistent CTA, hamburger (mobile only) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <div className="nav-links" style={styles.links}>
               <button
                 className="nav-pulse nav-get-started"
@@ -404,6 +403,15 @@ export default function Nav() {
               </Link>
             </div>
 
+            <button
+              type="button"
+              className="nav-pulse nav-get-started nav-fmp-mobile"
+              style={styles.getStartedLink}
+              onClick={handleGetStarted}
+            >
+              Find My Path
+            </button>
+
             <span className="nav-divider" />
 
             <Link
@@ -431,13 +439,6 @@ export default function Nav() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div style={styles.mobileMenu}>
-            <button
-              className="nav-pulse"
-              style={styles.mobileGetStartedLink}
-              onClick={handleGetStarted}
-            >
-              Find My Path
-            </button>
             {/* PeaksLocal System mobile */}
             <button
               style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
