@@ -169,7 +169,16 @@ const navDropdownStyles = `
     .nav-links { display: none !important; }
     .nav-hamburger { display: flex !important; }
     .nav-divider { display: none !important; }
-    .nav-cta-persistent { padding: 7px 14px !important; font-size: 0.78rem !important; }
+    .nav-cta-persistent { padding: 7px 10px !important; font-size: 0.78rem !important; white-space: nowrap; }
+    .nav-inner { padding: 0 16px !important; gap: 10px !important; }
+    .nav-brand { flex-shrink: 1 !important; min-width: 0; overflow: hidden; gap: 8px !important; }
+    .nav-brand img { height: 44px !important; }
+    .nav-wordmark { font-size: 1.1rem !important; }
+    .nav-tagline { font-size: 0.6rem !important; letter-spacing: 0.04em !important; white-space: nowrap; }
+    .nav-right { gap: 8px !important; flex-shrink: 0; }
+  }
+  @media (max-width: 420px) {
+    .nav-tagline { display: none !important; }
   }
   .nav-divider {
     display: inline-block;
@@ -293,9 +302,9 @@ export default function Nav() {
     <>
       <style dangerouslySetInnerHTML={{ __html: navDropdownStyles }} />
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
-        <div style={styles.inner}>
+        <div className="nav-inner" style={styles.inner}>
           {/* Brand */}
-          <a href="/" style={styles.brand} aria-label="PeaksLocal home">
+          <a href="/" className="nav-brand" style={styles.brand} aria-label="PeaksLocal home">
             <picture>
               <source type="image/webp" srcSet="/peaks-local-without-tagline.webp" />
               <img
@@ -306,14 +315,14 @@ export default function Nav() {
                 style={styles.logoImg}
               />
             </picture>
-            <div style={styles.brandText}>
-              <span style={styles.wordmark}>PeaksLocal</span>
-              <span style={styles.tagline}>Be Seen on Search, Maps + AI</span>
+            <div className="nav-brand-text" style={styles.brandText}>
+              <span className="nav-wordmark" style={styles.wordmark}>PeaksLocal</span>
+              <span className="nav-tagline" style={styles.tagline}>Be Seen on Search, Maps + AI</span>
             </div>
           </a>
 
           {/* Right side: nav links (desktop only), divider, persistent CTA, hamburger (mobile only) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <div className="nav-links" style={styles.links}>
               <button
                 className="nav-pulse nav-get-started"
