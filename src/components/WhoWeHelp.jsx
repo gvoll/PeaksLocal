@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { serveCities } from '../data/serveCities.js';
 
 const professional = [
   'Law firms & legal practices',
@@ -326,7 +327,7 @@ export default function WhoWeHelp() {
           >
             {[
               { id: 'who-single', icon: '📍', title: 'Single Location', desc: 'One storefront, one profile to get right' },
-              { id: 'who-sab', icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate' },
+              { id: 'who-sab', icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate', cityLinks: true },
               { id: 'who-multi', icon: '🏢', title: 'Multi-Location', desc: 'Consistent profiles across every location, zero drift' },
             ].map((item) => (
               <div
@@ -365,6 +366,34 @@ export default function WhoWeHelp() {
                   }}>
                     {item.desc}
                   </div>
+                  {item.cityLinks && (
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: '0.78rem',
+                      color: 'var(--mid)',
+                      lineHeight: 1.6,
+                      marginTop: '8px',
+                    }}>
+                      Local SEO in{' '}
+                      {serveCities.map((city, i) => (
+                        <React.Fragment key={city.slug}>
+                          {i > 0 && ' · '}
+                          <Link
+                            to={`/serve/${city.slug}`}
+                            style={{
+                              color: 'var(--green)',
+                              textDecoration: 'underline',
+                              textDecorationColor: 'rgba(30,107,60,0.4)',
+                              textUnderlineOffset: '3px',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {city.name}
+                          </Link>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
