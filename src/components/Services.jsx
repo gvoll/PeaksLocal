@@ -332,7 +332,7 @@ export default function Services() {
                 </li>
               ))}
             </ul>
-            <div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px 22px' }}>
               <Link
                 to="/contact"
                 style={{
@@ -345,6 +345,19 @@ export default function Services() {
                 }}
               >
                 Get a Multi-Location Quote →
+              </Link>
+              <Link
+                to="/blog/why-multi-location-businesses-struggle-with-ai-search"
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '0.82rem',
+                  color: 'var(--mid)',
+                  textDecoration: 'underline',
+                  textDecorationColor: 'rgba(74,96,128,0.4)',
+                  textUnderlineOffset: '3px',
+                }}
+              >
+                Why multi-location is harder in AI search
               </Link>
             </div>
           </div>
