@@ -249,8 +249,10 @@ const whoWeHelpStyles = `
           background: var(--green);
           flex-shrink: 0;
         }
+        .who-catch { max-width: 78%; }
         @media (max-width: 768px) {
           .who-cols { flex-direction: column !important; }
+          .who-catch { max-width: 100%; padding: 18px 20px !important; }
         }
         @keyframes shapeCardHighlight {
           0% { box-shadow: 0 0 0 0 rgba(58,173,100,0.5); border-color: var(--green-hi); }
@@ -326,8 +328,8 @@ export default function WhoWeHelp() {
             style={{ display: 'flex', gap: '16px', marginBottom: '40px' }}
           >
             {[
-              { id: 'who-single', icon: '📍', title: 'Single Location', desc: 'One storefront, one profile to get right' },
-              { id: 'who-sab', icon: '🚗', title: 'Service Area Business', desc: 'No public address? We build the geographic signals that compensate', cityLinks: true },
+              { id: 'who-single', icon: '📍', title: 'Single Location', desc: 'One profile for a physical storefront or office that customers can visit' },
+              { id: 'who-sab', icon: '🚗', title: 'Service Area Business', desc: 'No public address to share? We compensate with specific geographic signals' },
               { id: 'who-multi', icon: '🏢', title: 'Multi-Location', desc: 'Consistent profiles across every location, zero drift' },
             ].map((item) => (
               <div
@@ -366,76 +368,74 @@ export default function WhoWeHelp() {
                   }}>
                     {item.desc}
                   </div>
-                  {item.cityLinks && (
-                    <div style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: '0.78rem',
-                      color: 'var(--mid)',
-                      lineHeight: 1.6,
-                      marginTop: '8px',
-                    }}>
-                      Local SEO in{' '}
-                      {serveCities.map((city, i) => (
-                        <React.Fragment key={city.slug}>
-                          {i > 0 && ' · '}
-                          <Link
-                            to={`/serve/${city.slug}`}
-                            style={{
-                              color: 'var(--green)',
-                              textDecoration: 'underline',
-                              textDecorationColor: 'rgba(30,107,60,0.4)',
-                              textUnderlineOffset: '3px',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            {city.name}
-                          </Link>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Areas We Serve strip */}
+          {/* Catch-all service bar with per-city links */}
           <div className="reveal reveal-delay-2" style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
-            <Link
-              to="/serve"
+            <div
+              className="who-catch"
               style={{
                 textAlign: 'center',
-                padding: '20px 40px',
+                padding: '18px 40px',
                 border: '1px solid var(--rule)',
                 borderRadius: '12px',
                 background: 'var(--white)',
-                maxWidth: '67%',
-                textDecoration: 'none',
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                flexWrap: 'wrap',
+                gap: '6px',
               }}
             >
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '0.98rem',
+                fontWeight: 600,
+                color: 'var(--navy)',
+              }}>
+                Local SEO and digital identity management for every setup above
+              </span>
               <span style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '0.9rem',
                 color: 'var(--navy)',
               }}>
-                Serving Denver, Boulder &amp; Colorado Springs
+                Serving{' '}
+                {serveCities.map((city, i) => (
+                  <React.Fragment key={city.slug}>
+                    {i > 0 && (i === serveCities.length - 1 ? ' & ' : ', ')}
+                    <Link
+                      to={`/serve/${city.slug}`}
+                      style={{
+                        color: 'var(--green)',
+                        textDecoration: 'underline',
+                        textDecorationColor: 'rgba(30,107,60,0.4)',
+                        textUnderlineOffset: '3px',
+                      }}
+                    >
+                      {city.name}
+                    </Link>
+                  </React.Fragment>
+                ))}
+                , and businesses nationwide
               </span>
-              <span style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: '0.72rem',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: 'var(--green)',
-                fontWeight: 600,
-              }}>
+              <Link
+                to="/serve"
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: 'var(--green)',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
                 See areas we serve →
-              </span>
-            </Link>
+              </Link>
+            </div>
           </div>
 
           {/* Two columns */}
