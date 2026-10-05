@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics.js';
 
 const FAMILIARITY_OPTIONS = [
@@ -357,6 +358,8 @@ export default function AudienceNav() {
   const [open, setOpen] = useState(true);
   const [relationship, setRelationship] = useState('owner');
   const [selections, setSelections] = useState({});
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSelect = (axis, opt) => {
     const isSame = selections[axis] === opt.value;
@@ -368,6 +371,9 @@ export default function AudienceNav() {
     const list = relationship === 'owner' ? OWNER_QUESTIONS : PARTNER_QUESTIONS;
     const answeredCount = list.filter((q) => selections[q.axis]).length;
     trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount });
+    // Scrolling alone adds no history entry, so Back would leave the page. Push a same-URL
+    // entry first; the browser saves the current scroll position with it, and Back returns here.
+    navigate(`${location.pathname}${location.search}`, { state: { fromEntryPoint: true } });
     scrollToId(opt.target);
     if (opt.highlightId) flashHighlight(opt.highlightId);
   };
