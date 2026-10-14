@@ -7,7 +7,7 @@ const oneTimeItems = [
   'BBB liaison and trust directory claims',
   'Data aggregator submission: 300+ endpoints',
   'Social profile NAP synchronization',
-  'Completion report with before/after Identity Score',
+  'Completion report with before/after Visibility Score',
 ];
 
 const ongoingItems = [
@@ -191,7 +191,7 @@ export default function Services() {
                   color: 'var(--slate)',
                   lineHeight: 1.65,
                 }}>
-                  We establish your complete verified presence across every platform that powers modern search. You receive a completion report with a before-and-after Identity Score.
+                  We establish your complete verified presence across every platform that powers modern search. You receive a completion report with a before-and-after Visibility Score.
                 </p>
               </div>
               <div style={{ padding: '24px 28px', flex: 1 }}>

@@ -8,10 +8,10 @@ const sections = [
     title: 'Information We Collect',
     content: [
       'When you submit the free visibility audit form on our website, we collect the following information:',
-      '• Your name and business name',
+      '• Your name, email address, and business name',
       '• Business website URL',
       '• City and state where your business is located',
-      '• Any additional information you voluntarily provide in the visibility challenge field',
+      '• Optional details you choose to share, such as your business street address and phone number, whether customers visit you or you travel to them, how many locations you have, what your business does, the search term customers would use to find you, competitors you name, profiles or directories you have already set up, and anything you write in the visibility challenge field',
       'We may also collect standard website analytics data (such as pages visited, time on site, and referring URLs) through analytics tools. This data is collected in aggregate and is not personally identifiable.',
     ],
   },
@@ -19,7 +19,7 @@ const sections = [
     title: 'How We Use Your Information',
     content: [
       'We use the information you provide to:',
-      '• Prepare and deliver your Local Visibility Score and audit report',
+      '• Prepare and deliver your Visibility Score and audit report',
       '• Communicate with you about your audit results and recommendations',
       '• Respond to inquiries or follow-up questions about our services',
       '• Understand how to improve our website and services',
@@ -30,7 +30,7 @@ const sections = [
     title: 'Information Sharing',
     content: [
       'PeaksLocal does not sell, rent, or trade your personal information to third parties.',
-      'We may share limited information with trusted service providers who assist us in operating our website or conducting our business (such as email delivery services). These providers are contractually obligated to keep your information confidential and may only use it to provide services to PeaksLocal.',
+      'We may share limited information with trusted service providers who assist us in operating our website or conducting our business (such as email delivery services and the spreadsheet service we use to keep a log of audit requests). These providers are contractually obligated to keep your information confidential and may only use it to provide services to PeaksLocal.',
       'We may disclose your information if required by law, court order, or governmental authority.',
     ],
   },
@@ -118,7 +118,7 @@ export default function PrivacyPolicy() {
               fontSize: '0.85rem',
               color: 'var(--slate)',
             }}>
-              Last updated: March 2026
+              Last updated: October 2026
             </p>
           </div>
         </div>
