@@ -337,7 +337,7 @@ export default function System({ headingLevel = 'h2' }) {
                       </div>
                       <div style={{ flexShrink: 0, textAlign: 'right' }}>
                         <div style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.6rem', color: 'var(--slate)', letterSpacing: '0.08em', marginBottom: '6px' }}>
-                          IDENTITY SCORE
+                          VISIBILITY SCORE
                         </div>
                         <div style={{ display: 'flex', gap: '3px', justifyContent: 'flex-end', width: '110px' }}>
                           {Array.from({ length: 10 }).map((_, i) => (
@@ -391,7 +391,7 @@ export default function System({ headingLevel = 'h2' }) {
                   {/* Card footer */}
                   <div style={{ background: 'var(--navy)', padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.62rem', color: 'var(--slate)', letterSpacing: '0.08em' }}>
-                      LOCAL VISIBILITY SCORE
+                      VISIBILITY SCORE
                     </span>
                     <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#e08a1a', letterSpacing: '0.04em' }}>
                       {scoreLabel}

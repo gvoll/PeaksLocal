@@ -85,14 +85,15 @@ export const auditRequestEmail = {
     <p class="greeting">${firstName ? `Hi ${firstName},` : 'Hi there,'}</p>
     <p class="body-text">
       Thank you for submitting your PeaksLocal Visibility Audit Request. We'll be
-      in touch once we've had a chance to review your online presence.
+      in touch within one business day, once we've had a chance to review your online presence.
     </p>
     <div class="callout-navy">
       <div class="box-title">What we'll look at</div>
       <ul>
         <li>Your Google Business Profile, Apple Maps, and Bing presence</li>
         <li>Key directories, trust signals, and AI platform visibility</li>
-        <li>Where the gaps are &mdash; and what it would take to close them</li>
+        <li>A map of where customers can and can't find you</li>
+        <li>Where the gaps are, and what it would take to close them</li>
       </ul>
     </div>
     <p class="body-text">

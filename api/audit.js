@@ -1,32 +1,175 @@
 import nodemailer from 'nodemailer';
-import { escapeHtml, isWithinLength } from '../src/lib/emailSafety.js';
+import { auditRequestEmail } from '../src/lib/emailTemplates.js';
+import { escapeHtml, isValidEmail, isWithinLength } from '../src/lib/emailSafety.js';
+import { appendRow } from '../src/lib/sheetsLog.js';
+
+const CUSTOMER_ACCESS = {
+  storefront: 'Storefront (customers visit)',
+  service_area: 'Service area (we travel to them)',
+  both: 'Both',
+};
+const LOCATIONS = {
+  one: 'One location',
+  multiple: 'More than one location',
+};
+const PROFILES = {
+  google: 'Google Business Profile',
+  apple: 'Apple Business Connect',
+  bing: 'Bing Places',
+  not_sure: 'Not sure',
+};
+
+const MAX = {
+  name: 200,
+  businessName: 200,
+  websiteURL: 300,
+  cityState: 200,
+  address: 300,
+  businessPhone: 40,
+  industry: 200,
+  searchTerm: 200,
+  competitors: 500,
+  otherProfiles: 500,
+  challenge: 5000,
+};
+
+// Accepts "acme.com", "www.acme.com", or a full URL; returns a normalized
+// https URL, or '' when the value doesn't look like a website.
+function normalizeWebsite(value) {
+  const trimmed = String(value || '').trim();
+  const withScheme = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(withScheme);
+    if (!url.hostname.includes('.') || /\s/.test(trimmed)) return '';
+    return url.toString();
+  } catch {
+    return '';
+  }
+}
+
+function row(label, valueHtml, { last = false, bold = false } = {}) {
+  return `
+              <tr${last ? '' : ' style="border-bottom:1px solid #e5e7eb;"'}>
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">${label}</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;${bold ? 'font-weight:600;' : ''}">${valueHtml}</td>
+              </tr>`;
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, businessName, websiteURL, cityState, challenge, phone } = req.body;
+  const body = req.body || {};
 
-  // Honeypot: this form has no legitimate phone field. A bot that
+  // Honeypot: real users never see or fill this field in. A bot that
   // auto-fills every field will populate it, so silently pretend success
   // without actually sending anything.
-  if (phone) {
+  if (body.fax) {
     return res.status(200).json({ success: true });
   }
 
-  if (!name?.trim() || !businessName?.trim() || !websiteURL?.trim() || !cityState?.trim()) {
+  const text = (key) => (typeof body[key] === 'string' ? body[key].trim() : '');
+  const name = text('name');
+  const email = text('email');
+  const businessName = text('businessName');
+  const cityState = text('cityState');
+  const address = text('address');
+  const businessPhone = text('businessPhone');
+  const industry = text('industry');
+  const searchTerm = text('searchTerm');
+  const competitors = text('competitors');
+  const otherProfiles = text('otherProfiles');
+  const challenge = text('challenge');
+  const customerAccess = text('customerAccess');
+  const locations = text('locations');
+  const profiles = Array.isArray(body.profiles)
+    ? body.profiles.filter((p) => Object.hasOwn(PROFILES, p))
+    : [];
+
+  if (!name || !email || !businessName || !text('websiteURL') || !cityState) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
   }
+  if (!Object.hasOwn(CUSTOMER_ACCESS, customerAccess) || !Object.hasOwn(LOCATIONS, locations)) {
+    return res.status(400).json({ error: 'Please fill in all required fields.' });
+  }
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Please provide a valid email address.' });
+  }
+  const websiteURL = normalizeWebsite(body.websiteURL);
+  if (!websiteURL) {
+    return res.status(400).json({ error: 'Please provide a valid website address.' });
+  }
   if (
-    !isWithinLength(name, 200) ||
-    !isWithinLength(businessName, 200) ||
-    !isWithinLength(websiteURL, 300) ||
-    !isWithinLength(cityState, 200) ||
-    !isWithinLength(challenge || '', 5000)
+    !isWithinLength(name, MAX.name) ||
+    !isWithinLength(businessName, MAX.businessName) ||
+    !isWithinLength(websiteURL, MAX.websiteURL) ||
+    !isWithinLength(cityState, MAX.cityState) ||
+    !isWithinLength(address, MAX.address) ||
+    !isWithinLength(businessPhone, MAX.businessPhone) ||
+    !isWithinLength(industry, MAX.industry) ||
+    !isWithinLength(searchTerm, MAX.searchTerm) ||
+    !isWithinLength(competitors, MAX.competitors) ||
+    !isWithinLength(otherProfiles, MAX.otherProfiles) ||
+    !isWithinLength(challenge, MAX.challenge)
   ) {
     return res.status(400).json({ error: 'One or more fields is too long.' });
   }
+
+  const profilesLabel = profiles.map((p) => PROFILES[p]).join(', ');
+
+  // Save the request first so a failed email never loses a lead.
+  let saved = false;
+  try {
+    const result = await appendRow([
+      new Date().toISOString(),
+      name,
+      email,
+      businessName,
+      websiteURL,
+      cityState,
+      address,
+      businessPhone,
+      CUSTOMER_ACCESS[customerAccess],
+      LOCATIONS[locations],
+      industry,
+      searchTerm,
+      competitors,
+      profilesLabel,
+      otherProfiles,
+      challenge,
+      text('sourcePage').slice(0, 200),
+    ]);
+    saved = result.saved;
+  } catch (err) {
+    console.error('Audit lead log error:', err.message);
+  }
+
+  const safe = {
+    name: escapeHtml(name),
+    email: escapeHtml(email),
+    businessName: escapeHtml(businessName),
+    websiteURL: escapeHtml(websiteURL),
+    cityState: escapeHtml(cityState),
+    address: escapeHtml(address),
+    businessPhone: escapeHtml(businessPhone),
+    industry: escapeHtml(industry),
+    searchTerm: escapeHtml(searchTerm),
+    competitors: escapeHtml(competitors).replace(/\n/g, '<br>'),
+    profiles: escapeHtml(profilesLabel),
+    otherProfiles: escapeHtml(otherProfiles).replace(/\n/g, '<br>'),
+    challenge: escapeHtml(challenge).replace(/\n/g, '<br>'),
+  };
+  const notProvided = '<span style="color:#9ca3af;">Not provided</span>';
+  const orNone = (value) => value || notProvided;
+
+  const subjectTags = [
+    customerAccess === 'storefront' ? null : CUSTOMER_ACCESS[customerAccess].split(' (')[0],
+    locations === 'multiple' ? 'multi-location' : null,
+  ].filter(Boolean);
+  const subject =
+    `New Audit Request · ${businessName} (${name})` +
+    (subjectTags.length ? ` · ${subjectTags.join(', ')}` : '');
 
   try {
     const transporter = nodemailer.createTransport({
@@ -39,18 +182,13 @@ export default async function handler(req, res) {
       },
     });
 
-    const safeName = escapeHtml(name);
-    const safeBusinessName = escapeHtml(businessName);
-    const safeWebsiteURL = escapeHtml(websiteURL);
-    const safeCityState = escapeHtml(cityState);
-    const safeChallenge = escapeHtml(challenge);
-
-    await transporter.sendMail({
-      from: '"PeaksLocal" <greg.voll@peakslocal.com>',
-      to: 'greg.voll@peakslocal.com',
-      replyTo: 'contact@peakslocal.com',
-      subject: `New Audit Request — ${businessName} (${name})`,
-      html: `
+    try {
+      await transporter.sendMail({
+        from: '"PeaksLocal" <greg.voll@peakslocal.com>',
+        to: 'greg.voll@peakslocal.com',
+        replyTo: email,
+        subject,
+        html: `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -73,26 +211,21 @@ export default async function handler(req, res) {
             <p style="margin:0 0 24px;color:#374151;font-size:15px;line-height:1.6;">You have a new audit request. Details below:</p>
 
             <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-              <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;width:160px;vertical-align:top;">Requestor Name:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${safeName}</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Business:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;font-weight:600;">${safeBusinessName}</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Website URL:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${safeWebsiteURL}</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e5e7eb;">
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">City &amp; State:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;">${safeCityState}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Visibility challenge:</td>
-                <td style="padding:12px 0;color:#111827;font-size:14px;line-height:1.65;">${safeChallenge || 'Not provided'}</td>
-              </tr>
+              ${row('Requestor Name:', safe.name, { bold: true })}
+              ${row('Email:', `<a href="mailto:${safe.email}" style="color:#3aad64;text-decoration:none;">${safe.email}</a>`)}
+              ${row('Business:', safe.businessName, { bold: true })}
+              ${row('Website URL:', safe.websiteURL)}
+              ${row('City &amp; State:', safe.cityState)}
+              ${row('Street address:', orNone(safe.address))}
+              ${row('Business phone:', orNone(safe.businessPhone))}
+              ${row('Customer access:', escapeHtml(CUSTOMER_ACCESS[customerAccess]))}
+              ${row('Locations:', escapeHtml(LOCATIONS[locations]))}
+              ${row('What they do:', orNone(safe.industry))}
+              ${row('Customer search term:', orNone(safe.searchTerm))}
+              ${row('Competitors named:', orNone(safe.competitors))}
+              ${row('Profiles set up:', orNone(safe.profiles))}
+              ${row('Other profiles:', orNone(safe.otherProfiles))}
+              ${row('Visibility challenge:', orNone(safe.challenge), { last: true })}
             </table>
           </td>
         </tr>
@@ -104,7 +237,9 @@ export default async function handler(req, res) {
               <tr>
                 <td style="background:#f0fdf4;border-left:4px solid #3aad64;border-radius:0 6px 6px 0;padding:14px 18px;">
                   <p style="margin:0;color:#374151;font-size:13px;line-height:1.6;">
-                    Follow up with <strong>${safeName}</strong> using the details above. No email was provided on the audit form.
+                    Reply directly to this email to respond to <strong>${safe.name}</strong> at
+                    <a href="mailto:${safe.email}" style="color:#3aad64;text-decoration:none;">${safe.email}</a>.
+                    They also receive an automatic confirmation email.${saved ? ' This request was also saved to the Audit Requests Log.' : ''}
                   </p>
                 </td>
               </tr>
@@ -125,12 +260,28 @@ export default async function handler(req, res) {
 </body>
 </html>
       `,
-    });
+      });
+    } catch (err) {
+      console.error('Audit email error:', err.message);
+      // The request is already saved, so don't fail the submission.
+      if (!saved) throw err;
+    }
 
+    try {
+      await transporter.sendMail({
+        from: '"PeaksLocal" <greg.voll@peakslocal.com>',
+        to: email,
+        subject: auditRequestEmail.subject,
+        html: auditRequestEmail.html({ firstName: escapeHtml(name.split(/\s+/)[0] || '') }),
+      });
+    } catch (confirmationErr) {
+      console.error('Audit confirmation email error:', confirmationErr.message);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Audit email error:', err.message);
-    return res.status(500).json({ error: err.message });
+    console.error('Audit request error:', err.message);
+    if (saved) return res.status(200).json({ success: true });
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }
