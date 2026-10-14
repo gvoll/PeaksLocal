@@ -5,7 +5,11 @@
 // and returns { saved: false, skipped: true } so local dev and previews work.
 //
 //   GOOGLE_SERVICE_ACCOUNT_EMAIL  service account client_email
-//   GOOGLE_PRIVATE_KEY            service account private_key (\n escapes OK)
+//   GOOGLE_PRIVATE_KEY            service account private_key. Accepts the raw PEM,
+//                                 \n escapes, quoted, the whole JSON key file, or
+//                                 base64 of the PEM. If GOOGLE_PRIVATE_KEY_BASE64
+//                                 is set it is used instead (one line, nothing
+//                                 to mangle when pasting)
 //   AUDIT_LEADS_SHEET_ID          target spreadsheet ID (share it with the
 //                                 service account as an editor)
 
@@ -19,12 +23,33 @@ function cleanValue(value) {
 }
 
 export function normalizePrivateKey(raw) {
-  const key = cleanValue(raw).replace(/\\n/g, '\n');
+  let key = cleanValue(raw);
+  // Whole service-account JSON file pasted instead of just the key.
+  if (key.startsWith('{')) {
+    try {
+      const parsed = JSON.parse(key);
+      if (parsed.private_key) key = String(parsed.private_key);
+    } catch { /* fall through */ }
+  }
+  key = key.replace(/\\n/g, '\n');
+  // Base64 of the PEM (a single line with nothing to mangle) is also accepted.
+  if (!key.includes('-----BEGIN')) {
+    const decoded = Buffer.from(key.replace(/\s+/g, ''), 'base64').toString('utf8');
+    if (decoded.includes('-----BEGIN')) key = decoded;
+  }
   const match = key.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
   if (!match) return key;
   const body = (match[2].match(/[A-Za-z0-9+/=]/g) || []).join('');
   const lines = body.match(/.{1,64}/g) || [];
   return `-----BEGIN ${match[1]}-----\n${lines.join('\n')}\n-----END ${match[1]}-----\n`;
+}
+
+// Non-secret description of what was actually received, for error messages.
+export function describeKey(raw) {
+  const key = String(raw ?? '');
+  const normalized = normalizePrivateKey(raw);
+  const body = (normalized.match(/-----BEGIN [A-Z ]+-----([\s\S]*?)-----END/) || [, ''])[1].replace(/\s+/g, '');
+  return `received ${key.length} chars, begin marker: ${key.includes('-----BEGIN')}, end marker: ${key.includes('-----END')}, key body: ${body.length} chars (a valid key is about 1624)`;
 }
 
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -41,9 +66,14 @@ async function getAccessToken(email, privateKey) {
   const claims = base64url(
     JSON.stringify({ iss: email, scope: SCOPE, aud: TOKEN_URL, iat: now, exp: now + 3600 })
   );
-  const signer = createSign('RSA-SHA256');
-  signer.update(`${header}.${claims}`);
-  const signature = signer.sign(privateKey).toString('base64url');
+  let signature;
+  try {
+    const signer = createSign('RSA-SHA256');
+    signer.update(`${header}.${claims}`);
+    signature = signer.sign(privateKey).toString('base64url');
+  } catch (err) {
+    throw new Error(`Private key could not be read (${describeKey(privateKey)}): ${err.message}`);
+  }
 
   const res = await fetch(TOKEN_URL, {
     method: 'POST',
@@ -64,7 +94,7 @@ async function getAccessToken(email, privateKey) {
 
 export async function appendRow(values) {
   const email = cleanValue(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
-  const rawKey = process.env.GOOGLE_PRIVATE_KEY;
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY_BASE64 || process.env.GOOGLE_PRIVATE_KEY;
   const sheetId = cleanValue(process.env.AUDIT_LEADS_SHEET_ID);
   const missing = [
     !email && 'GOOGLE_SERVICE_ACCOUNT_EMAIL',
