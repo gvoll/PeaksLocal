@@ -11,6 +11,22 @@
 
 import { createSign } from 'node:crypto';
 
+// Values pasted into a dashboard often pick up stray whitespace, wrapping
+// quotes, escaped "\n" sequences, or have their newlines turned into spaces.
+// Clean all of that up so a copy-paste slip does not silently disable the log.
+function cleanValue(value) {
+  return String(value ?? '').trim().replace(/^["']|["']$/g, '').trim();
+}
+
+export function normalizePrivateKey(raw) {
+  const key = cleanValue(raw).replace(/\\n/g, '\n');
+  const match = key.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
+  if (!match) return key;
+  const body = (match[2].match(/[A-Za-z0-9+/=]/g) || []).join('');
+  const lines = body.match(/.{1,64}/g) || [];
+  return `-----BEGIN ${match[1]}-----\n${lines.join('\n')}\n-----END ${match[1]}-----\n`;
+}
+
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 const TIMEOUT_MS = 8000;
@@ -38,18 +54,26 @@ async function getAccessToken(email, privateKey) {
     }),
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
-  if (!res.ok) throw new Error(`Google token request failed (${res.status})`);
+  if (!res.ok) {
+    const detail = await res.json().catch(() => ({}));
+    throw new Error(`Google token request failed (${res.status} ${detail.error || ''} ${detail.error_description || ''})`.trim());
+  }
   const { access_token: accessToken } = await res.json();
   return accessToken;
 }
 
 export async function appendRow(values) {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const email = cleanValue(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
   const rawKey = process.env.GOOGLE_PRIVATE_KEY;
-  const sheetId = process.env.AUDIT_LEADS_SHEET_ID;
-  if (!email || !rawKey || !sheetId) return { saved: false, skipped: true };
+  const sheetId = cleanValue(process.env.AUDIT_LEADS_SHEET_ID);
+  const missing = [
+    !email && 'GOOGLE_SERVICE_ACCOUNT_EMAIL',
+    !cleanValue(rawKey) && 'GOOGLE_PRIVATE_KEY',
+    !sheetId && 'AUDIT_LEADS_SHEET_ID',
+  ].filter(Boolean);
+  if (missing.length) return { saved: false, skipped: true, missing };
 
-  const accessToken = await getAccessToken(email, rawKey.replace(/\\n/g, '\n'));
+  const accessToken = await getAccessToken(email, normalizePrivateKey(rawKey));
   // RAW keeps every value as literal text, so a submitted "=formula" is never evaluated.
   const url =
     `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(sheetId)}` +
@@ -61,5 +85,5 @@ export async function appendRow(values) {
     signal: AbortSignal.timeout(TIMEOUT_MS),
   });
   if (!res.ok) throw new Error(`Sheets append failed (${res.status})`);
-  return { saved: true, skipped: false };
+  return { saved: true, skipped: false, missing: [] };
 }

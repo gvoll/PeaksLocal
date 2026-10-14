@@ -120,6 +120,7 @@ export default async function handler(req, res) {
 
   // Save the request first so a failed email never loses a lead.
   let saved = false;
+  let leadLog = 'not_configured';
   try {
     const result = await appendRow([
       new Date().toISOString(),
@@ -141,7 +142,10 @@ export default async function handler(req, res) {
       text('sourcePage').slice(0, 200),
     ]);
     saved = result.saved;
+    if (result.saved) leadLog = 'saved';
+    else console.warn(`Audit lead log skipped, missing env vars: ${result.missing.join(', ')}`);
   } catch (err) {
+    leadLog = 'failed';
     console.error('Audit lead log error:', err.message);
   }
 
@@ -278,10 +282,10 @@ export default async function handler(req, res) {
       console.error('Audit confirmation email error:', confirmationErr.message);
     }
 
-    return res.status(200).json({ success: true });
+    return res.status(200).json({ success: true, leadLog });
   } catch (err) {
     console.error('Audit request error:', err.message);
-    if (saved) return res.status(200).json({ success: true });
+    if (saved) return res.status(200).json({ success: true, leadLog });
     return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
 }
