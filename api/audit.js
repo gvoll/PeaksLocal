@@ -90,6 +90,9 @@ export default async function handler(req, res) {
   if (!name || !email || !businessName || !text('websiteURL') || !cityState) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
   }
+  if (!/,\s*\S|\s[A-Za-z]{2}$/.test(cityState)) {
+    return res.status(400).json({ error: 'Please add your state to City & State, for example Denver, CO.' });
+  }
   if (!Object.hasOwn(CUSTOMER_ACCESS, customerAccess) || !Object.hasOwn(LOCATIONS, locations)) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
   }

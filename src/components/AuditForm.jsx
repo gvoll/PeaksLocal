@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics.js';
 
+// A city plus a state: "Denver, CO", "Denver CO" or "Denver, Colorado".
+const CITY_STATE_PATTERN = /,\s*\S|\s[A-Za-z]{2}$/;
+
 const initialForm = {
   name: '',
   email: '',
@@ -213,6 +216,10 @@ export default function AuditForm({ headingLevel = 'h2', showWhatHappensNext = f
     e.preventDefault();
     const { name, email, businessName, websiteURL, cityState } = form;
     if (!name.trim() || !email.trim() || !businessName.trim() || !websiteURL.trim() || !cityState.trim()) {
+      return;
+    }
+    if (!CITY_STATE_PATTERN.test(cityState.trim())) {
+      setError('Please add your state to City & State, for example Denver, CO.');
       return;
     }
     setLoading(true);
@@ -454,7 +461,7 @@ export default function AuditForm({ headingLevel = 'h2', showWhatHappensNext = f
                     name="cityState"
                     type="text"
                     placeholder="Denver, CO"
-                    autoComplete="address-level2"
+                    autoComplete="off"
                     value={form.cityState}
                     onChange={handleChange}
                     required
