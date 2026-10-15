@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav.jsx';
 import System from '../components/System.jsx';
+import DeepDivePanel from '../components/DeepDivePanel.jsx';
 import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
 import { jsonLdProps } from '../lib/jsonLd.js';
@@ -71,7 +72,9 @@ export default function ServicesPage() {
       <script type="application/ld+json" {...jsonLdProps(servicesJsonLd)} />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
-        <System headingLevel="h1" />
+        <System headingLevel="h1">
+          <DeepDivePanel flush />
+        </System>
       </main>
       <Footer />
     </>

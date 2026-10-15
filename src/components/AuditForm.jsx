@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent } from '../lib/analytics.js';
 
 const initialForm = {
   name: '',
@@ -226,6 +227,7 @@ export default function AuditForm({ headingLevel = 'h2', showWhatHappensNext = f
         const data = await res.json().catch(() => ({}));
         throw new Error(res.status === 400 && data.error ? data.error : 'Failed');
       }
+      trackEvent('audit_request_submit', { customer_access: form.customerAccess, location_count: form.locations });
       setSubmitted(true);
     } catch (err) {
       setError(err.message && err.message !== 'Failed' ? err.message : 'Something went wrong. Please try again.');
