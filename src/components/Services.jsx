@@ -184,7 +184,7 @@ export default function Services() {
                   marginBottom: '12px',
                 }}>
                   
-                  Digital Identity Build
+                  Identity Build
                 </h3>
                 <p style={{
                   fontFamily: "'DM Sans', sans-serif",
@@ -251,7 +251,7 @@ export default function Services() {
                   letterSpacing: '0.03em',
                   marginBottom: '12px',
                 }}>
-                  Presence &amp; Reputation Management
+                  Identity Management
                 </h3>
                 <p style={{
                   fontFamily: "'DM Sans', sans-serif",
@@ -259,7 +259,7 @@ export default function Services() {
                   color: 'rgba(255,255,255,0.75)',
                   lineHeight: 1.65,
                 }}>
-                  Your digital identity needs active maintenance. We monitor, strengthen, and protect your presence so you stay visible as platforms and AI systems evolve.
+                  Presence and reputation management that keeps your digital identity active. We monitor, strengthen, and protect your presence so you stay visible as platforms and AI systems evolve.
                 </p>
               </div>
               <div style={{ padding: '24px 28px', flex: 1 }}>
