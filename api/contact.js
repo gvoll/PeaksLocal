@@ -1,6 +1,9 @@
 import nodemailer from 'nodemailer';
-import { contactFormEmail } from '../src/lib/emailTemplates.js';
+import { contactFormEmail, deepDiveInquiryEmail } from '../src/lib/emailTemplates.js';
 import { escapeHtml, isValidEmail, isWithinLength } from '../src/lib/emailSafety.js';
+
+const INQUIRY_TYPES = ['Client inquiry', 'Partner inquiry', 'Visibility Deep-Dive', 'General question'];
+const DEEP_DIVE_TYPE = 'Visibility Deep-Dive';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -8,6 +11,9 @@ export default async function handler(req, res) {
   }
 
   const { name, email, phone, message, website } = req.body;
+  // Only accept known inquiry types; anything else is treated as not provided.
+  const inquiryType = INQUIRY_TYPES.includes(req.body.inquiryType) ? req.body.inquiryType : '';
+  const isDeepDive = inquiryType === DEEP_DIVE_TYPE;
 
   // Honeypot: real users never see or fill this field in. A bot that
   // auto-fills every field will populate it, so silently pretend success
@@ -49,7 +55,7 @@ export default async function handler(req, res) {
       from: '"PeaksLocal" <greg.voll@peakslocal.com>',
       to: 'greg.voll@peakslocal.com',
       replyTo: email,
-      subject: `New Contact Form Submission — ${name}`,
+      subject: isDeepDive ? `New Deep-Dive Inquiry · ${name}` : `New Contact Form Submission · ${name}`,
       html: `
 <!DOCTYPE html>
 <html>
@@ -80,6 +86,10 @@ export default async function handler(req, res) {
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Email</td>
                 <td style="padding:12px 0;font-size:14px;"><a href="mailto:${safeEmail}" style="color:#3aad64;text-decoration:none;">${safeEmail}</a></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e5e7eb;">
+                <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Inquiry type</td>
+                <td style="padding:12px 0;color:#111827;font-size:14px;${isDeepDive ? 'font-weight:600;' : ''}">${escapeHtml(inquiryType) || 'Not provided'}</td>
               </tr>
               <tr style="border-bottom:1px solid #e5e7eb;">
                 <td style="padding:12px 0;color:#6b7280;font-size:13px;vertical-align:top;">Phone</td>
@@ -128,8 +138,8 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: '"PeaksLocal" <greg.voll@peakslocal.com>',
         to: email,
-        subject: contactFormEmail.subject,
-        html: contactFormEmail.html({ firstName: submittedFirstName }),
+        subject: isDeepDive ? deepDiveInquiryEmail.subject : contactFormEmail.subject,
+        html: (isDeepDive ? deepDiveInquiryEmail : contactFormEmail).html({ firstName: submittedFirstName }),
       });
     } catch (confirmationErr) {
       console.error('Confirmation email error:', confirmationErr.message);

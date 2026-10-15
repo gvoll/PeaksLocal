@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import DeepDivePanel from './DeepDivePanel.jsx';
 
 const oneTimeItems = [
   'Google, Apple & Bing profile setup and full optimization',
@@ -288,6 +289,8 @@ export default function Services() {
               </div>
             </div>
           </div>
+
+          <DeepDivePanel />
 
           {/* Multi-location */}
           <div

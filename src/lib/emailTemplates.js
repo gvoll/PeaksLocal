@@ -116,6 +116,62 @@ export const auditRequestEmail = {
   `,
 };
 
+// Template: Visibility Deep-Dive inquiry (sent instead of the generic contact
+// confirmation when the visitor chose the Deep-Dive inquiry type). No price
+// is stated on purpose: pricing is shared by reply.
+export const deepDiveInquiryEmail = {
+  subject: "Your PeaksLocal Visibility Deep-Dive request",
+
+  html: ({ firstName = '' } = {}) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your PeaksLocal Visibility Deep-Dive request</title>
+  ${styles}
+</head>
+<body>
+<div class="wrapper">
+  ${header}
+  <div class="body">
+    <p class="greeting">${firstName ? `Hi ${firstName},` : 'Hi there,'}</p>
+    <p class="body-text">
+      Thanks for asking about the Visibility Deep-Dive. We'll reply within one
+      business day with what's included, pricing, and how scheduling works.
+    </p>
+    <div class="callout-navy">
+      <div class="box-title">What the Deep-Dive covers</div>
+      <ul>
+        <li>A Google Maps ranking report for the search terms and areas that matter most</li>
+        <li>A local competitor analysis of the top businesses in your market</li>
+        <li>Review sentiment analysis of your reviews and your competitors'</li>
+        <li>A walkthrough of the findings with a prioritized plan</li>
+      </ul>
+    </div>
+    <p class="body-text">
+      If you move forward with a build or ongoing management, the Deep-Dive is
+      credited toward it. No obligation either way.
+    </p>
+    <p class="body-text">
+      Haven't had your free Visibility Audit yet? It's the best starting point.
+    </p>
+    <div class="cta-wrap">
+      <a href="${AUDIT_FORM_URL}" class="cta-btn">Request Your Free Visibility Audit</a>
+    </div>
+    ${signature}
+  </div>
+  <div class="footer">
+    <p>You're receiving this because you asked about the Visibility Deep-Dive at
+    <a href="https://www.peakslocal.com">peakslocal.com</a>. &nbsp;&middot;&nbsp;
+    <a href="https://www.peakslocal.com/privacy">Privacy Policy</a></p>
+  </div>
+</div>
+</body>
+</html>
+  `,
+};
+
 // Template 2: Contact Form
 export const contactFormEmail = {
   subject: "Thank you for contacting PeaksLocal",

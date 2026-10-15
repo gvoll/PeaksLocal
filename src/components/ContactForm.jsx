@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { trackEvent } from '../lib/analytics.js';
+
+const INQUIRY_TYPES = ['Client inquiry', 'Partner inquiry', 'Visibility Deep-Dive', 'General question'];
+const DEEP_DIVE_TYPE = 'Visibility Deep-Dive';
+const DEEP_DIVE_MESSAGE = "I'd like details and pricing for the Visibility Deep-Dive. My business name and website: ";
 
 const initialForm = {
   name: '',
@@ -163,6 +168,18 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const sectionRef = useRef(null);
+  const { search } = useLocation();
+
+  // /contact?interest=deep-dive (from the Services page) preselects the
+  // Deep-Dive inquiry type and starts the message for the visitor.
+  useEffect(() => {
+    if (new URLSearchParams(search).get('interest') !== 'deep-dive') return;
+    setForm((prev) => ({
+      ...prev,
+      inquiryType: DEEP_DIVE_TYPE,
+      message: prev.message || DEEP_DIVE_MESSAGE,
+    }));
+  }, [search]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -192,6 +209,8 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error('Failed');
+      trackEvent('contact_form_submit', { inquiry_type: form.inquiryType || 'none' });
+      if (form.inquiryType === DEEP_DIVE_TYPE) trackEvent('deep_dive_inquiry_submit');
       setSubmitted(true);
     } catch {
       alert('Something went wrong. Please try again.');
@@ -389,7 +408,7 @@ export default function ContactForm() {
                   <div>
                     <label className="contact-label">Inquiry type</label>
                     <div className="inquiry-options">
-                      {['Client inquiry', 'Partner inquiry', 'General question'].map((opt) => (
+                      {INQUIRY_TYPES.map((opt) => (
                         <React.Fragment key={opt}>
                           <input
                             className="inquiry-radio"
