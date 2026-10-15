@@ -227,7 +227,7 @@ export default function AuditForm({ headingLevel = 'h2', showWhatHappensNext = f
         const data = await res.json().catch(() => ({}));
         throw new Error(res.status === 400 && data.error ? data.error : 'Failed');
       }
-      trackEvent('audit_request_submit', { customer_access: form.customerAccess, locations: form.locations });
+      trackEvent('audit_request_submit', { customer_access: form.customerAccess, location_count: form.locations });
       setSubmitted(true);
     } catch (err) {
       setError(err.message && err.message !== 'Failed' ? err.message : 'Something went wrong. Please try again.');

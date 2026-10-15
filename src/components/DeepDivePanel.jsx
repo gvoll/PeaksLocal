@@ -52,11 +52,13 @@ const styles = `
         }
 `;
 
-export default function DeepDivePanel() {
+// flush: drop the top margin when the panel follows a block that already
+// supplies its own bottom spacing (the plan card on /services).
+export default function DeepDivePanel({ flush = false }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
-      <div id="deep-dive" className="deep-dive reveal reveal-delay-2">
+      <div id="deep-dive" className="deep-dive reveal reveal-delay-2" style={flush ? { marginTop: 0 } : undefined}>
         <span
           style={{
             alignSelf: 'flex-start',
@@ -131,7 +133,7 @@ export default function DeepDivePanel() {
           <Link
             to="/contact?interest=deep-dive"
             className="btn-primary"
-            onClick={() => trackEvent('deep_dive_cta_click', { location: typeof window !== 'undefined' ? window.location.pathname : '' })}
+            onClick={() => trackEvent('deep_dive_cta_click', { source_page: typeof window !== 'undefined' ? window.location.pathname : '' })}
           >
             Ask About a Deep-Dive →
           </Link>

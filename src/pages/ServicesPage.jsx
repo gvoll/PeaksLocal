@@ -72,12 +72,9 @@ export default function ServicesPage() {
       <script type="application/ld+json" {...jsonLdProps(servicesJsonLd)} />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
-        <System headingLevel="h1" />
-        <section style={{ background: 'var(--white)', padding: '0 0 90px' }}>
-          <div className="container">
-            <DeepDivePanel />
-          </div>
-        </section>
+        <System headingLevel="h1">
+          <DeepDivePanel flush />
+        </System>
       </main>
       <Footer />
     </>

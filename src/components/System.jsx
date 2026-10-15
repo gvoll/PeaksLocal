@@ -137,7 +137,7 @@ const systemStyles = `
         }
 `;
 
-export default function System({ headingLevel = 'h2' }) {
+export default function System({ headingLevel = 'h2', children = null }) {
   const MainHeading = headingLevel;
   const sectionRef = useRef(null);
 
@@ -452,6 +452,8 @@ export default function System({ headingLevel = 'h2' }) {
               The audit comes first. What we recommend after that is scoped to what your business actually needs.
             </p>
           </div>
+
+          {children}
 
         </div>
 
