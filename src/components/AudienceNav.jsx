@@ -19,7 +19,7 @@ const BUSINESS_SETUP_OPTIONS = [
 const SEO_STATUS_OPTIONS = [
   { value: 'none', label: 'Nothing set up', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Nothing is set up yet' } },
   { value: 'inconsistent', label: 'Inconsistent', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Details do not match everywhere' } },
-  { value: 'managed', label: 'Managed, not working', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Managed, but not producing results' } },
+  { value: 'managed', label: 'Managed, not working', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Managed, but not producing results' }, secondary: { label: 'Not seeing results? Get a Visibility Deep-Dive', target: 'deep-dive' } },
   { value: 'not_sure', label: 'Not sure', target: 'audit', isOther: true, stop: { title: 'Free Visibility Audit', note: 'Start with a free audit' } },
 ];
 
@@ -323,7 +323,7 @@ function ChipGroup({ axis, options, selected, onSelect }) {
   );
 }
 
-function DestinationCard({ question, nextQuestion, selected, onGo, onNext }) {
+function DestinationCard({ question, nextQuestion, selected, onGo, onNext, onSecondary }) {
   const opt = question.options.find((o) => o.value === selected);
   return (
     <div className="ep-slot" aria-live="polite">
@@ -338,6 +338,11 @@ function DestinationCard({ question, nextQuestion, selected, onGo, onNext }) {
             <button type="button" className="ep-go-link" onClick={() => onGo(question, opt)}>
               Take me there &rarr;
             </button>
+            {opt.secondary && (
+              <button type="button" className="ep-next-link" onClick={() => onSecondary(question, opt)}>
+                {opt.secondary.label} &rarr;
+              </button>
+            )}
             {nextQuestion && (
               <button type="button" className="ep-next-link" onClick={() => onNext(question, nextQuestion)}>
                 Or answer question {nextQuestion.num} &darr;
@@ -378,6 +383,13 @@ export default function AudienceNav() {
     if (opt.highlightId) flashHighlight(opt.highlightId);
   };
 
+  // Optional second link on a result card (currently "Managed, not working" -> Deep-Dive panel).
+  const handleSecondary = (question, opt) => {
+    trackEvent('entry_point_deep_dive', { axis: question.axis, value: opt.value });
+    navigate(`${location.pathname}${location.search}`, { state: { fromEntryPoint: true } });
+    scrollToId(opt.secondary.target);
+  };
+
   const handleNext = (fromQuestion, nextQuestion) => {
     trackEvent('entry_point_next', { axis: fromQuestion.axis });
     const cluster = document.getElementById(`ep-q-${nextQuestion.axis}`);
@@ -401,6 +413,7 @@ export default function AudienceNav() {
           selected={selections[q.axis]}
           onGo={handleGo}
           onNext={handleNext}
+          onSecondary={handleSecondary}
         />
       </div>
     ));
