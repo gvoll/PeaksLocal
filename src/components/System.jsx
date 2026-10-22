@@ -15,7 +15,7 @@ const auditRows = [
 ];
 
 const scoreFill = 5;
-const scoreLabel = 'Fair Visibility';
+const scoreLabel = 'Needs Attention';
 
 const priorityNextSteps = [
   'Claim and complete your Apple Business Connect listing',
