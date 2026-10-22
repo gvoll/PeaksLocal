@@ -54,7 +54,7 @@ const faqs = [
   {
     id: 'report-card',
     q: 'What is the free report card?',
-    a: 'It\'s a scored audit (0–100) of your digital identity across all seven categories: business profiles, structured data, NAP consistency, trust directories, reviews, social identity, and ongoing maintenance. You get a breakdown of where you\'re strong, where you\'re weak, and what to fix first.',
+    a: 'It\'s a visibility check of your business across seven areas: Google Business Profile, Apple Business Connect, Bing Places, website structured data, trust directories, reviews, and social profiles. You get an overall rating, a status for each area, and a short list of what to fix first.',
   },
   {
     id: 'profile-drift',
