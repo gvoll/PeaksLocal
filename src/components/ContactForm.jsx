@@ -352,7 +352,7 @@ export default function ContactForm() {
 
                 <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '20px' }}>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'rgba(138,160,184,0.7)', lineHeight: 1.65 }}>
-                    Proudly based in Denver, Colorado 80222 · serving local businesses here and across the U.S.
+                    Proudly based at 4423 East Bails Place, Denver, CO 80222 · serving local businesses here and across the U.S.
                   </p>
                 </div>
               </div>
