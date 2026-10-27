@@ -118,10 +118,13 @@ async function main() {
       missingSlugPosts.map((p) => p.title));
   }
   const validPosts = posts.filter((p) => p.slug);
+  // /blog only renders these fields. Preloading whole posts (full rich-text
+  // bodies) made its HTML ~540 KB, almost all of it an inline JSON blob.
+  const blogIndexPosts = validPosts.map(({ id, slug, title, excerpt, publishedDate }) => ({ id, slug, title, excerpt, publishedDate }));
 
   const routes = [
     ...STATIC_ROUTES,
-    { routePath: '/blog', priority: '0.9', changefreq: 'daily', preload: { key: 'posts:all', value: validPosts } },
+    { routePath: '/blog', priority: '0.9', changefreq: 'daily', preload: { key: 'posts:all', value: blogIndexPosts } },
     ...serveCities.map((c) => ({ routePath: `/serve/${c.slug}`, priority: '0.8', changefreq: 'monthly' })),
     ...servicePages.map((p) => ({ routePath: `/${p.slug}`, priority: '0.9', changefreq: 'monthly' })),
     ...validPosts.map((p) => ({
