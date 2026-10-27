@@ -834,11 +834,23 @@ input, textarea {
 }
 
 .blog-post-author {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
   margin-top: 40px;
   padding: 20px 22px;
   border: 1px solid var(--rule);
   border-radius: var(--radius-sm);
   background: var(--ash);
+}
+
+.blog-post-author-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
 }
 
 .blog-post-author-label {

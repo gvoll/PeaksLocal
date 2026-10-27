@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProcessFlow from './ProcessFlow.jsx';
+import { founder } from '../data/founder.js';
 
 const faqLink = { color: 'inherit', textDecoration: 'underline', textDecorationColor: 'rgba(58,173,100,0.5)', textUnderlineOffset: '3px' };
 
@@ -80,18 +81,38 @@ export default function About() {
             I'd appreciate the chance to be your local visibility partner, so please <Link to="/contact" style={faqLink}>reach out</Link> anytime, no obligation. Want to understand your current status? Take my <Link to="/audit" style={faqLink}>free audit</Link> first.
           </p>
 
-          <p
-            className="reveal reveal-delay-5"
-            style={{
-              fontFamily: "'Dancing Script', cursive",
-              fontSize: '2rem',
-              color: 'rgba(255,255,255,0.9)',
-              marginTop: '20px',
-              marginBottom: 0,
-            }}
-          >
-            Greg Voll, Founder
-          </p>
+          <div className="reveal reveal-delay-5" style={{ display: 'flex', alignItems: 'center', gap: '18px', marginTop: '24px' }}>
+            <picture>
+              <source type="image/webp" srcSet={founder.imageWebp} />
+              <img
+                src={founder.image}
+                width="96"
+                height="96"
+                alt={`${founder.name}, founder of PeaksLocal`}
+                style={{ width: '96px', height: '96px', borderRadius: '50%', objectFit: 'cover', display: 'block', border: '2px solid rgba(58,173,100,0.5)' }}
+              />
+            </picture>
+            <div>
+              <p
+                style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: '2rem',
+                  color: 'rgba(255,255,255,0.9)',
+                  margin: 0,
+                }}
+              >
+                Greg Voll, Founder
+              </p>
+              <a
+                href={founder.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.85rem', color: 'var(--green-hi)', textDecoration: 'none' }}
+              >
+                Connect on LinkedIn →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 

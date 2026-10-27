@@ -251,10 +251,17 @@ export default function BlogPost() {
                 )}
 
                 <aside className="blog-post-author" aria-label="About the author">
-                  <p className="blog-post-author-label">About the author</p>
-                  <p className="blog-post-author-name">{founder.name}, {founder.jobTitle}</p>
-                  <p className="blog-post-author-bio">{founder.bio}</p>
-                  <Link to="/about" className="blog-post-author-link">More about Greg →</Link>
+                  <picture>
+                    <source type="image/webp" srcSet={founder.imageWebp} />
+                    <img src={founder.image} width="64" height="64" alt={founder.name} loading="lazy" className="blog-post-author-photo" />
+                  </picture>
+                  <div>
+                    <p className="blog-post-author-label">About the author</p>
+                    <p className="blog-post-author-name">{founder.name}, {founder.jobTitle}</p>
+                    <p className="blog-post-author-bio">{founder.bio}</p>
+                    <Link to="/about" className="blog-post-author-link">More about Greg →</Link>
+                    <a href={founder.linkedin} target="_blank" rel="noreferrer" className="blog-post-author-link" style={{ marginLeft: '18px' }}>LinkedIn →</a>
+                  </div>
                 </aside>
               </>
             )}
