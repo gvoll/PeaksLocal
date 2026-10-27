@@ -137,7 +137,7 @@ export default function AboutPage() {
 
         <Section bg="var(--white)" heading="Based in Denver, Working Nationwide">
           <p style={bodyTextStyle}>
-            PeaksLocal is based in Denver, Colorado (80222). I meet local clients in person across the Front Range, including{' '}
+            PeaksLocal is based at 4423 East Bails Place, Denver, CO 80222. I meet local clients in person across the Front Range, including{' '}
             <Link to="/serve/denver" style={linkStyle}>Denver</Link>,{' '}
             <Link to="/serve/boulder" style={linkStyle}>Boulder</Link>, and{' '}
             <Link to="/serve/colorado-springs" style={linkStyle}>Colorado Springs</Link>, and work with local businesses anywhere in the country through virtual consultations.
