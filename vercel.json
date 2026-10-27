@@ -6,6 +6,12 @@
       "destination": "https://www.peakslocal.com/$1",
       "permanent": true
     },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "peaks-local.vercel.app" }],
+      "destination": "https://www.peakslocal.com/$1",
+      "permanent": true
+    },
     { "source": "/team", "destination": "/about", "permanent": true },
     { "source": "/about-us", "destination": "/about", "permanent": true },
     { "source": "/our-team", "destination": "/about", "permanent": true }
