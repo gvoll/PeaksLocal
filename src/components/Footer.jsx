@@ -71,8 +71,12 @@ export default function Footer() {
                 Be Seen on Search, Maps + AI
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                {/* Must match Google Business Profile, Clutch, and every directory character for character. */}
+                <a href="https://maps.google.com/?cid=12277433656277192661" target="_blank" rel="noreferrer" className="footer-link" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)', textDecoration: 'none' }}>
+                  4423 East Bails Place, Denver, CO 80222
+                </a>
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.82rem', color: 'var(--slate)' }}>
-                  Based in Denver, CO 80222 · serving{' '}
+                  Serving{' '}
                   <Link to="/serve" className="footer-link" style={{ color: 'var(--slate)', textDecoration: 'underline', textUnderlineOffset: '2px' }}>
                     the Front Range
                   </Link>
