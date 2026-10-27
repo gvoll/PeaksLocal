@@ -14,7 +14,7 @@ const faqs = [
   {
     id: 'is-this-seo',
     q: 'Is this the same as SEO?',
-    a: 'Not exactly. Traditional SEO focuses on keywords and content ranking. PeaksLocal focuses on the underlying identity and data layer that makes visibility possible across search, maps, and AI, before content strategy even enters the picture.',
+    a: "Yes, it's local SEO, starting with the data layer. Traditional SEO often focuses on keywords and content. PeaksLocal starts underneath that: your Google, Apple Maps, and Bing profiles, your website's structured data, and consistent details across directories, because that's what search engines, maps, and AI tools check first. Keywords and content work better once that foundation is right.",
   },
   {
     id: 'what-is-geo',

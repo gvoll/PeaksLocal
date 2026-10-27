@@ -122,9 +122,9 @@ export default function Hero() {
                   letterSpacing: '-0.01em',
                 }}
               >
-                One Trusted Identity.<br />
-                <span style={{ color: 'var(--green-hi)' }}>Built for Local Search</span><br />
-                and Found by AI.
+                Denver Local SEO,<br />
+                <span style={{ color: 'var(--green-hi)' }}>Built for Google Maps</span><br />
+                and AI Search.
               </h1>
 
               {/* Sub */}
@@ -136,7 +136,7 @@ export default function Hero() {
                 marginBottom: '28px',
                 maxWidth: '520px',
               }}>
-                PeaksLocal builds and maintains your verified business data for local search across Google, Apple Maps, Bing, and AI...so customers find you, not your competitor.
+                One trusted digital identity, everywhere customers search. PeaksLocal builds and maintains your verified business data across Google, Apple Maps, Bing, and AI...so customers find you, not your competitor.
               </p>
 
               {/* Alternate path for visitors who aren't ready to convert yet */}

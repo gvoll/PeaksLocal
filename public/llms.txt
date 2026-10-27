@@ -8,6 +8,9 @@ PeaksLocal manages a business's presence across Google Business Profile, Apple B
 
 - [Home](https://www.peakslocal.com/): Overview of PeaksLocal's local digital identity management service.
 - [Services](https://www.peakslocal.com/services): What PeaksLocal manages across each platform.
+- [Local SEO Denver](https://www.peakslocal.com/local-seo-denver): Local SEO for Denver businesses across Google Maps, Apple Maps, Bing, and AI search.
+- [Google Business Profile Management Denver](https://www.peakslocal.com/google-business-profile-management-denver): Ongoing Google Business Profile setup, optimization, review, and edit management.
+- [AI Search Optimization Denver](https://www.peakslocal.com/ai-search-optimization-denver): How PeaksLocal helps local businesses get recommended by ChatGPT, Gemini, and Google AI (GEO and AEO).
 - [How It Works](https://www.peakslocal.com/how-it-works): The audit-to-optimization process.
 - [Free Audit](https://www.peakslocal.com/audit): Request a free Digital Identity Report Card.
 - [Areas We Serve](https://www.peakslocal.com/serve): Denver, Boulder, and Colorado Springs service-area pages.

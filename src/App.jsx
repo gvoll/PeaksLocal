@@ -16,8 +16,10 @@ import PartnersPage from './pages/PartnersPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ServePage from './pages/ServePage.jsx';
 import ServeCityPage from './pages/ServeCityPage.jsx';
+import ServiceLandingPage from './pages/ServiceLandingPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import { trackPageView } from './lib/analytics.js';
+import { servicePages } from './data/servicePages.js';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -53,6 +55,9 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/serve" element={<ServePage />} />
         <Route path="/serve/:city" element={<ServeCityPage />} />
+        {servicePages.map((p) => (
+          <Route key={p.slug} path={`/${p.slug}`} element={<ServiceLandingPage slug={p.slug} />} />
+        ))}
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFoundPage />} />
