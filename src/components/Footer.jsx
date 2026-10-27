@@ -101,6 +101,13 @@ export default function Footer() {
 
           </div>
 
+          {/* Service links: sitewide internal links to the keyword-targeted Denver service pages */}
+          <nav aria-label="Denver services" style={{ padding: '20px 0 0', textAlign: 'center', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px 24px' }}>
+            <Link to="/local-seo-denver" className="footer-link" style={linkStyle}>Local SEO Denver</Link>
+            <Link to="/google-business-profile-management-denver" className="footer-link" style={linkStyle}>Google Business Profile Management</Link>
+            <Link to="/ai-search-optimization-denver" className="footer-link" style={linkStyle}>AI Search Optimization</Link>
+          </nav>
+
           {/* Bottom bar — copyright + legal */}
           <div style={{ padding: '20px 0 24px', textAlign: 'center' }}>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.75rem', color: 'var(--slate)', margin: '0 0 6px', fontStyle: 'italic' }}>

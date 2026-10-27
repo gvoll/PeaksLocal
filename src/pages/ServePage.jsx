@@ -9,8 +9,8 @@ export default function ServePage() {
   return (
     <>
       <SEO
-        title="Areas We Serve: Colorado Digital Identity"
-        description="PeaksLocal manages verified local presence for businesses across Denver, Boulder, and Colorado Springs. See how we approach each market."
+        title="Areas We Serve: Local SEO Across Colorado"
+        description="Local SEO for businesses in Denver, Boulder, and Colorado Springs: Google Maps, Apple Maps, Bing, and AI search visibility, built for each market."
         canonical="/serve"
         breadcrumbs={[{ name: 'Areas We Serve', path: '/serve' }]}
       />
@@ -33,7 +33,7 @@ export default function ServePage() {
               letterSpacing: '-0.01em',
               marginBottom: '20px',
             }}>
-              Local Digital Identity, <span style={{ color: 'var(--green-hi)' }}>Built for Your Market</span>
+              Local SEO Across Colorado, <span style={{ color: 'var(--green-hi)' }}>Built for Your Market</span>
             </h1>
             <p style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -42,7 +42,7 @@ export default function ServePage() {
               lineHeight: 1.75,
               maxWidth: '620px',
             }}>
-              PeaksLocal is a Denver-based local digital identity firm serving small businesses across Colorado's Front Range. We manage your verified presence across Google, Apple Maps, Bing, and AI search so customers find you when it matters, whether you run a physical location or a service area business.
+              PeaksLocal is a Denver-based local SEO and digital identity firm serving small businesses across Colorado's Front Range. We manage your verified presence across Google, Apple Maps, Bing, and AI search so customers find you when it matters, whether you run a physical location or a service area business.
             </p>
           </div>
         </section>

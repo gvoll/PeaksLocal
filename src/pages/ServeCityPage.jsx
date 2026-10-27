@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
+import { jsonLdProps } from '../lib/jsonLd.js';
 import { serveCities, getServeCity } from '../data/serveCities.js';
 
 const furtherReading = [
@@ -15,7 +16,9 @@ function RichText({ parts, slug, style }) {
     <p style={style}>
       {parts.map((part, i) => (
         <React.Fragment key={i}>
-          {part.text}
+          {part.to
+            ? <Link to={part.to} style={{ color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}>{part.text}</Link>
+            : part.text}
           {part.citation && (
             <sup>
               <a
@@ -61,6 +64,11 @@ export default function ServeCityPage() {
 
   const otherCities = serveCities.filter((c) => c.slug !== city.slug);
 
+  // Light sections alternate ash/white in the order they render; the navy
+  // hero, SAB callout, and CTA sit outside this sequence.
+  let lightIndex = 0;
+  const nextBg = () => (lightIndex++ % 2 === 0 ? 'var(--ash)' : 'var(--white)');
+
   return (
     <>
       <SEO
@@ -69,6 +77,17 @@ export default function ServeCityPage() {
         canonical={`/serve/${city.slug}`}
         breadcrumbs={[{ name: 'Areas We Serve', path: '/serve' }, { name: city.name, path: `/serve/${city.slug}` }]}
       />
+      {city.faqs && (
+        <script type="application/ld+json" {...jsonLdProps({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": city.faqs.map((item) => ({
+            "@type": "Question",
+            "name": item.q,
+            "acceptedAnswer": { "@type": "Answer", "text": item.a },
+          })),
+        })} />
+      )}
       <Nav />
       <main style={{ paddingTop: '68px' }}>
 
@@ -86,10 +105,21 @@ export default function ServeCityPage() {
               color: 'var(--white)',
               lineHeight: 1.05,
               letterSpacing: '-0.01em',
+              marginBottom: '14px',
+            }}>
+              Local SEO for <span style={{ color: 'var(--green-hi)' }}>{city.name}</span> Businesses
+            </h1>
+            <p style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.75rem',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--green-hi)',
+              lineHeight: 1.6,
               marginBottom: '20px',
             }}>
-              Local Digital Identity for <span style={{ color: 'var(--green-hi)' }}>{city.name}</span> Businesses
-            </h1>
+              Local digital identity management for Google Maps, Apple Maps, Bing, and AI search
+            </p>
             <RichText
               parts={city.intro}
               slug={city.slug}
@@ -100,7 +130,7 @@ export default function ServeCityPage() {
 
         {/* Local Market Snapshot */}
         {city.snapshot && (
-          <section style={{ background: 'var(--ash)', padding: '64px 0' }}>
+          <section style={{ background: nextBg(), padding: '64px 0' }}>
             <div className="container" style={{ maxWidth: '800px' }}>
               <div style={{
                 background: 'var(--white)',
@@ -130,7 +160,7 @@ export default function ServeCityPage() {
         )}
 
         {/* Landscape narrative */}
-        <section style={{ background: city.snapshot ? 'var(--white)' : 'var(--ash)', padding: '72px 0' }}>
+        <section style={{ background: nextBg(), padding: '72px 0' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
             <h2 style={h3Style}>{city.landscapeHeading}</h2>
             {city.landscape.map((parts, i) => (
@@ -138,6 +168,18 @@ export default function ServeCityPage() {
             ))}
           </div>
         </section>
+
+        {/* Additional market sections */}
+        {city.sections && city.sections.map((section) => (
+          <section key={section.heading} style={{ background: nextBg(), padding: '64px 0' }}>
+            <div className="container" style={{ maxWidth: '800px' }}>
+              <h2 style={h3Style}>{section.heading}</h2>
+              {section.paragraphs.map((parts, i) => (
+                <RichText key={i} parts={parts} slug={city.slug} style={bodyTextStyle} />
+              ))}
+            </div>
+          </section>
+        ))}
 
         {/* Service Area Business callout (Denver only) */}
         {city.sab && (
@@ -156,8 +198,31 @@ export default function ServeCityPage() {
           </section>
         )}
 
+        {/* FAQ */}
+        {city.faqs && (
+          <section style={{ background: nextBg(), padding: '64px 0' }}>
+            <div className="container" style={{ maxWidth: '800px' }}>
+              <h2 style={h3Style}>{city.name} Local SEO Questions</h2>
+              {city.faqs.map((item) => (
+                <div key={item.q} style={{ padding: '18px 0', borderBottom: '1px solid var(--rule)' }}>
+                  <h3 style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                    color: 'var(--navy)',
+                    marginBottom: '8px',
+                  }}>
+                    {item.q}
+                  </h3>
+                  <p style={{ ...bodyTextStyle, marginBottom: 0 }}>{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Areas We Serve */}
-        <section style={{ background: city.sab ? 'var(--ash)' : 'var(--white)', padding: '64px 0' }}>
+        <section style={{ background: nextBg(), padding: '64px 0' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
             <h2 style={h3Style}>Areas We Serve</h2>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '40px' }}>
@@ -221,7 +286,7 @@ export default function ServeCityPage() {
         </section>
 
         {/* Further Reading */}
-        <section style={{ background: city.sab ? 'var(--white)' : 'var(--ash)', padding: '48px 0' }}>
+        <section style={{ background: nextBg(), padding: '48px 0' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -254,7 +319,7 @@ export default function ServeCityPage() {
         </section>
 
         {/* Sources */}
-        <section style={{ background: city.sab ? 'var(--ash)' : 'var(--white)', padding: '0 0 48px' }}>
+        <section style={{ background: lightIndex % 2 === 1 ? 'var(--ash)' : 'var(--white)', padding: '0 0 48px' }}>
           <div className="container" style={{ maxWidth: '800px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",

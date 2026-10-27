@@ -23,6 +23,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
 import { serveCities } from '../src/data/serveCities.js';
+import { servicePages } from '../src/data/servicePages.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -122,6 +123,7 @@ async function main() {
     ...STATIC_ROUTES,
     { routePath: '/blog', priority: '0.9', changefreq: 'daily', preload: { key: 'posts:all', value: validPosts } },
     ...serveCities.map((c) => ({ routePath: `/serve/${c.slug}`, priority: '0.8', changefreq: 'monthly' })),
+    ...servicePages.map((p) => ({ routePath: `/${p.slug}`, priority: '0.9', changefreq: 'monthly' })),
     ...validPosts.map((p) => ({
       routePath: `/blog/${p.slug}`,
       priority: '0.8',
