@@ -87,7 +87,7 @@ const glossary = [
   { id: 'profile-drift', term: 'Profile Drift', def: 'The gradual degradation of your business information across platforms as details go out of date, data aggregators push stale records, or new platforms go unclaimed.' },
   { id: 'review-gating', term: 'Review Gating', def: "Steering only your happiest customers toward leaving a public review, for example by asking for feedback privately first and only directing satisfied customers on to the review platform. Google's policy explicitly prohibits this, alongside incentivized reviews and other selective solicitation." },
   { id: 'review-recency', term: 'Review Recency', def: 'How recently you\'ve received reviews. Platforms weight recent reviews more heavily than older ones; a steady stream matters more than a one-time burst.' },
-  { id: 'service-area-business', term: 'Service Area Business (SAB)', def: 'A business that visits or delivers to customers directly at their locations, rather than serving customers at a physical storefront or business address, such as a plumber, mobile dog groomer, or electrician. Google lets these businesses hide their street address and list a service area instead.' },
+  { id: 'service-area-business', term: 'Service Area Business (SAB)', def: 'A business that delivers its services and products directly to customers at their locations, rather than having a physical storefront, such as a plumber, mobile dog groomer, or electrician. Google lets these businesses hide their street address and list a service area instead.' },
   { id: 'trust-signal', term: 'Trust Signal', def: 'Any verified data point that tells a platform your business is real and reliable: a claimed profile, a consistent NAP, a review response, or a schema tag.' },
 ];
 
