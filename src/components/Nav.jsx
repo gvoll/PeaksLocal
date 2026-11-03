@@ -298,6 +298,12 @@ const MENUS = [
   },
 ];
 
+// One event for every nav click, so menu use can be compared in GA4.
+// menu: 'services' | 'learn' | 'about' | 'cta'; item: 'label' or the item text.
+function trackNav(menu, item, destination, device) {
+  trackEvent('nav_click', { menu, item, destination, device });
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -398,7 +404,7 @@ export default function Nav() {
                         to={menu.to}
                         className="nav-link-item"
                         style={styles.link}
-                        onClick={() => setOpenMenu(null)}
+                        onClick={() => { setOpenMenu(null); trackNav(menu.id, 'label', menu.to, 'desktop'); }}
                       >
                         {menu.label}
                       </Link>
@@ -433,7 +439,7 @@ export default function Nav() {
                             key={item.label}
                             to={item.to}
                             className="nav-dropdown-item"
-                            onClick={() => setOpenMenu(null)}
+                            onClick={() => { setOpenMenu(null); trackNav(menu.id, item.label, item.to, 'desktop'); }}
                           >
                             {item.label}
                           </Link>
@@ -442,7 +448,7 @@ export default function Nav() {
                             key={item.label}
                             type="button"
                             className="nav-dropdown-item"
-                            onClick={() => { setOpenMenu(null); scrollTo(item.scroll); }}
+                            onClick={() => { setOpenMenu(null); trackNav(menu.id, item.label, `/#${item.scroll}`, 'desktop'); scrollTo(item.scroll); }}
                           >
                             {item.label}
                           </button>
@@ -469,6 +475,7 @@ export default function Nav() {
               to="/audit"
               className="nav-cta nav-cta-persistent"
               style={styles.ctaBtn}
+              onClick={() => trackNav('cta', 'Free Audit', '/audit', 'all')}
             >
               Free Audit
             </Link>
@@ -506,7 +513,7 @@ export default function Nav() {
                       <Link
                         to={menu.to}
                         style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)', color: 'var(--white)' }}
-                        onClick={() => { setMobileOpen(false); setMobileMenu(null); }}
+                        onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, 'label', menu.to, 'mobile'); }}
                       >
                         {menu.id === 'services' ? 'Services overview' : (menu.items.find((i) => i.to === menu.to) || menu).label}
                       </Link>
@@ -517,7 +524,7 @@ export default function Nav() {
                           key={item.label}
                           to={item.to}
                           style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                          onClick={() => { setMobileOpen(false); setMobileMenu(null); }}
+                          onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, item.label, item.to, 'mobile'); }}
                         >
                           {item.label}
                         </Link>
@@ -525,7 +532,7 @@ export default function Nav() {
                         <button
                           key={item.label}
                           style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                          onClick={() => { setMobileOpen(false); setMobileMenu(null); scrollTo(item.scroll); }}
+                          onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, item.label, `/#${item.scroll}`, 'mobile'); scrollTo(item.scroll); }}
                         >
                           {item.label}
                         </button>
