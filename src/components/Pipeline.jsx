@@ -97,8 +97,9 @@ const pipelineStyles = `
         }
 `;
 
-export default function Pipeline({ headingLevel = 'h2' }) {
+export default function Pipeline({ headingLevel = 'h2', variant = 'full' }) {
   const MainHeading = headingLevel;
+  const teaser = variant === 'teaser';
   const sectionRef = useRef(null);
   const zeroCardRef = useRef(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -132,14 +133,6 @@ export default function Pipeline({ headingLevel = 'h2' }) {
     return () => { observer.disconnect(); zeroObserver.disconnect(); };
   }, []);
 
-  const scrollToSystem = () => {
-    const el = document.getElementById('system');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: pipelineStyles }} />
@@ -151,7 +144,7 @@ export default function Pipeline({ headingLevel = 'h2' }) {
         <div className="container">
 
           {/* Section Header */}
-          <div style={{ maxWidth: '680px', marginBottom: '72px' }}>
+          <div style={{ maxWidth: '680px', marginBottom: teaser ? '40px' : '72px' }}>
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
               HOW MODERN SEARCH ACTUALLY WORKS
             </div>
@@ -165,7 +158,9 @@ export default function Pipeline({ headingLevel = 'h2' }) {
               className="reveal reveal-delay-2"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75 }}
             >
-              The way customers find local businesses has fundamentally changed, and most businesses haven't kept up. Here's what's actually happening behind every search.
+              {teaser
+                ? 'Customers now find local businesses through Google, Apple Maps, Bing, and AI assistants. AI assistants cross-check multiple sources before they recommend a business.'
+                : "The way customers find local businesses has fundamentally changed, and most businesses haven't kept up. Here's what's actually happening behind every search."}
             </p>
           </div>
 
@@ -278,6 +273,8 @@ export default function Pipeline({ headingLevel = 'h2' }) {
             </div>
           )}
 
+          {!teaser && (
+          <>
           {/* 3a — The "Near Me" Reality */}
           <div className="reveal" style={{ background: 'var(--ash)', borderRadius: '16px', padding: '40px', marginBottom: '72px' }}>
             <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', color: 'var(--navy)', letterSpacing: '0.03em', marginBottom: '16px' }}>
@@ -414,10 +411,24 @@ export default function Pipeline({ headingLevel = 'h2' }) {
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: 'var(--mid)', lineHeight: 1.75, maxWidth: '620px' }}>
               This is what PeaksLocal is built to fix. We establish and maintain your verified presence at every layer of this pipeline, so by the time a recommendation engine asks "can I trust this business data?", the answer is a consistent, verified yes.
             </p>
-            <button className="btn-primary" onClick={scrollToSystem}>
-              See How We Work →
-            </button>
+            <Link to="/services" className="btn-primary" style={{ textDecoration: 'none' }}>
+              See Our Services →
+            </Link>
           </div>
+          </>
+          )}
+
+          {teaser && (
+            <div className="reveal" style={{ marginTop: '8px' }}>
+              <Link
+                to="/how-it-works"
+                style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}
+              >
+                See how local search works →
+              </Link>
+            </div>
+          )}
+
 
         </div>
       </section>

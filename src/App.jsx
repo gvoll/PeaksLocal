@@ -9,6 +9,7 @@ import FAQPage from './pages/FAQPage.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import HowItWorksPage from './pages/HowItWorksPage.jsx';
+import DeepDivePage from './pages/DeepDivePage.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
 import ReviewsPage from './pages/ReviewsPage.jsx';
 import ReviewFunnelsPage from './pages/ReviewFunnelsPage.jsx';
@@ -24,7 +25,18 @@ import { servicePages } from './data/servicePages.js';
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return undefined;
+    }
+    // The homepage handles its own hash scrolling (LandingPage); other pages
+    // (e.g. /services#diy from Find My Path) are handled here.
+    if (pathname === '/') return undefined;
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash.slice(1));
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    }, 150);
+    return () => clearTimeout(timer);
   }, [pathname, hash]);
   return null;
 }
@@ -53,6 +65,7 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/deep-dive" element={<DeepDivePage />} />
         <Route path="/serve" element={<ServePage />} />
         <Route path="/serve/:city" element={<ServeCityPage />} />
         {servicePages.map((p) => (

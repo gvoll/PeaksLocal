@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav.jsx';
 import System from '../components/System.jsx';
-import DeepDivePanel from '../components/DeepDivePanel.jsx';
+import Services, { oneTimeItems, ongoingItems } from '../components/Services.jsx';
 import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
 import { jsonLdProps } from '../lib/jsonLd.js';
@@ -13,9 +13,8 @@ const provider = {
   "url": "https://www.peakslocal.com",
 };
 
-// Mirrors System.jsx's tier1Items/tier2Items and card copy exactly — this is
-// the content actually rendered on this page (not Services.jsx's homepage
-// section, which uses different tier names and items).
+// Mirrors the Identity Build / Identity Management cards rendered by
+// Services.jsx on this page (items are imported, so the two cannot drift).
 const servicesJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -24,18 +23,12 @@ const servicesJsonLd = {
       "@id": "https://www.peakslocal.com/services#identity-build",
       "name": "Identity Build",
       "serviceType": "Local business digital identity build",
-      "description": "We establish your complete verified presence across the major platforms that power modern search. We'll ensure your accurate and consistent business details across all of the relevant data layers to boost your visibility.",
+      "description": "We establish your complete verified presence across every platform that powers modern search. You receive a completion report with a before-and-after Visibility Rating.",
       "provider": provider,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Identity Build: Your Plan May Include",
-        "itemListElement": [
-          'Google, Apple & Bing profile setup and full optimization',
-          'JSON-LD schema deployment on your website',
-          'BBB liaison and trust directory claims',
-          'Social profile NAP synchronization',
-          'Monitoring and reporting',
-        ].map((name) => ({ "@type": "Offer", "itemOffered": { "@type": "Service", "name": name } })),
+        "name": "Identity Build: Includes",
+        "itemListElement": oneTimeItems.map((name) => ({ "@type": "Offer", "itemOffered": { "@type": "Service", "name": name } })),
       },
     },
     {
@@ -43,18 +36,12 @@ const servicesJsonLd = {
       "@id": "https://www.peakslocal.com/services#identity-management",
       "name": "Identity Management",
       "serviceType": "Local business presence and reputation management",
-      "description": "We strengthen, protect, and monitor your online identity and digital presence. This ensures you maintain strong visibility, regardless of how platforms or AI systems evolve.",
+      "description": "Presence and reputation management that keeps your digital identity active. We monitor, strengthen, and protect your presence so you stay visible as platforms and AI systems evolve.",
       "provider": provider,
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Identity Management: As Your Identity Management Partner",
-        "itemListElement": [
-          'Monthly profile updates: photos, posts, attributes',
-          'Review monitoring and response management',
-          'Review velocity strategy',
-          'Citation drift detection and correction',
-          'Monthly visibility report',
-        ].map((name) => ({ "@type": "Offer", "itemOffered": { "@type": "Service", "name": name } })),
+        "name": "Identity Management: Includes",
+        "itemListElement": ongoingItems.map((name) => ({ "@type": "Offer", "itemOffered": { "@type": "Service", "name": name } })),
       },
     },
   ],
@@ -72,9 +59,30 @@ export default function ServicesPage() {
       <script type="application/ld+json" {...jsonLdProps(servicesJsonLd)} />
       <Nav />
       <main style={{ paddingTop: '68px' }}>
-        <System headingLevel="h1">
-          <DeepDivePanel flush />
-        </System>
+        <section style={{ background: 'var(--white)', padding: '72px 0 0' }}>
+          <div className="container">
+            <h1
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 800,
+                fontSize: '2.8rem',
+                textTransform: 'uppercase',
+                color: 'var(--navy)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.01em',
+                maxWidth: '800px',
+                marginBottom: '18px',
+              }}
+            >
+              Local Digital Identity Services
+            </h1>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '1.05rem', color: 'var(--mid)', lineHeight: 1.75, maxWidth: '720px' }}>
+              Local digital identity management in two phases. First we build your verified presence across Google, Apple Maps, Bing, and the major directories. Then we manage it, so it stays accurate and visible as platforms change.
+            </p>
+          </div>
+        </section>
+        <Services />
+        <System />
       </main>
       <Footer />
     </>
