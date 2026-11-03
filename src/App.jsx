@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import LandingPage from './pages/LandingPage.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
@@ -22,11 +22,81 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 import { trackPageView } from './lib/analytics.js';
 import { servicePages } from './data/servicePages.js';
 
+// Scroll positions are saved per history entry (location.key) so Back/Forward
+// returns to where the visitor left off. New navigations (links) still start
+// at the top, or at the #hash target.
+const SCROLL_PREFIX = 'pl-scroll:';
+
+function readScrollPosition(key) {
+  try {
+    const raw = sessionStorage.getItem(SCROLL_PREFIX + key);
+    return raw === null ? null : Number(raw);
+  } catch {
+    return null;
+  }
+}
+
+function saveScrollPosition(key, y) {
+  try {
+    sessionStorage.setItem(SCROLL_PREFIX + key, String(Math.round(y)));
+  } catch {
+    // Storage can be unavailable (private mode); Back then falls back to the top.
+  }
+}
+
+// Pages can finish growing after the route renders (images, Contentful posts),
+// so keep trying for a short while until the page is tall enough.
+function restoreScroll(y) {
+  let frames = 0;
+  const step = () => {
+    window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    frames += 1;
+    const reached = Math.abs(window.scrollY - y) < 2;
+    if (!reached && frames < 60) requestAnimationFrame(step);
+  };
+  step();
+}
+
+// useLayoutEffect warns during server rendering (the prerender step), so fall
+// back to useEffect there. In the browser the layout effect matters: it runs
+// before the scroll event that a route swap triggers, so that event is saved
+// under the right history entry.
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 function ScrollToTop() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
+  const navType = useNavigationType();
+  const keyRef = useRef(`${key}|${pathname}`);
+  const prevRef = useRef(null);
+
   useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    const onScroll = () => saveScrollPosition(keyRef.current, window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useIsoLayoutEffect(() => {
+    // The first entry of a page load always has the key 'default', so include
+    // the path to keep different URLs loaded in one tab from sharing a position.
+    const storeKey = `${key}|${pathname}`;
+    keyRef.current = storeKey;
+    const prev = prevRef.current;
+    const urlChanged = !prev || prev.pathname !== pathname || prev.hash !== hash;
+    prevRef.current = { pathname, hash };
+
+    if (navType === 'POP') {
+      const saved = readScrollPosition(storeKey);
+      if (saved !== null && !Number.isNaN(saved)) {
+        restoreScroll(saved);
+        return undefined;
+      }
+    }
+    // Same-URL entries pushed by Find My Path must not jump to the top.
+    if (!urlChanged) return undefined;
+
     if (!hash) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       return undefined;
     }
     // The homepage handles its own hash scrolling (LandingPage); other pages
@@ -37,7 +107,7 @@ function ScrollToTop() {
       if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
     }, 150);
     return () => clearTimeout(timer);
-  }, [pathname, hash]);
+  }, [pathname, hash, key, navType]);
   return null;
 }
 
