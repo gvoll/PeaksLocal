@@ -231,7 +231,7 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
                   style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
                   onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_build', destination: '/audit' })}
                 >
-                  Start With a Free Audit
+                  Start With a Free Audit →
                 </Link>
               </div>
               </>
@@ -309,7 +309,7 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
                   style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
                   onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_management', destination: '/contact?interest=management' })}
                 >
-                  Ask About Management
+                  Ask About Management →
                 </Link>
               </div>
               </>
