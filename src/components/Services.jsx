@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import DeepDivePanel from './DeepDivePanel.jsx';
+import { trackEvent } from '../lib/analytics.js';
+import { DeepDiveTeaser } from './DeepDivePanel.jsx';
 
-const oneTimeItems = [
+export const oneTimeItems = [
   'Google, Apple & Bing profile setup and full optimization',
   'JSON-LD schema deployment on your website',
   'BBB liaison and trust directory claims',
@@ -11,7 +12,7 @@ const oneTimeItems = [
   'Completion report with before/after Visibility Rating',
 ];
 
-const ongoingItems = [
+export const ongoingItems = [
   'Monthly profile updates: photos, posts, attributes',
   'Review monitoring and response management',
   'Review velocity strategy',
@@ -72,7 +73,9 @@ const servicesStyles = `
         }
 `;
 
-export default function Services() {
+export default function Services({ variant = 'full', headingLevel = 'h2' }) {
+  const teaser = variant === 'teaser';
+  const SectionHeading = headingLevel;
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -94,6 +97,8 @@ export default function Services() {
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
+    } else {
+      window.location.href = '/audit';
     }
   };
 
@@ -111,7 +116,7 @@ export default function Services() {
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
               HOW WE WORK TOGETHER
             </div>
-            <h2
+            <SectionHeading
               className="reveal reveal-delay-1"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
@@ -125,7 +130,7 @@ export default function Services() {
               }}
             >
               Build Once. Maintain Always.
-            </h2>
+            </SectionHeading>
             <p
               className="reveal reveal-delay-2"
               style={{
@@ -192,9 +197,13 @@ export default function Services() {
                   color: 'var(--slate)',
                   lineHeight: 1.65,
                 }}>
-                  We establish your complete verified presence across every platform that powers modern search. You receive a completion report with a before-and-after Visibility Rating.
+                  {teaser
+                    ? 'We establish your complete verified presence across every platform that powers modern search.'
+                    : 'We establish your complete verified presence across every platform that powers modern search. You receive a completion report with a before-and-after Visibility Rating.'}
                 </p>
               </div>
+              {!teaser && (
+              <>
               <div style={{ padding: '24px 28px', flex: 1 }}>
                 <div style={{
                   fontFamily: "'DM Mono', monospace",
@@ -216,10 +225,17 @@ export default function Services() {
                 </ul>
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
-                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Get My Free Visibility Score
-                </button>
+                <Link
+                  to="/audit"
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
+                  onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_build', destination: '/audit' })}
+                >
+                  Start With a Free Audit →
+                </Link>
               </div>
+              </>
+              )}
             </div>
 
             {/* Card 2 */}
@@ -259,9 +275,13 @@ export default function Services() {
                   color: 'rgba(255,255,255,0.75)',
                   lineHeight: 1.65,
                 }}>
-                  Presence and reputation management that keeps your digital identity active. We monitor, strengthen, and protect your presence so you stay visible as platforms and AI systems evolve.
+                  {teaser
+                    ? 'We strengthen, protect, and monitor your online identity and digital presence.'
+                    : 'Presence and reputation management that keeps your digital identity active. We monitor, strengthen, and protect your presence so you stay visible as platforms and AI systems evolve.'}
                 </p>
               </div>
+              {!teaser && (
+              <>
               <div style={{ padding: '24px 28px', flex: 1 }}>
                 <div style={{
                   fontFamily: "'DM Mono', monospace",
@@ -283,14 +303,34 @@ export default function Services() {
                 </ul>
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
-                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Get My Free Visibility Score
-                </button>
+                <Link
+                  to="/contact?interest=management"
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
+                  onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_management', destination: '/contact?interest=management' })}
+                >
+                  Ask About Management →
+                </Link>
               </div>
+              </>
+              )}
             </div>
           </div>
 
-          <DeepDivePanel />
+          {teaser && (
+            <div className="reveal" style={{ marginTop: '32px' }}>
+              <Link
+                to="/services"
+                style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}
+              >
+                Explore our services →
+              </Link>
+            </div>
+          )}
+
+          {!teaser && (
+          <>
+          <DeepDiveTeaser />
 
           {/* Multi-location */}
           <div
@@ -505,6 +545,8 @@ export default function Services() {
             </button>
             {', no commitment required.'}
           </p>
+          </>
+          )}
         </div>
       </section>
     </>

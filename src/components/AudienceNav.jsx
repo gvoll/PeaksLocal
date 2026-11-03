@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics.js';
 
 const FAMILIARITY_OPTIONS = [
-  { value: 'know', label: 'I know what I need', target: 'services', stop: { title: 'Services', note: 'You know what you need' } },
+  { value: 'know', label: 'I know what I need', target: 'services', route: '/services', stop: { title: 'Services', note: 'You know what you need' } },
   { value: 'new', label: 'New to local SEO', target: 'problem', stop: { title: 'The Visibility Problem', note: 'A plain-language start' } },
-  { value: 'diy', label: 'Tried DIY or an agency', target: 'system', stop: { title: 'The PeaksLocal System', note: 'How this differs from a past attempt' } },
+  { value: 'diy', label: 'Tried DIY or an agency', target: 'system', route: '/services#diy', stop: { title: 'Our Services and Process', note: 'How this differs from a past attempt' } },
   { value: 'not_sure', label: 'Not sure', target: 'problem', isOther: true, stop: { title: 'The Visibility Problem', note: 'A plain-language start' } },
 ];
 
@@ -19,7 +19,7 @@ const BUSINESS_SETUP_OPTIONS = [
 const SEO_STATUS_OPTIONS = [
   { value: 'none', label: 'Nothing set up', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Nothing is set up yet' } },
   { value: 'inconsistent', label: 'Inconsistent', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Details do not match everywhere' } },
-  { value: 'managed', label: 'Managed, not working', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Managed, but not producing results' }, secondary: { label: 'Not seeing results? Get a Visibility Deep-Dive', target: 'deep-dive' } },
+  { value: 'managed', label: 'Managed, not working', target: 'audit', stop: { title: 'Free Visibility Audit', note: 'Managed, but not producing results' }, secondary: { label: 'Not seeing results? Get a Visibility Deep-Dive', target: 'deep-dive', route: '/deep-dive' } },
   { value: 'not_sure', label: 'Not sure', target: 'audit', isOther: true, stop: { title: 'Free Visibility Audit', note: 'Start with a free audit' } },
 ];
 
@@ -375,17 +375,26 @@ export default function AudienceNav() {
   const handleGo = (question, opt) => {
     const list = relationship === 'owner' ? OWNER_QUESTIONS : PARTNER_QUESTIONS;
     const answeredCount = list.filter((q) => selections[q.axis]).length;
-    trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount });
+    trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount, destination: opt.route || `#${opt.target}` });
     // Scrolling alone adds no history entry, so Back would leave the page. Push a same-URL
     // entry first; the browser saves the current scroll position with it, and Back returns here.
+    if (opt.route) {
+      // Destination lives on its own page: a normal route change already adds a history entry.
+      navigate(opt.route, { state: { fromEntryPoint: true } });
+      return;
+    }
     navigate(`${location.pathname}${location.search}`, { state: { fromEntryPoint: true } });
     scrollToId(opt.target);
     if (opt.highlightId) flashHighlight(opt.highlightId);
   };
 
-  // Optional second link on a result card (currently "Managed, not working" -> Deep-Dive panel).
+  // Optional second link on a result card (currently "Managed, not working" -> /deep-dive page).
   const handleSecondary = (question, opt) => {
-    trackEvent('entry_point_deep_dive', { axis: question.axis, value: opt.value });
+    trackEvent('entry_point_deep_dive', { axis: question.axis, value: opt.value, destination: opt.secondary.route || `#${opt.secondary.target}` });
+    if (opt.secondary.route) {
+      navigate(opt.secondary.route, { state: { fromEntryPoint: true } });
+      return;
+    }
     navigate(`${location.pathname}${location.search}`, { state: { fromEntryPoint: true } });
     scrollToId(opt.secondary.target);
   };

@@ -71,7 +71,7 @@ export const servicePages = [
           ],
           [
             { text: 'If you want us to handle it, Identity Build fixes what the score found. Identity Management then runs monthly. Want to see exactly where you rank across Denver before deciding? The ' },
-            { text: 'Visibility Deep-Dive', to: '/contact?interest=deep-dive' },
+            { text: 'Visibility Deep-Dive', to: '/deep-dive' },
             { text: ' adds a Google Maps ranking report, a competitor comparison, and a review analysis. The full process is on ' },
             { text: 'How It Works', to: '/how-it-works' },
             { text: '.' },

@@ -113,8 +113,8 @@ export default function AboutPage() {
           </ol>
           <p style={bodyTextStyle}>
             You always know what's being worked on, what's done, and what's next. If you want a deeper look before deciding, the{' '}
-            <Link to="/contact?interest=deep-dive" style={linkStyle}>Visibility Deep-Dive</Link> adds a Google Maps ranking report, a competitor comparison, and a review analysis. The full process is on{' '}
-            <Link to="/how-it-works" style={linkStyle}>How It Works</Link>.
+            <Link to="/deep-dive" style={linkStyle}>Visibility Deep-Dive</Link> adds a Google Maps ranking report, a competitor comparison, and a review analysis. The full process is on our{' '}
+            <Link to="/services" style={linkStyle}>services page</Link>.
           </p>
         </Section>
 

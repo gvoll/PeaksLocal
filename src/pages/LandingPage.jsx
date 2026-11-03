@@ -39,9 +39,9 @@ export default function LandingPage() {
         <PlatformStrip />
         <AudienceNav />
         <Problem />
-        <Pipeline />
-        <System />
-        <Services />
+        <Pipeline variant="teaser" />
+        <System variant="teaser" />
+        <Services variant="teaser" />
         <WhoWeHelp />
         <PartnerSection />
         <AuditForm />

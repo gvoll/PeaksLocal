@@ -52,6 +52,7 @@ const STATIC_ROUTES = [
   { routePath: '/', priority: '1.0', changefreq: 'weekly' },
   { routePath: '/about', priority: '0.7', changefreq: 'monthly' },
   { routePath: '/services', priority: '0.8', changefreq: 'monthly' },
+  { routePath: '/deep-dive', priority: '0.7', changefreq: 'monthly' },
   { routePath: '/how-it-works', priority: '0.7', changefreq: 'monthly' },
   { routePath: '/audit', priority: '0.9', changefreq: 'monthly' },
   { routePath: '/faq', priority: '0.7', changefreq: 'monthly' },

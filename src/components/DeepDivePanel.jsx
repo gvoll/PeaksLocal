@@ -54,7 +54,8 @@ const styles = `
 
 // flush: drop the top margin when the panel follows a block that already
 // supplies its own bottom spacing (the plan card on /services).
-export default function DeepDivePanel({ flush = false }) {
+export default function DeepDivePanel({ flush = false, headingLevel = 'h3' }) {
+  const Heading = headingLevel;
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
@@ -74,7 +75,7 @@ export default function DeepDivePanel({ flush = false }) {
         >
           ADD-ON · CREDITED TOWARD YOUR PROJECT
         </span>
-        <h3
+        <Heading
           style={{
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 700,
@@ -87,7 +88,7 @@ export default function DeepDivePanel({ flush = false }) {
           }}
         >
           Visibility Deep-Dive
-        </h3>
+        </Heading>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.65, margin: 0 }}>
           Your free audit gives you a Visibility Score and shows where you stand. The Deep-Dive shows why, and how you compare with the businesses customers choose instead of you.
         </p>
@@ -148,6 +149,59 @@ export default function DeepDivePanel({ flush = false }) {
               <span style={{ color: 'var(--navy)' }}>{step}</span>
             </React.Fragment>
           ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Short card for pages that point to /deep-dive (the full content lives
+// there only, so it is never duplicated across pages).
+export function DeepDiveTeaser() {
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+      <div className="deep-dive reveal reveal-delay-2">
+        <span
+          style={{
+            alignSelf: 'flex-start',
+            background: 'var(--navy)',
+            color: 'var(--white)',
+            fontFamily: "'DM Mono', monospace",
+            fontSize: '0.6rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            padding: '4px 10px',
+            borderRadius: '3px',
+          }}
+        >
+          ADD-ON · CREDITED TOWARD YOUR PROJECT
+        </span>
+        <h3
+          style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontWeight: 700,
+            fontSize: '1.6rem',
+            textTransform: 'uppercase',
+            color: 'var(--navy)',
+            letterSpacing: '0.03em',
+            margin: 0,
+            lineHeight: 1.1,
+          }}
+        >
+          Visibility Deep-Dive
+        </h3>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '0.9rem', color: 'var(--mid)', lineHeight: 1.65, margin: 0 }}>
+          Your free audit shows where you stand. The Deep-Dive shows why, and how you compare with the businesses customers choose instead of you.
+        </p>
+        <div>
+          <Link
+            to="/deep-dive"
+            className="btn-primary"
+            onClick={() => trackEvent('deep_dive_teaser_click', { source_page: typeof window !== 'undefined' ? window.location.pathname : '' })}
+          >
+            See the Visibility Deep-Dive →
+          </Link>
         </div>
       </div>
     </>

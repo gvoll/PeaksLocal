@@ -194,6 +194,28 @@ const navDropdownStyles = `
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     z-index: 200;
   }
+  .nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+  .nav-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .nav-dropdown-toggle {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    cursor: pointer;
+    color: var(--slate);
+    line-height: 1;
+  }
+  .nav-dropdown-toggle:hover { color: var(--white); }
   .nav-dropdown-item {
     display: block;
     width: 100%;
@@ -241,16 +263,55 @@ const navDropdownStyles = `
   .nav-get-started:hover { color: var(--white) !important; }
 `;
 
+// Menu config. A menu with `to` has a clickable label that links to a real
+// page (hover/chevron opens the submenu); a menu without it is a toggle only.
+// Items are either a route (`to`) or a homepage section scroll (`scroll`).
+const MENUS = [
+  {
+    id: 'services',
+    label: 'Our Services',
+    to: '/services',
+    items: [
+      { label: 'Identity Build and Management', to: '/services' },
+      { label: 'Review Funnels', to: '/review-funnels' },
+      { label: 'Visibility Deep-Dive', to: '/deep-dive' },
+    ],
+  },
+  {
+    id: 'learn',
+    label: 'Learn',
+    items: [
+      { label: 'How Local Search Works', to: '/how-it-works' },
+      { label: 'Blog', to: '/blog' },
+      { label: 'FAQ', to: '/faq' },
+    ],
+  },
+  {
+    id: 'about',
+    label: 'About',
+    to: '/about',
+    items: [
+      { label: 'Our Story', to: '/about' },
+      { label: 'Who We Help', scroll: 'who' },
+      { label: 'Partners', to: '/partners' },
+    ],
+  },
+];
+
+// One event for every nav click, so menu use can be compared in GA4.
+// menu: 'services' | 'learn' | 'about' | 'cta'; item: 'label' or the item text.
+function trackNav(menu, item, destination, device) {
+  trackEvent('nav_click', { menu, item, destination, device });
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState(null);
-  const [whoOpen, setWhoOpen] = useState(false);
-  const [mobileWhoOpen, setMobileWhoOpen] = useState(false);
-  const [systemOpen, setSystemOpen] = useState(false);
-  const [mobileSystemOpen, setMobileSystemOpen] = useState(false);
-  const whoRef = useRef(null);
-  const systemRef = useRef(null);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [mobileMenu, setMobileMenu] = useState(null);
+  const menuRefs = useRef({});
+  const openMenuRef = useRef(null);
+  openMenuRef.current = openMenu;
   const location = useLocation();
 
   useEffect(() => {
@@ -258,16 +319,23 @@ export default function Nav() {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     const handleClickOutside = (e) => {
-      if (whoRef.current && !whoRef.current.contains(e.target)) setWhoOpen(false);
-      if (systemRef.current && !systemRef.current.contains(e.target)) setSystemOpen(false);
+      const el = openMenuRef.current && menuRefs.current[openMenuRef.current];
+      if (el && !el.contains(e.target)) setOpenMenu(null);
     };
     document.addEventListener('mousedown', handleClickOutside);
+
+    const handleKey = (e) => { if (e.key === 'Escape') setOpenMenu(null); };
+    document.addEventListener('keydown', handleKey);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKey);
     };
   }, []);
+
+  const hoverCapable = () =>
+    typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: hover)').matches;
 
   const scrollTo = (id) => {
     setMobileOpen(false);
@@ -322,85 +390,74 @@ export default function Nav() {
                 Find My Path
               </button>
 
-              {/* PeaksLocal System dropdown */}
-              <div className="nav-dropdown" ref={systemRef}>
-                <button
-                  className="nav-link-item"
-                  style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
-                  onClick={() => setSystemOpen(!systemOpen)}
+              {MENUS.map((menu) => (
+                <div
+                  key={menu.id}
+                  className="nav-dropdown"
+                  ref={(el) => { menuRefs.current[menu.id] = el; }}
+                  onMouseEnter={() => { if (hoverCapable()) setOpenMenu(menu.id); }}
+                  onMouseLeave={() => { if (hoverCapable()) setOpenMenu(null); }}
                 >
-                  PeaksLocal System
-                  <span className="nav-dropdown-chevron" style={{ transform: systemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-                </button>
-                {systemOpen && (
-                  <div className="nav-dropdown-menu">
+                  <div className="nav-dropdown-trigger">
+                    {menu.to ? (
+                      <Link
+                        to={menu.to}
+                        className="nav-link-item"
+                        style={styles.link}
+                        onClick={() => { setOpenMenu(null); trackNav(menu.id, 'label', menu.to, 'desktop'); }}
+                      >
+                        {menu.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        className="nav-link-item"
+                        style={styles.link}
+                        aria-expanded={openMenu === menu.id}
+                        aria-haspopup="true"
+                        onClick={() => setOpenMenu(openMenu === menu.id ? null : menu.id)}
+                      >
+                        {menu.label}
+                      </button>
+                    )}
                     <button
-                      className="nav-dropdown-item"
-                      onClick={() => { setSystemOpen(false); scrollTo('system'); }}
+                      type="button"
+                      className="nav-dropdown-toggle"
+                      aria-label={`${menu.label} menu`}
+                      aria-expanded={openMenu === menu.id}
+                      aria-haspopup="true"
+                      onClick={() => setOpenMenu(openMenu === menu.id ? null : menu.id)}
                     >
-                      Our Process
+                      <span className="nav-dropdown-chevron" style={{ transform: openMenu === menu.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
                     </button>
-                    <button
-                      className="nav-dropdown-item"
-                      onClick={() => { setSystemOpen(false); scrollTo('services'); }}
-                    >
-                      Service Options
-                    </button>
-                    <button
-                      className="nav-dropdown-item"
-                      onClick={() => { setSystemOpen(false); scrollTo('pipeline'); }}
-                    >
-                      Local Search
-                    </button>
-                    <Link
-                      to="/review-funnels"
-                      className="nav-dropdown-item"
-                      onClick={() => setSystemOpen(false)}
-                    >
-                      Review Funnels
-                    </Link>
                   </div>
-                )}
-              </div>
-
-              {/* Who We Help dropdown */}
-              <div
-                className="nav-dropdown"
-                ref={whoRef}
-              >
-                <button
-                  className="nav-link-item"
-                  style={{ ...styles.link, display: 'flex', alignItems: 'center' }}
-                  onClick={() => setWhoOpen(!whoOpen)}
-                >
-                  Who We Help
-                  <span className="nav-dropdown-chevron" style={{ transform: whoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-                </button>
-                {whoOpen && (
-                  <div className="nav-dropdown-menu">
-                    <button
-                      className="nav-dropdown-item"
-                      onClick={() => { setWhoOpen(false); scrollTo('who'); }}
-                    >
-                      Clients
-                    </button>
-                    <Link
-                      to="/partners"
-                      className="nav-dropdown-item"
-                      onClick={() => setWhoOpen(false)}
-                    >
-                      Partners
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              <Link to="/blog" className="nav-link-item" style={styles.link}>
-                Blog
-              </Link>
-              <Link to="/about" className="nav-link-item" style={styles.link}>
-                About
-              </Link>
+                  {openMenu === menu.id && (
+                    <div className="nav-dropdown-menu">
+                      {menu.items.map((item) =>
+                        item.to ? (
+                          <Link
+                            key={item.label}
+                            to={item.to}
+                            className="nav-dropdown-item"
+                            onClick={() => { setOpenMenu(null); trackNav(menu.id, item.label, item.to, 'desktop'); }}
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <button
+                            key={item.label}
+                            type="button"
+                            className="nav-dropdown-item"
+                            onClick={() => { setOpenMenu(null); trackNav(menu.id, item.label, `/#${item.scroll}`, 'desktop'); scrollTo(item.scroll); }}
+                          >
+                            {item.label}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
 
             <button
@@ -418,6 +475,7 @@ export default function Nav() {
               to="/audit"
               className="nav-cta nav-cta-persistent"
               style={styles.ctaBtn}
+              onClick={() => trackNav('cta', 'Free Audit', '/audit', 'all')}
             >
               Free Audit
             </Link>
@@ -439,84 +497,51 @@ export default function Nav() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div style={styles.mobileMenu}>
-            {/* PeaksLocal System mobile */}
-            <button
-              style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
-              onClick={() => setMobileSystemOpen(!mobileSystemOpen)}
-            >
-              PeaksLocal System
-              <span style={{ fontSize: '0.7rem', color: 'var(--slate)', transition: 'transform 0.2s', display: 'inline-block', transform: mobileSystemOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-            </button>
-            {mobileSystemOpen && (
-              <>
+            {MENUS.map((menu) => (
+              <React.Fragment key={menu.id}>
                 <button
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('system'); }}
+                  style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
+                  aria-expanded={mobileMenu === menu.id}
+                  onClick={() => setMobileMenu(mobileMenu === menu.id ? null : menu.id)}
                 >
-                  Our Process
+                  {menu.label}
+                  <span style={{ fontSize: '0.7rem', color: 'var(--slate)', transition: 'transform 0.2s', display: 'inline-block', transform: mobileMenu === menu.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
                 </button>
-                <button
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('services'); }}
-                >
-                  Service Options
-                </button>
-                <button
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); scrollTo('pipeline'); }}
-                >
-                  Local Search
-                </button>
-                <Link
-                  to="/review-funnels"
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileSystemOpen(false); }}
-                >
-                  Review Funnels
-                </Link>
-              </>
-            )}
-
-            {/* Who We Help mobile */}
-            <button
-              style={{ ...styles.mobileLink, borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
-              onClick={() => setMobileWhoOpen(!mobileWhoOpen)}
-            >
-              Who We Help
-              <span style={{ fontSize: '0.7rem', color: 'var(--slate)', transition: 'transform 0.2s', display: 'inline-block', transform: mobileWhoOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-            </button>
-            {mobileWhoOpen && (
-              <>
-                <button
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileWhoOpen(false); scrollTo('who'); }}
-                >
-                  Clients
-                </button>
-                <Link
-                  to="/partners"
-                  style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
-                  onClick={() => { setMobileOpen(false); setMobileWhoOpen(false); }}
-                >
-                  Partners
-                </Link>
-              </>
-            )}
-
-            <Link
-              to="/blog"
-              style={{ ...styles.mobileLink, textDecoration: 'none' }}
-              onClick={() => setMobileOpen(false)}
-            >
-              Blog
-            </Link>
-            <Link
-              to="/about"
-              style={{ ...styles.mobileLink, textDecoration: 'none' }}
-              onClick={() => setMobileOpen(false)}
-            >
-              About
-            </Link>
+                {mobileMenu === menu.id && (
+                  <>
+                    {menu.to && (
+                      <Link
+                        to={menu.to}
+                        style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)', color: 'var(--white)' }}
+                        onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, 'label', menu.to, 'mobile'); }}
+                      >
+                        {menu.id === 'services' ? 'Services overview' : (menu.items.find((i) => i.to === menu.to) || menu).label}
+                      </Link>
+                    )}
+                    {menu.items.filter((item) => !(menu.to && item.to === menu.to)).map((item) =>
+                      item.to ? (
+                        <Link
+                          key={item.label}
+                          to={item.to}
+                          style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', textDecoration: 'none', display: 'block', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                          onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, item.label, item.to, 'mobile'); }}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button
+                          key={item.label}
+                          style={{ ...styles.mobileLink, paddingLeft: '20px', fontSize: '0.88rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                          onClick={() => { setMobileOpen(false); setMobileMenu(null); trackNav(menu.id, item.label, `/#${item.scroll}`, 'mobile'); scrollTo(item.scroll); }}
+                        >
+                          {item.label}
+                        </button>
+                      )
+                    )}
+                  </>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         )}
       </nav>

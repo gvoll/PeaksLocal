@@ -38,22 +38,6 @@ const diyDifferences = [
   },
 ];
 
-const tier1Items = [
-  'Google, Apple & Bing profile setup and full optimization',
-  'JSON-LD schema deployment on your website',
-  'BBB liaison and trust directory claims',
-  'Social profile NAP synchronization',
-  'Monitoring and reporting',
-];
-
-const tier2Items = [
-  'Monthly profile updates: photos, posts, attributes',
-  'Review monitoring and response management',
-  'Review velocity strategy',
-  'Citation drift detection and correction',
-  'Monthly visibility report',
-];
-
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
 // child. <style> content is HTML "raw text" -- browsers never decode entities
 // inside it -- but React's normal text-child serialization HTML-escapes
@@ -137,8 +121,9 @@ const systemStyles = `
         }
 `;
 
-export default function System({ headingLevel = 'h2', children = null }) {
+export default function System({ headingLevel = 'h2', variant = 'full', children = null }) {
   const MainHeading = headingLevel;
+  const teaser = variant === 'teaser';
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -160,6 +145,8 @@ export default function System({ headingLevel = 'h2', children = null }) {
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
+    } else {
+      window.location.href = '/audit';
     }
   };
 
@@ -236,10 +223,24 @@ export default function System({ headingLevel = 'h2', children = null }) {
               <ProcessFlow className="reveal reveal-delay-2"/>
             </div>
 
+            {teaser && (
+              <div className="reveal" style={{ marginTop: '32px' }}>
+                <Link
+                  to="/services"
+                  style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--green)', textDecoration: 'none', fontWeight: 600 }}
+                >
+                  See our full process and services →
+                </Link>
+              </div>
+            )}
+
           </div>
 
+          {!teaser && (
+          <>
           {/* Tried DIY or an agency before */}
           <div
+            id="diy"
             className="plan-card reveal"
             style={{ maxWidth: '900px', marginBottom: '72px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px' }}
           >
@@ -454,6 +455,8 @@ export default function System({ headingLevel = 'h2', children = null }) {
           </div>
 
           {children}
+          </>
+          )}
 
         </div>
 
