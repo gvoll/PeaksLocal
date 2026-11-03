@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { trackEvent } from '../lib/analytics.js';
 import { DeepDiveTeaser } from './DeepDivePanel.jsx';
 
 export const oneTimeItems = [
@@ -224,9 +225,14 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
                 </ul>
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
-                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Get My Free Visibility Score
-                </button>
+                <Link
+                  to="/audit"
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
+                  onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_build', destination: '/audit' })}
+                >
+                  Start With a Free Audit
+                </Link>
               </div>
               </>
               )}
@@ -297,9 +303,14 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
                 </ul>
               </div>
               <div style={{ padding: '20px 28px', borderTop: '1px solid var(--rule)' }}>
-                <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={scrollToAudit}>
-                  Get My Free Visibility Score
-                </button>
+                <Link
+                  to="/contact?interest=management"
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}
+                  onClick={() => trackEvent('services_tier_cta_click', { tier: 'identity_management', destination: '/contact?interest=management' })}
+                >
+                  Ask About Management
+                </Link>
               </div>
               </>
               )}

@@ -5,6 +5,7 @@ import { trackEvent } from '../lib/analytics.js';
 const INQUIRY_TYPES = ['Client inquiry', 'Partner inquiry', 'Visibility Deep-Dive', 'General question'];
 const DEEP_DIVE_TYPE = 'Visibility Deep-Dive';
 const DEEP_DIVE_MESSAGE = "I'd like details and pricing for the Visibility Deep-Dive. My business name and website: ";
+const MANAGEMENT_MESSAGE = "I'd like to ask about Identity Management. My business name and website: ";
 
 const initialForm = {
   name: '',
@@ -172,13 +173,23 @@ export default function ContactForm() {
 
   // /contact?interest=deep-dive (from the Services page) preselects the
   // Deep-Dive inquiry type and starts the message for the visitor.
+  // /contact?interest=management (Identity Management card) does the same
+  // with the client inquiry type.
   useEffect(() => {
-    if (new URLSearchParams(search).get('interest') !== 'deep-dive') return;
-    setForm((prev) => ({
-      ...prev,
-      inquiryType: DEEP_DIVE_TYPE,
-      message: prev.message || DEEP_DIVE_MESSAGE,
-    }));
+    const interest = new URLSearchParams(search).get('interest');
+    if (interest === 'deep-dive') {
+      setForm((prev) => ({
+        ...prev,
+        inquiryType: DEEP_DIVE_TYPE,
+        message: prev.message || DEEP_DIVE_MESSAGE,
+      }));
+    } else if (interest === 'management') {
+      setForm((prev) => ({
+        ...prev,
+        inquiryType: 'Client inquiry',
+        message: prev.message || MANAGEMENT_MESSAGE,
+      }));
+    }
   }, [search]);
 
   useEffect(() => {

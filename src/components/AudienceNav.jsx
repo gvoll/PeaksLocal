@@ -375,7 +375,7 @@ export default function AudienceNav() {
   const handleGo = (question, opt) => {
     const list = relationship === 'owner' ? OWNER_QUESTIONS : PARTNER_QUESTIONS;
     const answeredCount = list.filter((q) => selections[q.axis]).length;
-    trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount });
+    trackEvent('entry_point_go', { axis: question.axis, value: opt.value, answered_count: answeredCount, destination: opt.route || `#${opt.target}` });
     // Scrolling alone adds no history entry, so Back would leave the page. Push a same-URL
     // entry first; the browser saves the current scroll position with it, and Back returns here.
     if (opt.route) {
@@ -390,7 +390,7 @@ export default function AudienceNav() {
 
   // Optional second link on a result card (currently "Managed, not working" -> /deep-dive page).
   const handleSecondary = (question, opt) => {
-    trackEvent('entry_point_deep_dive', { axis: question.axis, value: opt.value });
+    trackEvent('entry_point_deep_dive', { axis: question.axis, value: opt.value, destination: opt.secondary.route || `#${opt.secondary.target}` });
     if (opt.secondary.route) {
       navigate(opt.secondary.route, { state: { fromEntryPoint: true } });
       return;
