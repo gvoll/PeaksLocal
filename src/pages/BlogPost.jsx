@@ -8,7 +8,6 @@ import { getPostBySlug, getPostByEntryId } from '../lib/contentful.js';
 import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
 import { jsonLdProps } from '../lib/jsonLd.js';
-import { founder, founderSchema } from '../data/founder.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -168,7 +167,7 @@ export default function BlogPost() {
             "datePublished": post.publishedDate || undefined,
             "dateModified": post.updatedAt || undefined,
             "image": post.coverImage?.url || "https://www.peakslocal.com/og-image.jpg",
-            "author": founderSchema(),
+            "author": { "@type": "Organization", "@id": "https://www.peakslocal.com", "name": "PeaksLocal" },
             "publisher": {
               "@type": "Organization",
               "name": "PeaksLocal",
@@ -197,7 +196,7 @@ export default function BlogPost() {
                   )}
                   <h1 className="blog-post-title">{post.title}</h1>
                   <p className="blog-post-byline">
-                    By <Link to="/about">{founder.name}</Link>, {founder.jobTitle} of PeaksLocal
+                    By <Link to="/about">PeaksLocal</Link>
                   </p>
                   {post.excerpt && <p className="blog-post-excerpt">{post.excerpt}</p>}
                 </header>
@@ -249,20 +248,6 @@ export default function BlogPost() {
                 {post.commentary && (
                   <blockquote className="blog-post-commentary">{post.commentary}</blockquote>
                 )}
-
-                <aside className="blog-post-author" aria-label="About the author">
-                  <picture>
-                    <source type="image/webp" srcSet={founder.imageWebp} />
-                    <img src={founder.image} width="64" height="64" alt={founder.name} loading="lazy" className="blog-post-author-photo" />
-                  </picture>
-                  <div>
-                    <p className="blog-post-author-label">About the author</p>
-                    <p className="blog-post-author-name">{founder.name}, {founder.jobTitle}</p>
-                    <p className="blog-post-author-bio">{founder.bio}</p>
-                    <Link to="/about" className="blog-post-author-link">More about Greg →</Link>
-                    <a href={founder.linkedin} target="_blank" rel="noreferrer" className="blog-post-author-link" style={{ marginLeft: '18px' }}>LinkedIn →</a>
-                  </div>
-                </aside>
               </>
             )}
           </div>
