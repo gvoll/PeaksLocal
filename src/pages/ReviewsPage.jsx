@@ -23,20 +23,6 @@ const platforms = [
   // prohibits asking anyone to review a business, direct or indirect, so this
   // page (whose entire purpose is asking for a review) never links to Yelp.
   // Yelp presence is managed/optimized, not solicited, see ReviewFunnelsPage.
-  // Bing: restore when listing is approved and published
-  // {
-  //   name: 'Bing',
-  //   action: 'Find us on Bing',
-  //   sub: 'For Windows and Edge users',
-  //   url: 'ADD_BING_PLACES_URL_HERE',
-  //   bg: '#008373',
-  //   border: 'none',
-  //   icon: (
-  //     <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  //       <path fill="#fff" d="M5 3l4 1.5v13l5-2.8-2-1.2 1-6 5 1.8V15l-9 5-4-2.3z"/>
-  //     </svg>
-  //   ),
-  // },
 ];
 
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
@@ -77,7 +63,7 @@ export default function ReviewsPage() {
     <>
       <SEO
         title="Leave a Review: Google"
-        description="Had a good experience with PeaksLocal? Leave us a review on Google. It takes about a minute and helps other local businesses find us."
+        description="Share your experience with PeaksLocal on Google. It takes about a minute and helps other local businesses find us."
         canonical="/reviews"
         breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
       />
@@ -118,7 +104,7 @@ export default function ReviewsPage() {
             letterSpacing: '-0.01em',
             marginBottom: '16px',
           }}>
-            Thank You for Working<br />
+            Share Your Experience<br />
             <span style={{ color: 'var(--green-hi)', fontVariant: 'small-caps', textTransform: 'none' }}>with PeaksLocal<span style={{ color: 'var(--white)' }}>!</span></span>
           </h1>
           <p style={{
@@ -127,7 +113,7 @@ export default function ReviewsPage() {
             color: 'var(--slate)',
             lineHeight: 1.7,
           }}>
-            Where would you like to leave your feedback? It only takes a minute and means a lot.
+            Your honest feedback helps. It only takes a minute and means a lot.
           </p>
         </div>
 
