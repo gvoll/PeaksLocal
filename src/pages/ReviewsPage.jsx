@@ -23,20 +23,6 @@ const platforms = [
   // prohibits asking anyone to review a business, direct or indirect, so this
   // page (whose entire purpose is asking for a review) never links to Yelp.
   // Yelp presence is managed/optimized, not solicited, see ReviewFunnelsPage.
-  // Bing: restore when listing is approved and published
-  // {
-  //   name: 'Bing',
-  //   action: 'Find us on Bing',
-  //   sub: 'For Windows and Edge users',
-  //   url: 'ADD_BING_PLACES_URL_HERE',
-  //   bg: '#008373',
-  //   border: 'none',
-  //   icon: (
-  //     <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  //       <path fill="#fff" d="M5 3l4 1.5v13l5-2.8-2-1.2 1-6 5 1.8V15l-9 5-4-2.3z"/>
-  //     </svg>
-  //   ),
-  // },
 ];
 
 // Raw CSS, injected via dangerouslySetInnerHTML rather than as a JSX text
