@@ -77,7 +77,7 @@ export default function ReviewsPage() {
     <>
       <SEO
         title="Leave a Review: Google"
-        description="Had a good experience with PeaksLocal? Leave us a review on Google. It takes about a minute and helps other local businesses find us."
+        description="Share your experience with PeaksLocal on Google. It takes about a minute and helps other local businesses find us."
         canonical="/reviews"
         breadcrumbs={[{ name: 'Leave a Review', path: '/reviews' }]}
       />
@@ -118,7 +118,7 @@ export default function ReviewsPage() {
             letterSpacing: '-0.01em',
             marginBottom: '16px',
           }}>
-            Thank You for Working<br />
+            Share Your Experience<br />
             <span style={{ color: 'var(--green-hi)', fontVariant: 'small-caps', textTransform: 'none' }}>with PeaksLocal<span style={{ color: 'var(--white)' }}>!</span></span>
           </h1>
           <p style={{
@@ -127,7 +127,7 @@ export default function ReviewsPage() {
             color: 'var(--slate)',
             lineHeight: 1.7,
           }}>
-            Where would you like to leave your feedback? It only takes a minute and means a lot.
+            Your honest feedback helps. It only takes a minute and means a lot.
           </p>
         </div>
 
