@@ -8,6 +8,7 @@ function normalizePost(item) {
     title: item.fields?.title ?? '',
     slug: item.fields?.slug ?? '',
     excerpt: item.fields?.excerpt ?? '',
+    category: item.fields?.category ?? '',
     publishedDate: item.fields?.publishedDate ?? null,
     body: item.fields?.body ?? null,
     externalLink: item.fields?.externalLink ?? '',
