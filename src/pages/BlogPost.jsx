@@ -8,6 +8,7 @@ import { getPostBySlug, getPostByEntryId } from '../lib/contentful.js';
 import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
 import { jsonLdProps } from '../lib/jsonLd.js';
+import { DEFAULT_CATEGORY, getCategory } from '../lib/categories.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -191,6 +192,11 @@ export default function BlogPost() {
             {!loading && !error && post && (
               <>
                 <header className="blog-post-header">
+                  {getCategory(post.category).slug !== DEFAULT_CATEGORY.slug && (
+                    <span className={`category-tag category-tag--${getCategory(post.category).slug}`}>
+                      {getCategory(post.category).name}
+                    </span>
+                  )}
                   {post.publishedDate && (
                     <p className="blog-card-date">{formatDate(post.publishedDate)}</p>
                   )}

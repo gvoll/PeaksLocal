@@ -5,6 +5,7 @@ import Footer from '../components/Footer.jsx';
 import { getAllPosts } from '../lib/contentful.js';
 import { getPreload } from '../lib/preload.js';
 import SEO from '../components/SEO.jsx';
+import { CATEGORIES, getCategory, getCategoryBySlug } from '../lib/categories.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -31,10 +32,41 @@ export default function Blog() {
   const [loading, setLoading] = React.useState(!preloaded);
   const [error, setError] = React.useState('');
   const [showScrollCue, setShowScrollCue] = React.useState(false);
+  // Starts at 'all' on both server and client so hydration matches the
+  // prerendered HTML; a ?category= link is applied after mount.
+  const [activeSlug, setActiveSlug] = React.useState('all');
 
   React.useEffect(() => {
-    if (posts.length > 3) setShowScrollCue(true);
-  }, [posts]);
+    const fromUrl = new URLSearchParams(window.location.search).get('category');
+    if (fromUrl && getCategoryBySlug(fromUrl)) setActiveSlug(fromUrl);
+  }, []);
+
+  // Only categories that have at least one post get a chip, and the whole
+  // filter stays hidden until there is more than one to choose between, so
+  // the page looks unchanged while every post is still the default category.
+  const presentCategories = CATEGORIES.filter((c) =>
+    posts.some((p) => getCategory(p.category).slug === c.slug)
+  );
+  const showCategories = presentCategories.length > 1;
+  const effectiveSlug =
+    showCategories && presentCategories.some((c) => c.slug === activeSlug) ? activeSlug : 'all';
+  const visiblePosts =
+    effectiveSlug === 'all' ? posts : posts.filter((p) => getCategory(p.category).slug === effectiveSlug);
+  const activeCategory = getCategoryBySlug(effectiveSlug);
+
+  // The cue points at articles further down, so it follows the filtered list:
+  // a filter that leaves one or two posts has nothing below to scroll to.
+  React.useEffect(() => {
+    setShowScrollCue(visiblePosts.length > 3);
+  }, [visiblePosts.length]);
+
+  function selectCategory(slug) {
+    setActiveSlug(slug);
+    const url = new URL(window.location.href);
+    if (slug === 'all') url.searchParams.delete('category');
+    else url.searchParams.set('category', slug);
+    window.history.replaceState(null, '', url);
+  }
 
   React.useEffect(() => {
     if (!showScrollCue) return;
@@ -110,14 +142,40 @@ export default function Blog() {
               </button>
             )}
 
+            {showCategories && (
+              <div className="category-filter">
+                <div className="category-chips" role="group" aria-label="Filter posts by category">
+                  {[{ name: 'All', slug: 'all' }, ...presentCategories].map((c) => (
+                    <button
+                      type="button"
+                      key={c.slug}
+                      className="category-chip"
+                      aria-pressed={effectiveSlug === c.slug}
+                      onClick={() => selectCategory(c.slug)}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+                <p className="category-desc" aria-live="polite">
+                  {activeCategory ? activeCategory.description : 'Everything we publish, newest first.'}
+                </p>
+              </div>
+            )}
+
             <div className="blog-list">
-              {posts.map((post) => (
+              {visiblePosts.map((post) => (
                 <article className="blog-list-item" key={post.id}>
                   <Link to={`/blog/${post.slug}`} className="blog-list-link">
                     {post.publishedDate && (
                       <p className="blog-list-date">{formatDate(post.publishedDate)}</p>
                     )}
                     <div className="blog-list-body">
+                      {showCategories && (
+                        <span className={`category-tag category-tag--${getCategory(post.category).slug}`}>
+                          {getCategory(post.category).name}
+                        </span>
+                      )}
                       <h2 className="blog-list-title">{post.title}</h2>
                       {post.excerpt && <p className="blog-list-excerpt">{post.excerpt}</p>}
                     </div>
