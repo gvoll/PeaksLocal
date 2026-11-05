@@ -46,6 +46,7 @@ export default function Footer() {
               <Link to="/partners" className="footer-link" style={linkStyle}>Interested in Partnering?</Link>
               <Link to="/faq" className="footer-link" style={linkStyle}>FAQ</Link>
               <Link to="/serve" className="footer-link" style={linkStyle}>Areas We Serve</Link>
+              <a href="https://www.linkedin.com/company/peakslocal/" target="_blank" rel="noopener noreferrer" className="footer-link" style={linkStyle}>LinkedIn</a>
             </div>
 
             {/* Divider */}
