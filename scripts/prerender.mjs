@@ -121,7 +121,7 @@ async function main() {
   const validPosts = posts.filter((p) => p.slug);
   // /blog only renders these fields. Preloading whole posts (full rich-text
   // bodies) made its HTML ~540 KB, almost all of it an inline JSON blob.
-  const blogIndexPosts = validPosts.map(({ id, slug, title, excerpt, publishedDate }) => ({ id, slug, title, excerpt, publishedDate }));
+  const blogIndexPosts = validPosts.map(({ id, slug, title, excerpt, category, publishedDate }) => ({ id, slug, title, excerpt, category, publishedDate }));
 
   const routes = [
     ...STATIC_ROUTES,
