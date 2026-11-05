@@ -99,7 +99,7 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    href="https://www.facebook.com/people/PeaksLocal/61596290670194/"
+                    href="https://www.facebook.com/PeaksLocal"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="PeaksLocal on Facebook"
