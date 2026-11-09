@@ -102,7 +102,38 @@ const scenarios = [
 // quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
 // prerendered CSS and caused an SSR/client hydration mismatch wherever this
 // component renders.
+const sectionMenu = [
+  { id: 'why-it-works', label: 'Why it works' },
+  { id: 'how-we-work', label: 'How we work together' },
+  { id: 'who-to-refer', label: 'Who to refer' },
+  { id: 'partner-types', label: 'Partner types' },
+  { id: 'get-in-touch', label: 'Get in touch' },
+];
+
 const partnersPageStyles = `
+        .partner-menu {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 28px;
+        }
+        .partner-menu a {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--slate);
+          text-decoration: none;
+          padding: 7px 12px;
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 999px;
+          transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .partner-menu a:hover,
+        .partner-menu a:focus-visible {
+          color: var(--green-hi);
+          border-color: rgba(58,173,100,0.5);
+        }
         .partner-scenario {
           border-bottom: 1px solid rgba(255,255,255,0.08);
         }
@@ -155,13 +186,42 @@ export default function PartnersPage() {
             <p style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '1rem',
-              color: 'var(--slate)',
+              color: 'var(--white)',
               lineHeight: 1.75,
               maxWidth: '600px',
-              marginBottom: '36px',
+              marginBottom: '14px',
             }}>
-              If your clients need local search, Google Maps, or AI visibility services that fall outside your core offerings, PeaksLocal can handle it. You stay focused on what you do best, and your clients get the specialized help they need. We serve local businesses nationwide.
+              PeaksLocal handles the local visibility work your clients need that falls outside your core offerings.
             </p>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: '0 0 36px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              maxWidth: '600px',
+            }}>
+              {[
+                'Local search, Google Maps, and AI visibility',
+                'You stay focused on what you do best',
+                'Your clients get specialized help',
+                'Serving local businesses nationwide',
+              ].map((b) => (
+                <li key={b} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '1rem',
+                  color: 'var(--slate)',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--green-hi)', flexShrink: 0 }}>·</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
             <Link to="/contact" className="btn-primary" style={{ textDecoration: 'none' }}>
               Get in touch →
             </Link>
@@ -176,11 +236,16 @@ export default function PartnersPage() {
             }}>
               No formal program required. Just a conversation about how we might work together in a way that benefits your clients and makes sense for both of us.
             </p>
+            <nav aria-label="On this page" className="partner-menu">
+              {sectionMenu.map((m) => (
+                <Link key={m.id} to={{ hash: `#${m.id}` }}>{m.label}</Link>
+              ))}
+            </nav>
           </div>
         </section>
 
         {/* Benefits */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="why-it-works" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -264,7 +329,7 @@ export default function PartnersPage() {
         </section>
 
         {/* How it works / scenarios */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="how-we-work" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -349,7 +414,7 @@ export default function PartnersPage() {
         </section>
 
         {/* Clients to look for */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="who-to-refer" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -416,7 +481,7 @@ export default function PartnersPage() {
         </section>
 
         {/* Partner types */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="partner-types" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -483,7 +548,7 @@ export default function PartnersPage() {
         </section>
 
         {/* CTA */}
-        <section style={{ padding: '80px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="get-in-touch" style={{ padding: '80px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px', textAlign: 'center' }}>
             <h2 style={{
               fontFamily: "'Barlow Condensed', sans-serif",
