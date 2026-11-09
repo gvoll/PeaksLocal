@@ -22,6 +22,14 @@ const partnerTypes = [
     ],
   },
   {
+    category: 'Media & Advertising',
+    items: [
+      'TV, radio, and outdoor advertising firms',
+      'Media buyers & ad agencies',
+      'Video & commercial production companies',
+    ],
+  },
+  {
     category: 'Business Services',
     items: [
       'Business coaches & advisors',
@@ -39,14 +47,48 @@ const partnerTypes = [
   },
 ];
 
+const goodFit = [
+  {
+    category: 'Business types',
+    items: [
+      'Storefronts, offices, and clinics',
+      'Service-area businesses (home services, mobile, contractors)',
+      'Businesses with multiple locations',
+      'Anywhere in the US',
+    ],
+  },
+  {
+    category: 'Signs they need help',
+    items: [
+      'Not showing up on Google Maps or in local search',
+      'Name, address, or hours inconsistent across listings',
+      'Unclaimed, suspended, or duplicate Google profiles',
+      'Unsure whether AI assistants recommend them',
+    ],
+  },
+  {
+    category: 'Common industries',
+    items: [
+      'Home services and contractors',
+      'Dental and medical practices',
+      'Law firms and professional services',
+      'Restaurants, real estate, auto repair',
+    ],
+  },
+];
+
 const scenarios = [
   {
     title: 'Warm referral',
-    body: 'You have a client who needs local SEO or digital identity work that falls outside your scope. You refer them to PeaksLocal, they get expert help, and the relationship stays intact: you stay in your lane without dropping the ball.',
+    body: 'You have a client who needs local search, Google Maps, or AI visibility work that falls outside your scope. You refer them to PeaksLocal, they get expert help, and the relationship stays intact: you stay in your lane without dropping the ball. We never contact a client without your introduction and their consent.',
+  },
+  {
+    title: 'Two-way introductions',
+    body: 'Some of your clients may want something we don\'t do, such as television, radio, or outdoor advertising. We\'re glad to introduce them to trusted partners, and to receive introductions from partners whose clients need local search and Maps visibility.',
   },
   {
     title: 'White-label support',
-    body: 'You want to offer local identity services under your own brand. PeaksLocal handles the execution while you manage the client relationship. Clean, quiet, professional.',
+    body: 'You want to offer local search and Maps visibility services under your own brand. PeaksLocal does the work quietly in the background while you manage the client relationship. Reach out for more details.',
   },
   {
     title: 'Project handoff',
@@ -60,7 +102,38 @@ const scenarios = [
 // quotes/apostrophes (e.g. 'DM Sans' -> &#x27;DM Sans&#x27;), which broke
 // prerendered CSS and caused an SSR/client hydration mismatch wherever this
 // component renders.
+const sectionMenu = [
+  { id: 'why-it-works', label: 'Why it works' },
+  { id: 'how-we-work', label: 'How we work together' },
+  { id: 'who-to-refer', label: 'Who to refer' },
+  { id: 'partner-types', label: 'Partner types' },
+  { id: 'get-in-touch', label: 'Get in touch' },
+];
+
 const partnersPageStyles = `
+        .partner-menu {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 28px;
+        }
+        .partner-menu a {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--slate);
+          text-decoration: none;
+          padding: 7px 12px;
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 999px;
+          transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .partner-menu a:hover,
+        .partner-menu a:focus-visible {
+          color: var(--green-hi);
+          border-color: rgba(58,173,100,0.5);
+        }
         .partner-scenario {
           border-bottom: 1px solid rgba(255,255,255,0.08);
         }
@@ -75,8 +148,8 @@ export default function PartnersPage() {
   return (
     <>
       <SEO
-        title="Agency + Referral Partners"
-        description="Refer clients who need better digital identity and online visibility to PeaksLocal, your Google, Apple Maps, Bing, Yelp, and directory management partner."
+        title="Local SEO Referral + White-Label Partners"
+        description="Local SEO, Google Maps, and AI visibility for your clients. Referral and white-label partnerships for agencies, serving businesses nationwide."
         canonical="/partners"
         breadcrumbs={[{ name: 'Partners', path: '/partners' }]}
       />
@@ -113,13 +186,42 @@ export default function PartnersPage() {
             <p style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '1rem',
-              color: 'var(--slate)',
+              color: 'var(--white)',
               lineHeight: 1.75,
               maxWidth: '600px',
-              marginBottom: '36px',
+              marginBottom: '14px',
             }}>
-              If your clients need local digital identity work and it falls outside your core offering, PeaksLocal can handle it, so you stay focused on what you do best without leaving your client without a solution.
+              PeaksLocal handles the local visibility work your clients need that falls outside your core offerings.
             </p>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: '0 0 36px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              maxWidth: '600px',
+            }}>
+              {[
+                'Local search, Google Maps, and AI visibility',
+                'You stay focused on what you do best',
+                'Your clients get specialized help',
+                'Serving local businesses nationwide',
+              ].map((b) => (
+                <li key={b} style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '1rem',
+                  color: 'var(--slate)',
+                  lineHeight: 1.6,
+                }}>
+                  <span style={{ color: 'var(--green-hi)', flexShrink: 0 }}>·</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
             <Link to="/contact" className="btn-primary" style={{ textDecoration: 'none' }}>
               Get in touch →
             </Link>
@@ -132,13 +234,18 @@ export default function PartnersPage() {
               marginTop: '16px',
               fontStyle: 'italic',
             }}>
-              No formal program or revenue share required. Just a conversation about how we might work together in a way that benefits your clients and makes sense for both of us.
+              No formal program required. Just a conversation about how we might work together in a way that benefits your clients and makes sense for both of us.
             </p>
+            <nav aria-label="On this page" className="partner-menu">
+              {sectionMenu.map((m) => (
+                <Link key={m.id} to={{ hash: `#${m.id}` }}>{m.label}</Link>
+              ))}
+            </nav>
           </div>
         </section>
 
         {/* Benefits */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="why-it-works" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -165,19 +272,19 @@ export default function PartnersPage() {
               {[
                 {
                   title: 'Stay focused',
-                  bullets: ['Local identity is specialized', 'Expertise + ongoing attention', 'Keep your team on core work'],
+                  bullets: ['Local search and Maps are specialized', 'Expertise + ongoing attention', 'Keep your team on core work'],
                 },
                 {
                   title: 'Client stays covered',
-                  bullets: ['No gaps in their setup', 'Dedicated expert on their team', 'You get credit for the connection'],
+                  bullets: ['No gaps in their setup', 'Dedicated expert on their team', 'You stay the client\'s main contact', 'Introductions only with client consent'],
                 },
                 {
-                  title: 'No strings attached',
-                  bullets: ['No formal agreement required', 'No mandatory referral program', 'No revenue share needed'],
+                  title: 'Simple to start',
+                  bullets: ['No formal agreement needed to begin', 'No mandatory referral program', 'Open to other arrangements as it makes sense'],
                 },
                 {
                   title: 'Flexible arrangements',
-                  bullets: ['Warm referrals', 'White-label execution', 'Project handoffs'],
+                  bullets: ['Warm referrals', 'Two-way introductions', 'White-label execution', 'Project handoffs'],
                 },
               ].map((card) => (
                 <div key={card.title} style={{
@@ -222,7 +329,7 @@ export default function PartnersPage() {
         </section>
 
         {/* How it works / scenarios */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="how-we-work" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -284,7 +391,7 @@ export default function PartnersPage() {
                     }}>+</span>
                   </button>
                   <div style={{
-                    maxHeight: openScenario === i ? '200px' : '0',
+                    maxHeight: openScenario === i ? '280px' : '0',
                     overflow: 'hidden',
                     transition: 'max-height 0.3s ease',
                   }}>
@@ -306,8 +413,75 @@ export default function PartnersPage() {
           </div>
         </section>
 
+        {/* Clients to look for */}
+        <section id="who-to-refer" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          <div className="container" style={{ maxWidth: '860px' }}>
+            <div style={{
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.7rem',
+              color: 'var(--green-hi)',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              marginBottom: '16px',
+            }}>
+              Clients to look for
+            </div>
+            <h2 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 800,
+              fontSize: '2.2rem',
+              textTransform: 'uppercase',
+              color: 'var(--white)',
+              lineHeight: 1.05,
+              marginBottom: '40px',
+            }}>
+              Who Makes a Good Referral
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+              {goodFit.map((group) => (
+                <div key={group.category} style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: '12px',
+                  padding: '24px',
+                }}>
+                  <div style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    textTransform: 'uppercase',
+                    color: 'var(--green-hi)',
+                    letterSpacing: '0.06em',
+                    marginBottom: '14px',
+                    paddingBottom: '10px',
+                    borderBottom: '1px solid rgba(58,173,100,0.2)',
+                  }}>
+                    {group.category}
+                  </div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {group.items.map((item) => (
+                      <li key={item} style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '8px',
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: '0.85rem',
+                        color: 'var(--slate)',
+                        lineHeight: 1.55,
+                      }}>
+                        <span style={{ color: 'var(--green-hi)', flexShrink: 0, marginTop: '1px' }}>·</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Partner types */}
-        <section style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="partner-types" style={{ padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px' }}>
             <div style={{
               fontFamily: "'DM Mono', monospace",
@@ -374,7 +548,7 @@ export default function PartnersPage() {
         </section>
 
         {/* CTA */}
-        <section style={{ padding: '80px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <section id="get-in-touch" style={{ padding: '80px 0', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <div className="container" style={{ maxWidth: '860px', textAlign: 'center' }}>
             <h2 style={{
               fontFamily: "'Barlow Condensed', sans-serif",
