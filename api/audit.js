@@ -143,6 +143,9 @@ export default async function handler(req, res) {
       otherProfiles,
       challenge,
       text('sourcePage').slice(0, 200),
+      // Column R. Audits Greg starts himself are added to the sheet by hand
+      // with "Greg (self-initiated)"; this endpoint only handles the web form.
+      'Prospect (online form)',
     ]);
     saved = result.saved;
     if (result.saved) leadLog = 'saved';
