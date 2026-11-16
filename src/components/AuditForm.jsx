@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics.js';
-import SampleReportCard from './SampleReportCard.jsx';
+import SampleShowcase from './SampleShowcase.jsx';
 
 // A city plus a state: "Denver, CO", "Denver CO" or "Denver, Colorado".
 const CITY_STATE_PATTERN = /,\s*\S|\s[A-Za-z]{2}$/;
@@ -171,8 +171,7 @@ const auditFormStyles = `
           color: #c62828;
           margin: 0;
         }
-        .audit-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; max-width: 920px; margin: 0 auto 56px; }
-        .audit-bullets { list-style: none; padding: 0; margin: 0 0 26px; text-align: left; display: flex; flex-direction: column; gap: 10px; }
+        .audit-bullets { list-style: none; padding: 0; margin: 0 auto 26px; max-width: 430px; text-align: left; display: flex; flex-direction: column; gap: 10px; }
         .audit-bullets li { display: flex; gap: 12px; align-items: flex-start; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--ink); line-height: 1.45; }
         .audit-check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: rgba(58,173,100,0.12); border: 1.5px solid var(--green-hi); color: var(--green); display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; margin-top: 1px; }
         .audit-jump-btn { display: inline-block; background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.95rem; padding: 13px 28px; border-radius: 8px; text-decoration: none; }
@@ -181,9 +180,6 @@ const auditFormStyles = `
         .audit-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
         .audit-step { display: flex; gap: 12px; align-items: flex-start; }
         .audit-step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(58,173,100,0.12); border: 1.5px solid var(--green-hi); display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--green); }
-        @media (max-width: 820px) {
-          .audit-intro { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-        }
         @media (max-width: 720px) {
           .audit-steps { grid-template-columns: minmax(0, 1fr); gap: 18px; max-width: 420px; margin: 0 auto; }
         }
@@ -297,40 +293,40 @@ export default function AuditForm({ headingLevel = 'h2' }) {
             </MainHeading>
           </div>
 
-          <div className="audit-intro">
-            <div className="audit-intro-copy">
-              <p
-                className="reveal reveal-delay-2"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '1.05rem',
-                  color: 'var(--mid)',
-                  lineHeight: 1.6,
-                  margin: '0 0 22px',
-                }}
-              >
-                Get a snapshot of how your business currently shows up on Google, Maps, Bing, and AI search, and what to fix first.
-              </p>
-              <ul className="audit-bullets reveal reveal-delay-3">
-                {[
-                  'Your Visibility Score, plus a map of where customers can find you',
-                  'A prioritized list of what to fix first',
-                  'Report by email within one business day',
-                  'No obligation, no sales pressure',
-                ].map((text) => (
-                  <li key={text}>
-                    <span className="audit-check" aria-hidden="true">&#10003;</span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
-              <a href="#audit-form" className="audit-jump-btn reveal reveal-delay-3">
-                Start your free audit <span aria-hidden="true">&darr;</span>
-              </a>
-            </div>
-            <div className="audit-intro-card reveal reveal-delay-2">
-              <SampleReportCard />
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <p
+              className="reveal reveal-delay-2"
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '1.05rem',
+                color: 'var(--mid)',
+                lineHeight: 1.6,
+                maxWidth: '520px',
+                margin: '0 auto 22px',
+              }}
+            >
+              Get a snapshot of how your business currently shows up on Google, Maps, Bing, and AI search, and what to fix first.
+            </p>
+            <ul className="audit-bullets reveal reveal-delay-3">
+              {[
+                'Your Visibility Score, plus a map of where customers can find you',
+                'A prioritized list of what to fix first',
+                'Report by email within one business day',
+                'No obligation, no sales pressure',
+              ].map((text) => (
+                <li key={text}>
+                  <span className="audit-check" aria-hidden="true">&#10003;</span>
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <a href="#audit-form" className="audit-jump-btn reveal reveal-delay-3">
+              Start your free audit <span aria-hidden="true">&darr;</span>
+            </a>
+          </div>
+
+          <div style={{ marginBottom: '64px' }}>
+            <SampleShowcase />
           </div>
 
           {/* Form card */}
