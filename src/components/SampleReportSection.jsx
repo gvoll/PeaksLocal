@@ -76,7 +76,7 @@ export default function SampleReportSection() {
                   <td>Your current status across these 7 key areas listed.</td>
                 </tr>
                 <tr>
-                  <td>Helps you</td>
+                  <td>Benefits</td>
                   <td>Get a targeted snapshot of your strengths and gaps to boost your local search visibility.</td>
                 </tr>
               </tbody>
@@ -91,14 +91,14 @@ export default function SampleReportSection() {
                   <td>Shows</td>
                   <td>
                     <ul>
-                      <li>Your current local search rankings across your area, seen through a customer's eyes.</li>
+                      <li>Local Search Grid: Maps your current local search rankings across your area, seen through a prospect's eyes.</li>
                       <li>AI Snapshot: Tests your keywords across leading AI models to see how often you're named.</li>
                     </ul>
                   </td>
                 </tr>
                 <tr>
-                  <td>Helps you</td>
-                  <td>Spot the neighborhoods where nearby customers can't find you.</td>
+                  <td>Benefits</td>
+                  <td>See where you rank strong, where you're buried below competitors, and how often AI sends prospects your way.</td>
                 </tr>
               </tbody>
             </table>
