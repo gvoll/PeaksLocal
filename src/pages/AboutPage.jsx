@@ -31,7 +31,7 @@ const h2Style = {
 const steps = [
   {
     title: 'Free Visibility Score',
-    text: 'A check of your business across seven areas: Google Business Profile, Apple Business Connect, Bing Places, website structured data, trust directories, reviews, and social profiles. You get an overall rating, a status for each area, and a free 15-minute walkthrough of your results.',
+    text: 'A check of your business across seven areas: Google Business Profile, Apple Business Connect, Bing Places, website structured data, trust directories, reviews, and social profiles. You get an overall rating and a short list of what to fix first.',
   },
   {
     title: 'Identity Build',

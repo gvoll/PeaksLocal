@@ -54,7 +54,7 @@ const faqs = [
   {
     id: 'report-card',
     q: 'What is the free report card?',
-    a: 'It\'s a visibility check of your business across seven areas: Google Business Profile, Apple Business Connect, Bing Places, website structured data, trust directories, reviews, and social profiles. You get an overall rating, a status for each area, and a free 15-minute walkthrough of your results.',
+    a: 'It\'s a visibility check of your business across seven areas: Google Business Profile, Apple Business Connect, Bing Places, website structured data, trust directories, reviews, and social profiles. You get an overall rating, a status for each area, and a short list of what to fix first.',
   },
   {
     id: 'profile-drift',
