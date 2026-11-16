@@ -9,7 +9,7 @@ export default function AuditPage() {
     <>
       <SEO
         title="Free Local Visibility Audit"
-        description="Get a free Visibility Score for your business. See how you show up across Google, Apple Maps, Bing, and AI search, with a free walkthrough of your results."
+        description="Get a free Visibility Score for your business. See exactly how you show up across Google, Apple Maps, Bing, and AI search, and what to fix first."
         canonical="/audit"
         breadcrumbs={[{ name: 'Free Audit', path: '/audit' }]}
       />

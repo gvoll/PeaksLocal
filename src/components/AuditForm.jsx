@@ -309,12 +309,12 @@ export default function AuditForm({ headingLevel = 'h2' }) {
                   margin: '0 0 22px',
                 }}
               >
-                Get a snapshot of how your business currently shows up on Google, Maps, Bing, and AI search.
+                Get a snapshot of how your business currently shows up on Google, Maps, Bing, and AI search, and what to fix first.
               </p>
               <ul className="audit-bullets reveal reveal-delay-3">
                 {[
                   'Your Visibility Score, plus a map of where customers can find you',
-                  'A free 15-minute walkthrough of your results',
+                  'A prioritized list of what to fix first',
                   'Report by email within one business day',
                   'No obligation, no sales pressure',
                 ].map((text) => (
@@ -736,8 +736,8 @@ export default function AuditForm({ headingLevel = 'h2' }) {
               <div className="audit-steps">
                 {[
                   { title: 'We review your presence.', body: 'Google, Apple Maps, Bing, and AI search.' },
-                  { title: 'You get your Visibility Score.', body: 'Your status across seven areas, by email.' },
-                  { title: 'We walk you through it.', body: 'A free 15-minute call to talk through next steps. No contracts, no pitch.' },
+                  { title: 'You get your Visibility Score.', body: 'Strengths, gaps, and what to fix first.' },
+                  { title: 'We walk you through it.', body: 'A quick call or email. No contracts, no pitch.' },
                 ].map((item, i) => (
                   <div key={item.title} className="audit-step">
                     <span className="audit-step-num">{i + 1}</span>

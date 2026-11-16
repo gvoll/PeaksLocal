@@ -43,7 +43,7 @@ export default function SampleReportSection() {
         <div className="srs-grid">
           <div>
             <div className="section-eyebrow reveal" style={{ color: 'var(--green)' }}>
-              WHAT YOU'LL GET
+              FREE VISIBILITY AUDIT
             </div>
             <h2
               className="reveal reveal-delay-1"
@@ -58,7 +58,7 @@ export default function SampleReportSection() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Check Your Visibility Today <span style={{ color: 'var(--green)', whiteSpace: 'nowrap' }}>- Free</span>
+              Check Your Visibility Today<span style={{ color: 'var(--green)' }}>...Free!</span>
             </h2>
             <p
               className="reveal reveal-delay-2"
