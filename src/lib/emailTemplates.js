@@ -12,9 +12,8 @@
 //   })
 //
 // firstName is optional - falls back to "Hi there," if not provided.
-// Update AUDIT_FORM_URL to match your actual audit form anchor/route.
 
-const AUDIT_FORM_URL = 'https://www.peakslocal.com/#audit';
+const AUDIT_FORM_URL = 'https://www.peakslocal.com/audit';
 
 const styles = `
   <style>

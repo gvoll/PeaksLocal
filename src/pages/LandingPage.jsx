@@ -8,7 +8,7 @@ import Pipeline from '../components/Pipeline.jsx';
 import System from '../components/System.jsx';
 import Services from '../components/Services.jsx';
 import WhoWeHelp, { PartnerSection } from '../components/WhoWeHelp.jsx';
-import AuditForm from '../components/AuditForm.jsx';
+import SampleReportSection from '../components/SampleReportSection.jsx';
 import Footer from '../components/Footer.jsx';
 import SEO from '../components/SEO.jsx';
 
@@ -44,7 +44,7 @@ export default function LandingPage() {
         <Services variant="teaser" />
         <WhoWeHelp />
         <PartnerSection />
-        <AuditForm />
+        <SampleReportSection />
       </main>
       <Footer />
     </>
