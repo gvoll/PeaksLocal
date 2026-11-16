@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { trackEvent } from '../lib/analytics.js';
 import { DeepDiveTeaser } from './DeepDivePanel.jsx';
 
@@ -92,15 +92,8 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToAudit = () => {
-    const el = document.getElementById('audit');
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    } else {
-      window.location.href = '/audit';
-    }
-  };
+  const navigate = useNavigate();
+  const goToAudit = () => navigate('/audit');
 
   return (
     <>
@@ -529,7 +522,7 @@ export default function Services({ variant = 'full', headingLevel = 'h2' }) {
           >
             À la carte options available. Not ready for full management? Start with{' '}
             <button
-              onClick={scrollToAudit}
+              onClick={goToAudit}
               style={{
                 background: 'none',
                 border: 'none',

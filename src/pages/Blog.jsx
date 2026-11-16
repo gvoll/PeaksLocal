@@ -218,7 +218,7 @@ export default function Blog() {
               lineHeight: 1.75,
               marginBottom: '28px',
             }}>
-              Our free audit provides a personalized Digital Identity Report Card showing exactly where you're strong, where you have gaps, and what to fix first.
+              Our free audit provides a personalized Digital Visibility Report Card showing where you're strong and where you have gaps, plus a free 15-minute walkthrough of your results.
             </p>
             <Link to="/audit" className="btn-primary" style={{ textDecoration: 'none' }}>
               Get My Free Visibility Score
