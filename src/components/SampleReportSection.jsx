@@ -98,7 +98,7 @@ export default function SampleReportSection() {
                 </tr>
                 <tr>
                   <td>Benefits</td>
-                  <td>See where you rank strong, where you're buried below competitors, and how often AI sends prospects your way.</td>
+                  <td>See where you rank strong, where you're buried below competitors, and how often AI names you.</td>
                 </tr>
               </tbody>
             </table>
