@@ -107,7 +107,11 @@ export default function ServeCityPage() {
               letterSpacing: '-0.01em',
               marginBottom: '14px',
             }}>
-              Local SEO for <span style={{ color: 'var(--green-hi)' }}>{city.name}</span> Businesses
+              {city.heroTitle ? (
+                <>{city.heroTitle.lead} <span style={{ color: 'var(--green-hi)' }}>{city.heroTitle.accent}</span></>
+              ) : (
+                <>Local SEO for <span style={{ color: 'var(--green-hi)' }}>{city.name}</span> Businesses</>
+              )}
             </h1>
             <p style={{
               fontFamily: "'DM Mono', monospace",

@@ -146,7 +146,7 @@ export default function ServePage() {
           <div className="container" style={{ maxWidth: '800px' }}>
             <h2 style={h2Style}>Every Town Has Its Own Search Results</h2>
             <p style={bodyTextStyle}>
-              Local search on the Front Range isn't one market. Google weighs how close a business is to the person searching, so a search in Boulder, Lakewood, or Colorado Springs returns its own map pack, and a business that leads in one town can be missing in the next. AI assistants like ChatGPT and Gemini work the same way: they recommend a few nearby businesses they can verify, not the biggest name in the state.
+              Local search on the Front Range isn't one market. Google weighs how close a business is to the person searching, so a search in <Link to="/serve/boulder" style={linkStyle}>Boulder</Link>, Lakewood, or <Link to="/serve/colorado-springs" style={linkStyle}>Colorado Springs</Link> returns its own map pack, and a business that leads in one town can be missing in the next. AI assistants like ChatGPT and Gemini work the same way: they recommend a few nearby businesses they can verify, not the biggest name in the state.
             </p>
             <p style={bodyTextStyle}>
               That's why we start every client with the details that apply everywhere (an accurate, consistent identity across Google, Apple Maps, Bing, and the directories AI tools read) and then tune profiles, service areas, and website content to the specific places you want customers from.
