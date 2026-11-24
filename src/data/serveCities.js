@@ -101,11 +101,13 @@ export const serveCities = [
     slug: 'boulder',
     name: 'Boulder',
     tagline: 'A small city with an outsized, highly sophisticated search audience',
-    seoTitle: 'Local SEO Boulder: Google Maps + AI Visibility',
-    seoDescription: 'Local SEO for Boulder businesses: Google Maps, Apple Maps, Bing, and AI search visibility for a tech-savvy audience, from Pearl Street to Gunbarrel.',
+    seoTitle: 'Boulder Local SEO: Google Maps, Apple Maps + AI Search',
+    seoDescription: 'Boulder local SEO for Boulder and Boulder County businesses: Google Maps, Apple Maps, Bing, and AI search visibility, from Pearl Street to Longmont.',
+    heroTitle: { lead: 'Boulder Local SEO,', accent: 'Built for Boulder County' },
     intro: [
       { text: 'Boulder punches above its weight as a local search market. Despite a population of just over 106k', citation: 1 },
       { text: ', it generates search volume and review activity typical of cities twice its size.' },
+      { text: ' We handle Boulder local SEO for businesses in the city and across Boulder County: your Google Business Profile, your Apple Maps and Bing listings, and how AI assistants describe you.' },
     ],
     snapshot: null,
     landscapeHeading: "Boulder's Unique Local Search Market",
@@ -129,24 +131,10 @@ export const serveCities = [
         ],
       },
       {
-        heading: 'Boulder County Is Its Own Market',
-        paragraphs: [
-          [{ text: "Searches in Longmont, Lafayette, Louisville, Erie, and Gunbarrel each return their own local results, and Denver businesses rarely show up in them because of the distance along US-36. That works both ways: a Boulder business won't show up for Denver searches just by trying harder." }],
-          [{ text: "For service area businesses that cover the whole county, the setup matters. Your Google Business Profile service areas, your website's location content, and your listings on Apple Maps and Bing all need to tell the same story about where you work, so each town's search results have a reason to include you." }],
-        ],
-      },
-      {
-        heading: 'Where Boulder Profiles Usually Fall Short',
-        paragraphs: [
-          [{ text: "The Boulder businesses we audit tend to have the same gaps. Their Google profile is solid, but Apple Business Connect was never claimed, so iPhone users and Siri get outdated or missing details. Their Bing Places listing doesn't exist, which matters more now that AI tools draw on Bing. Their website has no structured data, so search engines have to guess at their hours and service area." }],
-          [{ text: "The other common gap is reviews. Boulder customers read them closely, on Google and on Yelp, and they notice when the last one is a year old or when the owner never responds. A steady stream of recent reviews, with thoughtful replies, does more for a Boulder business than almost any technical fix. None of this is complicated, but it has to be done everywhere and kept up, which is exactly the work we take off your plate." }],
-        ],
-      },
-      {
-        heading: 'How We Help Boulder Businesses',
+        heading: 'What Boulder Local SEO Includes',
         paragraphs: [
           [
-            { text: 'We handle the same work for Boulder that we do in Denver: ' },
+            { text: 'For Boulder businesses we handle ' },
             { text: 'local SEO', to: '/local-seo-denver' },
             { text: ' across Google, Apple Maps, and Bing, ongoing ' },
             { text: 'Google Business Profile management', to: '/google-business-profile-management-denver' },
@@ -156,6 +144,23 @@ export const serveCities = [
             { text: 'free Visibility Score', to: '/audit' },
             { text: ' to see where you stand.' },
           ],
+          [{ text: "In practice that means your Google profile covers the Boulder County towns you actually serve, and your hours are right for the Pearl Street and Chautauqua visitors who filter by \"open now.\" It means an Apple Maps listing claimed for the iPhone users around CU Boulder, and a Bing Places listing for the AI tools that draw on it." }],
+          [{ text: 'It also means your website names the districts you work in, whether that is Pearl Street, University Hill, North Boulder, or Gunbarrel, with structured data that agrees with every listing, plus a steady, policy-safe way to collect and answer the reviews Boulder customers read before they call.' }],
+        ],
+      },
+      {
+        heading: 'Boulder County Local SEO: Longmont, Lafayette, Louisville, and Erie',
+        paragraphs: [
+          [{ text: "Searches in Longmont, Lafayette, Louisville, Erie, and Gunbarrel each return their own local results, and Denver businesses rarely show up in them because of the distance along US-36. That works both ways: a Boulder business won't show up for Denver searches just by trying harder." }],
+          [{ text: "For service area businesses that cover the whole county, the setup matters. Your Google Business Profile service areas, your website's location content, and your listings on Apple Maps and Bing all need to tell the same story about where you work, so each town's search results have a reason to include you." }],
+          [{ text: "Each town returns its own map results, so a Longmont plumber and a Boulder plumber share a county but often do not share a map pack. The towns you name in your service areas and website content should be the towns you actually work in." }],
+        ],
+      },
+      {
+        heading: 'Where Boulder Profiles Usually Fall Short',
+        paragraphs: [
+          [{ text: "The Boulder businesses we audit tend to have the same gaps. Their Google profile is solid, but Apple Business Connect was never claimed, so iPhone users and Siri get outdated or missing details. Their Bing Places listing doesn't exist, which matters more now that AI tools draw on Bing. Their website has no structured data, so search engines have to guess at their hours and service area." }],
+          [{ text: "The other common gap is reviews. Boulder customers read them closely, on Google and on Yelp, and they notice when the last one is a year old or when the owner never responds. A steady stream of recent reviews, with thoughtful replies, does more for a Boulder business than almost any technical fix. None of this is complicated, but it has to be done everywhere and kept up, which is exactly the work we take off your plate." }],
         ],
       },
     ],
@@ -171,6 +176,14 @@ export const serveCities = [
       {
         q: 'How do I get my Boulder business recommended by ChatGPT?',
         a: "Make sure every source AI tools read says the same thing about you: your Google, Apple, and Bing listings, Yelp and other directories, and your website's structured data. Then keep recent reviews coming in on more than one platform. AI tools recommend the businesses they can verify most easily.",
+      },
+      {
+        q: 'Do you do local SEO for Longmont, Lafayette, and Louisville businesses?',
+        a: "Yes. We work with businesses across Boulder County. Each town returns its own local results, so we set up your Google service areas, listings, and website location content around the towns you serve instead of treating the county as one market.",
+      },
+      {
+        q: 'How is local SEO different for a Boulder business than a Denver one?',
+        a: "Boulder's audience turns over every year with CU students and visitors, and it checks reviews on more than one platform before choosing. Boulder County towns also return their own map results, so a Boulder business needs service areas and location content built around the towns it serves, not just the city.",
       },
       {
         q: 'Do you work with Boulder businesses in person?',

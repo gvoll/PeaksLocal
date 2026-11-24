@@ -128,6 +128,7 @@ export const servicePages = [
       { to: '/ai-search-optimization-denver', label: 'AI Search Optimization in Denver' },
       { to: '/blog/why-nap-consistency-matters', label: 'Why NAP Consistency Matters for Local and AI Search' },
       { to: '/blog/service-area-business-local-seo-strategy', label: "Why Service Area Businesses Don't Rank Like Everyone Else" },
+      { to: '/serve/boulder', label: 'Local SEO in Boulder and Boulder County' },
     ],
   },
   {
@@ -252,6 +253,7 @@ export const servicePages = [
       { to: '/ai-search-optimization-denver', label: 'AI Search Optimization in Denver' },
       { to: '/blog/hiding-address-google-business-profile-ranking-drop', label: 'Hiding Your Address Could Be Tanking Your Rankings' },
       { to: '/blog/google-business-profile-scam-calls-texts-guide', label: 'How to Spot Fake "Google" Calls About Your Listing' },
+      { to: '/serve/boulder', label: 'Local SEO in Boulder and Boulder County' },
     ],
   },
   {
@@ -378,6 +380,7 @@ export const servicePages = [
       { to: '/google-business-profile-management-denver', label: 'Google Business Profile Management in Denver' },
       { to: '/blog/ai-entity-footprint-audit-local-business', label: 'How to Audit Your AI Entity Footprint' },
       { to: '/blog/google-ai-search-opt-out-local-business', label: "Google's AI Opt-Out: Should Your Business Use It?" },
+      { to: '/serve/boulder', label: 'Local SEO in Boulder and Boulder County' },
     ],
   },
 ];

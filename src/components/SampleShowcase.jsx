@@ -11,9 +11,10 @@ import SampleVisibilityMap from './SampleVisibilityMap.jsx';
 const styles = `
   .srs-samples { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; max-width: 960px; margin: 0 auto; align-items: start; }
   .srs-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--green); font-weight: 500; margin: 0 0 10px; text-align: center; }
-  .srs-table { width: 100%; max-width: 440px; margin: 16px auto 0; border-collapse: collapse; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
-  .srs-table td { padding: 10px 0; border-top: 1px solid var(--rule); vertical-align: top; line-height: 1.5; color: var(--ink); }
-  .srs-table td:first-child { width: 82px; padding-right: 12px; color: var(--green); font-weight: 500; }
+  .srs-table { width: 100%; max-width: 440px; margin: 16px auto 0; border-collapse: separate; border-spacing: 0; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-card); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
+  .srs-table td { padding: 12px 14px; border-top: 1px solid var(--rule); vertical-align: top; line-height: 1.5; color: var(--ink); }
+  .srs-table tr:first-child td { border-top: 0; }
+  .srs-table td:first-child { width: 88px; background: #eef6f0; border-right: 1px solid var(--rule); font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); font-weight: 500; padding-top: 15px; }
   .srs-table ul { margin: 0; padding-left: 18px; list-style: disc; }
   .srs-table li { margin: 0 0 6px; }
   .srs-table li:last-child { margin-bottom: 0; }
